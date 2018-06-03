@@ -1,5 +1,6 @@
 .app-navigation{
   color: #eeeeee;
+  padding: 0.5rem 0 2.5rem 0;
 }
 .app-navigation ul{
   list-style: none;

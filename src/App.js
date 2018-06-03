@@ -5,11 +5,26 @@ import Navbar from './components/Navbar/Navbar';
 import Search from './components/Search/Search';
 import EventCreator from './components/EventCreator/EventCreator';
 import AddEventBtn from './components/AddEventBtn/AddEventBtn';
+import EventContainer from './components/EventContainer/EventContainer';
 
 class App extends Component {
   state = {
     query: null,
     openModal: false,
+    eventContainer: [
+      {day: 'April 10', hour: '10:30 AM'},
+      {day: 'May 3', hour: '11:15 PM'},
+      {day: 'March 30', hour: '13:21 AM'}
+    ],
+    eventModal: {
+      name: '',
+      location: '',
+      organizer: '',
+      description: '',
+      photo: '',
+      category:[],
+      tags:[],
+    }
   }; 
   
   searchQueryHandler = (e) =>{
@@ -22,18 +37,47 @@ class App extends Component {
     this.setState({
       openModal: !this.state.openModal
     });
-    return <EventCreator />
   }
+
+  submitEvent = (e) => {
+    e.preventDefault();
+    this.setState({
+      eventContainer: {
+        day: 'December 31',
+        hour: '12:00 AM'
+      }
+    });
+  }
+
   render() {
+    //In render I can write JS code without any issues
+    let eventContainer = null;
+
+    if(this.state.eventContainer){
+      eventContainer = (
+        <div className="row">
+          {
+            this.state.eventContainer.map((event, id)=>{
+              return <EventContainer day={event.day} hour={event.hour} key={id}/>
+            })
+          }
+        </div>
+      );
+    }
+
+
     return (
       <main className="App">
         <Header>
           <Navbar/>
           <AddEventBtn showModal={this.showModal}/>
+          <Search changed={this.searchQueryHandler}/>
         </Header>
-        <Search changed={this.searchQueryHandler}/>
-        <h1>{this.state.query}</h1>
-        
+        {this.state.openModal ? <EventCreator submit={e => this.submitEvent()}/> : null}
+        <section className="section section__events">
+          <h1 className="section__title">Popular events</h1>
+          {eventContainer}
+        </section>
       </main>
     );
   }

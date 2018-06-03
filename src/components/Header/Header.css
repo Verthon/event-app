@@ -4,7 +4,7 @@
 .app-header__title{
   margin: 0;
   color: #dddddd;
-  padding: 5rem;
+  padding: 2.5rem 0 1rem 0;
 }
 .btn{
   border: 2px solid transparent;

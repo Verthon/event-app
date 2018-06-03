@@ -3,4 +3,8 @@ body {
   padding: 0;
   font-family: sans-serif;
   background: #f2f3f4;
+  position: relative;
+}
+.section{
+  padding: 2rem 5rem;
 }

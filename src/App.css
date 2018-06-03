@@ -21,3 +21,9 @@ a{
   font-size: large;
 }
 
+.row{
+  display: flex;
+}
+.col{
+  flex: 1;
+}

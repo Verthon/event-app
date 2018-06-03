@@ -1,0 +1,9 @@
+.event-container{
+  flex: 1;
+  max-width: 33%;
+  flex-direction: column;
+  display: flex;
+  padding: 3rem 0;
+  line-height: 2;
+  font-size: 1.25rem;
+}
