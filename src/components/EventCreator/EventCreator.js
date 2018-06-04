@@ -4,7 +4,7 @@ import './EventCreator.css';
 const eventCreator = (props) => {
   return (
     <div className="event-modal">
-      <form action="">
+      <form action="" onSubmit={props.submit}>
         <h2 className="event-modal__title">Create your event</h2>
         <label htmlFor="event-name">event name</label>
         <input type="text" name="event-name" required/>
@@ -14,7 +14,7 @@ const eventCreator = (props) => {
         <input type="text" name="event-localization" required/>
         <label htmlFor="event-description">event description</label>
         <textarea name="event-description" id="" cols="30" rows="10" required></textarea>
-        <button className="btn" onSubmit={props.submit}>Submit</button>
+        <button className="btn" type="submit">Submit</button>
       </form>
     </div>
   );

@@ -41,12 +41,14 @@ class App extends Component {
 
   submitEvent = (e) => {
     e.preventDefault();
+    //e.stopPropagation();
+    //e.nativeEvent.stopImmediatePropagation();
     this.setState({
-      eventContainer: {
-        day: 'December 31',
-        hour: '12:00 AM'
-      }
+      eventContainer: this.state.eventContainer.concat({day: 'December 30', hour: '11:21 AM'}),
+      openModal: false
+
     });
+
   }
 
   render() {
@@ -73,7 +75,7 @@ class App extends Component {
           <AddEventBtn showModal={this.showModal}/>
           <Search changed={this.searchQueryHandler}/>
         </Header>
-        {this.state.openModal ? <EventCreator submit={e => this.submitEvent()}/> : null}
+        {this.state.openModal ? <EventCreator submit={(e) => this.submitEvent(e)}/> : null}
         <section className="section section__events">
           <h1 className="section__title">Popular events</h1>
           {eventContainer}
