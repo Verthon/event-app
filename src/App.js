@@ -8,22 +8,25 @@ import AddEventBtn from './components/AddEventBtn/AddEventBtn';
 import EventContainer from './components/EventContainer/EventContainer';
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    this.submitEvent = this.submitEvent.bind(this);
+  }
   state = {
     query: null,
     openModal: false,
     eventContainer: [
-      {day: 'April 10', hour: '10:30 AM'},
-      {day: 'May 3', hour: '11:15 PM'},
-      {day: 'March 30', hour: '13:21 AM'}
+      {title: 'Javascript conference', localization: 'Tokio', day: 'April 10', hour: '10:30 AM',host: 'IT Ninja', description: 'Javascript conferrence, biggest community in Asia'},
+      {title: 'Classic music concert', localization: 'Budapest', day: 'May 3', hour: '11:15 PM',host: 'Budapest Philharmonic Orchestra', description: 'Classic music event'},
+      {title: 'Food market in Sevilla', localization: 'Sevilla', day: 'March 30', hour: '13:21 AM', host: 'Sevilla nautral food',description: 'Biggest market in Europe'}
     ],
     eventModal: {
-      name: '',
-      location: '',
-      organizer: '',
-      description: '',
-      photo: '',
-      category:[],
-      tags:[],
+      title: '',
+      localization: '',
+      day: 'Nov 30',
+      hour: '0:00 AM',
+      host: '',
+      description: ''
     }
   }; 
   
@@ -43,12 +46,16 @@ class App extends Component {
     e.preventDefault();
     //e.stopPropagation();
     //e.nativeEvent.stopImmediatePropagation();
+    console.log(this.state.eventModal);
     this.setState({
-      eventContainer: this.state.eventContainer.concat({day: 'December 30', hour: '11:21 AM'}),
+      //Not working cant pass state
+      eventContainer: [...this.state.eventContainer, {title: this.state.eventModal.title,
+        localization: this.state.eventModal.localization
+      }],
       openModal: false
 
     });
-
+    console.log(this.state.eventModal);
   }
 
   render() {
@@ -60,7 +67,15 @@ class App extends Component {
         <div className="row">
           {
             this.state.eventContainer.map((event, id)=>{
-              return <EventContainer day={event.day} hour={event.hour} key={id}/>
+              return <EventContainer
+              title={event.title}
+              localization={event.localization}
+              host={event.host} 
+              day={event.day} 
+              hour={event.hour}
+              description={event.description} 
+              key={id}
+              />
             })
           }
         </div>
@@ -75,7 +90,11 @@ class App extends Component {
           <AddEventBtn showModal={this.showModal}/>
           <Search changed={this.searchQueryHandler}/>
         </Header>
-        {this.state.openModal ? <EventCreator submit={(e) => this.submitEvent(e)}/> : null}
+        {this.state.openModal ? <EventCreator
+        title={this.state.eventModal.title}
+        localization={this.state.eventModal.localization}
+        submit={(e) => this.submitEvent(e)}/>       
+        : null}
         <section className="section section__events">
           <h1 className="section__title">Popular events</h1>
           {eventContainer}

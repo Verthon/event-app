@@ -1,6 +1,6 @@
 .event-container{
   flex: 1;
-  max-width: 33%;
+  width: 33%;
   flex-direction: column;
   display: flex;
   padding: 3rem 0;
