@@ -90,11 +90,7 @@ class App extends Component {
           <AddEventBtn showModal={this.showModal}/>
           <Search changed={this.searchQueryHandler}/>
         </Header>
-        {this.state.openModal ? <EventCreator
-        title={this.state.eventModal.title}
-        localization={this.state.eventModal.localization}
-        submit={(e) => this.submitEvent(e)}/>       
-        : null}
+        {this.state.openModal ? <EventCreator/> : null}
         <section className="section section__events">
           <h1 className="section__title">Popular events</h1>
           {eventContainer}
