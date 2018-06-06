@@ -5,11 +5,12 @@ const eventContainer = (props) => {
   return (
     <div className="event-container">
       <img src="" alt="default"/>
-      <h2>{props.name}</h2>
+      <h2>{props.title}</h2>
       <p>{props.localization}</p>
       <i>{props.host}</i>
       <time>{props.day} {props.hour} </time>
       <p>{props.description}</p>
+      <p>category: {props.category}</p>
     </div>
   );
 }

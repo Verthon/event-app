@@ -11,7 +11,6 @@ class EventCreator extends Component {
       localization: '',
       description: '',
       category: '',
-      
     };
   }
 
@@ -50,6 +49,9 @@ class EventCreator extends Component {
         onChange={e => this.changeHandler(e)}/>
         <label htmlFor="description">event description</label>
         <textarea name="description" id="" cols="30" rows="10" required value={this.state.description}onChange={e => this.changeHandler(e)}></textarea>
+        <label htmlFor="category">event category</label>
+        <input type="text" name="category" value={this.state.category} 
+        onChange={e => this.changeHandler(e)}/>
         <button className="btn" type="submit">Submit</button>
       </form>
     </div>
