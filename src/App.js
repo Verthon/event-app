@@ -20,14 +20,6 @@ class App extends Component {
       {title: 'Classic music concert', localization: 'Budapest', day: 'May 3', hour: '11:15 PM',host: 'Budapest Philharmonic Orchestra', description: 'Classic music event'},
       {title: 'Food market in Sevilla', localization: 'Sevilla', day: 'March 30', hour: '13:21 AM', host: 'Sevilla nautral food',description: 'Biggest market in Europe'}
     ],
-    eventModal: {
-      title: '',
-      localization: '',
-      day: 'Nov 30',
-      hour: '0:00 AM',
-      host: '',
-      description: ''
-    }
   }; 
   
   searchQueryHandler = (e) =>{
@@ -42,20 +34,16 @@ class App extends Component {
     });
   }
 
-  submitEvent = (e) => {
-    e.preventDefault();
+  submitEvent = (inputs) => {
     //e.stopPropagation();
     //e.nativeEvent.stopImmediatePropagation();
-    console.log(this.state.eventModal);
+    console.log(inputs);
     this.setState({
       //Not working cant pass state
-      eventContainer: [...this.state.eventContainer, {title: this.state.eventModal.title,
-        localization: this.state.eventModal.localization
-      }],
+      eventContainer: [...this.state.eventContainer, inputs],
       openModal: false
 
     });
-    console.log(this.state.eventModal);
   }
 
   render() {
@@ -90,7 +78,7 @@ class App extends Component {
           <AddEventBtn showModal={this.showModal}/>
           <Search changed={this.searchQueryHandler}/>
         </Header>
-        {this.state.openModal ? <EventCreator/> : null}
+        {this.state.openModal ? <EventCreator onSubmit={inputs => this.submitEvent(inputs)}/> : null}
         <section className="section section__events">
           <h1 className="section__title">Popular events</h1>
           {eventContainer}

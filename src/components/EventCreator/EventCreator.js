@@ -4,47 +4,52 @@ import './EventCreator.css';
 class EventCreator extends Component {
   constructor(props){
     super(props);
+    this.submitEvent = this.submitEvent.bind(this);
     this.state = {
-      container: [
-        {title: ''},
-        {host: ''},
-        {localization: ''},
-        {description: ''},
-        {category: ''}
-      ],
-      openModal: false,
+      title: '',
+      host: '',
+      localization: '',
+      description: '',
+      category: '',
+      
     };
   }
 
   submitEvent = (e) => {
     e.preventDefault();
-    //e.stopPropagation();
-    //e.nativeEvent.stopImmediatePropagation();
-    console.log(e);
+    this.props.onSubmit(this.state);
     this.setState({
-      //Not working cant pass state
-      container: [...this.state.container, {title: this.title,
-        host: this.host, localization: this.title, description: this.description,
-        category: this.category
-      }],
+      title: '',
+      host: '',
+      localization: '',
+      description: '',
+      category: '',
       openModal: false
-    
+    });
+  }
+
+  changeHandler = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value
     });
   }
 
   render(props){
   return (
     <div className="event-modal">
-      <form action="" onSubmit={this.submitEvent}>
+      <form action="" onSubmit={(e) => this.submitEvent(e)}>
         <h2 className="event-modal__title">Create your event</h2>
-        <label htmlFor="event-name">event name</label>
-        <input type="text" name="event-name" required ref="title"/>
-        <label htmlFor="event-host">event host</label>
-        <input type="text" name="event-host" required ref="host"/>
-        <label htmlFor="event-localization">event localization</label>
-        <input type="text" name="event-localization" required ref="localization"/>
-        <label htmlFor="event-description">event description</label>
-        <textarea name="event-description" id="" cols="30" rows="10" required ref="description"></textarea>
+        <label htmlFor="title">event name</label>
+        <input type="text" name="title" required value={this.state.title}
+        onChange={e => this.changeHandler(e)}/>
+        <label htmlFor="host">event host</label>
+        <input type="text" name="host" required value={this.state.host} 
+        onChange={e => this.changeHandler(e)}/>
+        <label htmlFor="localization">event localization</label>
+        <input type="text" name="localization" required value={this.state.localization}
+        onChange={e => this.changeHandler(e)}/>
+        <label htmlFor="description">event description</label>
+        <textarea name="description" id="" cols="30" rows="10" required value={this.state.description}onChange={e => this.changeHandler(e)}></textarea>
         <button className="btn" type="submit">Submit</button>
       </form>
     </div>
