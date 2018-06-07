@@ -7,12 +7,12 @@ Projects is using
 ## app functionality
 
 1. creating new event, information required
-  1. event name
-  2. event description
-  3. localization
-  4. date(date-picker)
-  5. photo (no upload, only links)
-  6. category
+  * event name
+  * event description
+  * localization
+  * date(date-picker)
+  * photo (no upload, only links)
+  * category
 2. displaying all events
 3. search function
 4. sorting events
@@ -28,5 +28,5 @@ Projects is using
 ## Installation
 
 clone repository `git clone https://github.com/Verthon/event-app.git`
-install depednecies `npm npm install`
+install dependencies `npm npm install`
 run react dev server `npm start`
