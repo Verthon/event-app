@@ -6,11 +6,14 @@ import Search from './components/Search/Search';
 import EventCreator from './components/EventCreator/EventCreator';
 import AddEventBtn from './components/AddEventBtn/AddEventBtn';
 import EventContainer from './components/EventContainer/EventContainer';
+import DB_CONFIG from './dbconfig.js';
+import firebase from 'firebase';
 
 class App extends Component {
   constructor(props){
     super(props);
     this.submitEvent = this.submitEvent.bind(this);
+    this.app = firebase.initializeApp(DB_CONFIG);
   }
   state = {
     query: '',
@@ -36,11 +39,19 @@ class App extends Component {
 
   submitEvent = (inputs) => {
     this.setState({
-      //Not working cant pass state
       eventContainer: [...this.state.eventContainer, inputs],
       openModal: false
 
     });
+  }
+
+  componentDidMount() {
+    const rootRef = firebase.database().ref().child('react');
+    const titleRef = rootRef.child('title');
+    titleRef.on('value', () => {
+
+    });
+
   }
 
   render() {
