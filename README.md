@@ -10,9 +10,9 @@ Projects is using
   * event name
   * event description
   * localization
-  * date(date-picker)
+  * date(date-picker) (still breaks sumitting form :/)
   * photo (no upload, only links)
-  * category
+  * category(select one from five listed)
 2. displaying all events
 3. search function
 4. sorting events
@@ -30,3 +30,9 @@ Projects is using
 clone repository `git clone https://github.com/Verthon/event-app.git`
 install dependencies `npm npm install`
 run react dev server `npm start`
+
+## Learning new stuff through this project
+
+- setting up firebase,
+- differences about stateful and stateless components,
+- basics about ComponentDidMount and componentWillMount [where to fetch data](https://daveceddia.com/where-fetch-data-componentwillmount-vs-componentdidmount/)
