@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 import './EventCreator.css';
-import DatePicker from 'react-datepicker';
-import moment from 'moment';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -9,11 +7,10 @@ class EventCreator extends Component {
   constructor(props){
     super(props);
     this.submitEvent = this.submitEvent.bind(this);
-    this.dateHandler = this.dateHandler.bind(this);
     this.state = {
       title: '',
       host: '',
-      startDate: moment(),
+      date: '',
       localization: '',
       description: '',
       category: '',
@@ -29,6 +26,7 @@ class EventCreator extends Component {
       localization: '',
       description: '',
       category: '',
+      date: '',
       openModal: false
     });
   }
@@ -36,14 +34,6 @@ class EventCreator extends Component {
   changeHandler = (e) => {
     this.setState({
       [e.target.name]: e.target.value
-    });
-  }
-
-  dateHandler = (date) =>{
-    console.log(this.state.startDate);
-    console.log(date);
-    this.setState({
-      startDate: date
     });
   }
 
@@ -66,16 +56,9 @@ class EventCreator extends Component {
         <label htmlFor="category">event category</label>
         <input type="text" name="category" value={this.state.category} 
         onChange={e => this.changeHandler(e)}/>
-        <label>Event date</label>
-        <DatePicker
-          selected={moment(this.state.startDate)}
-          onChange={this.dateHandler}
-          showTimeSelect
-          timeFormat="HH:mm"
-          timeIntervals={15}
-          dateFormat="LLL"
-          timeCaption="time"
-        />
+        <label htmlFor="date">Event date</label>
+        <input type="date" name="date" value={this.state.date}
+        onChange={e => this.changeHandler(e)}/>
         <button className="btn" type="submit">Submit</button>
       </form>
     </div>

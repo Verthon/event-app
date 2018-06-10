@@ -1,10 +1,10 @@
 const DB_CONFIG = {
-  apiKey: "AIzaSyBMbVRGr8oYXNDbPFb4wS0YT8OJTzwkWoQ",
-  authDomain: "event-app-90ab5.firebaseapp.com",
-  databaseURL: "https://event-app-90ab5.firebaseio.com",
-  projectId: "event-app-90ab5",
-  storageBucket: "event-app-90ab5.appspot.com",
-  messagingSenderId: "523175825147"
+  apiKey: "AIzaSyDtz-r6i3W_I4HKL3nUeAwHjyjG6L3c3P0",
+  authDomain: "event-app-7f660.firebaseapp.com",
+  databaseURL: "https://event-app-7f660.firebaseio.com",
+  projectId: "event-app-7f660",
+  storageBucket: "event-app-7f660.appspot.com",
+  messagingSenderId: "615637702711"
 };
 
 export default DB_CONFIG;

@@ -8,7 +8,7 @@ const eventContainer = (props) => {
       <h2>{props.title}</h2>
       <p>{props.localization}</p>
       <i>{props.host}</i>
-      <time>{props.startDate}</time>
+      <time>{props.date}</time>
       <p>{props.description}</p>
       <p>category: {props.category}</p>
     </li>

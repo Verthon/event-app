@@ -19,9 +19,9 @@ class App extends Component {
     query: '',
     openModal: false,
     eventContainer: [
-      {title: 'Javascript conference', localization: 'Tokio', host: 'IT Ninja', startDate: '10.06.2017',description: 'Javascript conferrence, biggest community in Asia', category: "IT"},
-      {title: 'Classic music concert', localization: 'Budapest', host: 'Budapest Philharmonic Orchestra', startDate: '13.01.2017 12:00PM', description: 'Classic music event', category: "music"},
-      {title: 'Food market in Sevilla', localization: 'Sevilla', host: 'Sevilla nautral food', startDate: '21.05.2014 19:05AM', description: 'Biggest market in Europe', category: "food"}
+      {title: 'Javascript conference', localization: 'Tokio', host: 'IT Ninja', date: '10.06.2017',description: 'Javascript conferrence, biggest community in Asia', category: "IT"},
+      {title: 'Classic music concert', localization: 'Budapest', host: 'Budapest Philharmonic Orchestra', date: '13.01.2017 12:00PM', description: 'Classic music event', category: "music"},
+      {title: 'Food market in Sevilla', localization: 'Sevilla', host: 'Sevilla nautral food', date: '21.05.2014 19:05AM', description: 'Biggest market in Europe', category: "food"}
     ],
   }; 
   
@@ -41,7 +41,6 @@ class App extends Component {
     this.setState({
       eventContainer: [...this.state.eventContainer, inputs],
       openModal: false
-
     });
   }
 
@@ -73,7 +72,7 @@ class App extends Component {
               title={event.title}
               localization={event.localization}
               host={event.host} 
-              startDate={event.startDate}
+              date={event.date}
               description={event.description}
               category={event.category} 
               key={id}
