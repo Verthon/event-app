@@ -11,6 +11,7 @@ class EventCreator extends Component {
       title: '',
       host: '',
       date: '',
+      time: '',
       localization: '',
       description: '',
       category: '',
@@ -27,6 +28,7 @@ class EventCreator extends Component {
       description: '',
       category: '',
       date: '',
+      time: '',
       openModal: false
     });
   }
@@ -58,6 +60,9 @@ class EventCreator extends Component {
         onChange={e => this.changeHandler(e)}/>
         <label htmlFor="date">Event date</label>
         <input type="date" name="date" value={this.state.date}
+        onChange={e => this.changeHandler(e)}/>
+        <label htmlFor="time">Event time</label>
+        <input type="time" step="60" name="time" value={this.state.time}
         onChange={e => this.changeHandler(e)}/>
         <button className="btn" type="submit">Submit</button>
       </form>

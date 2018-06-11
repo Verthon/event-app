@@ -8,20 +8,24 @@ import AddEventBtn from './components/AddEventBtn/AddEventBtn';
 import EventContainer from './components/EventContainer/EventContainer';
 import DB_CONFIG from './dbconfig.js';
 import firebase from 'firebase';
-
+require('firebase/firestore');
 class App extends Component {
   constructor(props){
     super(props);
     this.submitEvent = this.submitEvent.bind(this);
     this.app = firebase.initializeApp(DB_CONFIG);
   }
+
   state = {
     query: '',
     openModal: false,
     eventContainer: [
-      {title: 'Javascript conference', localization: 'Tokio', host: 'IT Ninja', date: '10.06.2017',description: 'Javascript conferrence, biggest community in Asia', category: "IT"},
-      {title: 'Classic music concert', localization: 'Budapest', host: 'Budapest Philharmonic Orchestra', date: '13.01.2017 12:00PM', description: 'Classic music event', category: "music"},
-      {title: 'Food market in Sevilla', localization: 'Sevilla', host: 'Sevilla nautral food', date: '21.05.2014 19:05AM', description: 'Biggest market in Europe', category: "food"}
+      {img: 'https://images.unsplash.com/photo-1443170412500-d04323a4eb57?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=fe85e0e4ce34bcf213aececc2df46be7&auto=format&fit=crop&w=634&q=80', title: 'Javascript conference', localization: 'Tokio', host: 'IT Ninja', date: '10.06.2017',
+      time:'05:00',description: 'Javascript conferrence, biggest community in Asia', category: "IT"},
+
+      {img: 'https://images.unsplash.com/photo-1479935276380-b9561c38eceb?ixlib=rb-0.3.5&s=ea432148ad8e5cb0386a939ee26ee23d&auto=format&fit=crop&w=1046&q=80', title: 'Classic music concert', localization: 'Budapest', host: 'Budapest Philharmonic Orchestra', date: '13.01.2017', time:'12:00', description: 'Classic music event', category: "music"},
+
+      {img: 'https://images.unsplash.com/photo-1509840841025-9088ba78a826?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=572fdc7f4e94294fd602817ced56bc87&auto=format&fit=crop&w=1050&q=80',title: 'Food market in Sevilla', localization: 'Sevilla', host: 'Sevilla nautral food', date: '21.05.2014', time: '07:05', description: 'Biggest market in Europe', category: "food"}
     ],
   }; 
   
@@ -39,18 +43,22 @@ class App extends Component {
 
   submitEvent = (inputs) => {
     this.setState({
+      // using spread operator instead of push
       eventContainer: [...this.state.eventContainer, inputs],
       openModal: false
     });
   }
 
   componentDidMount() {
-    const rootRef = firebase.database().ref().child('react');
-    const titleRef = rootRef.child('title');
-    titleRef.on('value', () => {
-
+    const firestore = firebase.firestore();
+    const eventRef = firestore.doc("events/event");
+    eventRef.set({
+      event: this.state.eventContainer
+    },{merge: true}).then(() => {
+      console.log('status saved in firestore');
+    }).catch(error => {
+      console.log(error);
     });
-
   }
 
   render() {
@@ -65,14 +73,16 @@ class App extends Component {
 
     if(this.state.eventContainer){
       eventContainer = (
-        <div className="row">
+        <div id="events" className="row">
           {
             filteredEvents.map((event, id)=>{
               return <EventContainer
+              img={event.img}
               title={event.title}
               localization={event.localization}
               host={event.host} 
               date={event.date}
+              time={event.time}
               description={event.description}
               category={event.category} 
               key={id}

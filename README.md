@@ -33,6 +33,6 @@ run react dev server `npm start`
 
 ## Learning new stuff through this project
 
-- setting up firebase,
+- setting up firebase/firestore,
 - differences about stateful and stateless components,
 - basics about ComponentDidMount and componentWillMount [where to fetch data](https://daveceddia.com/where-fetch-data-componentwillmount-vs-componentdidmount/)

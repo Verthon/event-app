@@ -6,3 +6,7 @@
   line-height: 2;
   font-size: 1.25rem;
 }
+.event-container img{
+  max-width: 400px;
+  max-height: 200px;
+}
