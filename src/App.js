@@ -13,6 +13,7 @@ class App extends Component {
   constructor(props){
     super(props);
     this.submitEvent = this.submitEvent.bind(this);
+    this.deleteEvent = this.deleteEvent.bind(this);
     this.app = firebase.initializeApp(DB_CONFIG);
   }
 
@@ -49,16 +50,17 @@ class App extends Component {
     });
   }
 
+  deleteEvent = (id) => {
+    const event = this.state.eventContainer;
+    event.splice(id, 1);
+    this.setState({
+      event: event
+    });
+  }
+
   componentDidMount() {
     const firestore = firebase.firestore();
     const eventRef = firestore.doc("events/event");
-    eventRef.set({
-      event: this.state.eventContainer
-    },{merge: true}).then(() => {
-      console.log('status saved in firestore');
-    }).catch(error => {
-      console.log(error);
-    });
   }
 
   render() {
@@ -86,6 +88,7 @@ class App extends Component {
               description={event.description}
               category={event.category} 
               key={id}
+              delete={() => this.deleteEvent(id)}
               />
             })
           }
