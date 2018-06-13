@@ -21,7 +21,7 @@ class App extends Component {
     query: '',
     openModal: false,
     eventContainer: [
-      {img: 'https://images.unsplash.com/photo-1443170412500-d04323a4eb57?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=fe85e0e4ce34bcf213aececc2df46be7&auto=format&fit=crop&w=634&q=80', title: 'Javascript conference', localization: 'Tokio', host: 'IT Ninja', date: '10.06.2017',
+      {img: 'https://images.unsplash.com/photo-1527938861934-666a754e21e4?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=96c4c4ce11515a34eb2a3619e49a20f3&auto=format&fit=crop&w=1053&q=80', title: 'Javascript conference', localization: 'Tokio', host: 'IT Ninja', date: '10.06.2017',
       time:'05:00',description: 'Javascript conferrence, biggest community in Asia', category: "IT"},
 
       {img: 'https://images.unsplash.com/photo-1479935276380-b9561c38eceb?ixlib=rb-0.3.5&s=ea432148ad8e5cb0386a939ee26ee23d&auto=format&fit=crop&w=1046&q=80', title: 'Classic music concert', localization: 'Budapest', host: 'Budapest Philharmonic Orchestra', date: '13.01.2017', time:'12:00', description: 'Classic music event', category: "music"},
@@ -101,6 +101,7 @@ class App extends Component {
       <main className="App">
         <Header>
           <Navbar/>
+          <h1 className="app-header__title">Welcome to event-app</h1>
           <AddEventBtn showModal={this.showModal}/>
           <Search changed={this.searchQueryHandler}/>
         </Header>

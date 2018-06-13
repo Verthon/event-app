@@ -2,9 +2,10 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  background: #f2f3f4;
+  background: #f6f6f6;
   position: relative;
 }
 .section{
+  margin-top: 5rem;
   padding: 2rem 5rem;
 }

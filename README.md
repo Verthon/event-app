@@ -36,3 +36,5 @@ run react dev server `npm start`
 - setting up firebase/firestore,
 - differences about stateful and stateless components,
 - basics about ComponentDidMount and componentWillMount [where to fetch data](https://daveceddia.com/where-fetch-data-componentwillmount-vs-componentdidmount/)
+- conditional render for components (EventCreator 'modal')
+- how to host create-react-app in gh-pages

@@ -1,6 +1,14 @@
 .app-navigation{
-  color: #eeeeee;
-  padding: 0.5rem 0 2.5rem 0;
+  color: #252525;
+  min-height: 3.5rem;
+  background: #ffffff;
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+}
+.app-navigation .logo{
+  font-size: 2rem;
+  margin: 0;
 }
 .app-navigation ul{
   list-style: none;

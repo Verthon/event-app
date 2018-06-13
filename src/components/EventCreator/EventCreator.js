@@ -9,6 +9,7 @@ class EventCreator extends Component {
     this.submitEvent = this.submitEvent.bind(this);
     this.state = {
       title: '',
+      image: '',
       host: '',
       date: '',
       time: '',
@@ -24,6 +25,7 @@ class EventCreator extends Component {
     this.setState({
       title: '',
       host: '',
+      img: '',
       localization: '',
       description: '',
       category: '',
@@ -46,6 +48,9 @@ class EventCreator extends Component {
         <h2 className="event-modal__title">Create your event</h2>
         <label htmlFor="title">event name</label>
         <input type="text" name="title" required value={this.state.title}
+        onChange={e => this.changeHandler(e)}/>
+        <label htmlFor="img">event image</label>
+        <input type="text" name="img" required value={this.state.img}
         onChange={e => this.changeHandler(e)}/>
         <label htmlFor="host">event host</label>
         <input type="text" name="host" required value={this.state.host} 

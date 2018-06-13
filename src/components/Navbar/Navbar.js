@@ -4,7 +4,8 @@ import './Navbar.css';
 const navbar = () => {
   return(
     <nav className="app-navigation">
-      <ul>
+      <h1 className="logo">Event app</h1>
+      <ul >
         <li className="app-navigation__item"><a href="#">Home</a></li>
         <li className="app-navigation__item"><a href="#events">Events</a></li>
         <li className="app-navigation__item"><a href="#events">About</a></li>
