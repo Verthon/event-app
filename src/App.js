@@ -101,8 +101,10 @@ class App extends Component {
       <main className="App">
         <Header>
           <Navbar/>
-          <h1 className="app-header__title">Welcome to event-app</h1>
-          <AddEventBtn showModal={this.showModal}/>
+          <div className="app-header__container">
+            <h1 className="app-header__title">Where the events happen</h1>
+            <AddEventBtn showModal={this.showModal}/>
+          </div>  
           <Search changed={this.searchQueryHandler}/>
         </Header>
         {this.state.openModal ? <EventCreator onSubmit={inputs => this.submitEvent(inputs)}/> : null}

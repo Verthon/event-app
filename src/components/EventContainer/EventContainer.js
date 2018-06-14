@@ -14,12 +14,13 @@ class eventContainer extends Component {
         <time className="time-container">{this.props.time}</time>
       </div> 
       <h2 className="event-container__title">{this.props.title}</h2>
-      <p>{this.props.description}</p>
-      <i>{this.props.host}</i>
+      <p>Event host: {this.props.host}</p>
       <p>{this.props.localization}</p>
       <p>category: {this.props.category}</p>
-      <button className="btn" onClick={this.props.edit}>edit</button>
-      <button className="btn" onClick={this.props.delete}>delete</button>
+      <div>
+        <button className="btn btn--reverse" onClick={this.props.edit}>edit</button>
+        <button className="btn btn--reverse" onClick={this.props.delete}>delete</button>
+      </div>  
     </div>
     );
   }

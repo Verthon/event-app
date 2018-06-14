@@ -3,6 +3,7 @@ Projects is using
 
 1. React
 2. create-react-app
+3. Header svg from [svgbagrounds.com](https://www.svgbackgrounds.com/)
 
 ## app functionality
 

@@ -20,3 +20,12 @@
 .app-navigation ul .app-navigation__item{
   margin: 0 1rem;
 }
+
+@media(max-width: 500px){
+  .app-navigation .logo{
+    font-size: 2rem;
+  }
+  .app-navigation ul {
+    display: none;
+  }
+}
