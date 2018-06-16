@@ -7,7 +7,8 @@
   justify-content: space-around;
 }
 .app-navigation .logo{
-  font-size: 2rem;
+  font-size: 1.75rem;
+  text-transform: uppercase;
   margin: 0;
 }
 .app-navigation ul{
@@ -23,7 +24,7 @@
 
 @media(max-width: 500px){
   .app-navigation .logo{
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
   .app-navigation ul {
     display: none;

@@ -15,14 +15,18 @@ input, textarea{
   border-radius: 2px;
 }
 .section{
-  margin-top: 10rem;
+  margin-top: 2.5rem;
   padding: 2rem 5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+.section--events{
+  margin-top: 10rem;
+  padding: 0 5rem;
+}
 .section__title{
-  font-size: 2rem;
+  font-size: 3.5rem;
 }
 
 @media(max-width: 500px){
