@@ -6,6 +6,7 @@ const event  = (props) => {
     <section>
       <img src={props.img} alt=""/>
       <h1>test</h1>
+      <button onClick={props.closed}>Close</button>
     </section>  
   );
 };

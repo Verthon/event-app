@@ -6,23 +6,32 @@ class eventContainer extends Component {
 
   constructor(){
     super();
-    this.showEvent = this.showEvent.bind(this);
+    this.showEvent = this.showEventHandler.bind(this);
+    this.closePreview = this.closePreview.bind(this);
     this.state = {
       showEvent: false
     };
   }
 
-  showEvent = () =>{
-    console.log(this);
+  showEventHandler = () => {
+    console.log(this.state.showEvent);
     this.setState = ({
       showEvent: !this.state.showEvent
+    });
+    console.log(this.state.showEvent);
+  }
+
+  closePreview = () => {
+    console.log(this);
+    this.setState = ({
+      showEvent: false
     });
   }
 
   
   render(){
     return (
-    <div className="event-container" onClick={this.showEvent}>
+    <div className="event-container" onClick={this.showEventHandler}>
       <img className="event-container__image" src={this.props.img} alt="default"/>
       <div className="event-container__date">
         <time className="time-container">{this.props.date}</time>
@@ -34,7 +43,7 @@ class eventContainer extends Component {
         <strong>{this.props.localization}</strong>
       </div>
       <span className="event-container__category"> {this.props.category}</span>
-      {this.state.showEvent ? <Event/> : null}
+      {this.state.showEvent ? <Event onClick={this.closePreview}/> : null}
     </div>
     
     );

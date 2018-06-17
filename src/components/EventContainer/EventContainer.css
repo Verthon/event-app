@@ -45,10 +45,11 @@
 
 @media (max-width: 500px){
   .event-container{
-    margin: 1rem 0.5rem;
+    margin: 1rem auto;
+    padding: 0 2rem;
   }
   .event-container__image{
-    width: 100%;
-    height: auto;
+    width: auto;
+    height: 180px;
   }
 }
