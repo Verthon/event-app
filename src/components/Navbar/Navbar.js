@@ -6,10 +6,10 @@ const navbar = () => {
     <nav className="app-navigation">
       <h1 className="logo">Event app</h1>
       <ul >
-        <li className="app-navigation__item"><a href="#">Home</a></li>
+        <li className="app-navigation__item"><a href="">Home</a></li>
         <li className="app-navigation__item"><a href="#events">Events</a></li>
-        <li className="app-navigation__item"><a href="#events">About</a></li>
-        <li className="app-navigation__item"><a href="#events">Contact</a></li>
+        <li className="app-navigation__item"><a href="#about">About</a></li>
+        <li className="app-navigation__item"><a href="#contact">Contact</a></li>
       </ul>
     </nav>
   );

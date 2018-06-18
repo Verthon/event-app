@@ -7,6 +7,10 @@
   margin: 10rem auto 0 auto;
   max-width: 1000px;
 }
+.event-modal__title{
+  font-size: 2.75rem;
+  margin: 4rem 0;
+}
 .event-modal form{
   display: flex;
   flex-direction: column;
@@ -16,7 +20,27 @@
   border: 0;
   border-bottom: 1px solid #ccc;
   font-size: 1rem;
+  height: 3rem;
+}
+.event-modal form textarea{
+  border: 0;
+  border-bottom: 1px solid #ccc;
+  font-size: 1rem;
+}
+.event-modal form label{
+  font-size: 1.25rem;
 }
 .event-modal form input:focus, textarea:focus{
   outline: none;
+  border-bottom: 1px solid #999;
+}
+
+.form-row{
+  display: flex;
+  flex-wrap: wrap;
+}
+.form-col{
+  display: flex;
+  flex-direction: column;
+  margin: 2rem;
 }

@@ -9,6 +9,9 @@ import EventContainer from './components/EventContainer/EventContainer';
 import About from './components/About/About';
 import DB_CONFIG from './dbconfig.js';
 import firebase from 'firebase';
+import scrollIntoView from 'scroll-into-view-if-needed';
+
+
 class App extends Component {
   constructor(props){
     super(props);
@@ -42,6 +45,9 @@ class App extends Component {
     this.setState({
       openModal: !this.state.openModal
     });
+    const modal = document.querySelector('.event-modal');
+    console.log(modal);
+    //scrollIntoView(modal, { behavior: 'smooth', scrollMode: 'if-needed' });
   }
 
   submitEvent = (inputs) => {
@@ -69,7 +75,6 @@ class App extends Component {
     let eventContainer = null;
     let filteredEvents = this.state.eventContainer.filter(
       (event) => {
-        console.log(this.state.query);
         return event.title.toLowerCase().indexOf(this.state.query) !== -1;
       }
     );
