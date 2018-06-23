@@ -7,9 +7,10 @@ import EventCreator from './components/EventCreator/EventCreator';
 import AddEventBtn from './components/AddEventBtn/AddEventBtn';
 import EventContainer from './components/EventContainer/EventContainer';
 import About from './components/About/About';
+import Contact from './components/Contact/Contact';
 import DB_CONFIG from './dbconfig.js';
 import firebase from 'firebase';
-import scrollIntoView from 'scroll-into-view-if-needed';
+// import scrollIntoView from 'scroll-into-view-if-needed';
 
 
 class App extends Component {
@@ -119,6 +120,7 @@ class App extends Component {
           {eventContainer}
         </section>
         <About />
+        <Contact />
       </main>
     );
   }

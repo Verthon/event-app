@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './EventContainer.css';
 import Event from '../Event/Event';
+import Modal from '@material-ui/core/Modal';
 
 class eventContainer extends Component {
 
@@ -9,21 +10,19 @@ class eventContainer extends Component {
     this.showEvent = this.showEventHandler.bind(this);
     this.closePreview = this.closePreview.bind(this);
     this.state = {
-      showEvent: false
+      showEvent: false,
+      modalIsOpen: false
     };
   }
 
   showEventHandler = () => {
-    console.log(this.state.showEvent);
-    this.setState = ({
+    this.setState ({
       showEvent: !this.state.showEvent
     });
-    console.log(this.state.showEvent);
   }
 
   closePreview = () => {
-    console.log(this);
-    this.setState = ({
+    this.setState ({
       showEvent: false
     });
   }
@@ -43,7 +42,7 @@ class eventContainer extends Component {
         <strong>{this.props.localization}</strong>
       </div>
       <span className="event-container__category"> {this.props.category}</span>
-      {this.state.showEvent ? <Event onClick={this.closePreview}/> : null}
+      {this.state.showEvent ? <Modal/> : null}
     </div>
     
     );
