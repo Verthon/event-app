@@ -4,7 +4,7 @@ import './Map.css';
 const AnyReactComponent = ({ text }) => <div>{ text }</div>;
 export default class Map extends Component {
   static defaultProps = {
-    center: { lat: 40.7446790, lng: -73.9485420 },
+    center: { lat: 43.009953, lng: -81.273613 },
     zoom: 11
   }
 render() {
