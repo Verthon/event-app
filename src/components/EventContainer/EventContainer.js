@@ -1,29 +1,31 @@
 import React, {Component} from 'react';
 import './EventContainer.css';
-import Event from '../Event/Event';
 import Modal from '@material-ui/core/Modal';
+import Map from '../Map/Map';
 
 class eventContainer extends Component {
 
   constructor(){
     super();
     this.showEvent = this.showEventHandler.bind(this);
-    this.closePreview = this.closePreview.bind(this);
+    this.closePreviewHandler = this.closePreviewHandler.bind(this);
     this.state = {
-      showEvent: false,
-      modalIsOpen: false
+      modalIsOpen: false,
+      open: false
     };
   }
 
   showEventHandler = () => {
     this.setState ({
-      showEvent: !this.state.showEvent
+      open: true,
+      modalIsOpen: !this.state.modalIsOpen
     });
   }
 
-  closePreview = () => {
+  closePreviewHandler = () => {
+    console.log('backdrop');
     this.setState ({
-      showEvent: false
+      open: false
     });
   }
 
@@ -42,7 +44,30 @@ class eventContainer extends Component {
         <strong>{this.props.localization}</strong>
       </div>
       <span className="event-container__category"> {this.props.category}</span>
-      {this.state.showEvent ? <Modal/> : null}
+      <Modal
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
+        open={this.state.open}
+        onClose={this.closePreviewHandler}
+        onBackdropClick={this.closePreviewHandler}
+        >
+          <div className="event-preview">
+            <h1>{this.props.title}</h1>
+            <img src={this.props.img} alt=""/>
+            <div className="event-container__date">
+              <time className="time-container">{this.props.date}</time>
+              <time className="time-container">{this.props.time}</time>
+            </div>
+            <div className="event-container__meta"> 
+              <p>{this.props.host}</p>
+              <strong>{this.props.localization}</strong>
+            </div>
+            <p>{this.props.description}</p>
+            <Map/>
+
+            <button onClick={this.closePreviewHandler}>close</button>
+          </div>
+      </Modal>
     </div>
     
     );

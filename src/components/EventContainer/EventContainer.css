@@ -9,6 +9,7 @@
   margin: 2rem;
   font-size: 1.15rem;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  position: relative;
 }
 .event-container__date{
   display: flex;
@@ -41,6 +42,22 @@
   background: transparent;
   border: 1.5px solid #330033;
   margin: 1rem;
+}
+
+.event-preview{
+  background: #fff;
+  top: 0;
+  left: 50%;
+  position: absolute;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.25);
+  transform: translate(-50%, 0);
+  padding: 2rem;
+  overflow-y: scroll;
+  
+}
+
+.event-preview img{
+  max-width: 350px;
 }
 
 @media (max-width: 500px){
