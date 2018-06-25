@@ -29,7 +29,6 @@ class eventContainer extends Component {
     });
   }
 
-  
   render(){
     return (
     <div className="event-container" onClick={this.showEventHandler}>
@@ -52,20 +51,19 @@ class eventContainer extends Component {
         onBackdropClick={this.closePreviewHandler}
         >
           <div className="event-preview">
-            <h1>{this.props.title}</h1>
+            <h2 className="event-preview__title">{this.props.title}</h2>
             <img src={this.props.img} alt=""/>
             <div className="event-container__date">
               <time className="time-container">{this.props.date}</time>
               <time className="time-container">{this.props.time}</time>
             </div>
-            <div className="event-container__meta"> 
+            <div className="event-container__meta">
               <p>{this.props.host}</p>
               <strong>{this.props.localization}</strong>
             </div>
-            <p>{this.props.description}</p>
+            <p className="event-description">{this.props.description}</p>
             <Map/>
-
-            <button onClick={this.closePreviewHandler}>close</button>
+            <button className="event-preview__close" onClick={this.closePreviewHandler}>close</button>
           </div>
       </Modal>
     </div>
