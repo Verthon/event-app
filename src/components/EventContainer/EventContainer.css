@@ -83,6 +83,16 @@
 .event-preview__close:hover{
   cursor: pointer;
 }
+.event-preview .event-container__date{
+  position: absolute;
+  top: 21%;
+  left: 7%;
+  background: white;
+  border-radius: 40px;
+}
+.event-preview .event-container__meta{
+  
+}
 .event-preview .event-description{
   line-height: 1.3rem;
   padding: 0 2rem;
