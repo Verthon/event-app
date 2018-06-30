@@ -23,10 +23,10 @@ class eventContainer extends Component {
   }
 
   closePreviewHandler = () => {
-    console.log('backdrop');
     this.setState ({
       open: false
     });
+    console.log(this.state.open);
   }
 
   render(){
@@ -58,8 +58,8 @@ class eventContainer extends Component {
               <time className="time-container">{this.props.time}</time>
             </div>
             <div className="event-container__meta">
-              <p>{this.props.host}</p>
-              <strong>{this.props.localization}</strong>
+              <p className="event-container__host">{this.props.host}</p>
+              <strong className="event-container__localization">{this.props.localization}</strong>
             </div>
             <p className="event-description">{this.props.description}</p>
             <Map/>

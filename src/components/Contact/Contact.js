@@ -5,7 +5,7 @@ import Map from '../Map/Map';
 const contact = () => {
   return(
     <section className="section section__contact">
-      <h1 id="contact" className="">Contact us</h1>
+      <h2 id="contact" className="section__title">Contact us</h2>
       <Map/>
     </section>
   );

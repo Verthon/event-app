@@ -1,4 +1,11 @@
 .google-map{
-  width: 400px;
+  width: 100%;
+  padding: 2rem;
   height: 400px;
+}
+
+@media (max-width: 500px){
+  .google-map{
+    padding: 2rem 0.5rem;
+  }
 }

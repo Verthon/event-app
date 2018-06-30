@@ -36,7 +36,7 @@
   text-decoration: underline;
 }
 .time-container{
-  margin: 1rem 1rem;
+  margin: 0.75rem 1rem;
   color: #454;
 }
 
@@ -91,7 +91,14 @@
   border-radius: 40px;
 }
 .event-preview .event-container__meta{
-  
+  width: 100%;
+  font-size: 2.5rem;
+  margin: 0;
+  padding: 0 2rem 2rem 2rem;
+}
+.event-preview .event-container__meta .event-container__host{
+  margin: 0.5rem 0;
+  font-size: 2rem;
 }
 .event-preview .event-description{
   line-height: 1.3rem;
@@ -107,5 +114,20 @@
   .event-container__image{
     width: auto;
     height: 180px;
+  }
+  .event-preview{
+    width: 95%;
+    padding: 1rem;
+  }
+  .event-preview .event-container__date{
+    top: 25%;
+    left: 10%;
+  }
+  .event-preview .event-description{
+    padding: 0;
+  }
+  .event-preview .event-container__meta{
+    font-size: 2rem;
+    padding: 0 0.5rem;
   }
 }
