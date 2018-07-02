@@ -6,5 +6,4 @@ const DB_CONFIG = {
     storageBucket: "event-app-90ab5.appspot.com",
     messagingSenderId: "523175825147"
 };
-
 export default DB_CONFIG;

@@ -10,8 +10,6 @@ import About from './components/About/About';
 import Contact from './components/Contact/Contact';
 import DB_CONFIG from './dbconfig.js';
 import firebase from 'firebase';
-// import scrollIntoView from 'scroll-into-view-if-needed';
-
 
 class App extends Component {
   constructor(props){
@@ -21,6 +19,7 @@ class App extends Component {
     this.searchQueryHandler = this.searchQueryHandler.bind(this);
     this.showModal = this.showModal.bind(this);
     this.app = firebase.initializeApp(DB_CONFIG);
+    this.database = this.app.database().ref().child('eventContainer');
   }
 
   state = {
@@ -46,9 +45,6 @@ class App extends Component {
     this.setState({
       openModal: !this.state.openModal
     });
-    const modal = document.querySelector('.event-modal');
-    console.log(modal);
-    //scrollIntoView(modal, { behavior: 'smooth', scrollMode: 'if-needed' });
   }
 
   submitEvent = (inputs) => {
@@ -67,8 +63,27 @@ class App extends Component {
     });
   }
 
-  componentDidMount() {
+  componentWillMount(){
     
+  }
+
+  componentDidUpdate() {
+    const home = document.getElementById('home');
+    home.scrollIntoView({behavior: 'smooth'});
+
+    const event = document.getElementById('event');
+    event.scrollIntoView({behavior: 'smooth'});
+    
+    const contact = document.getElementById('contact');
+    contact.scrollIntoView({behavior: 'smooth'});
+
+    const about = document.getElementById('about');
+    about.scrollIntoView({behavior: 'smooth'});
+  }
+
+  componentDidMount() {
+    const eventRef = firebase.database().ref().child('eventContainer');
+    console.log(eventRef);
   }
 
   render() {
