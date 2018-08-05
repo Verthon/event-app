@@ -68,17 +68,7 @@ class App extends Component {
   }
 
   componentDidUpdate() {
-    const home = document.getElementById('home');
-    home.scrollIntoView({behavior: 'smooth'});
-
-    const event = document.getElementById('event');
-    event.scrollIntoView({behavior: 'smooth'});
     
-    const contact = document.getElementById('contact');
-    contact.scrollIntoView({behavior: 'smooth'});
-
-    const about = document.getElementById('about');
-    about.scrollIntoView({behavior: 'smooth'});
   }
 
   componentDidMount() {
