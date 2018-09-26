@@ -2,8 +2,9 @@
 Projects is using
 
 1. React
-2. create-react-app
-3. Header svg from [svgbagrounds.com](https://www.svgbackgrounds.com/)
+2. JavaScript ES6
+3. create-react-app
+4. Header svg from [svgbagrounds.com](https://www.svgbackgrounds.com/)
 
 ## app functionality
 
@@ -11,30 +12,31 @@ Projects is using
   * event name
   * event description
   * localization
-  * date(date-picker) (still breaks sumitting form :/)
+  * date(date-picker)
   * photo (no upload, only links)
-  * category(select one from five listed)
+  * category
 2. displaying all events
 3. search function
-4. sorting events
-5. deleting event
-6. editing created event
-7. saving app state to database
-8. Clean UI and animations
+4. sorting events(not implemented)
+5. deleting event(not implemented)
+6. editing created event(not implemented)
+7. saving app state to database(not implemented)
+8. Clean UI and animations(not implemented)
 
 ## State of project
   
-
+- Not finished yet
+- Need database implementation(firebase)
+- Unit testing need to be implemented
 
 ## Installation
 
-clone repository `git clone https://github.com/Verthon/event-app.git`
-install dependencies `npm npm install`
-run react dev server `npm start`
+1. clone repository `git clone https://github.com/Verthon/event-app.git`
+2. install dependencies `npm install`
+3. run react dev server `npm start`
 
 ## Learning new stuff through this project
 
-- setting up firebase/firestore,
 - differences about stateful and stateless components,
 - basics about ComponentDidMount and componentWillMount [where to fetch data](https://daveceddia.com/where-fetch-data-componentwillmount-vs-componentdidmount/)
 - conditional render for components (EventCreator 'modal')

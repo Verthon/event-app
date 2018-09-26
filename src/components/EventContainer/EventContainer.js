@@ -26,12 +26,11 @@ class eventContainer extends Component {
     this.setState ({
       open: false
     });
-    console.log(this.state.open);
   }
 
   render(){
     return (
-    <div className="event-container" onClick={this.showEventHandler}>
+    <div className="event-container" onClose={this.showEventHandler}>
       <img className="event-container__image" src={this.props.img} alt="default"/>
       <div className="event-container__date">
         <time className="time-container">{this.props.date}</time>
