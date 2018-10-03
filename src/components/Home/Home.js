@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import './App.css';
+import React, {Component} from 'react';
+import './Home.css';
 import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
 import Search from './components/Search/Search';
@@ -12,8 +12,7 @@ import DB_CONFIG from './dbconfig.js';
 import firebase from 'firebase';
 import {BrowserRouter, Route} from 'react-router-dom';
 
-
-class App extends Component {
+class Home extends Component{
   constructor(props){
     super(props);
     this.submitEvent = this.submitEvent.bind(this);
@@ -107,9 +106,7 @@ class App extends Component {
           }
         </div>
       );
-    }
-
-
+    }  
     return (
       <BrowserRouter>
         <main className="App">
@@ -131,7 +128,6 @@ class App extends Component {
         </main>
       </BrowserRouter>
     );
-  }
 }
 
-export default App;
+export default Home;

@@ -7,7 +7,7 @@ class eventContainer extends Component {
 
   constructor(){
     super();
-    this.showEvent = this.showEventHandler.bind(this);
+    this.showEventHandler = this.showEventHandler.bind(this);
     this.closePreviewHandler = this.closePreviewHandler.bind(this);
     this.state = {
       modalIsOpen: false,
@@ -24,13 +24,14 @@ class eventContainer extends Component {
 
   closePreviewHandler = () => {
     this.setState ({
-      open: false
+      open: false,
+      modalIsOpen: false
     });
   }
 
   render(){
     return (
-    <div className="event-container" onClose={this.showEventHandler}>
+    <div className="event-container" onClick={this.showEventHandler}>
       <img className="event-container__image" src={this.props.img} alt="default"/>
       <div className="event-container__date">
         <time className="time-container">{this.props.date}</time>
@@ -46,7 +47,6 @@ class eventContainer extends Component {
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
         open={this.state.open}
-        onClose={this.closePreviewHandler}
         onBackdropClick={this.closePreviewHandler}
         >
           <div className="event-preview">

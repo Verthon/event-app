@@ -5,6 +5,7 @@ Projects is using
 2. JavaScript ES6
 3. create-react-app
 4. Header svg from [svgbagrounds.com](https://www.svgbackgrounds.com/)
+5. React router
 
 ## app functionality
 
