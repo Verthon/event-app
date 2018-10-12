@@ -23,8 +23,9 @@ class eventContainer extends Component {
   }
 
   closePreviewHandler = () => {
+    console.log('close button clicked');
     this.setState ({
-      open: false,
+      open: !this.state.open,
       modalIsOpen: false
     });
   }
