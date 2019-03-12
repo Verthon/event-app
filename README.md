@@ -1,4 +1,5 @@
-# event-app
+# Eventoo
+Simple React event app. 
 Projects is using
 
 1. React
@@ -35,10 +36,3 @@ Projects is using
 1. clone repository `git clone https://github.com/Verthon/event-app.git`
 2. install dependencies `npm install`
 3. run react dev server `npm start`
-
-## Learning new stuff through this project
-
-- differences about stateful and stateless components,
-- basics about ComponentDidMount and componentWillMount [where to fetch data](https://daveceddia.com/where-fetch-data-componentwillmount-vs-componentdidmount/)
-- conditional render for components (EventCreator 'modal')
-- how to host create-react-app in gh-pages
