@@ -1,30 +1,39 @@
 import React, {Component} from 'react';
-import './EventCreator.css';
+import {Link} from 'react-router-dom';
+import firebase from './firebase';
 
 class EventCreator extends Component {
   constructor(props){
     super(props);
     this.submitEvent = this.submitEvent.bind(this);
     this.state = {
+      inputName: '',
       title: '',
       host: '',
       localization: '',
       description: '',
-      category: '',
-      
+      category: '',     
     };
   }
 
   submitEvent = (e) => {
     e.preventDefault();
-    this.props.onSubmit(this.state);
+    const db = firebase.firestore();
+    db.settings({
+      timestampsInSnapshots: true
+    });
+    const eventRef = db.collection("events").add({
+      title: this.state.title,
+      host: this.state.host,
+      localization: this.state.localization,
+      description: this.state.description
+    });
     this.setState({
-      title: '',
-      host: '',
-      localization: '',
-      description: '',
-      category: '',
-      openModal: false
+      title: this.state.title,
+      host: this.state.host,
+      localization: this.state.localization,
+      description: this.state.description,
+      category: this.state.category,
     });
   }
 
@@ -49,8 +58,9 @@ class EventCreator extends Component {
         <input type="text" name="localization" required value={this.state.localization}
         onChange={e => this.changeHandler(e)}/>
         <label htmlFor="description">event description</label>
-        <textarea name="description" id="" cols="30" rows="10" required value={this.state.description}onChange={e => this.changeHandler(e)}></textarea>
+        <textarea name="description" id="" cols="30" rows="10" required value={this.state.description} onChange={e => this.changeHandler(e)}></textarea>
         <button className="btn" type="submit">Submit</button>
+        <Link to="/"><button className="btn">Back to home</button></Link>
       </form>
     </div>
   )

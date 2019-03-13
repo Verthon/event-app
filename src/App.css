@@ -1,16 +1,16 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
 .App {
   text-align: center;
 }
 a{
   color: inherit;
   text-decoration: none;
-}
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
 }
 
 .App-title {
@@ -28,3 +28,105 @@ a{
 .col{
   flex: 1;
 }
+
+/*--------------*/
+/* App header*/
+/*--------------*/
+
+.app-header{
+  background: #252125;
+}
+.app-header__title{
+  margin: 0;
+  color: #dddddd;
+  padding: 2.5rem 0 1rem 0;
+}
+.btn{
+  border: 0;
+  background: #b90714;
+  color: #fff;
+  padding: 0.5rem 1.5rem;
+  font-size: 1.1rem;
+  margin: 2rem auto;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+/*--------------*/
+/* Navigation */
+/*--------------*/
+
+.app-navigation{
+  color: #f3f3f3;
+  padding: 0.5rem 0 2.5rem 0;
+}
+.app-navigation ul{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+.app-navigation ul .app-navigation__item{
+  margin: 0 1rem;
+}
+
+/*--------------*/
+/* Events section */
+/*--------------*/
+
+.event-container{
+  padding: 1em 2em;
+  margin: 1em auto;
+  min-width: 90%;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  border-radius: 2px;
+  line-height: 1.7;
+}
+
+.event-modal{
+  padding: 2.5rem 5rem;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  margin: 1rem auto;
+  max-width: 1000px;
+}
+.event-modal form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/*--------------*/
+/* Search section */
+/*--------------*/
+
+.section{
+  padding: 1rem;
+  background: #f6f6f6;
+}
+
+.searchbox{
+  max-width: 500px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  padding:2rem 5rem;
+  margin: 1rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #ffffff;
+}
+.searchbox__title{
+  margin: 0.5rem;
+  font-weight: 400;
+}
+.searchbox label{
+  color: #888;
+}
+
+/*--------------*/
