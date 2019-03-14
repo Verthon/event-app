@@ -28,13 +28,13 @@ class EventCreator extends Component {
       localization: this.state.localization,
       description: this.state.description
     });
-    this.setState({
-      title: this.state.title,
-      host: this.state.host,
-      localization: this.state.localization,
-      description: this.state.description,
-      category: this.state.category,
-    });
+    // this.setState({
+    //   title: this.state.title,
+    //   host: this.state.host,
+    //   localization: this.state.localization,
+    //   description: this.state.description,
+    //   category: this.state.category,
+    // });
   }
 
   changeHandler = (e) => {

@@ -7,15 +7,10 @@ import firebase from './components/firebase';
 class App extends Component {
   constructor(props){
     super(props);
-    this.submitEvent = this.submitEvent.bind(this);
   }
   state = {
     query: null,
-    eventContainer: [
-      {title: 'Javascript conference', localization: 'Tokio', day: 'April 10', hour: '10:30 AM',host: 'IT Ninja', description: 'Javascript conferrence, biggest community in Asia'},
-      {title: 'Classic music concert', localization: 'Budapest', day: 'May 3', hour: '11:15 PM',host: 'Budapest Philharmonic Orchestra', description: 'Classic music event'},
-      {title: 'Food market in Sevilla', localization: 'Sevilla', day: 'March 30', hour: '13:21 AM', host: 'Sevilla nautral food',description: 'Biggest market in Europe'}
-    ],
+    eventContainer: false,
   }; 
   
   searchQueryHandler = (e) =>{
@@ -24,46 +19,55 @@ class App extends Component {
     });
   }
 
-  showModal = () => {
-    this.setState({
-      openModal: !this.state.openModal
-    });
-  }
+  // submitEvent = (inputs) => {
+  //   //e.stopPropagation();
+  //   //e.nativeEvent.stopImmediatePropagation();
+  //   //console.log(inputs);
+  //   this.setState({
+  //     //Not working cant pass state
+  //     eventContainer: [...this.state.eventContainer, inputs],
+  //     openModal: false
 
-  submitEvent = (inputs) => {
-    //e.stopPropagation();
-    //e.nativeEvent.stopImmediatePropagation();
-    console.log(inputs);
-    this.setState({
-      //Not working cant pass state
-      eventContainer: [...this.state.eventContainer, inputs],
-      openModal: false
-
-    });
-  }
+  //   });
+  // }
 
   componentDidMount(){
-
+    
+    const events = [];
+    firebase.collection("events").get()
+    .then(function(querySnapshot) {
+      querySnapshot.forEach(function(doc) {
+        //console.log(doc.data());
+        events.push(doc.data());
+          // doc.data() is never undefined for query doc snapshots
+        //    
+      });
+    });
+    this.setState({
+      eventContainer: events
+    });
   }
 
   render() {
     //In render I can write JS code without any issues
     let eventContainer = null;
-
+    
     if(this.state.eventContainer){
+      console.log(this.state.eventContainer);
       eventContainer = (
         <div className="row">
           {
             this.state.eventContainer.map((event, id)=>{
-              return <Event
+              return this.state.eventContainer ? <Event
               key={id}
               title={event.title}
               localization={event.localization}
               host={event.host} 
               day={event.day} 
               hour={event.hour}
-              description={event.description} 
+              description={event.description}
               />
+              : <p>Loading...</p>
             })
           }
         </div>
@@ -87,7 +91,7 @@ class App extends Component {
           <div className="searchbox">
             <h2 className="searchbox__title">Find your event</h2>
             <label htmlFor="eventSearch" aria-hidden="true">Search for event</label>
-            <input type="search" name="eventSearch" id="eventSearch" onChange={this.searchQueryHandler}/>
+            <input class="input" type="search" name="eventSearch" id="eventSearch" placeholder="Search" onChange={this.searchQueryHandler}/>
           </div>
         </header>
         <section className="section section__events">

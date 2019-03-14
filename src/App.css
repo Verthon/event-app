@@ -29,6 +29,14 @@ a{
   flex: 1;
 }
 
+.input{
+  text-align: center;
+  border: 1px solid #ddd;
+  width: 15rem;
+  height: 2rem;
+  border-radius: 3px;
+}
+
 /*--------------*/
 /* App header*/
 /*--------------*/
@@ -70,6 +78,10 @@ a{
 .app-navigation ul .app-navigation__item{
   margin: 0 1rem;
 }
+
+/*--------------*/
+/* Search */
+/*--------------*/
 
 /*--------------*/
 /* Events section */

@@ -1,4 +1,5 @@
 import firebase from 'firebase';
+require("firebase/firestore");
 
 // Initialize Firebase
 const config = {
@@ -11,4 +12,4 @@ const config = {
 };
 firebase.initializeApp(config);
 
-export default firebase;
+export default firebase.firestore();
