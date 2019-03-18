@@ -1,16 +1,15 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
+
 
 const Event = (props) => {
+  console.log(props);
   return (
-    
-    <div className="event-container">
-      <h1>{props.title}</h1>
-      <p>{props.localization}</p>
-      <time>{props.day} {props.hour} </time>
-      <strong>{props.host}</strong>
-      <button className="btn">Learn more</button>
+    <div className="event">
+      <h1>Test</h1>
+      <Link to="/"><button className="btn">HOMEPAGE</button></Link>
     </div>
-  )
+  );
 }
 
 export default Event;
