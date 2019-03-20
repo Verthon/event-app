@@ -61,6 +61,7 @@ class App extends Component {
                 day={event.day}
                 hour={event.hour}
                 description={event.description}
+                category={event.category}
               />
             );
           })}
@@ -71,7 +72,7 @@ class App extends Component {
     return (
       <main className="App">
         <header className="app-header">
-          <h1 className="app-header__title">Eventoo</h1>
+          <Link to="/"><h1 className="app-header__title">Eventoo</h1></Link>
           <nav className="app-navigation">
             <ul>
               <li className="app-navigation__item">
@@ -92,11 +93,11 @@ class App extends Component {
             <button className="btn btn--large">Add event</button>
           </Link>
           <div className="searchbox">
-            <label htmlFor="eventSearch" aria-hidden="true">
+            <label className="label" htmlFor="eventSearch" aria-hidden="true">
               Search for event
             </label>
             <input
-              className="input"
+              className="input input--search"
               type="search"
               name="eventSearch"
               id="eventSearch"

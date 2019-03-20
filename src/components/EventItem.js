@@ -10,6 +10,7 @@ const EventItem = (props) => {
       <p>{props.localization}</p>
       <time>{props.day} {props.hour} </time>
       <strong>{props.host}</strong>
+      <p>{props.category}</p>
       <Link to={"/event/" + formatLink(props.title)}><button className="btn">Learn more</button></Link>
     </div>
   )

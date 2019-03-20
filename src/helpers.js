@@ -1,6 +1,5 @@
 export const formatLink = (string) => {
-  string = string.
-  toLowerCase()
+  string = string.toLowerCase()
   .split(' ')
   .join('-');
   
