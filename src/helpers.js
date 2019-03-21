@@ -5,3 +5,7 @@ export const formatLink = (string) => {
   
   return string;
 }
+
+export const toggleNav = () => {
+  
+}

@@ -81,7 +81,8 @@ class EventCreator extends Component {
               event description
             </label>
             <label className="select" htmlFor="category"></label>
-            <select className="input" name="category" id="" value={this.state.category} onChange={e => this.changeHandler(e)}>
+            <select className="input" name="category" id="" value={this.state.category} 
+            onChange={e => this.changeHandler(e)} required>
               {
               this.state.categories.map((cat, id) => {
                 return (

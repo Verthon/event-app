@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./App.css";
 import EventItem from "./components/EventItem";
+import Navbar from './components/Navbar';
 import firebase from "./components/firebase";
 
 class App extends Component {
@@ -9,7 +10,7 @@ class App extends Component {
     super(props);
     this.state = {
       query: null,
-      eventContainer: false
+      eventContainer: false,
     };
   }
 
@@ -72,23 +73,7 @@ class App extends Component {
     return (
       <main className="App">
         <header className="app-header">
-          <Link to="/"><h1 className="app-header__title">Eventoo</h1></Link>
-          <nav className="app-navigation">
-            <ul>
-              <li className="app-navigation__item">
-                <a href="#">Home</a>
-              </li>
-              <li className="app-navigation__item">
-                <a href="#events">Events</a>
-              </li>
-              <li className="app-navigation__item">
-                <a href="#events">About</a>
-              </li>
-              <li className="app-navigation__item">
-                <a href="#events">Contact</a>
-              </li>
-            </ul>
-          </nav>
+          <Navbar name="Eventoo" links={[ "events", "about", "contact" ]} />
           <Link to="/create-event">
             <button className="btn btn--large">Add event</button>
           </Link>

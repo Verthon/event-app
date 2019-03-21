@@ -5,6 +5,10 @@
   font-family: "Helvetica";
 }
 
+ul{
+  list-style: none;
+}
+
 .App {
   text-align: center;
 }
@@ -87,19 +91,61 @@ a {
 /* Navigation */
 /*--------------*/
 
-.app-navigation {
-  color: #f3f3f3;
-  padding: 0.5rem 0 2.5rem 0;
-}
-.app-navigation ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.main-nav{
   display: flex;
-  justify-content: center;
+  width: 100%;
+  background-color: #ffffff;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
 }
-.app-navigation ul .app-navigation__item {
-  margin: 0 1rem;
+
+.nav-logo{
+  font-size: 1.15rem;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.nav-list{
+  display: none;
+}
+
+.nav-list--active{
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 50px;
+  left: 0;
+  width: 100%;
+  background: white;
+}
+
+.nav-btn{
+  width: 1.5rem;
+  height: 1rem;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+  justify-content: space-between;
+}
+
+.nav-btn__line{
+  width: 100%;
+  border-bottom: 0.18rem solid #252125;
+  border-radius: 0.15rem;
+  display: flex;
+}
+
+.nav__item{
+  padding: 1rem 0;
+  border-bottom: 1px solid #f4f4f4;
+}
+
+.nav__link{
+  font-size: 1.2rem;
 }
 
 /*--------------*/
@@ -111,8 +157,8 @@ a {
 /*--------------*/
 
 .event-container {
-  padding: 1em 2em;
-  margin: 1rem;
+  padding: 1rem 2rem;
+  margin: 1rem auto;
   min-width: 90%;
   background: #fff;
   display: flex;
