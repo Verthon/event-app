@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {formatLink} from '../helpers';
+import PropTypes from 'prop-types';
 
 const EventItem = (props) => {
   return (
@@ -14,6 +15,15 @@ const EventItem = (props) => {
       <Link to={"/event/" + formatLink(props.title)}><button className="btn">Learn more</button></Link>
     </div>
   )
+}
+
+EventItem.propTypes = {
+  title: PropTypes.string,
+  localization: PropTypes.string,
+  host: PropTypes.string,
+  category: PropTypes.string,
+  day: PropTypes.string,
+  hour: PropTypes.string,
 }
 
 export default EventItem;

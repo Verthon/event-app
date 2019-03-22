@@ -5,6 +5,15 @@
   font-family: "Helvetica";
 }
 
+form{
+  width: 100%;
+}
+
+body{
+  max-width: 380px;
+  margin: 0 auto;
+}
+
 ul{
   list-style: none;
 }
@@ -169,7 +178,7 @@ a {
 }
 
 .event-modal {
-  padding: 2rem;
+  padding: 1rem;
   background: #fff;
   display: flex;
   flex-direction: column;
@@ -177,7 +186,6 @@ a {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   margin: 1rem auto;
   border-radius: 5px;
-  width: 85vw;
 }
 
 /*--------------*/

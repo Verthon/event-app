@@ -6,6 +6,6 @@ export const formatLink = (string) => {
   return string;
 }
 
-export const toggleNav = () => {
-  
+export const toggleNav = (navRef) => {
+  navRef.current.classList.toggle("nav-list--active");
 }

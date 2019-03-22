@@ -1,18 +1,17 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {formatLink} from '../helpers';
+import {formatLink, toggleNav} from '../helpers';
+import PropTypes from 'prop-types';
 
 const Navbar = (props) => {
 
   const listRef = React.createRef();
-  const test = () => {
-    listRef.current.classList.toggle("nav-list--active");
-  }
+  
 
   return(
     <nav className="main-nav">
-      <p className="nav-logo">{props.name}</p>
-      <button className="nav-btn" onClick={test}>
+      <p className="nav-logo"><Link to="/">{props.name}</Link></p>
+      <button className="nav-btn" onClick={() => toggleNav(listRef)}>
         <span className="nav-btn__line"></span>
         <span className="nav-btn__line"></span>
         <span className="nav-btn__line"></span>
@@ -30,6 +29,16 @@ const Navbar = (props) => {
       </ul>
     </nav>
   )
+}
+
+Navbar.defaultProps = {
+  name: "Eventoo",
+  links: [ "events", "about", "contact" ]
+}
+
+Navbar.propTypes = {
+  name: PropTypes.string,
+  links: PropTypes.array
 }
 
 export default Navbar;
