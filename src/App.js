@@ -4,6 +4,7 @@ import "./App.css";
 import EventItem from "./components/EventItem";
 import Navbar from './components/Navbar';
 import firebase from "./components/firebase";
+import CentralStore from './CentralStore';
 
 class App extends Component {
   constructor(props) {
@@ -35,7 +36,8 @@ class App extends Component {
   componentDidMount() {
     firebase
       .collection("events")
-      .get()
+      .limit(3)
+      .get()      
       .then( querySnapshot => {
         const events = [];
         querySnapshot.docs.forEach(doc => {
@@ -71,7 +73,7 @@ class App extends Component {
     }
 
     return (
-      <main className="App">
+      <CentralStore>
         <header className="app-header">
           <Navbar name="Eventoo" links={[ "events", "about", "contact" ]} />
           <Link to="/create-event">
@@ -95,7 +97,7 @@ class App extends Component {
           <h1 className="section__title">Popular events</h1>
           {this.state.eventContainer ? eventContainer : <p>Loading</p>}
         </section>
-      </main>
+      </CentralStore>
     );
   }
 }

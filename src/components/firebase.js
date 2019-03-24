@@ -1,5 +1,6 @@
 import firebase from 'firebase';
 import {API_FIREBASE} from '../credentials';
+// Required for side-effects
 require("firebase/firestore");
 
 const {key, auth, db, id, storage, messaging} = API_FIREBASE;

@@ -4,10 +4,9 @@ import {formatLink, toggleNav} from '../helpers';
 import PropTypes from 'prop-types';
 
 const Navbar = (props) => {
-
+  
   const listRef = React.createRef();
   
-
   return(
     <nav className="main-nav">
       <p className="nav-logo"><Link to="/">{props.name}</Link></p>

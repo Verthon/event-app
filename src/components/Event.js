@@ -1,14 +1,16 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {AppContext} from '../CentralStore'
 
-
-const Event = (props) => {
-  console.log(props);
+const Event = () => {
   return (
-    <div className="event">
-      <h1>Test</h1>
-      <Link to="/"><button className="btn">HOMEPAGE</button></Link>
-    </div>
+      <div className="event">
+         <AppContext.Consumer>
+          {(context) => (
+            
+            console.log(context)
+          )}
+        </AppContext.Consumer> */}
+      </div>
   );
 }
 
