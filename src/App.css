@@ -2,7 +2,8 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: "Helvetica";
+  font-family: 'Open Sans', sans-serif;
+  color: #0f0f0f;
 }
 
 form{
@@ -119,7 +120,7 @@ a {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  border-bottom: 2px solid rgb(237, 239, 241);
+  border-bottom: 1px solid rgb(237, 239, 241);
 }
 
 .nav-logo{
@@ -181,7 +182,7 @@ a {
 .event-container {
   padding: 1rem 2rem;
   margin: 1rem auto;
-  min-width: 90%;
+  width: 95%;
   background: #fff;
   display: flex;
   flex-direction: column;
@@ -199,6 +200,45 @@ a {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   margin: 1rem auto;
   border-radius: 5px;
+}
+
+/*--------------*/
+/* Single item */
+/*--------------*/
+
+.event{
+  padding: 0 2rem;
+} 
+
+.event__title{
+  margin: 2rem 0;
+  font-weight: 600;
+  font-size: 2.25rem;
+}
+
+.event__description{
+  line-height: 1.7;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #eee;
+  color: #4e4442;
+}
+
+.event__col{
+  flex: 100%;
+  display: flex;
+  align-items: center;
+  margin: 2rem 0 0 0;
+  font-size: 1.1rem;
+}
+
+.event__col i{
+  color: #b90714;
+  font-size: 1.2rem;
+}
+
+.event__location, .event__time{
+  margin: 0 0.5rem;
+  color: #b90714;
 }
 
 /*--------------*/

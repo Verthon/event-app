@@ -6,15 +6,16 @@ import NotFound from './NotFound';
 import Event from './Event';
 import Events from './Events';
 import CentralStore from '../CentralStore';
+import * as ROUTES from '../constans/routes';
 
 const Router = () => (
   <CentralStore>
     <BrowserRouter>
     <Switch>
-      <Route exact path="/" component={App}/>
-      <Route path="/create-event" component={EventCreator} />
-      <Route path="/events/:eventId" component={Event} />
-      <Route path="/events" component={Events} />
+      <Route exact path={ROUTES.HOME} component={App}/>
+      <Route path={ROUTES.CREATE_EVENT} component={EventCreator} />
+      <Route exact path={ROUTES.EVENTS} component={Events} />
+      <Route path={ROUTES.EVENT} component={Event} />
       <Route component={NotFound}/>
     </Switch>
     </BrowserRouter>

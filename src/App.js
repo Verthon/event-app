@@ -4,7 +4,6 @@ import "./App.css";
 import EventItem from "./components/EventItem";
 import Navbar from './components/Navbar';
 import firebase from "./components/firebase";
-import CentralStore from './CentralStore';
 
 class App extends Component {
   constructor(props) {
@@ -37,8 +36,8 @@ class App extends Component {
     firebase
       .collection("events")
       .limit(3)
-      .get()      
-      .then( querySnapshot => {
+      .get()
+      .then(querySnapshot => {
         const events = [];
         querySnapshot.docs.forEach(doc => {
           events.push(doc.data());
@@ -73,9 +72,9 @@ class App extends Component {
     }
 
     return (
-      <CentralStore>
+      <React.Fragment>
         <header className="app-header">
-          <Navbar name="Eventoo" links={[ "events", "about", "contact" ]} />
+          <Navbar name="Eventoo" links={["events", "about", "contact"]} />
           <Link to="/create-event">
             <button className="btn btn--large">Add event</button>
           </Link>
@@ -97,7 +96,7 @@ class App extends Component {
           <h1 className="section__title">Popular events</h1>
           {this.state.eventContainer ? eventContainer : <p>Loading</p>}
         </section>
-      </CentralStore>
+      </React.Fragment>
     );
   }
 }
