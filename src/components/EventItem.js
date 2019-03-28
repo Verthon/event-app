@@ -4,8 +4,6 @@ import PropTypes from 'prop-types';
 import Event from './Event';
 import {Link} from 'react-router-dom';
 
-export const EventContext = React.createContext();
-
 class EventItem extends React.Component {
 
   constructor(props){
@@ -25,7 +23,6 @@ class EventItem extends React.Component {
   render(){
     return (
       <React.Fragment>
-        <EventContext.Provider value={this.props}/>
         {this.state.show ? <Event data={this.props}/> : null}
         <div className="event-container">
           <h1>{this.props.title}</h1>
@@ -41,12 +38,12 @@ class EventItem extends React.Component {
 }
 
 EventItem.propTypes = {
-  title: PropTypes.string,
-  localization: PropTypes.string,
-  host: PropTypes.string,
-  category: PropTypes.string,
-  day: PropTypes.string,
-  hour: PropTypes.string,
+  title: PropTypes.string.isRequired,
+  localization: PropTypes.string.isRequired,
+  host: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
+  day: PropTypes.string.isRequired,
+  hour: PropTypes.string.isRequired,
 }
 
 export default EventItem;

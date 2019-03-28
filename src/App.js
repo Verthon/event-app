@@ -3,13 +3,13 @@ import { Link } from "react-router-dom";
 import "./App.css";
 import EventItem from "./components/EventItem";
 import Navbar from './components/Navbar';
-import firebase from "./components/firebase";
+import {db} from './components/Firebase';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      query: null,
+      query: "",
       eventContainer: false,
     };
   }
@@ -19,21 +19,10 @@ class App extends Component {
       query: e.target.value
     });
   };
-
-  // submitEvent = (inputs) => {
-  //   //e.stopPropagation();
-  //   //e.nativeEvent.stopImmediatePropagation();
-  //   //console.log(inputs);
-  //   this.setState({
-  //     //Not working cant pass state
-  //     eventContainer: [...this.state.eventContainer, inputs],
-  //     openModal: false
-
-  //   });
-  // }
+  
 
   componentDidMount() {
-    firebase
+      db
       .collection("events")
       .limit(3)
       .get()
@@ -88,6 +77,7 @@ class App extends Component {
               name="eventSearch"
               id="eventSearch"
               placeholder="Search"
+              value={this.state.query}
               onChange={this.searchQueryHandler}
             />
           </div>

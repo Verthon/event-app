@@ -1,21 +1,26 @@
 import React from "react";
 import Navbar from './Navbar';
-import {AppContext} from '../CentralStore';
-import {EventContext} from './EventItem';
 
 const Event = () => {
   return (
     <React.Fragment>
-      <EventContext.Consumer>
-        {
-          (context) => (console.log(context))
-        }
-      </EventContext.Consumer>
-      <AppContext.Consumer>
-        {(context) => (console.log(context))
-
-        }    
-      </AppContext.Consumer>
+      <Navbar/>
+      <div className="event">
+        <h1 className="event__title">Event title</h1>
+        <p className="event__description">A wonderful serenity has taken possession of my entire soul, 
+        like these sweet mornings of spring which I enjoy with my whole heart. 
+        I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine.</p>
+        <div className="row">
+          <div className="event__col">
+            <i class="fas fa-map-marker-alt"></i>
+            <p className="event__location">Seattle, Washington</p>
+          </div>
+          <div className="event__col">
+            <i class="far fa-clock"></i>
+            <p className="event__time">13:00</p>
+          </div>
+        </div>
+      </div>
     </React.Fragment>
   );
 };

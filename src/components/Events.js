@@ -1,7 +1,7 @@
 import React from 'react';
 import EventItem from "./EventItem";
 import Navbar from './Navbar';
-import firebase from "./firebase";
+import {db} from "./Firebase";
 
 class Events extends React.Component {
   state ={
@@ -9,7 +9,7 @@ class Events extends React.Component {
   }
 
   componentDidMount() {
-    firebase
+    db
     .collection("events")
     .get()      
     .then( querySnapshot => {

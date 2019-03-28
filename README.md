@@ -3,6 +3,7 @@ Simple React app for managing events. Technologies used:
 
 - React.js (create-react-app)
 - JavaScript ES6
+- Firestore
 - React Router
 - CSS (Mobile first)
 - Unit tests (Jest)
@@ -30,7 +31,7 @@ Simple React app for managing events. Technologies used:
 - [x] Added React Router
 - [x] Added PropTypes
 - [ ] Authentication
-- [ ] Context API/Redux
+- [ ] Context API/Redux/MobX
 - [ ] Host app on Netlify
 
 

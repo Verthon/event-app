@@ -5,11 +5,10 @@ import EventCreator from './EventCreator';
 import NotFound from './NotFound';
 import Event from './Event';
 import Events from './Events';
-import CentralStore from '../CentralStore';
-import * as ROUTES from '../constans/routes';
+import * as ROUTES from '../constants/routes';
+import withFirebase from './withFirebase';
 
-const Router = () => (
-  <CentralStore>
+const Router = (props) => (
     <BrowserRouter>
     <Switch>
       <Route exact path={ROUTES.HOME} component={App}/>
@@ -18,8 +17,7 @@ const Router = () => (
       <Route path={ROUTES.EVENT} component={Event} />
       <Route component={NotFound}/>
     </Switch>
-    </BrowserRouter>
-  </CentralStore> 
+    </BrowserRouter> 
 );
 
 export default Router;

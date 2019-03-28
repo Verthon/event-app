@@ -1,6 +1,7 @@
 import React from 'react';
-import firebase from 'firebase';
-import {API_FIREBASE} from '../credentials';
+import app from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/firestore';
 // Required for side-effects
 require("firebase/firestore");
 
@@ -16,8 +17,39 @@ const config = {
   messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
 };
 
+class Firebase {
+  constructor() {
+    //app.initializeApp(config);
 
-firebase.initializeApp(config);
+    /* Helper */
 
+    this.fieldValue = app.firestore.FieldValue;
+    this.emailAuthProvider = app.auth.EmailAuthProvider;
 
-export default firebase.firestore();
+    /* Firebase APIs */
+
+    this.auth = app.auth();
+    this.db = app.firestore();
+
+    /* Social Sign In Method Provider */
+
+    this.googleProvider = new app.auth.GoogleAuthProvider();
+    this.facebookProvider = new app.auth.FacebookAuthProvider();
+  }
+
+  
+  doSignInWithGoogle = () =>
+    this.auth.signInWithPopup(this.googleProvider);
+
+  doSignInWithFacebook = () =>
+    this.auth.signInWithPopup(this.facebookProvider);
+
+  doSignOut = () => this.auth.signOut();  
+
+}
+
+export const db = app.firestore(app.initializeApp(config));
+
+export default Firebase;
+
+//export default Firebase;

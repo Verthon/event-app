@@ -7,3 +7,5 @@ export const PASSWORD_FORGET = '/pw-forget';
 export const EVENT = "/events/:eventId";
 export const EVENTS = "/events";
 export const CREATE_EVENT = "/create-event";
+export const ABOUT = "/about";
+export const CONTACT = "/contact";
