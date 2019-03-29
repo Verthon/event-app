@@ -1,5 +1,5 @@
 import React from 'react';
-import app from 'firebase/app';
+import firebase from 'firebase';
 import 'firebase/auth';
 import 'firebase/firestore';
 // Required for side-effects
@@ -23,18 +23,18 @@ class Firebase {
 
     /* Helper */
 
-    this.fieldValue = app.firestore.FieldValue;
-    this.emailAuthProvider = app.auth.EmailAuthProvider;
+    this.fieldValue = firebase.firestore.FieldValue;
+    this.emailAuthProvider = firebase.auth.EmailAuthProvider;
 
     /* Firebase APIs */
 
-    this.auth = app.auth();
-    this.db = app.firestore();
+    this.auth = firebase.auth();
+    this.db = firebase.firestore();
 
     /* Social Sign In Method Provider */
 
-    this.googleProvider = new app.auth.GoogleAuthProvider();
-    this.facebookProvider = new app.auth.FacebookAuthProvider();
+    this.googleProvider = new firebase.auth.GoogleAuthProvider();
+    this.facebookProvider = new firebase.auth.FacebookAuthProvider();
   }
 
   
@@ -47,9 +47,10 @@ class Firebase {
   doSignOut = () => this.auth.signOut();  
 
 }
+export const firebaseApp = firebase.initializeApp(config);
+export const auth = firebase.auth();
+export const db = firebase.firestore();
 
-export const db = app.firestore(app.initializeApp(config));
-
-export default Firebase;
+export default firebase;
 
 //export default Firebase;

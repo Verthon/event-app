@@ -12,12 +12,12 @@ const Event = () => {
         I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine.</p>
         <div className="row">
           <div className="event__col">
-            <i class="fas fa-map-marker-alt"></i>
+            <i className="fas fa-map-marker-alt"></i>
             <p className="event__location">Seattle, Washington</p>
           </div>
           <div className="event__col">
-            <i class="far fa-clock"></i>
-            <p className="event__time">13:00</p>
+            <i className="far fa-clock"></i>
+            <p className="event__time">13:00 - 15:00</p>
           </div>
         </div>
       </div>
