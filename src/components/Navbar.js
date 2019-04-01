@@ -9,12 +9,13 @@ const Navbar = (props) => {
   
   return(
     <nav className="main-nav">
-      <p className="nav-logo"><Link to="/">{props.name}</Link></p>
       <button className="nav-btn" onClick={() => toggleNav(listRef)}>
         <span className="nav-btn__line"></span>
-        <span className="nav-btn__line"></span>
+        <span className="nav-btn__line nav-btn__line--small"></span>
         <span className="nav-btn__line"></span>
       </button>
+      <p className="nav-logo"><Link to="/">{props.name}</Link></p>
+      <Link to="#">Account</Link>
       <ul className="nav-list" ref={listRef}>
         {
         props.links.map((link, id) => {

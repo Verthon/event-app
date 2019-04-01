@@ -26,7 +26,7 @@ class EventItem extends React.Component {
           <Link to={`/events/${formatLink(this.props.title)}`}>
             <h2 className="event-item__title">{this.props.title}</h2>
             <p>{this.props.localization}</p>
-            <time>{this.props.day} {this.props.hour} </time>
+            <time>{this.props.day}</time>
           </Link>
           {/*<button className="btn">Learn more</button>*/}
         </div>

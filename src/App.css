@@ -7,9 +7,8 @@
 }
 
 #root{
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  padding: 1rem 0 5rem 0;
   max-width: 380px;
+  background-color: #F6F9F9;
 }
 
 form{
@@ -31,14 +30,6 @@ ul{
 a {
   color: inherit;
   text-decoration: none;
-}
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
 }
 
 .row {
@@ -85,35 +76,6 @@ a {
   height: auto;
 }
 
-.input--search {
-  height: 3rem;
-}
-
-/*--------------*/
-/* App header*/
-/*--------------*/
-
-.app-header {
-  background: #252125;
-}
-.app-header__title {
-  margin: 0;
-  color: #dddddd;
-  padding: 2.5rem 0 1rem 0;
-}
-.btn {
-  border: 0;
-  background: #FFB04E;
-  color: #fff;
-  padding: 0.5rem 1.5rem;
-  font-size: 1.1rem;
-  margin: 2rem auto;
-  border-radius: 2px;
-  cursor: pointer;
-}
-
-.btn--large {
-}
 
 /*--------------*/
 /* Navigation */
@@ -129,8 +91,7 @@ a {
 }
 
 .nav-logo{
-  font-size: 1.15rem;
-  text-transform: uppercase;
+  font-size: 1.25rem;
   font-weight: 600;
 }
 
@@ -142,33 +103,37 @@ a {
   display: flex;
   flex-direction: column;
   position: absolute;
-  top: 60px;
+  top: 50px;
   left: 0;
   width: 100%;
-  background: white;
+  background: #ffffff;
 }
 
 .nav-btn{
-  width: 1.5rem;
-  height: 1rem;
+  width: 20px;
+  height: 15px;
   border: 0;
-  background: transparent;
-  cursor: pointer;
   display: flex;
   flex-direction: column;
-  align-content: space-between;
   justify-content: space-between;
+  background-color: transparent;
+  cursor: pointer;
 }
 
 .nav-btn__line{
-  width: 100%;
-  border-bottom: 0.18rem solid #252125;
-  border-radius: 0.15rem;
-  display: flex;
+  border-radius: 2px;
+  display: block;
+  height: 2px;
+  background-color: #212521;
+}
+
+.nav-btn__line--small{
+  width: 75%;
+  align-self: flex-start;
 }
 
 .nav__item{
-  padding: 1rem 0;
+  padding: 1rem;
   border-bottom: 1px solid #f4f4f4;
 }
 
@@ -177,8 +142,78 @@ a {
 }
 
 /*--------------*/
-/* Search */
+/* App hero*/
 /*--------------*/
+
+.hero{
+  display: flex;
+  flex-direction: column;
+  background-image: url('./images/conference_speaker.svg');
+  background-size: contain;
+  height: 250px;
+  background-repeat: no-repeat;
+  background-position-x: 8px;
+  background-position-y: 5px;
+}
+
+.hero__title{
+  font-family: 'Source Sans Pro';
+  font-weight: 900;
+  font-size: 2.25rem;
+  margin: 0;
+  text-align: center;
+}
+
+.hero__desc{
+  width: 60%;
+  font-family: 'Source Sans Pro';
+}
+
+.hero__content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5rem;
+}
+
+
+.btn {
+  border: 0;
+  background: #FFB04E;
+  color: #fff;
+  padding: 0.5rem 1.5rem;
+  font-size: 1.1rem;
+  margin: 2rem auto;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.btn--black{
+  background: #252125;
+}
+
+.btn--large {
+}
+
+/*--------------*/
+/* Search*/
+/*--------------*/
+
+.input--search {
+  height: 3rem;
+  margin: 0;
+  border: 0;
+}
+
+.searchbox {
+  margin: 2rem 0;
+  max-width: 500px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #ffffff;
+}
 
 /*--------------*/
 /* Events section */
@@ -198,6 +233,7 @@ a {
 
 .event-item__title{
   font-size: 1.2rem;
+  font-family: 'Source Sans Pro';
 }
 
 .event-modal {
@@ -221,8 +257,8 @@ a {
 
 .event__title{
   margin: 2rem 0;
-  font-weight: 600;
   font-size: 2.25rem;
+  font-family: 'Source Sans Pro';
 }
 
 .event__description{
@@ -261,33 +297,20 @@ a {
 /*--------------*/
 
 .section {
-  padding: 2rem 1rem;
-  background: #f4f4f4;
+  padding: 1rem;
 }
 
 .section__title {
+  font-family: 'Source Sans Pro';
   text-align: left;
   margin: 2rem 0;
   font-weight: 900;
   font-size: 1.75rem;
 }
 
-.searchbox {
-  max-width: 500px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
-  padding: 2rem 2.5rem;
-  margin: 1rem auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: #ffffff;
+.not-found{
+  
 }
-.searchbox__title {
-  margin: 0.5rem;
-  font-weight: 400;
-}
-.searchbox label {
-  color: #888;
-}
+
 
 /*--------------*/

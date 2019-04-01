@@ -6,6 +6,7 @@ import NotFound from './NotFound';
 import Event from './Event';
 import Events from './Events';
 import * as ROUTES from '../constants/routes';
+import About from './About';
 import withFirebase from './withFirebase';
 
 const Router = (props) => (
@@ -15,6 +16,7 @@ const Router = (props) => (
       <Route path={ROUTES.CREATE_EVENT} component={EventCreator} />
       <Route exact path={ROUTES.EVENTS} component={Events} />
       <Route path={ROUTES.EVENT} component={Event} />
+      <Route path={ROUTES.ABOUT} component={About} />
       <Route component={NotFound}/>
     </Switch>
     </BrowserRouter> 

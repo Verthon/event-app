@@ -1,11 +1,13 @@
 import React from 'react';
 import EventItem from "./EventItem";
 import Navbar from './Navbar';
+import Search from './Search';
 import {db} from "./Firebase";
 
 class Events extends React.Component {
   state ={
     events: false,
+    query: '',
   }
 
   componentDidMount() {
@@ -22,6 +24,12 @@ class Events extends React.Component {
       });
     });
   }
+
+  searchQueryHandler = e => {
+    this.setState({
+      query: e.target.value
+    });
+  };
 
   render(){
     let eventContainer = null;
@@ -51,7 +59,8 @@ class Events extends React.Component {
       <React.Fragment>
         <Navbar/>
         <section className="section">
-          <h1 className="section__title">Events</h1>
+          <h1 className="section__title">Events list</h1>
+          <Search query={this.state.query} changed={this.searchQueryHandler}/>
           {this.state.events ? eventContainer : <p>Loading...</p>}
         </section>   
       </React.Fragment>    
