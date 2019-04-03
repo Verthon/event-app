@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Search = (props) => {
-  console.log(props);
   return (
     <div className="searchbox">
       <input
@@ -19,7 +18,8 @@ const Search = (props) => {
 }
 
 Search.propTypes = {
-
+  query: PropTypes.string.isRequired,
+  changed: PropTypes.func.isRequired
 }
 
 export default Search;

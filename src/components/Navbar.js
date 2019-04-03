@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 const Navbar = (props) => {
   
   const listRef = React.createRef();
-  
+  console.log(props);
   return(
     <nav className="main-nav">
       <button className="nav-btn" onClick={() => toggleNav(listRef)}>
@@ -15,7 +15,7 @@ const Navbar = (props) => {
         <span className="nav-btn__line"></span>
       </button>
       <p className="nav-logo"><Link to="/">{props.name}</Link></p>
-      <Link to="#">Account</Link>
+      <Link to="/signin">Account</Link>
       <ul className="nav-list" ref={listRef}>
         {
         props.links.map((link, id) => {

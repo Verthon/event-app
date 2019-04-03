@@ -97,9 +97,11 @@ a {
 
 .nav-list{
   display: none;
+  transition: all 0.5s ease-in;
 }
 
 .nav-list--active{
+  opacity: 1;
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -107,6 +109,7 @@ a {
   left: 0;
   width: 100%;
   background: #ffffff;
+  animation: slideDown ease-out 0.5s;
 }
 
 .nav-btn{
@@ -116,13 +119,15 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: transparent;
+  background-color: #ffffff;
   cursor: pointer;
+  outline: 0;
 }
 
 .nav-btn__line{
+  width: 20px;
   border-radius: 2px;
-  display: block;
+  display: flex;
   height: 2px;
   background-color: #212521;
 }
@@ -160,7 +165,7 @@ a {
   font-family: 'Source Sans Pro';
   font-weight: 900;
   font-size: 2.25rem;
-  margin: 0;
+  margin: 0.5rem 0 0 0;
   text-align: center;
 }
 
@@ -176,6 +181,10 @@ a {
   margin-top: 5rem;
 }
 
+.btn--hero{
+  margin: 1rem auto;
+}
+
 
 .btn {
   border: 0;
@@ -183,9 +192,31 @@ a {
   color: #fff;
   padding: 0.5rem 1.5rem;
   font-size: 1.1rem;
-  margin: 2rem auto;
+  margin: 2rem auto 1rem auto;
   border-radius: 2px;
   cursor: pointer;
+  animation: slideDown ease-out 0.5s;
+}
+
+@keyframes slideDown {
+	0% {
+		transform: translateY(-100%);
+	}
+	50%{
+		transform: translateY(8%);
+	}
+	65%{
+		transform: translateY(-4%);
+	}
+	80%{
+		transform: translateY(4%);
+	}
+	95%{
+		transform: translateY(2%);
+	}			
+	100% {
+		transform: translateY(0%);
+	}		
 }
 
 .btn--black{

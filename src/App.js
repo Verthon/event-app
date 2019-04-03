@@ -5,6 +5,7 @@ import EventItem from "./components/EventItem";
 import Navbar from './components/Navbar';
 import Search from './components/Search';
 import {db} from './components/Firebase';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 class App extends Component {
   constructor(props) {
@@ -16,7 +17,6 @@ class App extends Component {
   }
 
   searchQueryHandler = e => {
-    console.log(this);
     this.setState({
       query: e.target.value
     });
@@ -43,22 +43,33 @@ class App extends Component {
     let eventContainer = null;
     if (this.state.eventContainer) {
       eventContainer = (
-        <div className="row">
-          {this.state.eventContainer.map((event, id) => {
-            return (
-              <EventItem
-                key={id}
-                title={event.title}
-                localization={event.localization}
-                host={event.host}
-                day={event.day}
-                hour={event.hour}
-                description={event.description}
-                category={event.category}
-              />
-            );
-          })}
-        </div>
+        <TransitionGroup>
+          <div className="row">
+            {this.state.eventContainer.map((event, id) => {
+              return (
+                <CSSTransition
+                  key={"csst" + id}
+                  timeout={1000}
+                  in={true}
+                  classNames={{
+
+                  }}
+                >
+                  <EventItem
+                    key={id}
+                    title={event.title}
+                    localization={event.localization}
+                    host={event.host}
+                    day={event.day}
+                    hour={event.hour}
+                    description={event.description}
+                    category={event.category}
+                  />
+                </CSSTransition>
+                );
+            })}
+          </div>
+        </TransitionGroup>          
       );
     }
 
@@ -69,7 +80,7 @@ class App extends Component {
           <h1 className="hero__title">Discover events</h1>      
           <div className="hero__content">
             <Link to="/create-event">
-              <button className="btn">Add event</button>
+              <button className="btn btn--hero">Add event</button>
             </Link>
             <p className="hero__desc">Build, manage and grow your events</p>
             
