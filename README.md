@@ -7,7 +7,7 @@ Simple React app for creating and managing events. In project I have used:
 - React Router
 - CSS (Mobile first)
 - Unit tests (Jest)
-- Wonderful illustrations created by Katerina Limpitsouni(https://twitter.com/ninalimpi) from undraw.co/(https://undraw.co/)
+- Wonderful illustrations created by Katerina Limpitsouni(https://twitter.com/ninalimpi) from undraw.co/(https://undraw.co/) 
 
 
 ## Functionality

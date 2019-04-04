@@ -7,6 +7,7 @@ import Event from './Event';
 import Events from './Events';
 import * as ROUTES from '../constants/routes';
 import About from './About';
+import Contact from './Contact';
 import Login from './Login';
 import withFirebase from './withFirebase';
 
@@ -18,6 +19,7 @@ const Router = (props) => (
       <Route exact path={ROUTES.EVENTS} component={Events} />
       <Route path={ROUTES.EVENT} component={Event} />
       <Route path={ROUTES.ABOUT} component={About} />
+      <Route path={ROUTES.CONTACT} component={Contact} />
       <Route path={ROUTES.SIGN_IN} component={Login} />
       <Route component={NotFound}/>
     </Switch>

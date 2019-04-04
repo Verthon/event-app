@@ -61,7 +61,7 @@ class Events extends React.Component {
         <section className="section">
           <h1 className="section__title">Events list</h1>
           <Search query={this.state.query} changed={this.searchQueryHandler}/>
-          {this.state.events ? eventContainer : <p>Loading...</p>}
+          {this.state.events ? eventContainer : <div className="loader__wrapper"><div className="loader"></div></div>}
         </section>   
       </React.Fragment>    
     )

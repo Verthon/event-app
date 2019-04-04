@@ -1,14 +1,15 @@
+
+
+/*--------------*/
+/* Basic resets */
+/*--------------*/
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
   font-family: 'Open Sans', sans-serif;
   color: #0f0f0f;
-}
-
-#root{
-  max-width: 380px;
-  background-color: #F6F9F9;
 }
 
 form{
@@ -24,13 +25,48 @@ ul{
   list-style: none;
 }
 
-.App {
-  text-align: center;
-}
 a {
   color: inherit;
   text-decoration: none;
 }
+
+#root{
+  max-width: 380px;
+  background-color: #F6F9F9;
+}
+
+
+/*--------------*/
+/* Loader */
+/*--------------*/
+
+.loader__wrapper{
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+}
+
+.loader{
+  display: block;
+  width: 75px;
+  height: 75px;
+  border: 3px solid rgba(0,0,0,.25);
+  border-radius: 50%;
+  border-top-color: #212121;
+  animation: spin 1.5s ease-in-out infinite;
+  -webkit-animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { -webkit-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+  to { -webkit-transform: rotate(360deg); }
+}
+
+/*--------------*/
+/***** Grid *****/
+/*--------------*/
 
 .row {
   display: flex;
@@ -39,6 +75,11 @@ a {
 .col {
   flex: 1;
 }
+
+/*--------------*/
+/***** Inputs *****/
+/*--------------*/
+
 .label {
   text-align: left;
   display: flex;
@@ -75,7 +116,6 @@ a {
   padding: 0.5rem;
   height: auto;
 }
-
 
 /*--------------*/
 /* Navigation */
@@ -337,6 +377,10 @@ a {
   margin: 2rem 0;
   font-weight: 900;
   font-size: 1.75rem;
+}
+
+.section__text{
+  line-height: 1.6;
 }
 
 .not-found{
