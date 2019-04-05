@@ -52,7 +52,7 @@ class App extends Component {
                   timeout={1000}
                   in={true}
                   classNames={{
-
+                    
                   }}
                 >
                   <EventItem

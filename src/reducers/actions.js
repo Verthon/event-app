@@ -1,0 +1,2 @@
+export const SEND_EVENT_DATA = "SEND_EVENT_DATA";
+export const ADD_EVENT_DATA = "ADD_EVENT_DATA";

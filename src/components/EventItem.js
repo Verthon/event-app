@@ -8,25 +8,26 @@ class EventItem extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      show: false,
+      event: {
+        title: this.props.title,
+        localization: this.props.localization,
+        day: this.props.day,
+        category: this.props.category,
+        hour: this.props.hour,
+        description: this.props.description
+      }
     }
-    this.showModal = this.showModal.bind(this);
-  }
-
-  showModal(e) {
-    this.setState({
-      show: !this.state.show
-    })
   }
 
   render(){
+    const {title, localization, day} = this.state.event;
     return (
       <React.Fragment>
         <div className="event-item">
-          <Link to={`/events/${formatLink(this.props.title)}`}>
-            <h2 className="event-item__title">{this.props.title}</h2>
-            <p>{this.props.localization}</p>
-            <time>{this.props.day}</time>
+          <Link to={`/events/${formatLink(title)}`}>
+            <h2 className="event-item__title">{title}</h2>
+            <p>{localization}</p>
+            <time>{day}</time>
           </Link>
           {/*<button className="btn">Learn more</button>*/}
         </div>

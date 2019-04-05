@@ -3,10 +3,8 @@ import {Link} from 'react-router-dom';
 import {formatLink, toggleNav} from '../helpers';
 import PropTypes from 'prop-types';
 
-const Navbar = (props) => {
-  
+const Navbar = (props) => {  
   const listRef = React.createRef();
-  console.log(props);
   return(
     <nav className="main-nav">
       <button className="nav-btn" onClick={() => toggleNav(listRef)}>

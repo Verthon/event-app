@@ -21,7 +21,6 @@ class EventCreator extends Component {
       imageUrl: "",
       day: "",
       time: "13:00",
-      logged: null,
     };
   }
 
@@ -68,6 +67,8 @@ class EventCreator extends Component {
 
   render() {
 
+    const {title, host, localization, description, category, categories, day, time, imageUrl} = this.state;
+
     if(firebase.auth().currentUser === null){
     return <Login authenticate={this.authenticate} />};
     return (
@@ -86,7 +87,7 @@ class EventCreator extends Component {
                     type="text"
                     name="title"
                     required
-                    value={this.state.title}
+                    value={title}
                     onChange={e => this.changeHandler(e)}
                   />
     
@@ -99,7 +100,7 @@ class EventCreator extends Component {
                     type="text"
                     name="host"
                     required
-                    value={this.state.host}
+                    value={host}
                     onChange={e => this.changeHandler(e)}
                   />
     
@@ -112,15 +113,15 @@ class EventCreator extends Component {
                     type="text"
                     name="localization"
                     required
-                    value={this.state.localization}
+                    value={localization}
                     onChange={e => this.changeHandler(e)}
                   />
     
                   <label className="label" htmlFor="category">categories</label>
-                  <select className="input" name="category" id="" value={this.state.category} 
+                  <select className="input" name="category" id="" value={category} 
                   onChange={e => this.changeHandler(e)} required>
                     {
-                    this.state.categories.map((cat, id) => {
+                    categories.map((cat, id) => {
                       return (
                         <option key={id} value={cat}>{cat}</option>
                       )
@@ -133,7 +134,7 @@ class EventCreator extends Component {
                   </label>
                   <input className="input" type="url" name="image-url" 
                   placeholder="eg. https://unsplash.com/photos" 
-                  value={this.state.imageUrl} 
+                  value={imageUrl} 
                   onChange={e => this.changeHandler(e)} 
                   />
     
@@ -142,7 +143,7 @@ class EventCreator extends Component {
                   className="input"
                   name="date"
                   placeholder="DD/MM/YYYY" format="DD/MM/YYYY" 
-                  value={this.state.day}
+                  value={day}
                   inputProps={
                     { required: true }
                   } 
@@ -152,7 +153,7 @@ class EventCreator extends Component {
     
                   <label htmlFor="time" className="label">Time</label>
                   <input className="input" type="time" name="time" 
-                  value={this.state.time} 
+                  value={time} 
                   required
                   onChange={e => this.changeHandler(e)}
                   />
@@ -168,7 +169,7 @@ class EventCreator extends Component {
                     cols="20"
                     rows="10"
                     required
-                    value={this.state.description}
+                    value={description}
                     onChange={e => this.changeHandler(e)}
                   />
     

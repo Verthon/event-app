@@ -1,7 +1,9 @@
 import React from "react";
 import Navbar from './Navbar';
+import {connect} from 'react-redux';
 
-const Event = () => {
+const Event = (props) => {
+  console.log(props);
   return (
     <React.Fragment>
       <Navbar/>
@@ -25,4 +27,10 @@ const Event = () => {
   );
 };
 
-export default Event;
+const mapStateToProps = (state) => {
+  return {
+    event: state.event
+  };
+}
+
+export default connect(mapStateToProps)(Event);

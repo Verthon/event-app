@@ -27,7 +27,10 @@ const initialState = {
       localization: "Budapest",
       title: "Classic music concert"
     },
-  ]
+  ],
+  event: {
+    category: "test"
+  }
 }
 
 export default initialState;
