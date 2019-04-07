@@ -41,11 +41,17 @@ class App extends Component {
 
   render() {
     let eventContainer = null;
+    
     if (this.state.eventContainer) {
+      let filteredEvents = this.state.eventContainer.filter(
+        (event) => {
+          return event.title.toLowerCase().indexOf(this.state.query) !== -1;
+        }
+      );
       eventContainer = (
         <TransitionGroup>
           <div className="row">
-            {this.state.eventContainer.map((event, id) => {
+            {filteredEvents.map((event, id) => {
               return (
                 <CSSTransition
                   key={"csst" + id}

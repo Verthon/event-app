@@ -34,7 +34,8 @@ Simple React app for creating and managing events. In project I have used:
 - [x] Added PropTypes
 - [ ] Authentication
 - [ ] Context API/Redux/MobX
-- [ ] Host app on Netlify
+- [x] Host app on Netlify
+- [ ] Upgrade search component
 
 
 ## Installation

@@ -34,9 +34,14 @@ class Events extends React.Component {
   render(){
     let eventContainer = null;
     if (this.state.events) {
+      let filteredEvents = this.state.events.filter(
+        (event) => {
+          return event.title.toLowerCase().indexOf(this.state.query) !== -1;
+        }
+      );
       eventContainer = (
         <div className="row">
-          {this.state.events.map((event, id) => {
+          {filteredEvents.map((event, id) => {
             return (
               <EventItem
                 key={id}
