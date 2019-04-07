@@ -1,14 +1,4 @@
 # Eventoo
-<<<<<<< HEAD
-Simple React event app. 
-Projects is using
-
-1. React
-2. JavaScript ES6
-3. create-react-app
-4. Header svg from [svgbagrounds.com](https://www.svgbackgrounds.com/)
-5. React router
-=======
 Simple React app for creating and managing events. In project I have used:
 
 - React.js (create-react-app)
@@ -46,30 +36,6 @@ Simple React app for creating and managing events. In project I have used:
 - [ ] Context API/Redux/MobX
 - [x] Host app on Netlify
 - [ ] Upgrade search component
->>>>>>> dev
-
-## app functionality
-
-1. creating new event, information required
-  * event name
-  * event description
-  * localization
-  * date(date-picker)
-  * photo (no upload, only links)
-  * category
-2. displaying all events
-3. search function
-4. sorting events(not implemented)
-5. deleting event(not implemented)
-6. editing created event(not implemented)
-7. saving app state to database(not implemented)
-8. Clean UI and animations(not implemented)
-
-## State of project
-  
-- Not finished yet
-- Need database implementation(firebase)
-- Unit testing need to be implemented
 
 ## Installation
 
