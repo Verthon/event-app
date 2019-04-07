@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { Component } from 'react';
 import './App.css';
 import Header from './components/Header/Header';
@@ -12,10 +13,21 @@ import DB_CONFIG from './dbconfig.js';
 import firebase from 'firebase';
 import {BrowserRouter, Route} from 'react-router-dom';
 
+=======
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import "./App.css";
+import EventItem from "./components/EventItem";
+import Navbar from './components/Navbar';
+import Search from './components/Search';
+import {db} from './components/Firebase';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
+>>>>>>> dev
 
 class App extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
+<<<<<<< HEAD
     this.submitEvent = this.submitEvent.bind(this);
     this.deleteEvent = this.deleteEvent.bind(this);
     this.searchQueryHandler = this.searchQueryHandler.bind(this);
@@ -41,12 +53,19 @@ class App extends Component {
     this.setState({
       query: e.target.value
     });
+=======
+    this.state = {
+      query: "",
+      eventContainer: false,
+    };
+>>>>>>> dev
   }
 
-  showModal = () => {
+  searchQueryHandler = e => {
     this.setState({
-      openModal: !this.state.openModal
+      query: e.target.value
     });
+<<<<<<< HEAD
   }
 
   submitEvent = (inputs) => {
@@ -63,6 +82,25 @@ class App extends Component {
     this.setState({
       event: event
     });
+=======
+  };
+  
+
+  componentDidMount() {
+      db
+      .collection("events")
+      .limit(3)
+      .get()
+      .then(querySnapshot => {
+        const events = [];
+        querySnapshot.docs.forEach(doc => {
+          events.push(doc.data());
+        });
+        this.setState({
+          eventContainer: events
+        });
+      });
+>>>>>>> dev
   }
 
   componentWillMount(){
@@ -78,8 +116,8 @@ class App extends Component {
   }
 
   render() {
-    //In render I can write JS code without any issues
     let eventContainer = null;
+<<<<<<< HEAD
     let filteredEvents = this.state.eventContainer.filter(
       (event) => {
         return event.title.toLowerCase().indexOf(this.state.query) !== -1;
@@ -106,11 +144,48 @@ class App extends Component {
             })
           }
         </div>
+=======
+    
+    if (this.state.eventContainer) {
+      let filteredEvents = this.state.eventContainer.filter(
+        (event) => {
+          return event.title.toLowerCase().indexOf(this.state.query) !== -1;
+        }
+      );
+      eventContainer = (
+        <TransitionGroup>
+          <div className="row">
+            {filteredEvents.map((event, id) => {
+              return (
+                <CSSTransition
+                  key={"csst" + id}
+                  timeout={1000}
+                  in={true}
+                  classNames={{
+                    
+                  }}
+                >
+                  <EventItem
+                    key={id}
+                    title={event.title}
+                    localization={event.localization}
+                    host={event.host}
+                    day={event.day}
+                    hour={event.hour}
+                    description={event.description}
+                    category={event.category}
+                  />
+                </CSSTransition>
+                );
+            })}
+          </div>
+        </TransitionGroup>          
+>>>>>>> dev
       );
     }
 
-
     return (
+<<<<<<< HEAD
       <BrowserRouter>
         <main className="App">
           <Header>
@@ -130,6 +205,26 @@ class App extends Component {
           </section>
         </main>
       </BrowserRouter>
+=======
+      <React.Fragment>
+        <Navbar name="Eventoo" links={["events", "about", "contact"]} />
+        <header className="hero">
+          <h1 className="hero__title">Discover events</h1>      
+          <div className="hero__content">
+            <Link to="/create-event">
+              <button className="btn btn--hero">Add event</button>
+            </Link>
+            <p className="hero__desc">Build, manage and grow your events</p>
+            
+          </div>
+        </header>
+        <section className="section section__events">
+          <h1 className="section__title">Trending events</h1>
+          <Search query={this.state.query} changed={this.searchQueryHandler}/>        
+          {this.state.eventContainer ? eventContainer : <div className="loader__wrapper"><div className="loader"></div></div>}
+        </section>
+      </React.Fragment>
+>>>>>>> dev
     );
   }
 }

@@ -1,8 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import Router from './components/Router';
+import {Provider} from 'react-redux';
+import {createStore} from 'redux';
+import eventReducer from './reducers/eventReducer';
 import registerServiceWorker from './registerServiceWorker';
+//import Firebase, {FirebaseContext} from './components/Firebase';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const store = createStore(eventReducer);
+
+ReactDOM.render(
+  // <FirebaseContext.Provider value={new Firebase()}>
+  //   <Router/>
+  // </FirebaseContext.Provider>,
+  <Provider store={store}>
+    <Router/>
+  </Provider>,
+  document.getElementById('root')
+);
 registerServiceWorker();
