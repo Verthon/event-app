@@ -1,4 +1,5 @@
 # Eventoo
+[Live version on Netlify](https://eventooo.netlify.com/ "Live version on Netlify")
 Simple React app for creating and managing events. In project I have used:
 
 - React.js (create-react-app)

@@ -2,7 +2,7 @@
   "name": "event-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://verthon.github.io/event-app",
+  "homepage": ".",
   "dependencies": {
     "@material-ui/core": "^1.2.3",
     "autoprefixer": "7.1.6",
