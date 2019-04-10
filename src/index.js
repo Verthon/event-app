@@ -5,17 +5,18 @@ import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 import eventReducer from './reducers/eventReducer';
 import registerServiceWorker from './registerServiceWorker';
-//import Firebase, {FirebaseContext} from './components/Firebase';
+import Firebase, {FirebaseContext} from './components/Firebase';
 
 const store = createStore(eventReducer);
 
 ReactDOM.render(
-  // <FirebaseContext.Provider value={new Firebase()}>
-  //   <Router/>
-  // </FirebaseContext.Provider>,
+  
   <Provider store={store}>
-    <Router/>
+    <FirebaseContext.Provider value={new Firebase()}>
+     <Router/>
+    </FirebaseContext.Provider>
   </Provider>,
   document.getElementById('root')
+  
 );
 registerServiceWorker();

@@ -4,8 +4,8 @@ import "./App.css";
 import EventItem from "./components/EventItem";
 import Navbar from './components/Navbar';
 import Search from './components/Search';
-import {db} from './components/Firebase';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { withFirebase } from './components/Firebase';
+//import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 class App extends Component {
   constructor(props) {
@@ -24,6 +24,7 @@ class App extends Component {
   
 
   componentDidMount() {
+    const {db} = this.props.firebase;
       db
       .collection("events")
       .limit(3)
@@ -50,18 +51,9 @@ class App extends Component {
         }
       );
       eventContainer = (
-        <TransitionGroup>
           <div className="row">
             {filteredEvents.map((event, id) => {
               return (
-                <CSSTransition
-                  key={"csst" + id}
-                  timeout={1000}
-                  in={true}
-                  classNames={{
-                    
-                  }}
-                >
                   <EventItem
                     key={id}
                     title={event.title}
@@ -72,11 +64,9 @@ class App extends Component {
                     description={event.description}
                     category={event.category}
                   />
-                </CSSTransition>
                 );
             })}
-          </div>
-        </TransitionGroup>          
+          </div>         
       );
     }
 
@@ -103,4 +93,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withFirebase(App);

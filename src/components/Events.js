@@ -2,7 +2,7 @@ import React from 'react';
 import EventItem from "./EventItem";
 import Navbar from './Navbar';
 import Search from './Search';
-import {db} from "./Firebase";
+import { withFirebase } from './Firebase';
 
 class Events extends React.Component {
   state ={
@@ -11,6 +11,7 @@ class Events extends React.Component {
   }
 
   componentDidMount() {
+    const {db} = this.props.firebase;
     db
     .collection("events")
     .get()      
@@ -73,4 +74,4 @@ class Events extends React.Component {
   }
 }
 
-export default Events;
+export default withFirebase(Events);

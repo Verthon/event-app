@@ -9,9 +9,8 @@ import * as ROUTES from '../constants/routes';
 import About from './About';
 import Contact from './Contact';
 import Login from './Login';
-import withFirebase from './withFirebase';
 
-const Router = (props) => (
+const Router = () => (
     <BrowserRouter>
     <Switch>
       <Route exact path={ROUTES.HOME} component={App}/>

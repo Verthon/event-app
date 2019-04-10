@@ -5,7 +5,7 @@ import Navbar from "./Navbar";
 import DayPickerInput from "react-day-picker/DayPickerInput";
 import "react-day-picker/lib/style.css";
 import Login from './Login';
-import firebase, {firebaseApp} from './Firebase';
+import {withFirebase} from "./Firebase"
 
 class EventCreator extends Component {
   constructor(props) {
@@ -25,7 +25,7 @@ class EventCreator extends Component {
   }
 
   componentDidMount() {
-    firebase.auth().onAuthStateChanged(user => {
+    this.props.firebase.auth.onAuthStateChanged(user => {
       if (user) {
         this.authHandler({ user });
       }
@@ -34,7 +34,7 @@ class EventCreator extends Component {
 
   submitEvent = (e) => {
     e.preventDefault();
-    const eventRef = firebase.db.collection("events").doc();
+    const eventRef = this.props.firebase.db.collection("events").doc();
     eventRef.set({
       title: this.state.title,
       host: this.state.host,
@@ -52,25 +52,26 @@ class EventCreator extends Component {
     });
   };
 
-  authHandler = async authData => {
-    this.setState({
-      logged: firebase.auth().currentUser
-    })
-  }
+  // authHandler = async authData => {
+  //   this.setState({
+  //     logged: this.props.firebase.auth.currentUser
+  //   })
+  // }
 
-  authenticate = provider => {
-    const authProvider = new firebase.auth[`${provider}AuthProvider`]();
-    firebaseApp.auth()
-    .signInWithPopup(authProvider)
-    .then(this.authHandler)
-  }
+  // // authenticate = provider => {
+  // //   const authProvider = new this.props.firebase.auth[`${provider}AuthProvider`]();
+  // //   this.props.firebaseApp.auth
+  // //   .signInWithPopup(authProvider)
+  // //   .then(this.authHandler)
+  // // }
 
   render() {
-
+    console.log(this.props.firebase.auth)
     const {title, host, localization, description, category, categories, day, time, imageUrl} = this.state;
 
-    if(firebase.auth().currentUser === null){
-    return <Login authenticate={this.authenticate} />};
+    if(this.props.firebase.auth.currentUser === null){
+      return <Login/>
+    };
     return (
           <React.Fragment>  
             <Navbar/>
@@ -187,4 +188,4 @@ class EventCreator extends Component {
         }
   }
 
-export default EventCreator;
+export default withFirebase(EventCreator);
