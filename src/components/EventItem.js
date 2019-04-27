@@ -2,6 +2,8 @@ import React from 'react';
 import {formatLink} from '../helpers';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {send} from '../reducers/actions';
 
 class EventItem extends React.Component {
 
@@ -19,12 +21,17 @@ class EventItem extends React.Component {
     }
   }
 
-  render(){
+  send = () => {
+    this.props.send(this.state.event)
+  }
+
+  render(props){
+    //redux dispatch
     const {title, localization, day} = this.state.event;
     return (
       <React.Fragment>
         <div className="event-item">
-          <Link to={`/events/${formatLink(title)}`}>
+          <Link to={`/events/${formatLink(title)}`} onClick={this.send}>
             <h2 className="event-item__title">{title}</h2>
             <p>{localization}</p>
             <time>{day}</time>
@@ -43,4 +50,16 @@ EventItem.propTypes = {
   hour: PropTypes.string.isRequired,
 }
 
-export default EventItem;
+const mapStateToProps = state => {
+  return {
+    event: state.event
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    send: event => dispatch(send(event))
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(EventItem);

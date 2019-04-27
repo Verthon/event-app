@@ -1,5 +1,6 @@
 import React from 'react';
 import Navbar from './Navbar';
+import connected_world from '../images/connected_world.svg';
 
 const About = () => {
   return (
@@ -7,7 +8,7 @@ const About = () => {
       <Navbar/>
       <article className="section">
         <h1 className="section__title">About us</h1>
-        <img src="./images/connected_world.svg" alt=""/>
+        <img src={connected_world} alt=""/>
       </article>
     </React.Fragment>
   )

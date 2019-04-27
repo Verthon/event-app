@@ -31,7 +31,7 @@ const Navbar = (props) => {
 
 Navbar.defaultProps = {
   name: "Eventoo",
-  links: [ "events", "about", "contact" ]
+  links: [ "events", "about", "contact", "create event" ]
 }
 
 Navbar.propTypes = {

@@ -29,7 +29,13 @@ const initialState = {
     },
   ],
   event: {
-    category: "test"
+    category: "music",
+    day: "May 3",
+    description: "Classic music event",
+    host: "Budapest Philharmonic Orchestra",
+    hour: "11:15 PM",
+    localization: "Budapest",
+    title: "Classic music concert"
   }
 }
 

@@ -72,7 +72,7 @@ class App extends Component {
 
     return (
       <React.Fragment>
-        <Navbar name="Eventoo" links={["events", "about", "contact"]} />
+        <Navbar name="Eventoo" links={["events", "about", "contact", "create-event"]} />
         <header className="hero">
           <h1 className="hero__title">Discover events</h1>      
           <div className="hero__content">

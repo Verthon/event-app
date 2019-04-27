@@ -30,6 +30,12 @@ a {
   text-decoration: none;
 }
 
+img{
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
 #root{
   max-width: 380px;
   background-color: #F6F9F9;
@@ -237,7 +243,7 @@ a {
   border: 0;
   background: #FFB04E;
   color: #fff;
-  padding: 0.5rem 1.5rem;
+  padding: 0.5rem 2rem;
   font-size: 1.1rem;
   margin: 2rem auto 1rem auto;
   border-radius: 2px;
@@ -349,7 +355,7 @@ a {
 .event__col{
   flex-basis: 60%;
   display: flex;
-  margin: 2rem 0 0 0;
+  margin: 2rem 0;
   font-size: 1rem;
   align-items: center;
 }
@@ -364,10 +370,10 @@ a {
 }
 
 .event__location, .event__time{
-  margin: 0 0.5rem;
+  margin: 0 0.25rem;
   /* red color: #b90714;*/
   color: #FFB04E;
-  font-size: 0.95rem;
+  font-size: 1rem;
 }
 
 /*--------------*/
