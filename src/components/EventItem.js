@@ -16,7 +16,8 @@ class EventItem extends React.Component {
         day: this.props.day,
         category: this.props.category,
         hour: this.props.hour,
-        description: this.props.description
+        description: this.props.description,
+        host: this.props.host
       }
     }
   }

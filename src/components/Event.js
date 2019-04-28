@@ -11,6 +11,7 @@ const Event = (props) => {
       <div className="event">
         <h1 className="event__title">{title}</h1>
         <p className="event__description">{description}</p>
+        <p>Host: {host}</p>
         <div className="row">
           <div className="event__col">
             <i className="fas fa-map-marker-alt"></i>
