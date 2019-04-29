@@ -429,6 +429,7 @@ img{
 .account__image{
   border: 1px solid #FFB04E;
   border-radius: 10%;
+  max-width: 75px;
 }
 
 .account__name{

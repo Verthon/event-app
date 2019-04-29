@@ -4,7 +4,6 @@ import {connect} from 'react-redux';
 
 const Event = (props) => {
   const {title, localization, day, hour, category, description, host} = props.event;
-  console.log(props.event);
   return (
     <React.Fragment>
       <Navbar/>

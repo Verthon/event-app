@@ -4,7 +4,6 @@ import initialState from './initialState';
 const reducer = (state = initialState, action) => {
   switch(action.type){
     case types.SEND_EVENT_DATA:
-      console.log('reducer', action)
       return {
         ...state, event: action.payload
       }

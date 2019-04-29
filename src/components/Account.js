@@ -34,7 +34,6 @@ class Account extends React.Component {
   }
 
   render(){
-    console.log(this.state.authUser);
     return (   
       <React.Fragment>
         <Navbar/>
