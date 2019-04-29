@@ -9,6 +9,9 @@ import * as ROUTES from '../constants/routes';
 import About from './About';
 import Contact from './Contact';
 import Login from './Login';
+import Account from './Account';
+import { withFirebase } from './Firebase';
+
 
 const Router = () => (
     <BrowserRouter>
@@ -20,9 +23,10 @@ const Router = () => (
       <Route path={ROUTES.ABOUT} component={About} />
       <Route path={ROUTES.CONTACT} component={Contact} />
       <Route path={ROUTES.SIGN_IN} component={Login} />
+      <Route path={ROUTES.ACCOUNT} component={Account} />
       <Route component={NotFound}/>
     </Switch>
     </BrowserRouter> 
 );
 
-export default Router;
+export default withFirebase(Router);

@@ -12,7 +12,7 @@ const initialState = {
     {
       category: "food&drink",
       day: "March 30",
-      description: "Join the place where neighbors chit chat and gossip. Our market offers punters a comprehensive selection of fresh fruit, veg, meat and flowers as well as superb tapas bar",
+      description: "Join the place where neighbors chit chat and gossip. Our market offers punters a comprehensive selection of fresh fruit, veg, meat and flowers as well as superb tapas bar.",
       host: "Sevilla druids",
       hour: "13:21 AM",
       localization: "Sevilla",

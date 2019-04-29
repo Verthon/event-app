@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-//import Firebase, {FirebaseContext} from "./Firebase";
 import Navbar from "./Navbar";
 import DayPickerInput from "react-day-picker/DayPickerInput";
 import "react-day-picker/lib/style.css";
@@ -25,11 +24,7 @@ class EventCreator extends Component {
   }
 
   componentDidMount() {
-    this.props.firebase.auth.onAuthStateChanged(user => {
-      if (user) {
-        this.authHandler({ user });
-      }
-    });
+    
   }
 
   submitEvent = (e) => {
@@ -52,21 +47,8 @@ class EventCreator extends Component {
     });
   };
 
-  // authHandler = async authData => {
-  //   this.setState({
-  //     logged: this.props.firebase.auth.currentUser
-  //   })
-  // }
-
-  // // authenticate = provider => {
-  // //   const authProvider = new this.props.firebase.auth[`${provider}AuthProvider`]();
-  // //   this.props.firebaseApp.auth
-  // //   .signInWithPopup(authProvider)
-  // //   .then(this.authHandler)
-  // // }
-
   render() {
-    console.log(this.props.firebase.auth)
+    
     const {title, host, localization, description, category, categories, day, time, imageUrl} = this.state;
 
     if(this.props.firebase.auth.currentUser === null){

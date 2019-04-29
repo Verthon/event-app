@@ -13,7 +13,7 @@ const Navbar = (props) => {
         <span className="nav-btn__line"></span>
       </button>
       <p className="nav-logo"><Link to="/">{props.name}</Link></p>
-      <Link to="/signin">Account</Link>
+      <Link to="/account">Account</Link>
       <ul className="nav-list" ref={listRef}>
         {
         props.links.map((link, id) => {
