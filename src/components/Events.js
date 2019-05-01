@@ -53,6 +53,7 @@ class Events extends React.Component {
                 hour={event.hour}
                 description={event.description}
                 category={event.category}
+                featuredImage={event.featuredImage}
               />
             );
           })}
@@ -64,7 +65,7 @@ class Events extends React.Component {
     return(
       <React.Fragment>
         <Navbar/>
-        <section className="section">
+        <section className="section section__events">
           <h1 className="section__title">Events list</h1>
           <Search query={this.state.query} changed={this.searchQueryHandler}/>
           {this.state.events ? eventContainer : <div className="loader__wrapper"><div className="loader"></div></div>}

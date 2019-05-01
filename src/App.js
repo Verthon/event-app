@@ -63,6 +63,7 @@ class App extends Component {
                     hour={event.hour}
                     description={event.description}
                     category={event.category}
+                    featuredImage={event.featuredImage}
                   />
                 );
             })}

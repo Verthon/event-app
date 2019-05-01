@@ -28,10 +28,12 @@ class EventItem extends React.Component {
 
   render(props){
     //redux dispatch
-    const {title, localization, day} = this.state.event;
+    console.log(this.props);
+    const {title, localization, day, featuredImage} = this.props;
     return (
       <React.Fragment>
         <div className="event-item">
+          <img className="event-item__image" src={featuredImage+'/500x200'} alt=""/>
           <Link to={`/events/${formatLink(title)}`} onClick={this.send}>
             <h2 className="event-item__title">{title}</h2>
             <p>{localization}</p>
@@ -51,11 +53,11 @@ EventItem.propTypes = {
   hour: PropTypes.string.isRequired,
 }
 
-const mapStateToProps = state => {
-  return {
-    event: state.event
-  }
-}
+// const mapStateToProps = state => {
+//   return {
+//     event: state.event
+//   }
+// }
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -63,4 +65,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(EventItem);
+export default connect(mapDispatchToProps)(EventItem);

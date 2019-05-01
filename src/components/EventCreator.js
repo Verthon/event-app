@@ -5,6 +5,7 @@ import DayPickerInput from "react-day-picker/DayPickerInput";
 import "react-day-picker/lib/style.css";
 import Login from './Login';
 import {withFirebase} from "./Firebase"
+import {SIGN_IN} from '../constants/routes';
 
 class EventCreator extends Component {
   constructor(props) {
@@ -24,7 +25,9 @@ class EventCreator extends Component {
   }
 
   componentDidMount() {
-    
+    if(this.props.firebase.auth.currentUser === null){
+      this.props.history.push(SIGN_IN);
+    };
   }
 
   submitEvent = (e) => {
@@ -38,6 +41,7 @@ class EventCreator extends Component {
       category: this.state.category,
       day: this.state.day,
       time: this.state.time,
+      image: this.state.imageUrl
     });
   };
 
@@ -50,14 +54,11 @@ class EventCreator extends Component {
   render() {
     
     const {title, host, localization, description, category, categories, day, time, imageUrl} = this.state;
-
-    if(this.props.firebase.auth.currentUser === null){
-      return <Login/>
-    };
+    //console.log(this.props.firebase.auth.currentUser.profile)
     return (
           <React.Fragment>  
             <Navbar/>
-            <div className="section">         
+            <div className="section section__events">         
               <h1 className="section__title">Create your event</h1>
               <div className="event-modal">
                 <form action="" onSubmit={e => this.submitEvent(e)}>
@@ -116,7 +117,7 @@ class EventCreator extends Component {
                     image URL
                   </label>
                   <input className="input" type="url" name="image-url" 
-                  placeholder="eg. https://unsplash.com/photos" 
+                  placeholder="eg. https://source.unsplash.com/weekly?water" 
                   value={imageUrl} 
                   onChange={e => this.changeHandler(e)} 
                   />

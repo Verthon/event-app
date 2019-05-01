@@ -19,7 +19,7 @@ Simple React app for creating and managing events. In project I have used:
   * event description
   * localization
   * date(date-picker)
-  * photo (no upload, only links)
+  * photo (no upload, only links https://source.unsplash.com/)
   * category 
 2. Displaying all events
 3. Search function
@@ -34,10 +34,13 @@ Simple React app for creating and managing events. In project I have used:
 - [x] Firebase implemented (fetching data, adding data)
 - [x] Added React Router
 - [x] Added PropTypes
-- [ ] Authentication
-- [ ] Context API/Redux/MobX
+- [x] Authentication
+- [x] Context API/Redux/MobX
 - [x] Host app on Netlify
 - [ ] Upgrade search component
+- [ ] Add sorting and filters
+- [ ] Add delete, editing functions for created events
+- [ ] Handle better css(Sass/StyledComponents)
 
 ## Installation
 
