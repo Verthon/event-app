@@ -9,7 +9,7 @@ const reducer = (state = initialState, action) => {
       }
     case types.ADD_EVENT_DATA:
       return{
-        events: state.events
+        ...state, events: action.payload
       }  
     default:
       return state  

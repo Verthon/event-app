@@ -7,7 +7,9 @@ const initialState = {
     host: "IT Ninja",
     hour: "10:30 AM",
     localization: "Oslo",
-    title: "Javascript conference"
+    title: "Javascript conference",
+    featuredImage: "https://source.unsplash.com/ruiU36AR5zo"
+
     },
     {
       category: "food&drink",
@@ -16,7 +18,8 @@ const initialState = {
       host: "Sevilla druids",
       hour: "13:21 AM",
       localization: "Sevilla",
-      title: "Food market in Sevilla"
+      title: "Food market in Sevilla",
+      featuredImage: "https://source.unsplash.com/PhfHFMq18cY"
     },
     {
       category: "music",
@@ -25,8 +28,19 @@ const initialState = {
       host: "Budapest Philharmonic Orchestra",
       hour: "11:15 PM",
       localization: "Budapest",
-      title: "Classic music concert"
+      title: "Classical music concert",
+      featuredImage: "https://source.unsplash.com/NsgsQjHA1mM"
     },
+    {
+      category: "sport",
+      day: "April 5",
+      description: "Whether you call it soccer or football, there is no denying that the sport makes for some spectacular events all around the world. We are a community of footballers who started playing together in June 2013. We play easy 7v7 games with a focus on fun, good football and socialising after the games. Bring skills with you!",
+      host: "Greenland football",
+      hour: "10:00PM",
+      localization: "Greenland",
+      title: "Football Event",
+      featuredImage: "https://source.unsplash.com/Y_upPEyxXN8"
+    }
   ],
   event: {
     category: "music",
@@ -35,7 +49,8 @@ const initialState = {
     host: "Budapest Philharmonic Orchestra",
     hour: "11:15 PM",
     localization: "Budapest",
-    title: "Classical music concert"
+    title: "Classical music concert",
+    featuredImage: "https://source.unsplash.com/NsgsQjHA1mM"
   }
 }
 

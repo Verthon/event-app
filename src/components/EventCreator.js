@@ -3,9 +3,8 @@ import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
 import DayPickerInput from "react-day-picker/DayPickerInput";
 import "react-day-picker/lib/style.css";
-import Login from './Login';
 import {withFirebase} from "./Firebase"
-import {SIGN_IN} from '../constants/routes';
+import {SIGN_IN, EVENTS} from '../constants/routes';
 
 class EventCreator extends Component {
   constructor(props) {
@@ -20,7 +19,7 @@ class EventCreator extends Component {
       category: "Sport",
       imageUrl: "",
       day: "",
-      time: "13:00",
+      hour: "13:00",
     };
   }
 
@@ -40,9 +39,10 @@ class EventCreator extends Component {
       description: this.state.description,
       category: this.state.category,
       day: this.state.day,
-      time: this.state.time,
-      image: this.state.imageUrl
+      hour: this.state.hour,
+      featuredImage: this.state.imageUrl
     });
+    this.history.push(EVENTS);
   };
 
   changeHandler = e => {
@@ -53,7 +53,7 @@ class EventCreator extends Component {
 
   render() {
     
-    const {title, host, localization, description, category, categories, day, time, imageUrl} = this.state;
+    const {title, host, localization, description, category, categories, day, hour, imageUrl} = this.state;
     //console.log(this.props.firebase.auth.currentUser.profile)
     return (
           <React.Fragment>  
@@ -116,7 +116,7 @@ class EventCreator extends Component {
                   <label className="label" htmlFor="image-url">
                     image URL
                   </label>
-                  <input className="input" type="url" name="image-url" 
+                  <input className="input" type="text" name="image-url" 
                   placeholder="eg. https://source.unsplash.com/weekly?water" 
                   value={imageUrl} 
                   onChange={e => this.changeHandler(e)} 
@@ -135,9 +135,9 @@ class EventCreator extends Component {
                   required
                   />
     
-                  <label htmlFor="time" className="label">Time</label>
-                  <input className="input" type="time" name="time" 
-                  value={time} 
+                  <label htmlFor="hour" className="label">hour</label>
+                  <input className="input" type="hour" name="hour" 
+                  value={hour} 
                   required
                   onChange={e => this.changeHandler(e)}
                   />

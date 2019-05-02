@@ -17,7 +17,8 @@ class EventItem extends React.Component {
         category: this.props.category,
         hour: this.props.hour,
         description: this.props.description,
-        host: this.props.host
+        host: this.props.host,
+        featuredImage: this.props.featuredImage
       }
     }
   }
@@ -28,7 +29,6 @@ class EventItem extends React.Component {
 
   render(props){
     //redux dispatch
-    console.log(this.props);
     const {title, localization, day, featuredImage} = this.props;
     return (
       <React.Fragment>
@@ -53,11 +53,11 @@ EventItem.propTypes = {
   hour: PropTypes.string.isRequired,
 }
 
-// const mapStateToProps = state => {
-//   return {
-//     event: state.event
-//   }
-// }
+const mapStateToProps = state => {
+  return {
+    event: state.event
+  }
+}
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -65,4 +65,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 };
 
-export default connect(mapDispatchToProps)(EventItem);
+export default connect(mapStateToProps, mapDispatchToProps)(EventItem);
