@@ -39,7 +39,6 @@ class EventItem extends React.Component {
             <p>{localization}</p>
             <time>{day}</time>
           </Link>
-          {/*<button className="btn">Learn more</button>*/}
         </div>
       </React.Fragment>     
       )
