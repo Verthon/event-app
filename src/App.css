@@ -325,6 +325,12 @@ img{
   animation: fadeIn 1.5s;
 }
 
+.event-item__footer{
+  display: flex;
+  justify-content: space-between;
+  flex-basis: 100%;
+}
+
 .event-modal {
   padding: 1rem;
   background: #fff;
@@ -428,6 +434,7 @@ img{
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #faf8f5;
 }
 
 .account__image{
@@ -439,6 +446,7 @@ img{
 .account__name{
   color: #0f0f0f;
   font-family: 'Source Sans Pro';
+  margin: 1rem 0;
 }
 
 .account__text{

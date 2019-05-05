@@ -44,6 +44,7 @@ class EventCreator extends Component {
       featuredImage: this.state.imageUrl,
       uid: this.props.firebase.auth.currentUser.uid
     });
+    //After sending data to database redirect to /events
     this.props.history.push(EVENTS);
   };
 
@@ -63,7 +64,6 @@ class EventCreator extends Component {
   render() {
     
     const {title, host, localization, description, category, categories, day, hour, imageUrl} = this.state;
-    //console.log(this.props.firebase.auth.currentUser.profile)
     return (
           <React.Fragment>  
             <Navbar/>
