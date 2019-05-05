@@ -6,7 +6,6 @@ import {ACCOUNT} from '../constants/routes';
 const Login = (props) => {
 
   const loginWithSocial = (provider) => {
-    console.log(props.history)
     props.firebase[`doSignInWith${provider}`]();
     props.firebase.auth.onAuthStateChanged(
       authUser => {

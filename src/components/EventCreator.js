@@ -25,7 +25,6 @@ class EventCreator extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props.firebase.auth.currentUser.uid);
     if(this.props.firebase.auth.currentUser === null){
       this.props.history.push(SIGN_IN);
     };
@@ -42,13 +41,13 @@ class EventCreator extends Component {
       category: this.state.category,
       day: this.state.day,
       hour: this.state.hour,
-      featuredImage: this.state.imageUrl
+      featuredImage: this.state.imageUrl,
+      uid: this.props.firebase.auth.currentUser.uid
     });
-    this.history.push(EVENTS);
+    this.props.history.push(EVENTS);
   };
 
   changeHandler = e => {
-    console.log(e.target.name);
     this.setState({
       [e.target.name]: e.target.value
     });
