@@ -25,6 +25,7 @@ class EventCreator extends Component {
   }
 
   componentDidMount() {
+    console.log(this.props.firebase.auth.currentUser.uid);
     if(this.props.firebase.auth.currentUser === null){
       this.props.history.push(SIGN_IN);
     };
