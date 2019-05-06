@@ -57,8 +57,19 @@ class Account extends React.Component {
   };
 
   removeEvent = (image, index) => {
+    const { db } = this.props.firebase;
+    db.collection("events")
+      .where("featuredImage", "==", this.state.events[index].featuredImage)
+      .get()
+      .then(querySnapshot => {
+          querySnapshot.docs.forEach(doc => {
+          db.collection("events").doc(doc.id).delete()
+          });
+        })
+      .catch(error => console.log(error))
     this.setState({events: this.state.events.filter( person => person.featuredImage !== image)})
     //console.log(image, index, this.state.events[index]);
+    
   }
 
   updateEvent = () => {
@@ -76,7 +87,7 @@ class Account extends React.Component {
         <div className="row">
           {this.state.events.map((event, id) => {
             return (
-              <React.Fragment>
+              <React.Fragment key={id}>
                 <EventItem
                   key={id}
                   title={event.title}

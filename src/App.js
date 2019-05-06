@@ -85,10 +85,13 @@ class App extends Component {
           </div>
         </header>
         <section className="section section__events">
-          <h1 className="section__title">Trending events</h1>
+          <h2 className="section__title">Trending events</h2>
           <Search query={this.state.query} changed={this.searchQueryHandler}/>        
           {this.state.eventContainer ? eventContainer : <div className="loader__wrapper"><div className="loader"></div></div>}
         </section>
+        <div className="section">
+
+        </div>
       </React.Fragment>
     );
   }
