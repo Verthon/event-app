@@ -50,6 +50,7 @@ EventItem.propTypes = {
   localization: PropTypes.string.isRequired,
   day: PropTypes.string.isRequired,
   hour: PropTypes.string.isRequired,
+  featuredImage: PropTypes.string.isRequired,
 }
 
 const mapStateToProps = state => {

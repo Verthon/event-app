@@ -51,7 +51,8 @@ const initialState = {
     localization: "Budapest",
     title: "Classical music concert",
     featuredImage: "https://source.unsplash.com/NsgsQjHA1mM"
-  }
+  },
+  categories: ["Sport", "Music", "Education", "Business", "Food&Drink"]
 }
 
 export default initialState;

@@ -94,7 +94,7 @@ img{
 }
 .input {
   padding: 0 0.5rem;
-  color: #AEAEAE;
+  color: #999999;
   border: 1px solid #ddd;
   margin: 1rem 0;
   font-size: 16px;
@@ -107,7 +107,7 @@ img{
 .DayPickerInput input{
   width: 100%;
   padding: 0 0.5rem;
-  color: #AEAEAE;
+  color: #999999;
   border: 1px solid #ddd;
   margin: 1rem 0;
   font-size: 16px;
@@ -352,27 +352,43 @@ img{
 } 
 
 .event__title{
-  margin: 2rem 0;
-  font-size: 2.25rem;
+  margin: 1rem 0;
+  font-size: 1.75rem;
   font-family: 'Source Sans Pro';
+}
+
+.event__info{
+  justify-content: space-between;
+  padding: 0 1rem;
+}
+
+.event__cat{
+  line-height: 1.7;
+  background: #212121;
+  color: #FFB04E;
+  padding: 0 0.5rem;
+  text-transform: capitalize; 
 }
 
 .event__description{
   line-height: 1.7;
-  padding: 2rem 0;
-  border-bottom: 1px solid #eee;
+  padding: 1rem 0;
   color: #4e4442;
 }
 
+.event__row{
+  justify-content: space-between;
+  border-top: 1px solid #edd;
+  border-bottom: 1px solid #edd;
+  margin: 1rem 0;
+  padding: 0 1rem;
+}
+
 .event__col{
-  flex-basis: 60%;
   display: flex;
-  margin: 2rem 0;
+  padding: 1rem 0;
   font-size: 1rem;
   align-items: center;
-}
-.event__col:last-of-type{
-  flex-basis: 40%;
 }
 
 .event__col i{

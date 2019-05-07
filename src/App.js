@@ -89,9 +89,9 @@ class App extends Component {
           <Search query={this.state.query} changed={this.searchQueryHandler}/>        
           {this.state.eventContainer ? eventContainer : <div className="loader__wrapper"><div className="loader"></div></div>}
         </section>
-        <div className="section">
-
-        </div>
+        <section className="section section__events">
+          <h2 className="section__title">Popular categories</h2>
+        </section>
       </React.Fragment>
     );
   }

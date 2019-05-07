@@ -168,11 +168,8 @@ class EventCreator extends Component {
                   />
     
                   <button className="btn" type="submit">
-                    Submit
+                    Submit event
                   </button>
-                  <Link to="/">
-                    <button className="btn">Back to home</button>
-                  </Link>
                 </form>
               </div>
             </div>
