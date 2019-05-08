@@ -364,8 +364,8 @@ img{
 
 .event__cat{
   line-height: 1.7;
-  background: #212121;
-  color: #FFB04E;
+  background: #FFB04E;
+  color: #212121;
   padding: 0 0.5rem;
   text-transform: capitalize; 
 }
@@ -391,7 +391,7 @@ img{
   align-items: center;
 }
 
-.event__col i{
+i{
   /* red color: #b90714;*/
   font-size: 1.2rem;
   color: #FFB04E;
