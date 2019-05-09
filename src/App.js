@@ -5,6 +5,7 @@ import EventItem from "./components/EventItem";
 import Navbar from './components/Navbar';
 import Search from './components/Search';
 import { withFirebase } from './components/Firebase';
+import {Row} from './components/styles/components';
 //import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 class App extends Component {
@@ -51,7 +52,7 @@ class App extends Component {
         }
       );
       eventContainer = (
-          <div className="row">
+          <Row>
             {filteredEvents.map((event, id) => {
               return (
                   <EventItem
@@ -67,7 +68,7 @@ class App extends Component {
                   />
                 );
             })}
-          </div>         
+          </Row>         
       );
     }
 

@@ -4,6 +4,7 @@ import { withFirebase } from "./Firebase";
 import { SIGN_IN, HOME } from "../constants/routes";
 import { Link } from "react-router-dom";
 import EventItem from "../components/EventItem";
+import Modal from '../components/Modal';
 
 class Account extends React.Component {
   constructor(props) {
@@ -11,7 +12,9 @@ class Account extends React.Component {
 
     this.state = {
       authUser: null,
-      events: false
+      events: false,
+      delete: false,
+      show: false,
     };
   }
 
@@ -47,8 +50,6 @@ class Account extends React.Component {
         this.props.history.push(SIGN_IN);
       }
     });
-    // get data from database
-    // console.log(this.props.firebase.auth.currentUser.uid);
   }
 
   SignOut = () => {
@@ -57,23 +58,31 @@ class Account extends React.Component {
   };
 
   removeEvent = (image, index) => {
-    const { db } = this.props.firebase;
-    db.collection("events")
-      .where("featuredImage", "==", this.state.events[index].featuredImage)
-      .get()
-      .then(querySnapshot => {
-          querySnapshot.docs.forEach(doc => {
-          db.collection("events").doc(doc.id).delete()
-          });
-        })
-      .catch(error => console.log(error))
-    this.setState({events: this.state.events.filter( person => person.featuredImage !== image)})
+    this.setState({show: !this.state.show});
+    // const { db } = this.props.firebase;
+    // db.collection("events")
+    //   .where("featuredImage", "==", this.state.events[index].featuredImage)
+    //   .get()
+    //   .then(querySnapshot => {
+    //       querySnapshot.docs.forEach(doc => {
+    //       db.collection("events").doc(doc.id).delete()
+    //       });
+    //     })
+    //   .catch(error => console.log(error))
+    if(this.state.delete){
+      this.setState({events: this.state.events.filter( person => person.featuredImage !== image)});
+    }
+    
     //console.log(image, index, this.state.events[index]);
     
   }
 
   updateEvent = () => {
     
+  }
+
+  closeModal = () => {
+    this.setState({show: false})
   }
 
   componentWillUnmount() {
@@ -101,7 +110,7 @@ class Account extends React.Component {
                 />
                 <footer className="row event-item__footer">
                   <button className="btn" onClick={() => this.removeEvent(event.featuredImage, id)}>Remove event</button>
-                  <button className="btn" onClick={this.updateEvent}>Edit event</button>
+                  {/* <button className="btn" onClick={this.updateEvent}>Edit event</button> */}
                 </footer>
              </React.Fragment>
             );
@@ -113,6 +122,13 @@ class Account extends React.Component {
       <React.Fragment>
         <Navbar />
         <div className="account">
+          <Modal show={this.state.show} 
+          close={this.closeModal} 
+          title="Are you sure ?"
+          description="Do you really want to delete this event? This process cannot be undone.">
+            <button className="btn" onClick={this.closeModal}>Cancel</button>
+            <button className="btn" onClick={this.removeEvent}>Remove</button>
+          </Modal>
           <h1 className="title">Account</h1>
           <img
             className="account__image"

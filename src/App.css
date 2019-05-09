@@ -346,62 +346,10 @@ img{
 /* Single item */
 /*--------------*/
 
-.event{
-  padding: 0 2rem;
-  animation: fadeIn 2s;
-} 
-
-.event__title{
-  margin: 1rem 0;
-  font-size: 1.75rem;
-  font-family: 'Source Sans Pro';
-}
-
-.event__info{
-  justify-content: space-between;
-  padding: 0 1rem;
-}
-
-.event__cat{
-  line-height: 1.7;
-  background: #FFB04E;
-  color: #212121;
-  padding: 0 0.5rem;
-  text-transform: capitalize; 
-}
-
-.event__description{
-  line-height: 1.7;
-  padding: 1rem 0;
-  color: #4e4442;
-}
-
-.event__row{
-  justify-content: space-between;
-  border-top: 1px solid #edd;
-  border-bottom: 1px solid #edd;
-  margin: 1rem 0;
-  padding: 0 1rem;
-}
-
-.event__col{
-  display: flex;
-  padding: 1rem 0;
-  font-size: 1rem;
-  align-items: center;
-}
-
 i{
   /* red color: #b90714;*/
   font-size: 1.2rem;
   color: #FFB04E;
-}
-
-.event__location, .event__time{
-  margin: 0 0.25rem;
-  /* red color: #b90714;*/
-  color: #FFB04E;
-  font-size: 1rem;
 }
 
 /*--------------*/
@@ -446,7 +394,7 @@ i{
 /*--------------------*/
 
 .account{
-  padding: 0 2rem;
+  padding: 0 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;

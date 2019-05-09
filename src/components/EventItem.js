@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {send} from '../reducers/actions';
+import styled from 'styled-components';
+import {colors} from './styles/variables'; 
 
 class EventItem extends React.Component {
 
@@ -28,7 +30,6 @@ class EventItem extends React.Component {
   }
 
   render(props){
-    //redux dispatch
     const {title, localization, day, featuredImage} = this.props;
     return (
       <React.Fragment>
