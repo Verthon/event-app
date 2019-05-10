@@ -3,6 +3,8 @@ export const colors = {
   RocketMetallic: "#8A8280",
   ChaosBlack: "#0f0f0f",
   White: "#ffffff",
+  Unbleached: "#faf8f5",
+  Blackout: "#212521",
 }
 
 export const media = {

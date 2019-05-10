@@ -13,7 +13,6 @@ class Account extends React.Component {
     this.state = {
       authUser: null,
       events: false,
-      delete: false,
       show: false,
       currentEvent: false,
     };
@@ -62,21 +61,21 @@ class Account extends React.Component {
     this.setState(state => ({
       show: !state.show,
       currentEvent: event
-    })); 
-   // const { db } = this.props.firebase;
-    // db.collection("events")
-    //   .where("featuredImage", "==", this.state.events[index].featuredImage)
-    //   .get()
-    //   .then(querySnapshot => {
-    //       querySnapshot.docs.forEach(doc => {
-    //       db.collection("events").doc(doc.id).delete()
-    //       });
-    //     })
-    //   .catch(error => console.log(error)) 
+    }));  
   }
 
   removePermanently = (image) => {
     this.setState({events: this.state.events.filter( person => person.featuredImage !== image)});
+    const { db } = this.props.firebase;
+    db.collection("events")
+      .where("featuredImage", "==", this.state.events.featuredImage)
+      .get()
+      .then(querySnapshot => {
+          querySnapshot.docs.forEach(doc => {
+          db.collection("events").doc(doc.id).delete()
+          });
+        })
+      .catch(error => console.log(error))
   }
 
   updateEvent = () => {
