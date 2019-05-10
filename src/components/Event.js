@@ -1,16 +1,12 @@
 import React from "react";
 import Navbar from './Navbar';
 import {connect} from 'react-redux';
-import styled, {keyframes} from 'styled-components';
+import styled from 'styled-components';
 import {colors} from './styles/variables';
-import {withFirebase} from "./Firebase"
+import {fadeIn} from './styles/animations';
+import {withFirebase} from "./Firebase";
 
 //Styled components
-
-const fadeIn = keyframes`
-  from { opacity: 0; }
-  to   { opacity: 1; }
-`;
 
 const EventContainer = styled.article`
   padding: 0 2rem;
@@ -85,8 +81,8 @@ const Event = (props) => {
         <Subtitle>Date and time</Subtitle>
         <DataContainer>
           <i className="far fa-clock"></i>
-          <Time daytime={day}>{day}, </Time>
-          <Time daytime={hour}>{hour}</Time>
+          <Time datetime={day}>{day}, </Time>
+          <Time datetime={hour}>{hour}</Time>
         </DataContainer>
         <Subtitle>Location</Subtitle>
         <DataContainer>             

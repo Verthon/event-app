@@ -5,7 +5,38 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {send} from '../reducers/actions';
 import styled from 'styled-components';
-import {colors} from './styles/variables'; 
+import {colors, fonts} from './styles/variables';
+import {fadeIn} from './styles/animations';
+
+const Event = styled.div`
+  padding: 1rem 1.5rem;
+  margin: 1rem auto;
+  width: 100%;
+  background: ${colors.White};
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 2px;
+  line-height: 1.7;
+  animation: ${fadeIn} 2s;
+`;
+
+const Title = styled.h2`
+  font-size: 1.2rem;
+  font-family: ${fonts.decorative};
+`;
+
+const Image = styled.img`
+  animation: ${fadeIn} 1.5s;
+`
+
+const Time = styled.time`
+
+`;
+
+const Paragraph = styled.p`
+
+`;
 
 class EventItem extends React.Component {
 
@@ -33,14 +64,14 @@ class EventItem extends React.Component {
     const {title, localization, day, featuredImage} = this.props;
     return (
       <React.Fragment>
-        <div className="event-item">
-          <img className="event-item__image" src={featuredImage+'/500x200'} alt=""/>
+        <Event>
+          <Image src={featuredImage+'/500x200'} alt=""/>
           <Link to={`/events/${formatLink(title)}`} onClick={this.send}>
-            <h2 className="event-item__title">{title}</h2>
-            <p>{localization}</p>
-            <time>{day}</time>
+            <Title>{title}</Title>
+            <Paragraph>{localization}</Paragraph>
+            <Time datetime={day}>{day}</Time>
           </Link>
-        </div>
+        </Event>
       </React.Fragment>     
       )
     }
