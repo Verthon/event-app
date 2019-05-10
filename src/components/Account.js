@@ -15,6 +15,7 @@ class Account extends React.Component {
       events: false,
       delete: false,
       show: false,
+      currentEvent: false,
     };
   }
 
@@ -57,9 +58,12 @@ class Account extends React.Component {
     this.props.history.push(HOME);
   };
 
-  removeEvent = (image, index) => {
-    this.setState({show: !this.state.show});
-    // const { db } = this.props.firebase;
+  removeEvent = (event) => {
+    this.setState(state => ({
+      show: !state.show,
+      currentEvent: event
+    })); 
+   // const { db } = this.props.firebase;
     // db.collection("events")
     //   .where("featuredImage", "==", this.state.events[index].featuredImage)
     //   .get()
@@ -68,13 +72,11 @@ class Account extends React.Component {
     //       db.collection("events").doc(doc.id).delete()
     //       });
     //     })
-    //   .catch(error => console.log(error))
-    if(this.state.delete){
-      this.setState({events: this.state.events.filter( person => person.featuredImage !== image)});
-    }
-    
-    //console.log(image, index, this.state.events[index]);
-    
+    //   .catch(error => console.log(error)) 
+  }
+
+  removePermanently = (image) => {
+    this.setState({events: this.state.events.filter( person => person.featuredImage !== image)});
   }
 
   updateEvent = () => {
@@ -82,7 +84,7 @@ class Account extends React.Component {
   }
 
   closeModal = () => {
-    this.setState({show: false})
+    this.setState({show: false});
   }
 
   componentWillUnmount() {
@@ -109,7 +111,7 @@ class Account extends React.Component {
                   featuredImage={event.featuredImage}
                 />
                 <footer className="row event-item__footer">
-                  <button className="btn" onClick={() => this.removeEvent(event.featuredImage, id)}>Remove event</button>
+                  <button className="btn" onClick={() => this.removeEvent(event, id)}>Remove event</button>
                   {/* <button className="btn" onClick={this.updateEvent}>Edit event</button> */}
                 </footer>
              </React.Fragment>
@@ -127,7 +129,7 @@ class Account extends React.Component {
           title="Are you sure ?"
           description="Do you really want to delete this event? This process cannot be undone.">
             <button className="btn" onClick={this.closeModal}>Cancel</button>
-            <button className="btn" onClick={this.removeEvent}>Remove</button>
+            <button className="btn" onClick={() => this.removePermanently(this.state.currentEvent.featuredImage)}>Remove</button>
           </Modal>
           <h1 className="title">Account</h1>
           <img
