@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import Search from './components/Search';
 import { withFirebase } from './components/Firebase';
 import {Row} from './components/styles/components';
+import GlobalStyles from './assets/styles/GlobalStyles';
 //import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 class App extends Component {
@@ -74,6 +75,7 @@ class App extends Component {
 
     return (
       <React.Fragment>
+        <GlobalStyles/>
         <Navbar name="Eventoo" links={["events", "about", "contact", "create-event"]} />
         <header className="hero">
           <h1 className="hero__title">Discover events</h1>      

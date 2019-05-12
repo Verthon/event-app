@@ -7,6 +7,7 @@ import eventReducer from './reducers/eventReducer';
 import registerServiceWorker from './registerServiceWorker';
 import Firebase, {FirebaseContext} from './components/Firebase';
 
+
 const store = createStore(eventReducer);
 
 ReactDOM.render(

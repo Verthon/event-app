@@ -15,7 +15,7 @@ const SearchWrapper = styled.div`
 
 const SearchInput = styled.input`
   padding: 0 0.5rem;
-  color: #999999;
+  color: ${colors.BasaltGrey};
   font-size: 16px;
   width: 100%;
   height: 3rem;
@@ -28,7 +28,6 @@ const Search = (props) => {
   return (
     <SearchWrapper>
       <SearchInput
-        className="input input--search"
         type="search"
         name="eventSearch"
         id="eventSearch"

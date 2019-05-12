@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react';
 import Navbar from './Navbar';
-import server_down from '../images/server_down.svg';
+import server_down from '../assets/images/server_down.svg';
 
 const NotFound = () => {
   return (

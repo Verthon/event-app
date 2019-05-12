@@ -1,6 +1,6 @@
 import React from 'react';
 import Navbar from './Navbar';
-import connected_world from '../images/connected_world.svg';
+import connected_world from '../assets/images/connected_world.svg';
 
 const About = () => {
   return (

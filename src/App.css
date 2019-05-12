@@ -164,7 +164,7 @@ img{
 .hero{
   display: flex;
   flex-direction: column;
-  background-image: url('./images/conference_speaker.svg');
+  background-image: url('./assets/images/conference_speaker.svg');
   background-size: contain;
   height: 300px;
   background-repeat: no-repeat;
@@ -227,28 +227,6 @@ img{
 /*--------------*/
 /* Events section */
 /*--------------*/
-
-.event-item {
-  padding: 1rem 1.5rem;
-  margin: 1rem auto;
-  width: 100%;
-  background: #fff;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.05);
-  border-radius: 2px;
-  line-height: 1.7;
-  animation: fadeIn 2s;
-}
-
-.event-item__title{
-  font-size: 1.2rem;
-  font-family: 'Source Sans Pro';
-}
-
-.event-item__image{
-  animation: fadeIn 1.5s;
-}
 
 .event-item__footer{
   display: flex;

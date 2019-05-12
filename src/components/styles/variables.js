@@ -5,6 +5,7 @@ export const colors = {
   White: "#ffffff",
   Unbleached: "#faf8f5",
   Blackout: "#212521",
+  BasaltGrey: "#999999",
 }
 
 export const media = {
