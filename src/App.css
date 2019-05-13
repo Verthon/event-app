@@ -2,38 +2,6 @@
 /* Basic resets */
 /*--------------*/
 
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  font-family: 'Open Sans', sans-serif;
-  color: #0f0f0f;
-}
-
-form{
-  width: 100%;
-}
-
-body{
-  max-width: 420px;
-  margin: 0 auto;
-}
-
-ul{
-  list-style: none;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-img{
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
 #root{
   max-width: 420px;
 }
@@ -149,50 +117,17 @@ img{
 }
 
 .nav__item{
-  padding: 1rem;
+  padding: 1em;
   border-bottom: 1px solid #f4f4f4;
 }
 
 .nav__link{
-  font-size: 1.2rem;
+  font-size: 1.2em;
 }
 
 /*--------------*/
 /* App hero*/
 /*--------------*/
-
-.hero{
-  display: flex;
-  flex-direction: column;
-  background-image: url('./assets/images/conference_speaker.svg');
-  background-size: contain;
-  height: 300px;
-  background-repeat: no-repeat;
-  background-position-x: 8px;
-  background-position-y: 5px;
-  background-color: #faf8f5;
-  
-}
-
-.hero__title{
-  font-family: 'Source Sans Pro';
-  font-weight: 900;
-  font-size: 2.25rem;
-  margin: 0.5rem 0 0 0;
-  text-align: center;
-}
-
-.hero__desc{
-  width: 60%;
-  font-family: 'Source Sans Pro';
-}
-
-.hero__content{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 6rem;
-}
 
 .btn--hero{
   margin: 1rem auto;
@@ -260,7 +195,7 @@ i{
 /*--------------*/
 
 .section {
-  padding: 1rem;
+  padding: 1.5rem;
 }
 
 .section__events{
@@ -272,7 +207,7 @@ i{
   text-align: left;
   margin: 2rem 0;
   font-weight: 900;
-  font-size: 1.75rem;
+  font-size: 1.5em;
 }
 
 .title{

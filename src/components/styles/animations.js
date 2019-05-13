@@ -25,3 +25,9 @@ export const slideDown = keyframes`
 		transform: translateY(0%);
 	}		
 `;
+
+export const spin = keyframes`
+  to { transform: rotate(360deg); }
+}
+  to { transform: rotate(360deg); }
+`;

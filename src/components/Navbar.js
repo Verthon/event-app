@@ -13,13 +13,14 @@ const Navbar = (props) => {
     background-color: ${colors.White};
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
+    padding: 0 2rem;
     border-bottom: 1px solid ${colors.Unbleached};
   `;
 
   const Hamburger = styled.button`
-    width: 20px;
-    height: 15px;
+    padding: 0;
+    width: 1.25em;
+    height: 1.25em;
     border: 0;
     display: flex;
     flex-direction: column;
@@ -33,12 +34,12 @@ const Navbar = (props) => {
     width: ${props => props.small ? "75%" : "20px"};
     border-radius: 2px;
     display: flex;
-    height: 2px;
+    height: 0.2rem;
     background-color: ${colors.Blackout};
   `;
 
   const Logo = styled.p`
-    font-size: 1.25rem;
+    font-size: 1.25em;
     font-weight: 600;
   `;
 

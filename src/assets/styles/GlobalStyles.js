@@ -2,10 +2,10 @@ import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
   @font-face {
-  font-family: "Open Sans";
-  src: url("../fonts/open-sans-regular.woff") format("woff");
-   font-weight: 400;
-   font-style: normal;
+    font-family: "Open Sans";
+    src: url("../fonts/open-sans-regular.woff") format("woff");
+    font-weight: 400;
+    font-style: normal;
 }
   *, *::before, *::after {
     box-sizing: border-box;
@@ -19,6 +19,7 @@ const GlobalStyles = createGlobalStyle`
   
   body {
     font-size: 1.6rem;
+    font-family: "Open Sans";
   }
 
   form{
@@ -32,6 +33,7 @@ const GlobalStyles = createGlobalStyle`
   
   ul{
     list-style: none;
+    padding: 0;
   }
   
   a {

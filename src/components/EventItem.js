@@ -22,7 +22,8 @@ const Event = styled.div`
 `;
 
 const Title = styled.h2`
-  font-size: 1.2rem;
+  margin: 0;
+  font-size: 2rem;
   font-family: ${fonts.decorative};
 `;
 
@@ -35,7 +36,7 @@ const Time = styled.time`
 `;
 
 const Paragraph = styled.p`
-
+  margin: 0;
 `;
 
 class EventItem extends React.Component {

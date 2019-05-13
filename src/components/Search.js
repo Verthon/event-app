@@ -14,11 +14,11 @@ const SearchWrapper = styled.div`
 `;
 
 const SearchInput = styled.input`
-  padding: 0 0.5rem;
+  padding: 0 0.5em;
   color: ${colors.BasaltGrey};
-  font-size: 16px;
+  font-size: 1em;
   width: 100%;
-  height: 3rem;
+  height: 2.75em;
   margin: 0;
   border: 0;
   border-radius: 3px;
