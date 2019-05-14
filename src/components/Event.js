@@ -13,17 +13,20 @@ const EventContainer = styled.article`
   animation: ${fadeIn} 2s;
   color: ${colors.RocketMetallic};
   line-height: 1.6;
+  font-size: 1rem;
 `;
 
 const Title = styled.h1`
+  color: ${colors.ChaosBlack};
   margin: 1rem 0;
-  font-size: 1.75rem;
+  font-size: 2.75em;
   font-family: 'Source Sans Pro';
 `;
 
 const Subtitle = styled.h2`
-  font-size: 1.2rem;
+  font-size: 1.9rem;
   margin: 1.5rem 0 0 0;
+  color: ${colors.ChaosBlack};
 `;
 
 const Image = styled.img`
@@ -36,12 +39,14 @@ const Time = styled.time`
   color: ${colors.RocketMetallic};
   line-height: 1.6;
   margin-left: 0.5rem;
+  font-size: 1.6em;
 `;
 
 const Location = styled.p`
   color: ${colors.RocketMetallic};
   line-height: 1.6;
-  margin-left: 0.5rem;
+  margin: 0 0 0 0.5rem;
+  font-size: 1.6em;
 `;
 
 const DataContainer = styled.section`
@@ -54,6 +59,7 @@ const Description = styled.p`
   margin: 0.5rem 0;
   color: ${colors.RocketMetallic};
   line-height: 1.6;
+  font-size: 1.6em;
 `;
 
 const Host = styled.strong`

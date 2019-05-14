@@ -11,45 +11,49 @@ const Backdrop = styled.div`
   display: ${props => props.show ? "flex" : "none"};
   align-items: center;
   justify-content: center;
+  margin: 0;
+  padding: 0;
 `;
 
 const Body = styled.article`
   position: absolute;
   display: ${props => props.show ? "flex" : "none"};
   width: 80%;
-  height: 20rem;
+  height: auto;
   background: ${colors.White};
   flex-direction: column;
   align-items: center;
   border-radius: 3px;
+  padding: 1rem 0;
 `;
 
 const Close = styled.button`
   position: absolute;
   top: 0;
-  right: 4%;
+  right: 0;
   cursor: pointer;
   border: 0;
   background: transparent;
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   font-weight: bold;
 `
 
 const Title = styled.h2`
-  font-size: 1.5rem;
+  font-size: 2.5rem;
   margin: 3rem 0 0 0;
   font-family: ${fonts.decorative};
 `;
 
 const Paragraph = styled.p`
   padding: 1rem 2rem 2rem 2rem;
-  font-size: 1rem;
+  font-size: 1.5rem;
   color: ${colors.RocketMetallic};
 `;
 
 const Footer = styled.footer`
   display: flex;
   width: 100%;
+  justify-content: space-around;
 `;
 
 const Modal = (props) => {

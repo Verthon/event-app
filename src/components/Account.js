@@ -5,6 +5,10 @@ import { SIGN_IN, HOME } from "../constants/routes";
 import { Link } from "react-router-dom";
 import EventItem from "../components/EventItem";
 import Modal from '../components/Modal';
+import {Title} from '../components/Title';
+import {Row} from '../components/styles/components';
+import {Button} from '../components/Button';
+import {SectionEvents} from '../components/Section';
 
 class Account extends React.Component {
   constructor(props) {
@@ -94,7 +98,7 @@ class Account extends React.Component {
     let eventContainer = null;
     if (this.state.events) {
       eventContainer = (
-        <div className="row">
+        <Row>
           {this.state.events.map((event, id) => {
             return (
               <React.Fragment key={id}>
@@ -110,27 +114,27 @@ class Account extends React.Component {
                   featuredImage={event.featuredImage}
                 />
                 <footer className="row event-item__footer">
-                  <button className="btn" onClick={() => this.removeEvent(event, id)}>Remove event</button>
+                  <Button onClick={() => this.removeEvent(event, id)}>Remove event</Button>
                   {/* <button className="btn" onClick={this.updateEvent}>Edit event</button> */}
                 </footer>
              </React.Fragment>
             );
           })}
-        </div>
+        </Row>
       );
     }
     return (
       <React.Fragment>
         <Navbar />
-        <div className="account">
-          <Modal show={this.state.show} 
+        <Modal show={this.state.show} 
           close={this.closeModal} 
           title="Are you sure ?"
           description="Do you really want to delete this event? This process cannot be undone.">
-            <button className="btn" onClick={this.closeModal}>Cancel</button>
-            <button className="btn" onClick={() => this.removePermanently(this.state.currentEvent.featuredImage)}>Remove</button>
+            <Button onClick={this.closeModal}>Cancel</Button>
+            <Button onClick={() => this.removePermanently(this.state.currentEvent.featuredImage)}>Remove</Button>
           </Modal>
-          <h1 className="title">Account</h1>
+        <SectionEvents>
+          <Title>Account</Title>
           <img
             className="account__image"
             src={
@@ -158,21 +162,21 @@ class Account extends React.Component {
             {this.state.authUser ? this.state.authUser.email : null}
           </p>
           <p className="account__text">You can manage your account here. </p>
-          <button className="btn" onClick={this.SignOut}>
+          <Button onClick={this.SignOut}>
             Sign out
-          </button>
-          <h2 className="title">Your events</h2>
+          </Button>
+          <Title>Your events</Title>
           {this.state.events ? (
             eventContainer
           ) : (
             <React.Fragment>
               <p>You currently don't have any events. Don't hestitate, add one, using button below!</p>
               <Link to="/create-event">
-              <button className="btn btn--hero">Add event</button>
+              <Button>Add event</Button>
               </Link>
             </React.Fragment>
           )}
-        </div>
+        </SectionEvents>
       </React.Fragment>
     );
   }

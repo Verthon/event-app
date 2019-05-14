@@ -5,6 +5,10 @@ import "react-day-picker/lib/style.css";
 import {withFirebase} from "./Firebase"
 import {SIGN_IN, EVENTS} from '../constants/routes';
 import {formatDay} from '../helpers';
+import {SectionEvents} from '../components/Section';
+import {Title} from '../components/Title';
+import {Button} from '../components/Button';
+import {Input, Label, Select, Textarea} from '../components/Inputs';
 
 class EventCreator extends Component {
   constructor(props) {
@@ -66,15 +70,15 @@ class EventCreator extends Component {
     return (
           <React.Fragment>  
             <Navbar/>
-            <div className="section section__events">         
-              <h1 className="section__title">Create your event</h1>
+            <SectionEvents>         
+              <Title>Create your event</Title>
               <div className="event-modal">
                 <form action="" onSubmit={e => this.submitEvent(e)}>
       
-                  <label className="label" htmlFor="title">
+                  <Label htmlFor="title">
                     event name
-                  </label>
-                  <input className="input"
+                  </Label>
+                  <Input
                     placeholder="eg. Football Event"
                     type="text"
                     name="title"
@@ -83,10 +87,10 @@ class EventCreator extends Component {
                     onChange={e => this.changeHandler(e)}
                   />
     
-                  <label className="label" htmlFor="host">
+                  <Label htmlFor="host">
                     event host
-                  </label>
-                  <input
+                  </Label>
+                  <Input
                     className="input"
                     placeholder="eg. Company"
                     type="text"
@@ -96,11 +100,10 @@ class EventCreator extends Component {
                     onChange={e => this.changeHandler(e)}
                   />
     
-                  <label className="label" htmlFor="localization">
+                  <Label htmlFor="localization">
                     event localization
-                  </label>
-                  <input
-                    className="input"
+                  </Label>
+                  <Input
                     placeholder="eg. Bielsko-Biała, Poland"
                     type="text"
                     name="localization"
@@ -109,8 +112,8 @@ class EventCreator extends Component {
                     onChange={e => this.changeHandler(e)}
                   />
     
-                  <label className="label" htmlFor="category">categories</label>
-                  <select className="input" name="category" id="" value={category} 
+                  <Label htmlFor="category">categories</Label>
+                  <Select name="category" id="" value={category} 
                   onChange={e => this.changeHandler(e)} required>
                     {
                     categories.map((cat, id) => {
@@ -119,18 +122,18 @@ class EventCreator extends Component {
                       )
                     })
                     }
-                  </select>
+                  </Select>
     
-                  <label className="label" htmlFor="image-url">
+                  <Label htmlFor="image-url">
                     image URL
-                  </label>
-                  <input className="input" type="text" name="imageUrl" 
+                  </Label>
+                  <Input type="text" name="imageUrl" 
                   placeholder="eg. https://source.unsplash.com/weekly?water" 
                   value={imageUrl} 
                   onChange={e => this.changeHandler(e)} 
                   />
     
-                  <label htmlFor="day" className="label">Date</label>
+                  <Label htmlFor="day">Date</Label>
                   <DayPickerInput 
                   className="input"
                   name="day"
@@ -144,17 +147,17 @@ class EventCreator extends Component {
                   required
                   />
     
-                  <label htmlFor="hour" className="label">hour</label>
-                  <input className="input" type="time" name="hour" 
+                  <Label htmlFor="hour">hour</Label>
+                  <Input type="time" name="hour" 
                   value={hour} 
                   required
                   onChange={e => this.changeHandler(e)}
                   />
     
-                  <label className="label" htmlFor="description">
+                  <Label htmlFor="description">
                     event description
-                  </label>
-                  <textarea
+                  </Label>
+                  <Textarea
                     className="input input--textarea"
                     name="description"
                     placeholder="Event Description"
@@ -166,12 +169,12 @@ class EventCreator extends Component {
                     onChange={e => this.changeHandler(e)}
                   />
     
-                  <button className="btn" type="submit">
+                  <Button type="submit">
                     Submit event
-                  </button>
+                  </Button>
                 </form>
               </div>
-            </div>
+            </SectionEvents>
           </React.Fragment>
           )
         }

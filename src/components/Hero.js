@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import React from 'react';
 import { Link } from "react-router-dom";
-import {Btn} from './Button';
+import {LargeButton} from './Button';
 import {colors} from './styles/variables';
 import conference_speaker from '../assets/images/conference_speaker.svg';
 
@@ -32,6 +32,11 @@ const Content = styled.div`
   align-items: center;
   height: 75%;
   justify-content: flex-end;
+  margin: 2rem 0 0 0;
+`;
+
+const Paragraph = styled.p`
+  width: 60%;
 `;
 
 const Hero = (props) => {
@@ -40,8 +45,9 @@ const Hero = (props) => {
       <Title>{props.title}</Title>
       <Content>
         <Link to="/create-event">
-          <Btn>Add event</Btn>
+          <LargeButton>Add event</LargeButton>
         </Link>
+        <Paragraph>{props.text}</Paragraph>
       </Content>  
     </HeroWrapper>
   )
