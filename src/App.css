@@ -2,60 +2,6 @@
   max-width: 420px;
 }
 
-
-/*--------------*/
-/* Loader */
-/*--------------*/
-
-.loader__wrapper{
-  display: flex;
-  justify-content: center;
-  height: 100vh;
-}
-
-.loader{
-  display: block;
-  width: 75px;
-  height: 75px;
-  border: 3px solid rgba(0,0,0,.25);
-  border-radius: 50%;
-  border-top-color: #212121;
-  animation: spin 1.5s ease-in-out infinite;
-  -webkit-animation: spin 1s ease-in-out infinite;
-}
-
-@keyframes spin {
-  to { -webkit-transform: rotate(360deg); }
-}
-@-webkit-keyframes spin {
-  to { -webkit-transform: rotate(360deg); }
-}
-
-/*--------------*/
-/***** Grid *****/
-/*--------------*/
-
-.row {
-  display: flex;
-  flex-wrap: wrap;
-}
-.col {
-  flex: 1;
-}
-
-/*--------------*/
-/***** Inputs *****/
-/*--------------*/
-
-.label {
-  text-align: left;
-  display: flex;
-  align-self: flex-start;
-  text-transform: uppercase;
-  font-size: 0.7rem;
-  font-weight: bold;
-  letter-spacing: 1px;
-}
 .input {
   padding: 0 0.5rem;
   color: #999999;
@@ -67,21 +13,20 @@
   border-radius: 3px;
 }
 
+.DayPickerInput-OverlayWrapper{
+  width: 100%;
+}
+
 .DayPickerInput{width: 100%;}
 .DayPickerInput input{
   width: 100%;
   padding: 0 0.5rem;
   color: #999999;
   border: 1px solid #ddd;
-  margin: 1rem 0;
+  margin: 2rem 0;
   font-size: 16px;
-  height: 2rem;
+  height: 3rem;
   border-radius: 3px;
-}
-
-.input--textarea {
-  padding: 0.5rem;
-  height: auto;
 }
 
 /*--------------*/
@@ -98,7 +43,7 @@
   display: flex;
   flex-direction: column;
   position: absolute;
-  top: 50px;
+  top: 42px;
   left: 40.15%;
   width: 378px;
   background: #ffffff;
@@ -110,15 +55,6 @@
     left: 0;
     width: 100%;
   }
-}
-
-.nav__item{
-  padding: 1em;
-  border-bottom: 1px solid #f4f4f4;
-}
-
-.nav__link{
-  font-size: 1.2em;
 }
 
 /*--------------*/
@@ -134,91 +70,11 @@
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   margin: 1rem auto;
   border-radius: 5px;
+  font-size: 1.6rem;
 }
-
-/*--------------*/
-/* Single item */
-/*--------------*/
 
 i{
   /* red color: #b90714;*/
   font-size: 1.2rem;
   color: #FFB04E;
 }
-
-/*--------------*/
-/* Search section */
-/*--------------*/
-
-.section {
-  padding: 1.5rem;
-}
-
-.section__events{
-  background-color: #faf8f5;
-}
-
-.section__title {
-  font-family: 'Source Sans Pro';
-  text-align: left;
-  margin: 2rem 0;
-  font-weight: 900;
-  font-size: 1.5em;
-}
-
-.title{
-  font-family: 'Source Sans Pro';
-  text-align: left;
-  margin: 1rem 0;
-  font-weight: 900;
-  font-size: 1.75rem;
-  align-self: flex-start;
-}
-
-.section__text{
-  line-height: 1.6;
-}
-
-.not-found{
-  
-}
-
-/*--------------------*/
-/* Login and account */
-/*--------------------*/
-
-.account{
-  padding: 0 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #faf8f5;
-}
-
-.account__image{
-  border: 1px solid #FFB04E;
-  border-radius: 10%;
-  max-width: 75px;
-}
-
-.account__name{
-  color: #0f0f0f;
-  font-family: 'Source Sans Pro';
-  margin: 1rem 0;
-}
-
-.account__text{
-  color: #4e4442;
-}
-
-/*--------------------*/
-/* Animations */
-/*--------------------*/
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
-
-/*--------------*/

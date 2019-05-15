@@ -8,6 +8,7 @@ import {Row} from './components/styles/components';
 import Hero from './components/Hero';
 import {Title} from './components/Title';
 import {SectionEvents} from './components/Section';
+import Loader from './components/Loader';
 
 //import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
@@ -82,7 +83,7 @@ class App extends Component {
         <SectionEvents>
           <Title>Trending events</Title>
           <Search query={this.state.query} changed={this.searchQueryHandler}/>        
-          {this.state.eventContainer ? eventContainer : <div className="loader__wrapper"><div className="loader"></div></div>}
+          {this.state.eventContainer ? eventContainer : <Loader/>}
         </SectionEvents>
         <SectionEvents>
           <Title>Categories</Title>

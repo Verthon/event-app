@@ -13,14 +13,14 @@ const Navbar = (props) => {
     background-color: ${colors.White};
     justify-content: space-between;
     align-items: center;
-    padding: 0 2rem;
+    padding: 1.5rem 3rem;
     border-bottom: 1px solid ${colors.Unbleached};
   `;
 
   const Hamburger = styled.button`
     padding: 0;
-    width: 1.25em;
-    height: 1.25em;
+    width: 1.5em;
+    height: 1.1em;
     border: 0;
     display: flex;
     flex-direction: column;
@@ -41,8 +41,17 @@ const Navbar = (props) => {
   const Logo = styled.p`
     font-size: 1.25em;
     font-weight: 600;
+    margin: 0;
   `;
 
+  const NavItem = styled.li`
+    padding: 1em;
+    border-bottom: 1px solid ${colors.Unbleached};
+  `;
+
+  const NavLink = styled(Link)`
+    font-size: 1.2em;
+  `
 
   const listRef = React.createRef();
   return(
@@ -58,9 +67,9 @@ const Navbar = (props) => {
         {
         props.links.map((link, id) => {
           return (
-            <li key={id} className="nav__item">
-              <Link to={"/" + formatLink(link)} key={id} className="nav__link">{link}</Link>
-            </li>
+            <NavItem key={id}>
+              <NavLink to={"/" + formatLink(link)} key={id} className="nav__link">{link}</NavLink>
+            </NavItem>
           );
         })
         }

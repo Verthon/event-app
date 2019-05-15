@@ -9,6 +9,8 @@ import {Title} from '../components/Title';
 import {Row} from '../components/styles/components';
 import {Button} from '../components/Button';
 import {SectionEvents} from '../components/Section';
+import {Wrapper, Avatar, Name, Paragraph} from '../components/AccountInfo';
+import Loader from '../components/Loader';
 
 class Account extends React.Component {
   constructor(props) {
@@ -135,36 +137,36 @@ class Account extends React.Component {
           </Modal>
         <SectionEvents>
           <Title>Account</Title>
-          <img
-            className="account__image"
-            src={
-              this.state.authUser ? (
-                this.state.authUser.photoURL
+          <Wrapper>
+            <Avatar
+              src={
+                this.state.authUser ? (
+                  this.state.authUser.photoURL
+                ) : (
+                  <div className="loader__wrapper">
+                    <div className="loader" />
+                  </div>
+                )
+              }
+              alt=""
+            />
+            <Name>
+              Hey,{" "}
+              {this.state.authUser ? (
+                this.state.authUser.displayName
               ) : (
-                <div className="loader__wrapper">
-                  <div className="loader" />
-                </div>
-              )
-            }
-            alt=""
-          />
-          <h2 className="account__name">
-            Hey,{" "}
-            {this.state.authUser ? (
-              this.state.authUser.displayName
-            ) : (
-              <div className="loader__wrapper">
-                <div className="loader" />
-              </div>
-            )}
-          </h2>
-          <p className="account__text">
-            {this.state.authUser ? this.state.authUser.email : null}
-          </p>
-          <p className="account__text">You can manage your account here. </p>
-          <Button onClick={this.SignOut}>
-            Sign out
-          </Button>
+                <Loader/>
+              )}
+            </Name>
+            <Paragraph>
+              {this.state.authUser ? this.state.authUser.email : null}
+            </Paragraph>
+            <Paragraph className="account__text">You can manage your account here. </Paragraph>
+            <Button onClick={this.SignOut}>
+              Sign out
+            </Button>
+          </Wrapper>
+          
           <Title>Your events</Title>
           {this.state.events ? (
             eventContainer

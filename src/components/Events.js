@@ -3,6 +3,9 @@ import EventItem from "./EventItem";
 import Navbar from './Navbar';
 import Search from './Search';
 import { withFirebase } from './Firebase';
+import {Title} from './Title';
+import {SectionEvents} from './Section';
+import Loader from './Loader';
 
 class Events extends React.Component {
   state ={
@@ -61,15 +64,14 @@ class Events extends React.Component {
       );
     }
 
-
     return(
       <React.Fragment>
         <Navbar/>
-        <section className="section section__events">
-          <h1 className="section__title">Events list</h1>
+        <SectionEvents>
+          <Title>Events list</Title>
           <Search query={this.state.query} changed={this.searchQueryHandler}/>
-          {this.state.events ? eventContainer : <div className="loader__wrapper"><div className="loader"></div></div>}
-        </section>   
+          {this.state.events ? eventContainer : <Loader/>}
+        </SectionEvents>   
       </React.Fragment>    
     )
   }

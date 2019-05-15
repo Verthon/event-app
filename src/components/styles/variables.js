@@ -1,11 +1,12 @@
 export const colors = {
-  AlajuelaToad: "#FFB04E",
+  AlajuelaToad: "#ffB04e",
   RocketMetallic: "#8A8280",
   ChaosBlack: "#0f0f0f",
   White: "#ffffff",
   Unbleached: "#faf8f5",
   Blackout: "#212521",
   BasaltGrey: "#999999",
+  Grey: "#dddddd",
 }
 
 export const media = {

@@ -24,7 +24,7 @@ const Body = styled.article`
   flex-direction: column;
   align-items: center;
   border-radius: 3px;
-  padding: 1rem 0;
+  padding: 2rem 0;
 `;
 
 const Close = styled.button`
@@ -71,5 +71,6 @@ const Modal = (props) => {
         </Body>
       </Backdrop>
     );
+    
   }
 export default Modal;

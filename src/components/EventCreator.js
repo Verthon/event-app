@@ -135,7 +135,6 @@ class EventCreator extends Component {
     
                   <Label htmlFor="day">Date</Label>
                   <DayPickerInput 
-                  className="input"
                   name="day"
                   placeholder="DD/MM/YYYY" format="DD/MM/YYYY" 
                   value={day}
