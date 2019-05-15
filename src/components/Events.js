@@ -6,6 +6,7 @@ import { withFirebase } from './Firebase';
 import {Title} from './Title';
 import {SectionEvents} from './Section';
 import Loader from './Loader';
+import {Row} from './styles/components';
 
 class Events extends React.Component {
   state ={
@@ -44,7 +45,7 @@ class Events extends React.Component {
         }
       );
       eventContainer = (
-        <div className="row">
+        <Row>
           {filteredEvents.map((event, id) => {
             return (
               <EventItem
@@ -60,7 +61,7 @@ class Events extends React.Component {
               />
             );
           })}
-        </div>
+        </Row>
       );
     }
 

@@ -6,10 +6,9 @@ import { Link } from "react-router-dom";
 import EventItem from "../components/EventItem";
 import Modal from '../components/Modal';
 import {Title} from '../components/Title';
-import {Row} from '../components/styles/components';
 import {Button} from '../components/Button';
 import {SectionEvents} from '../components/Section';
-import {Wrapper, Avatar, Name, Paragraph} from '../components/AccountInfo';
+import {Wrapper, Avatar, Name, Paragraph, Row} from '../components/AccountInfo';
 import Loader from '../components/Loader';
 
 class Account extends React.Component {

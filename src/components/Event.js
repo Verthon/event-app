@@ -76,7 +76,6 @@ const Category = styled.span`
 `;
 
 const Event = (props) => {
-  console.log(props.firebase);
   const {title, localization, day, hour, category, description, host, featuredImage} = props.event;
   return (
     <React.Fragment>

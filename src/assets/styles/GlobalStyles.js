@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+//import {colors} from '.././components/styles/variables';
 
 const GlobalStyles = createGlobalStyle`
   @font-face {
@@ -18,6 +19,7 @@ const GlobalStyles = createGlobalStyle`
   }
   
   body {
+    max-width: 1280px;
     font-size: 1.6rem;
     font-family: "Open Sans";
   }
@@ -27,7 +29,6 @@ const GlobalStyles = createGlobalStyle`
   }
   
   body{
-    max-width: 420px;
     margin: 0 auto;
   }
   
@@ -45,6 +46,23 @@ const GlobalStyles = createGlobalStyle`
     max-width: 100%;
     height: auto;
     display: block;
+  }
+
+  input{
+    padding: 0 0.5rem;
+    color: #999999;
+    border: 1px solid #ddd;
+    margin: 1em 0;
+    font-size: 1.5rem;
+    width: 100%;
+    height: 2em;
+    border-radius: 3px;
+    font-family: 'Open Sans', sans-serif;
+    width: 100%;
+  }
+
+  p{
+    line-height: 1.5;
   }
 `;
 

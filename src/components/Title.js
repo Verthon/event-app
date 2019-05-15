@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {colors} from './styles/variables';
+import {colors, media} from './styles/variables';
 
 export const Title = styled.h2`
   font-family: 'Source Sans Pro', sans-serif;
@@ -9,4 +9,9 @@ export const Title = styled.h2`
   font-size: 2.75rem;
   align-self: flex-start;
   color: ${colors.ChaosBlack};
+
+  ${media.ipadMini}{
+    align-self: center;
+    text-align: center;
+  }
 `;

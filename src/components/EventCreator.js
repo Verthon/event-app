@@ -1,14 +1,13 @@
 import React, { Component } from "react";
 import Navbar from "./Navbar";
-import DayPickerInput from "react-day-picker/DayPickerInput";
-import "react-day-picker/lib/style.css";
 import {withFirebase} from "./Firebase"
 import {SIGN_IN, EVENTS} from '../constants/routes';
 import {formatDay} from '../helpers';
 import {SectionEvents} from '../components/Section';
 import {Title} from '../components/Title';
 import {Button} from '../components/Button';
-import {Input, Label, Select, Textarea} from '../components/Inputs';
+import {Input, Label, Select, Textarea, DatePicker} from '../components/Inputs';
+import {CreatorModal} from './styles/components';
 
 class EventCreator extends Component {
   constructor(props) {
@@ -72,7 +71,7 @@ class EventCreator extends Component {
             <Navbar/>
             <SectionEvents>         
               <Title>Create your event</Title>
-              <div className="event-modal">
+              <CreatorModal>
                 <form action="" onSubmit={e => this.submitEvent(e)}>
       
                   <Label htmlFor="title">
@@ -134,7 +133,7 @@ class EventCreator extends Component {
                   />
     
                   <Label htmlFor="day">Date</Label>
-                  <DayPickerInput 
+                  <DatePicker 
                   name="day"
                   placeholder="DD/MM/YYYY" format="DD/MM/YYYY" 
                   value={day}
@@ -172,7 +171,7 @@ class EventCreator extends Component {
                     Submit event
                   </Button>
                 </form>
-              </div>
+              </CreatorModal>
             </SectionEvents>
           </React.Fragment>
           )

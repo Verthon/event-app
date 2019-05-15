@@ -1,16 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import {colors} from './styles/variables';
+import {colors, media} from './styles/variables';
 
 const SearchWrapper = styled.div`
-  margin: 2rem 0;
-  max-width: 500px;
+  margin: 2rem auto;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
   align-items: center;
   background: ${colors.White};
+  ${media.ipadMini}{
+    width: 70%;
+  }
+  
 `;
 
 const SearchInput = styled.input`
@@ -22,6 +25,7 @@ const SearchInput = styled.input`
   margin: 0;
   border: 0;
   border-radius: 3px;
+  
 `;
 
 const Search = (props) => {

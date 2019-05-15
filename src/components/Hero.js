@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import React from 'react';
 import { Link } from "react-router-dom";
 import {LargeButton} from './Button';
-import {colors} from './styles/variables';
+import {colors, media} from './styles/variables';
 import conference_speaker from '../assets/images/conference_speaker.svg';
 
 
@@ -13,8 +13,8 @@ const HeroWrapper = styled.header`
   background-size: contain;
   height: 30rem;
   background-repeat: no-repeat;
-  background-position-x: 8px;
-  background-position-y: 5px;
+  background-position-x: 50%;
+  background-position-y: 0;
   background-color: ${colors.Unbleached};
 `;
 
@@ -24,6 +24,9 @@ const Title = styled.h1`
   font-size: 2em;
   margin: 0.5rem 0 0 0;
   text-align: center;
+  ${media.tablet}{
+    font-size: 3em;
+  } 
 `;
 
 const Content = styled.div`
@@ -33,10 +36,17 @@ const Content = styled.div`
   height: 75%;
   justify-content: flex-end;
   margin: 2rem 0 0 0;
+  ${media.tablet}{
+    height: 90%;
+  }
 `;
 
 const Paragraph = styled.p`
+  margin: 1rem auto 0 auto;
   width: 60%;
+  ${media.tablet}{
+    width: auto;
+  }
 `;
 
 const Hero = (props) => {
@@ -48,7 +58,8 @@ const Hero = (props) => {
           <LargeButton>Add event</LargeButton>
         </Link>
         <Paragraph>{props.text}</Paragraph>
-      </Content>  
+      </Content>
+        
     </HeroWrapper>
   )
 }

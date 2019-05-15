@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import {colors} from './styles/variables';
+import DayPickerInput from "react-day-picker/DayPickerInput";
+import "react-day-picker/lib/style.css";
 
 export const Label = styled.label`
   text-align: left;
@@ -12,7 +14,6 @@ export const Label = styled.label`
 `;
 
 export const Input = styled.input`
-
   padding: 0 0.5rem;
   color: ${colors.RocketMetallic};
   border: 1px solid #ddd;
@@ -44,6 +45,18 @@ export const Textarea = styled.textarea`
   font-size: 1.5rem;
   width: 100%;
   height: auto;
+  border-radius: 3px;
+  font-family: 'Open Sans', sans-serif;
+`;
+
+export const DatePicker = styled(DayPickerInput)`
+  padding: 0 0.5rem;
+  color: ${colors.RocketMetallic};
+  border: 1px solid #ddd;
+  margin: 1em 0;
+  font-size: 1.5rem;
+  width: 100%;
+  height: 2em;
   border-radius: 3px;
   font-family: 'Open Sans', sans-serif;
 `;

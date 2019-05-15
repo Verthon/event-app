@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Avatar = styled.img`
-  border: 1px solid #FFB04E;
+  border: 1px solid ${colors.AlajuelaToad};
   border-radius: 50%;
   max-width: 75px;
 `;
@@ -18,7 +18,13 @@ export const Name = styled.strong`
   font-family: 'Source Sans Pro';
   margin: 1rem 0;
   font-size: 2.5rem;
-`
+`;
+
+export const Row = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
 export const Paragraph = styled.p`
   color: ${colors.RocketMetallic};

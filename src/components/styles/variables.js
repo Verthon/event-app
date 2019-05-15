@@ -10,8 +10,9 @@ export const colors = {
 }
 
 export const media = {
-  desktop: "@media screen(min-width: 1280px)",
-  tablet: "@media screen(min-width: 600px)",
+  MDPILaptop: "@media (min-width: 1280px)",
+  ipadMini: "@media (min-width: 700px)",
+  tablet: "@media (min-width: 600px)",
 }
 
 export const fonts = {

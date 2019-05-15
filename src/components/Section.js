@@ -1,9 +1,15 @@
 import styled from 'styled-components';
-import {colors} from './styles/variables';
+import {colors, media} from './styles/variables';
 
 
 export const Section = styled.section`
   padding: 2rem;
+  ${media.tablet}{
+    padding: 2rem 5rem;
+  }
+  ${media.ipadMini}{
+    padding: 2rem;
+  }
 `;
 
 

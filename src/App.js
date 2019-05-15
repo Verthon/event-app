@@ -32,7 +32,7 @@ class App extends Component {
     const {db} = this.props.firebase;
       db
       .collection("events")
-      .limit(3)
+      .limit(4)
       .get()
       .then(querySnapshot => {
         const events = [];

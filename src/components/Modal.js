@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import {colors, fonts} from './styles/variables'; 
+import {colors, fonts, media} from './styles/variables'; 
 
 
 const Backdrop = styled.div`
@@ -25,6 +25,11 @@ const Body = styled.article`
   align-items: center;
   border-radius: 3px;
   padding: 2rem 0;
+
+  ${media.tablet}{
+    width: 60%;
+    padding: 3rem;
+  }
 `;
 
 const Close = styled.button`
@@ -71,6 +76,6 @@ const Modal = (props) => {
         </Body>
       </Backdrop>
     );
-    
+
   }
 export default Modal;

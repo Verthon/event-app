@@ -1,13 +1,15 @@
 import React from 'react';
 import Navbar from './Navbar';
+import {Section} from './Section';
+import {Title} from './Title';
 
 const Contact = () => {
   return(
     <React.Fragment>
       <Navbar/>
-      <section className="section">
-        <h1 className="section__title">Contact</h1>
-      </section>
+      <Section>
+        <Title>Contact</Title>
+      </Section>
     </React.Fragment>
   );
 }

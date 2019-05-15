@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import {formatLink, toggleNav} from '../helpers';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import {colors} from './styles/variables';
+import {colors, media} from './styles/variables';
 
 const Navbar = (props) => {  
 
@@ -15,6 +15,9 @@ const Navbar = (props) => {
     align-items: center;
     padding: 1.5rem 3rem;
     border-bottom: 1px solid ${colors.Unbleached};
+    ${media.tablet}{
+      padding: 1.5rem 5rem;
+    }
   `;
 
   const Hamburger = styled.button`

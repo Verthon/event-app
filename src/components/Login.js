@@ -2,6 +2,9 @@ import React from 'react';
 import Navbar from './Navbar';
 import {withFirebase} from './Firebase';
 import {ACCOUNT} from '../constants/routes';
+import {Title} from './Title';
+import {Section} from './Section';
+import {Button} from './Button';
 
 const Login = (props) => {
 
@@ -19,12 +22,13 @@ const Login = (props) => {
   return (
     <React.Fragment>
       <Navbar/>
-      <div className="login section">
-        <h1 className="section__title">Login to your account</h1>
+      <Section>
+        <Title>Login to your account</Title>
         <p>Please login with facebook to get access for creating new events</p>
-        <button className="btn" onClick={() => loginWithSocial('Facebook')}>Login with Facebook</button>
-        <button className="btn" onClick={() => loginWithSocial('Google')}>Login with Google</button>
-      </div>
+        <Button onClick={() => loginWithSocial('Facebook')}>Login with Facebook</Button>
+        <br/><br/>
+        <Button onClick={() => loginWithSocial('Google')}>Login with Google</Button>
+      </Section>
     </React.Fragment>
   )
 }
