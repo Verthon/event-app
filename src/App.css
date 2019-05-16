@@ -48,3 +48,19 @@ i{
   font-size: 1.6rem;
   color: #FFB04E;
 }
+
+.DayPickerInput{
+  width: 100%;
+}
+
+.DayPickerInput-OverlayWrapper{
+  font-size: 3rem;
+  width: 40rem;
+}
+
+.event-section__footer{
+  margin: 3rem;
+  display: flex;
+  justify-content: center;
+  text-decoration: underline;   
+}

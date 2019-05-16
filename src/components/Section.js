@@ -3,6 +3,7 @@ import {colors, media} from './styles/variables';
 
 
 export const Section = styled.section`
+  max-width: 1280px;
   padding: 2rem;
   ${media.tablet}{
     padding: 2rem 5rem;
@@ -14,5 +15,6 @@ export const Section = styled.section`
 
 
 export const SectionEvents = styled(Section)`
+  max-width: 1280px;
   background-color: ${colors.Unbleached};
 `;

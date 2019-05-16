@@ -11,6 +11,7 @@ export const colors = {
 
 export const media = {
   MDPILaptop: "@media (min-width: 1280px)",
+  ipadPro: "@media (min-width: 1024px)",
   ipadMini: "@media (min-width: 700px)",
   tablet: "@media (min-width: 600px)",
 }

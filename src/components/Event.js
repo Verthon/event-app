@@ -2,7 +2,7 @@ import React from "react";
 import Navbar from './Navbar';
 import {connect} from 'react-redux';
 import styled from 'styled-components';
-import {colors} from './styles/variables';
+import {colors, media} from './styles/variables';
 import {fadeIn} from './styles/animations';
 import {withFirebase} from "./Firebase";
 
@@ -14,6 +14,9 @@ const EventContainer = styled.article`
   color: ${colors.RocketMetallic};
   line-height: 1.6;
   font-size: 1rem;
+  ${media.tablet}{
+    padding: 0 5rem;
+  }
 `;
 
 const Title = styled.h1`

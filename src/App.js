@@ -9,6 +9,7 @@ import Hero from './components/Hero';
 import {Title} from './components/Title';
 import {SectionEvents} from './components/Section';
 import Loader from './components/Loader';
+import {Link} from 'react-router-dom';
 
 //import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
@@ -32,7 +33,6 @@ class App extends Component {
     const {db} = this.props.firebase;
       db
       .collection("events")
-      .limit(4)
       .get()
       .then(querySnapshot => {
         const events = [];
@@ -84,6 +84,7 @@ class App extends Component {
           <Title>Trending events</Title>
           <Search query={this.state.query} changed={this.searchQueryHandler}/>        
           {this.state.eventContainer ? eventContainer : <Loader/>}
+          <footer className="event-section__footer"><Link to="/events">More events</Link></footer>
         </SectionEvents>
         <SectionEvents>
           <Title>Categories</Title>

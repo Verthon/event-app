@@ -16,6 +16,9 @@ const HeroWrapper = styled.header`
   background-position-x: 50%;
   background-position-y: 0;
   background-color: ${colors.Unbleached};
+  ${media.tablet}{
+    background-position-y: -25px;
+  }
 `;
 
 const Title = styled.h1`
@@ -35,9 +38,10 @@ const Content = styled.div`
   align-items: center;
   height: 75%;
   justify-content: flex-end;
-  margin: 2rem 0 0 0;
+  margin: 0;
   ${media.tablet}{
     height: 90%;
+    margin: 2rem 0 0 0;
   }
 `;
 

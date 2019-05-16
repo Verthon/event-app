@@ -23,4 +23,7 @@ export const CreatorModal = styled.div`
   margin: 1rem auto;
   border-radius: 5px;
   font-size: 1.6rem;
+  ${media.tablet}{
+    padding: 2rem;
+  }
 `;
