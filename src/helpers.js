@@ -16,18 +16,18 @@ export const formatDay = data => {
 
   // Split string to array of day, month, year
   date = date.split(" ");
-
   // Reverse array
-
   date.reverse();
-
   // Remove year from array
-
   date.shift();
-
   // Turn into string in format Month Day
-
   date = date.join(" ");
-
   return date;
+}
+
+export const filterSearch = (data, query) => {
+  const result = data.filter(item => {
+    return item.title.toLowerCase().includes(query.toLowerCase());
+  });
+  return result;
 }

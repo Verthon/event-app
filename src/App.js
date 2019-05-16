@@ -10,6 +10,7 @@ import {Title} from './components/Title';
 import {SectionEvents} from './components/Section';
 import Loader from './components/Loader';
 import {Link} from 'react-router-dom';
+import {filterSearch} from './helpers';
 
 //import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
@@ -18,7 +19,8 @@ class App extends Component {
     super(props);
     this.state = {
       query: "",
-      eventContainer: false,
+      events: false,
+      filteredEvents: false,
     };
   }
 
@@ -40,7 +42,7 @@ class App extends Component {
           events.push(doc.data());
         });
         this.setState({
-          eventContainer: events
+          events: events
         });
       });
   }
@@ -49,30 +51,31 @@ class App extends Component {
   render() {
     let eventContainer = null;
     
-    if (this.state.eventContainer) {
-      let filteredEvents = this.state.eventContainer.filter(
-        (event) => {
-          return event.title.toLowerCase().indexOf(this.state.query) !== -1;
-        }
-      );
+    if (this.state.events) {
+      let filteredEvents = filterSearch(this.state.events, this.state.query);
+      // let filteredEvents = this.state.events.filter(
+      //   (event) => {
+      //     return event.title.toLowerCase().indexOf(this.state.query.toLowerCase()) !== -1;
+      //   }
+      // );
       eventContainer = (
           <Row>
             {filteredEvents.map((event, id) => {
               return (
-                  <EventItem
-                    key={id}
-                    title={event.title}
-                    localization={event.localization}
-                    host={event.host}
-                    day={event.day}
-                    hour={event.hour}
-                    description={event.description}
-                    category={event.category}
-                    featuredImage={event.featuredImage}
-                  />
-                );
-            })}
-          </Row>         
+                <EventItem
+                  key={id}
+                  title={event.title}
+                  localization={event.localization}
+                  host={event.host}
+                  day={event.day}
+                  hour={event.hour}
+                  description={event.description}
+                  category={event.category}
+                  featuredImage={event.featuredImage}
+                />
+              );
+          })}
+        </Row>         
       );
     }
 
@@ -83,7 +86,7 @@ class App extends Component {
         <SectionEvents>
           <Title>Trending events</Title>
           <Search query={this.state.query} changed={this.searchQueryHandler}/>        
-          {this.state.eventContainer ? eventContainer : <Loader/>}
+          {this.state.events ? eventContainer : <Loader/>}
           <footer className="event-section__footer"><Link to="/events">More events</Link></footer>
         </SectionEvents>
         <SectionEvents>
