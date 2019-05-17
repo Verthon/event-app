@@ -13,6 +13,9 @@ const Backdrop = styled.div`
   justify-content: center;
   margin: 0;
   padding: 0;
+  ${media.ipadPro}{
+    width: 1024px;
+  }
 `;
 
 const Body = styled.article`
@@ -29,6 +32,9 @@ const Body = styled.article`
   ${media.tablet}{
     width: 60%;
     padding: 3rem;
+  }
+  ${media.ipadMini}{
+    width: 40%;
   }
 `;
 

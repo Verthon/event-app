@@ -26,4 +26,7 @@ export const CreatorModal = styled.div`
   ${media.tablet}{
     padding: 2rem;
   }
+  ${media.ipadMini}{
+    max-width: 90%;
+  }
 `;

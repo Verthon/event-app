@@ -108,7 +108,9 @@
     "extends": "react-app"
   },
   "devDependencies": {
+    "jest-dom": "^3.2.2",
     "react-redux": "^6.0.1",
+    "react-testing-library": "^7.0.0",
     "redux": "^4.0.1"
   }
 }

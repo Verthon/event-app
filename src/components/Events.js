@@ -7,6 +7,8 @@ import {Title} from './Title';
 import {SectionEvents} from './Section';
 import Loader from './Loader';
 import {Row} from './styles/components';
+import {filterSearch} from '../helpers';
+
 
 class Events extends React.Component {
   state ={
@@ -39,11 +41,7 @@ class Events extends React.Component {
   render(){
     let eventContainer = null;
     if (this.state.events) {
-      let filteredEvents = this.state.events.filter(
-        (event) => {
-          return event.title.toLowerCase().indexOf(this.state.query) !== -1;
-        }
-      );
+      let filteredEvents = filterSearch(this.state.events, this.state.query);
       eventContainer = (
         <Row>
           {filteredEvents.map((event, id) => {

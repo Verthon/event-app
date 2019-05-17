@@ -19,7 +19,7 @@ const GlobalStyles = createGlobalStyle`
   }
   
   body {
-    max-width: 1280px;
+    max-width: 1024px;
     font-size: 1.6rem;
     font-family: "Open Sans";
   }

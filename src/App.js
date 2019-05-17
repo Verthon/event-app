@@ -21,6 +21,8 @@ class App extends Component {
       query: "",
       events: false,
       filteredEvents: false,
+      categories: [],
+      category: "",
     };
   }
 
@@ -45,6 +47,18 @@ class App extends Component {
           events: events
         });
       });
+      db
+      .collection("categories")
+      .get()
+      .then(querySnapshot => {
+        const categories = [];
+        querySnapshot.docs.forEach(category => {
+          categories.push(category.data());
+        });
+        this.setState({
+          categories: categories
+        })
+      });
   }
 
 
@@ -53,11 +67,6 @@ class App extends Component {
     
     if (this.state.events) {
       let filteredEvents = filterSearch(this.state.events, this.state.query);
-      // let filteredEvents = this.state.events.filter(
-      //   (event) => {
-      //     return event.title.toLowerCase().indexOf(this.state.query.toLowerCase()) !== -1;
-      //   }
-      // );
       eventContainer = (
           <Row>
             {filteredEvents.map((event, id) => {

@@ -30,8 +30,8 @@
   flex-direction: column;
   position: absolute;
   top: 45px;
-  left: 0;
-  width: 100%;
+  left: 23.35%;
+  width: 1024px;
   background: #ffffff;
   animation: slideDown ease-out 0.5s;
 }

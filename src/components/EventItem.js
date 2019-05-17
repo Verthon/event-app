@@ -21,10 +21,13 @@ const Event = styled.div`
   line-height: 1.7;
   animation: ${fadeIn} 2s;
   ${media.tablet}{
-    max-width: 500px;
+    max-width: 100%;
   }
   ${media.ipadMini}{
     max-width: 350px;
+  }
+  ${media.ipadPro}{
+    max-width: 95%;
   }
 `;
 

@@ -68,6 +68,7 @@ const Description = styled.p`
 const Host = styled.strong`
   color: ${colors.ChaosBlack};
   display: block;
+  font-size: 1.6em;
 `;
 
 const Category = styled.span`
@@ -76,6 +77,7 @@ const Category = styled.span`
   color: ${colors.ChaosBlack};
   padding: 0 0.5rem;
   text-transform: capitalize;
+  font-size: 1.6em;
 `;
 
 const Event = (props) => {
