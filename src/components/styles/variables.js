@@ -7,6 +7,7 @@ export const colors = {
   Blackout: "#212521",
   BasaltGrey: "#999999",
   Grey: "#dddddd",
+  
 }
 
 export const media = {

@@ -10,8 +10,8 @@ import {Title} from './components/Title';
 import {SectionEvents} from './components/Section';
 import Loader from './components/Loader';
 import {Link} from 'react-router-dom';
-import {filterSearch} from './helpers';
-
+import {Button} from './components/Button';
+import Card from './components/Card';
 //import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 class App extends Component {
@@ -20,23 +20,14 @@ class App extends Component {
     this.state = {
       query: "",
       events: false,
-      filteredEvents: false,
-      categories: [],
-      category: "",
     };
   }
-
-  searchQueryHandler = e => {
-    this.setState({
-      query: e.target.value
-    });
-  };
-  
 
   componentDidMount() {
     const {db} = this.props.firebase;
       db
       .collection("events")
+      .where("promoted", "==", true)
       .get()
       .then(querySnapshot => {
         const events = [];
@@ -47,18 +38,6 @@ class App extends Component {
           events: events
         });
       });
-      db
-      .collection("categories")
-      .get()
-      .then(querySnapshot => {
-        const categories = [];
-        querySnapshot.docs.forEach(category => {
-          categories.push(category.data());
-        });
-        this.setState({
-          categories: categories
-        })
-      });
   }
 
 
@@ -66,10 +45,9 @@ class App extends Component {
     let eventContainer = null;
     
     if (this.state.events) {
-      let filteredEvents = filterSearch(this.state.events, this.state.query);
       eventContainer = (
           <Row>
-            {filteredEvents.map((event, id) => {
+            {this.state.events.map((event, id) => {
               return (
                 <EventItem
                   key={id}
@@ -94,12 +72,21 @@ class App extends Component {
         <Hero title="Discover events" text="Build, manage and grow your events"/>
         <SectionEvents>
           <Title>Trending events</Title>
-          <Search query={this.state.query} changed={this.searchQueryHandler}/>        
           {this.state.events ? eventContainer : <Loader/>}
-          <footer className="event-section__footer"><Link to="/events">More events</Link></footer>
+          <footer className="event-section__footer"><Link to="/events"><Button>More events</Button></Link></footer>
         </SectionEvents>
         <SectionEvents>
-          <Title>Categories</Title>
+          <Title>How it works?</Title>
+          
+          <p>With Eventoo you can easily build, manage and grow your events.</p>
+          <Card title="Build event" class="fas fa-clock" text="Build personalized event in a few minutes"/>
+          <Card title="Get audience" class="fas fa-users" text="Quickly get new followers"/>
+          <Card title="Share" class="fas fa-users" text="Share your ideas, projects with others"/>
+          <Title>Our platform offers</Title>
+          <p>Core features of Eventoo</p>
+          <Card title="Security first" class="fas fa-lock" text="Security on a highest level"/>
+          <Card title="User friendly" class="fas fa-users" text="Interface created by humans for humans!"/>
+          <Card title="Get notified" class="fas fa-bell" text="Build in notification system"/>
         </SectionEvents>
       </React.Fragment>
     );

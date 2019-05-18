@@ -25,9 +25,23 @@ export const formatDay = data => {
   return date;
 }
 
-export const filterSearch = (data, query) => {
+export const filterBySearch = (data, query) => {
   const result = data.filter(item => {
     return item.title.toLowerCase().includes(query.toLowerCase());
+  });
+  return result;
+}
+
+export const filterByCategory = (data, category) => {
+  const result = data.filter(item => {
+    return item.category.toLowerCase().includes(category.toLowerCase());
+  });
+  return result;
+}
+
+export const filterByCity = (data, city) => {
+  const result = data.filter(item => {
+    return item.location.includes(city);
   });
   return result;
 }

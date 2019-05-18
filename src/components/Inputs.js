@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {colors} from './styles/variables';
+import {colors, media} from './styles/variables';
 import DayPickerInput from "react-day-picker/DayPickerInput";
 import "react-day-picker/lib/style.css";
 
@@ -59,4 +59,23 @@ export const DatePicker = styled(DayPickerInput)`
   height: 2em;
   border-radius: 3px;
   font-family: 'Open Sans', sans-serif;
+`;
+
+export const FiltersWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  ${media.ipadMini}{
+    margin: auto;
+    width: 70%;
+  }
+`;
+
+export const Filter = styled.select`
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05),0 1px 2px rgba(0,0,0,0.05);
+  height: 2.75em;
+  border: 0;
+  width: 45%;
+  color: ${colors.RocketMetallic};
+  font-size: 1em;
+  padding: 0 0.5rem;
 `;

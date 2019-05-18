@@ -30,13 +30,13 @@
   flex-direction: column;
   position: absolute;
   top: 45px;
-  left: 23.35%;
+  left: 23.10%;
   width: 1024px;
   background: #ffffff;
   animation: slideDown ease-out 0.5s;
 }
 
-@media(max-width:450px){
+@media(max-width:1023px){
   .nav-list--active{
     left: 0;
     width: 100%;

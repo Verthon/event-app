@@ -21,7 +21,7 @@ class EventCreator extends Component {
       categories: ["Sport", "Music", "Education", "Business", "Food&Drink"],
       category: "Sport",
       imageUrl: "",
-      day: new Date(2019, 6, 1),
+      day: new Date(),
       hour: "13:00",
     };
   }
@@ -44,6 +44,15 @@ class EventCreator extends Component {
       day: this.state.day,
       hour: this.state.hour,
       featuredImage: this.state.imageUrl,
+      uid: this.props.firebase.auth.currentUser.uid
+    });
+    const cityRef = this.props.firebase.db.collection("cities").doc();
+    cityRef.set({
+      city: this.state.localization
+    });
+    const userRef = this.props.firebase.db.collection("cities").doc();
+    userRef.set({
+      user: this.state.host,
       uid: this.props.firebase.auth.currentUser.uid
     });
     //After sending data to database redirect to /events
