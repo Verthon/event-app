@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "./App.css";
 import EventItem from "./components/EventItem";
 import Navbar from './components/Navbar';
-import Search from './components/Search';
 import { withFirebase } from './components/Firebase';
 import {Row} from './components/styles/components';
 import Hero from './components/Hero';
@@ -78,12 +77,12 @@ class App extends Component {
         <SectionEvents>
           <Title>How it works?</Title>
           
-          <p>With Eventoo you can easily build, manage and grow your events.</p>
+          <p style={{textAlign: 'center'}}>With Eventoo you can easily build, manage and grow your events.</p>
           <Card title="Build event" class="fas fa-clock" text="Build personalized event in a few minutes"/>
           <Card title="Get audience" class="fas fa-users" text="Quickly get new followers"/>
           <Card title="Share" class="fas fa-users" text="Share your ideas, projects with others"/>
           <Title>Our platform offers</Title>
-          <p>Core features of Eventoo</p>
+          <p style={{textAlign: 'center'}}>Core features of Eventoo</p>
           <Card title="Security first" class="fas fa-lock" text="Security on a highest level"/>
           <Card title="User friendly" class="fas fa-users" text="Interface created by humans for humans!"/>
           <Card title="Get notified" class="fas fa-bell" text="Build in notification system"/>

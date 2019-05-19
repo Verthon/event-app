@@ -25,15 +25,18 @@ const Title = styled.h3`
 `;
 
 const IconWrapper = styled.div`
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #faf8f5;
+  border-radius: 50%;
+  height: 7rem;
+  width: 7rem;
 `;
 
 const Icon = styled.i`
   margin: 1rem 0;
-  font-size: 3rem;
-  background: #faf8f5;
-  border-radius: 50%;
-  padding: 2rem;
+  font-size: 3rem; 
 `;
 
 const Paragraph = styled.p`
@@ -45,7 +48,9 @@ const Paragraph = styled.p`
 const Card = (props) => {
   return (
     <CardWrapper>
-      <Icon className={props.class}></Icon>
+      <IconWrapper>
+        <Icon className={props.class}></Icon>
+      </IconWrapper>    
       <Title>{props.title}</Title>
       <Paragraph>{props.text}</Paragraph>
     </CardWrapper>

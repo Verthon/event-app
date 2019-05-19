@@ -40,8 +40,15 @@ export const filterByCategory = (data, category) => {
 }
 
 export const filterByCity = (data, city) => {
+
   const result = data.filter(item => {
-    return item.location.includes(city);
+    console.log(item.localization);
+    return item.localization.includes(city);
   });
   return result;
+}
+
+const capitalize = (string) => {
+  if (typeof string !== 'string') return ''
+  return string.charAt(0).toUpperCase() + string.slice(1)
 }

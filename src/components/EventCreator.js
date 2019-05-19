@@ -49,8 +49,8 @@ class EventCreator extends Component {
     const cityRef = this.props.firebase.db.collection("cities").doc();
     cityRef.set({
       city: this.state.localization
-    });
-    const userRef = this.props.firebase.db.collection("cities").doc();
+    }, { merge: true });
+    const userRef = this.props.firebase.db.collection("users").doc();
     userRef.set({
       user: this.state.host,
       uid: this.props.firebase.auth.currentUser.uid
