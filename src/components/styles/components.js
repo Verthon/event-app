@@ -10,6 +10,7 @@ export const Column = styled.div`
   flex: 100%;
   ${media.ipadMini}{
     flex: 50%;
+    max-width: 50%;
   }
 `;
 

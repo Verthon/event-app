@@ -43,7 +43,7 @@ export const filterByCity = (data, city) => {
 
   const result = data.filter(item => {
     console.log(item.localization);
-    return item.localization.includes(city);
+    return item.localization.toLowerCase().includes(city.toLowerCase());
   });
   return result;
 }

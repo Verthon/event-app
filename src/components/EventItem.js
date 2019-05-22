@@ -78,7 +78,7 @@ class EventItem extends React.Component {
         <Column>
           <Event>
             <Image src={featuredImage+'/500x200'} alt=""/>
-            <Link to={`/events/${formatLink(title)}`} onClick={this.send}>
+            <Link to={`/events/${formatLink(this.props.title)}`} onClick={this.send}>
               <Title>{title}</Title>
               <Paragraph>{localization}</Paragraph>
               <Time datetime={day}>{day}</Time>
@@ -98,9 +98,9 @@ EventItem.propTypes = {
   featuredImage: PropTypes.string.isRequired,
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = props => {
   return {
-    event: state.event
+    event: props.event
   }
 }
 

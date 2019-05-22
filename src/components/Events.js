@@ -39,6 +39,7 @@ class Events extends React.Component {
           events: events
         });
       });
+
       db
       .collection("categories")
       .get()
@@ -51,6 +52,19 @@ class Events extends React.Component {
           categories: categories
         })
       });
+
+      db
+      .collection("cities")
+      .get()
+      .then(querySnapshot => {
+        const cities = [];
+        querySnapshot.docs.forEach(city => {
+          cities.push(city.data());
+        });
+        this.setState({
+          cities: cities
+        })
+      });
   }
 
   searchQueryHandler = e => {
@@ -60,33 +74,36 @@ class Events extends React.Component {
     });
   };
 
-  // filterCategory = e => {
-  //   this.setState({
-  //     category: e.target.value,
-  //     activeFilter: "Category",
-  //   });
-  // }
+  filterCategory = e => {
+    this.setState({
+      category: e.target.value,
+      activeFilter: "Category",
+    });
+  }
 
-  // filterCity = e => {
-  //   this.setState({
-  //     city: e.target.value,
-  //     activeFilter: "City",
-  //   });
-  // }
+  filterCity = e => {
+    this.setState({
+      city: e.target.value,
+      activeFilter: "City",
+    });
+  }
 
   render(){
     let eventContainer = null;
     let filteredEvents = null;
     if (this.state.events) {
-      // if(this.state.activeFilter === "Search"){
+
+      if(this.state.activeFilter === "Search"){
       filteredEvents = filterBySearch(this.state.events, this.state.query);
-      console.log(filteredEvents);
-      // if(this.state.activeFilter === "Category"){
-      //   filteredEvents = filterByCategory(this.state.events, this.state.category);
-      // }
-      // if(this.state.activeFilter === "City"){
-      //   filteredEvents = filterByCity(this.state.events, this.state.location);
-      // } 
+      }
+
+      if(this.state.activeFilter === "Category"){
+         filteredEvents = filterByCategory(this.state.events, this.state.category);
+      }
+
+      if(this.state.activeFilter === "City"){
+        filteredEvents = filterByCity(this.state.events, this.state.city);
+      } 
 
       eventContainer = (
         <Row>
@@ -102,6 +119,7 @@ class Events extends React.Component {
                 description={event.description}
                 category={event.category}
                 featuredImage={event.featuredImage}
+                eventId={id}
               />
             );
           })}
