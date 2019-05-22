@@ -6,6 +6,7 @@ import {spin} from './styles/animations';
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;
+  align-items: ${props => props.center ? "center" : "flex-start"};
   height: 100vh;
 `;
 
@@ -19,9 +20,9 @@ const Spinner = styled.div`
   animation: ${spin} 1.5s ease-in-out infinite;
 `;
 
-const Loader = () => {
+const Loader = (props) => {
   return (
-    <Wrapper>
+    <Wrapper center={props.center}>
       <Spinner></Spinner>
     </Wrapper>
   )

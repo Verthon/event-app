@@ -1,16 +1,17 @@
 import React from "react";
 import Navbar from './Navbar';
-import {connect} from 'react-redux';
 import styled from 'styled-components';
 import {colors, media} from './styles/variables';
 import {fadeIn} from './styles/animations';
 import {withFirebase} from "./Firebase";
+import { render } from "react-testing-library";
+import Loader from './Loader';
 
 //Styled components
 
 const EventContainer = styled.article`
   padding: 0 2rem;
-  animation: ${fadeIn} 2s;
+  animation: ${fadeIn} 2.5s;
   color: ${colors.RocketMetallic};
   line-height: 1.6;
   font-size: 1rem;
@@ -36,6 +37,7 @@ const Image = styled.img`
   display: block;
   max-width: 100%;
   height: auto;
+  animation: ${fadeIn} 2.5s;
 `;
 
 const Time = styled.time`
@@ -80,39 +82,70 @@ const Category = styled.span`
   font-size: 1.6em;
 `;
 
-const Event = (props) => {
-  const {title, localization, day, hour, category, description, host, featuredImage} = props.event;
-  return (
-    <React.Fragment>
-      <Navbar/>
-      <Image src={featuredImage} alt={title+" image"}/>
-      <EventContainer>
-        <Title>{title}</Title>
-        <Subtitle>Date and time</Subtitle>
-        <DataContainer>
-          <i className="far fa-clock"></i>
-          <Time datetime={day}>{day}, </Time>
-          <Time datetime={hour}>{hour}</Time>
-        </DataContainer>
-        <Subtitle>Location</Subtitle>
-        <DataContainer>             
-          <i className="fas fa-map-marker-alt"></i>
-          <Location>{localization}</Location>
-        </DataContainer>
-        <Subtitle>Description</Subtitle>                  
-        <Description>{description}</Description>
-        <Subtitle>Event host</Subtitle>
-        <Host>{host}</Host>
-        <Category>{category}</Category> 
-      </EventContainer>
-    </React.Fragment>
-  );
+class Event extends React.Component {
+
+  constructor(){
+    super();
+    this.state = {
+      event: false
+    }
+  }
+
+  componentDidMount(props) {
+    //Search for id parameter in URL
+    const param = new URLSearchParams(this.props.location.search);
+    //Assign id from URL ?id="id" to variable
+    const eventId = param.get("id");
+  
+    const {db} = this.props.firebase;
+      db
+      .collection("events")
+      .where("eventId", "==", parseInt(eventId))
+      .get()
+      .then(querySnapshot => {
+        const event = [];
+        querySnapshot.docs.forEach(doc => {
+          event.push(doc.data());
+        });
+        this.setState({event: event[0]})
+      })
+      .catch(error => {
+        console.log("Error: ", error);
+      });
+  }
+
+
+  render(){
+    const {title, localization, day, hour, category, description, host, featuredImage} = this.state.event;
+    return (
+      this.state.event.featuredImage ?
+      <React.Fragment>
+        <Navbar/>
+        <Image src={featuredImage} alt={title+" image"}/>
+        <EventContainer>
+          <Title>{title}</Title>
+          <Subtitle>Date and time</Subtitle>
+          <DataContainer>
+            <i className="far fa-clock"></i>
+            <Time datetime={day}>{day}, </Time>
+            <Time datetime={hour}>{hour}</Time>
+          </DataContainer>
+          <Subtitle>Location</Subtitle>
+          <DataContainer>             
+            <i className="fas fa-map-marker-alt"></i>
+            <Location>{localization}</Location>
+          </DataContainer>
+          <Subtitle>Description</Subtitle>                  
+          <Description>{description}</Description>
+          <Subtitle>Event host</Subtitle>
+          <Host>{host}</Host>
+          <Category>{category}</Category> 
+        </EventContainer>
+      </React.Fragment>
+      :
+      <Loader center/>
+    );
+  }
 };
 
-const mapStateToProps = (state) => {
-  return {
-    event: state.event
-  };
-}
-
-export default connect(mapStateToProps)(withFirebase(Event));
+export default withFirebase(Event);

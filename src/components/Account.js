@@ -113,6 +113,7 @@ class Account extends React.Component {
                   description={event.description}
                   category={event.category}
                   featuredImage={event.featuredImage}
+                  eventId={event.eventId}
                 />
                 <footer className="row event-item__footer">
                   <Button onClick={() => this.removeEvent(event, id)}>Remove event</Button>

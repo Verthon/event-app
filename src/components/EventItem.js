@@ -68,21 +68,24 @@ class EventItem extends React.Component {
   }
 
   send = () => {
-    this.props.send(this.state.event)
+    this.props.send(this.state.event);
   }
 
   render(props){
-    const {title, localization, day, featuredImage} = this.props;
+    const {title, localization, day, featuredImage, eventId} = this.props;
     return (
       <React.Fragment>
         <Column>
-          <Event>
+          <Event onClick={this.send}>
             <Image src={featuredImage+'/500x200'} alt=""/>
-            <Link to={`/events/${formatLink(this.props.title)}`} onClick={this.send}>
-              <Title>{title}</Title>
-              <Paragraph>{localization}</Paragraph>
-              <Time datetime={day}>{day}</Time>
+            <Link to={{
+              pathname: `/events/${formatLink(title)}`,
+              search: `?${encodeURIComponent('id')}=${eventId}`,
+              state: { event: this.state.event }
+            }}><Title>{title}</Title>
             </Link>
+            <Paragraph>{localization}</Paragraph>
+            <Time datetime={day}>{day}</Time>
           </Event>
         </Column>
       </React.Fragment>     

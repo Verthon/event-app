@@ -42,7 +42,6 @@ export const filterByCategory = (data, category) => {
 export const filterByCity = (data, city) => {
 
   const result = data.filter(item => {
-    console.log(item.localization);
     return item.localization.toLowerCase().includes(city.toLowerCase());
   });
   return result;

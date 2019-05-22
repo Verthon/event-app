@@ -58,6 +58,7 @@ class App extends Component {
                   description={event.description}
                   category={event.category}
                   featuredImage={event.featuredImage}
+                  eventId={event.eventId}
                 />
               );
           })}

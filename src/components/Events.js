@@ -119,7 +119,7 @@ class Events extends React.Component {
                 description={event.description}
                 category={event.category}
                 featuredImage={event.featuredImage}
-                eventId={id}
+                eventId={event.eventId}
               />
             );
           })}
