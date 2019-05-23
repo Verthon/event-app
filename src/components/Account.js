@@ -46,8 +46,7 @@ class Account extends React.Component {
                   this.setState({
                     events: false
                   });
-                }
-                
+                }              
               });
           }
         });
@@ -73,7 +72,7 @@ class Account extends React.Component {
     this.setState({events: this.state.events.filter( person => person.featuredImage !== image)});
     const { db } = this.props.firebase;
     db.collection("events")
-      .where("featuredImage", "==", this.state.events.featuredImage)
+      .where("featuredImage", "==", this.state.currentEvent.featuredImage)
       .get()
       .then(querySnapshot => {
           querySnapshot.docs.forEach(doc => {

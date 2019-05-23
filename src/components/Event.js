@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import {colors, media} from './styles/variables';
 import {fadeIn} from './styles/animations';
 import {withFirebase} from "./Firebase";
-import { render } from "react-testing-library";
+//import { render } from "react-testing-library";
 import Loader from './Loader';
 
 //Styled components
@@ -100,7 +100,7 @@ class Event extends React.Component {
     const {db} = this.props.firebase;
       db
       .collection("events")
-      .where("eventId", "==", parseInt(eventId))
+      .where("eventId", "==", parseInt(eventId, 10))
       .get()
       .then(querySnapshot => {
         const event = [];
