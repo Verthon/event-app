@@ -23,10 +23,24 @@ class EventCreator extends Component {
       imageUrl: "",
       day: new Date(),
       hour: "13:00",
+      id: 0,
     };
   }
 
   componentDidMount() {
+    const eventRef = this.props.firebase.db.collection("events");
+    eventRef.orderBy("date", "desc").limit(1)
+    .get()
+    .then(query => {
+      let id = 0
+      query.docs.forEach(doc => {
+        id = doc.data().eventId;
+      });
+      id++;
+      this.setState({
+        id: id
+      });
+    })
     if(this.props.firebase.auth.currentUser === null){
       this.props.history.push(SIGN_IN);
     };
@@ -44,10 +58,24 @@ class EventCreator extends Component {
       day: this.state.day,
       hour: this.state.hour,
       featuredImage: this.state.imageUrl,
-      uid: this.props.firebase.auth.currentUser.uid
+      uid: this.props.firebase.auth.currentUser.uid,
+      date: this.state.day,
+      eventId: this.state.id,
     });
+
+
+    const citiesRef = this.props.firebase.db.collection("cities").where("city", "==", this.state.localization);
     const cityRef = this.props.firebase.db.collection("cities").doc();
-    
+    citiesRef.get()
+      .then(querySnapshot => {
+        if(querySnapshot.exists){
+          console.log("exist");
+        }else{
+          cityRef.set({
+            city: this.state.localization,
+          })
+        }
+      });
     const userRef = this.props.firebase.db.collection("users").doc();
     userRef.set({
       user: this.state.host,
