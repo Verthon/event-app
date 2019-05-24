@@ -105,7 +105,6 @@ class Event extends React.Component {
       .then(querySnapshot => {
         const event = [];
         querySnapshot.docs.forEach(doc => {
-          console.log(doc.id);
           event.push(doc.data());
         });
         this.setState({event: event[0]})

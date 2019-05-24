@@ -69,7 +69,6 @@ class EventCreator extends Component {
     citiesRef.get()
       .then(querySnapshot => {
         if(querySnapshot.exists){
-          console.log("exist");
         }else{
           cityRef.set({
             city: this.state.localization,
