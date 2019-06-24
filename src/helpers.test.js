@@ -1,7 +1,8 @@
 import {formatLink} from './helpers';
 import {formatDay} from './helpers';
 import {filterBySearch} from './helpers';
-
+import {filterByCategory} from './helpers';
+import {filterByCity} from './helpers';
 
 // Dummy data for tests
 const event = [{
@@ -24,7 +25,18 @@ test('Format Date() to string in format Month Day', () => {
 });
 
 test('Filter events array by event.title based on search query', () => {
-  expect(filterBySearch(event, "Classic")).toBe(event);
+  expect(filterBySearch(event, "Classic")).toEqual(event);
+  expect(filterBySearch(event, "Wrong input")).toEqual([]);
+});
+
+test('Filter events by event.localization based on category provided by user', () => {
+  expect(filterByCategory(event, "Music")).toEqual(event);
+  expect(filterBySearch(event, "Sport")).toEqual([]);
+});
+
+test('Filter events by event.localization based on city provided by user', () => {
+  expect(filterByCity(event, "Budapest")).toEqual(event);
+  expect(filterByCity(event, "Warsaw")).toEqual([]);
 });
 
 
