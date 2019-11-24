@@ -1,7 +1,22 @@
 # Eventoo
 [Live version on Netlify](https://eventooo.netlify.com/ "Live version on Netlify")
-Simple React app for creating and managing events. In project I have used:
+Simple React app for creating and managing events. So far user can:
+- login with Google/Facbook
+- add or remove events
 
+## Table of contents
+* [Setup](#setup)
+* [Technologies](#technologies)
+* [Used packages and tools](#used-packages-and-tools)
+* [Work in progress](#work-in-progress)
+
+## Setup
+
+1. clone repository `git clone https://github.com/Verthon/event-app.git`
+2. install dependencies `npm install`
+3. run react dev server `npm start`
+
+## Technologies
 - React.js (create-react-app)
 - JavaScript ES6
 - Firestore
@@ -42,9 +57,3 @@ Simple React app for creating and managing events. In project I have used:
 - [x] Add basic sorting and filters
 - [ ] Add delete, editing functions for created events
 - [x] Handle better css(Sass/StyledComponents)
-
-## Installation
-
-1. clone repository `git clone https://github.com/Verthon/event-app.git`
-2. install dependencies `npm install`
-3. run react dev server `npm start`
