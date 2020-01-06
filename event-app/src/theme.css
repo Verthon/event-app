@@ -174,3 +174,17 @@
   --ion-toolbar-color: #fff;
   --ion-toolbar-color-activated: #fff;
 }
+
+.title {
+  font-weight: 700;
+}
+
+.description {
+}
+
+.hero {
+  background-image: url('./assets/backgrounds/home.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
