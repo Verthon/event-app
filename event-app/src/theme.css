@@ -175,16 +175,34 @@
   --ion-toolbar-color-activated: #fff;
 }
 
+.hero {
+  display: flex;
+  background-image: url('./assets/backgrounds/home-sm.svg');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  justify-content: flex-end;
+  height: 100%;
+}
+
+.hero__content {
+  display: flex;
+  flex-direction: column;
+  color: #2D3652;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 0 0 10% 0;
+  text-align: center;
+}
+
 .title {
   font-weight: 700;
+  font-size: 2rem;
 }
 
-.description {
-}
-
-.hero {
-  background-image: url('./assets/backgrounds/home.svg');
-  background-repeat: no-repeat;
-  background-size: cover;
+.hero__button {
+  padding: 0.5rem 4rem;
+  background: #FF743C;
+  color: #2D3652;
+  margin: 1rem 0 0 0;
 }
 

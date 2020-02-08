@@ -1,7 +1,7 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonFab, IonFabButton, IonIcon } from '@ionic/react';
 import React from 'react';
 import { add } from 'ionicons/icons';
-import homeSVG from '../assets/backgrounds/home-sm.svg';
+import homeSVG from '../assets/backgrounds/Rhône.svg';
 
 const Home: React.FC = (props: any) => {
   return (
@@ -11,17 +11,20 @@ const Home: React.FC = (props: any) => {
           <IonTitle>Eventoo</IonTitle>
         </IonToolbar>
       </IonHeader> */}
-      <IonContent className="ion-padding">
-        <h1 className="title">Welcome message</h1>
-        <img src={homeSVG} alt="" />
-        {/* <div className="hero">
-          <p>test</p>
-        </div> */}
-        <IonFab vertical="bottom" horizontal="end" slot="fixed">
+      <IonContent>
+        <div className="hero">
+          <div className="hero__content ion-padding">
+            <h1 className="title">Hello there!</h1>
+            <p>Eventoo is a perfect place to build, manage and grow your events</p>
+            <button className="hero__button" onClick={() => props.history.push('/events')}>Explore</button>
+          </div>
+        </div>
+        {/* <img className="image" src={homeSVG} alt="" /> */}
+        {/* <IonFab vertical="bottom" horizontal="end" slot="fixed">
           <IonFabButton onClick={() => props.history.push('/about')}>
             <IonIcon icon={add} />
           </IonFabButton>
-        </IonFab>
+        </IonFab> */}
       </IonContent>
     </IonPage>
   );
