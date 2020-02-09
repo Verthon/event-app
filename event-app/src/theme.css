@@ -167,6 +167,8 @@
   --ion-color-food: #3bc7c4;
   --ion-color-documentation: #b16be3;
   --ion-color-navigation: #6600cc;
+  --main-dark: #2d3652;
+  --background-lightgray: #f6f9f9;
 }
 
 .md {
@@ -187,7 +189,7 @@
 .hero__content {
   display: flex;
   flex-direction: column;
-  color: #2D3652;
+  color: var(--main-dark);
   justify-content: flex-end;
   align-items: center;
   margin: 0 0 10% 0;
