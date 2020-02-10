@@ -5,15 +5,21 @@
   "dependencies": {
     "@ionic/react": "^4.11.0",
     "@ionic/react-router": "^4.11.0",
+    "@reduxjs/toolkit": "^1.2.3",
     "@types/jest": "^24.0.18",
     "@types/node": "^12.7.12",
     "@types/react": "^16.9.5",
     "@types/react-dom": "^16.9.1",
     "@types/react-router": "^5.1.1",
     "@types/react-router-dom": "^5.1.0",
+    "dayjs": "^1.8.20",
+    "dotenv": "^8.2.0",
+    "eslint": "^6.8.0",
+    "firebase": "^7.8.1",
     "ionicons": "^4.6.3",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
+    "react-redux": "^7.1.3",
     "react-router": "^5.1.0",
     "react-router-dom": "^5.1.0",
     "react-scripts": "3.2.0",
@@ -40,5 +46,9 @@
       "last 1 safari version"
     ]
   },
-  "description": "An Ionic project"
+  "description": "An Ionic project",
+  "devDependencies": {
+    "prettier": "^1.19.1",
+    "standard": "^14.3.1"
+  }
 }

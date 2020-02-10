@@ -1,13 +1,10 @@
 import {
   IonContent,
-  IonHeader,
   IonPage,
-  IonTitle,
-  IonToolbar
-} from "@ionic/react";
-import React from "react";
+} from '@ionic/react'
+import React from 'react'
 
-import homeSVG from "../assets/backgrounds/Rhône.svg";
+import homeSVG from '../assets/backgrounds/Rhône.svg'
 
 const Home: React.FC = (props: any) => {
   return (
@@ -21,14 +18,14 @@ const Home: React.FC = (props: any) => {
           </p>
           <button
             className="hero__button"
-            onClick={() => props.history.push("/events")}
+            onClick={() => props.history.push('/events')}
           >
             Explore
           </button>
         </div>
       </IonContent>
     </IonPage>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home
