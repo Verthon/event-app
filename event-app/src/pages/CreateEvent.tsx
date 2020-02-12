@@ -4,13 +4,20 @@ import {
   IonPage,
   IonTitle,
   IonToolbar,
-  IonButtons,
-  IonBackButton,
+  IonButton,
+  IonInput,
+  IonItem,
+  IonLabel,
+  IonSelect,
+  IonSelectOption,
+  IonDatetime,
+  IonTextarea,
 } from '@ionic/react'
 import React, { useState, useEffect } from 'react'
+import {withFirebase} from '../firebase';
 import dayjs from 'dayjs'
 
-const CreateEvents: React.FC = () => {
+const CreateEvents: React.FC = (props) => {
   const [form, setForm] = useState({
     title: '',
     host: '',
@@ -24,7 +31,7 @@ const CreateEvents: React.FC = () => {
     id: 0,
   })
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: any) => {
     setForm({
       ...form,
       [e.target.name]: e.currentTarget,
@@ -38,68 +45,91 @@ const CreateEvents: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
-        <IonToolbar>
-          <IonButtons slot="start">
-            <IonBackButton defaultHref="/home" />
-          </IonButtons>
-          <IonTitle>Create an event</IonTitle>
+        <IonToolbar color="light">
+          <IonTitle>Eventoo</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <section>
-        <h1>Create event page</h1>
+      <IonContent>
+        <h1>Create your event</h1>
         <div className="form-container">
-          <form action="" onSubmit={e => handleSubmit(e)}>
-            <label htmlFor="title">Event name</label>
-            <input
-              placeholder="eg. Football Event"
-              type="text"
-              name="title"
-              required
-              value={form.title}
-              onChange={e => handleInputChange(e)}
-            />
-            <label htmlFor="host">event host</label>
-            <input
-              className="input"
-              placeholder="eg. Company"
-              type="text"
-              name="host"
-              required
-              value={form.host}
-              onChange={e => handleInputChange(e)}
-            />
-            <label htmlFor="localization">event localization</label>
-            <input
-              placeholder="eg. Bielsko-Biała, Poland"
-              type="text"
-              name="localization"
-              required
-              value={form.localization}
-              onChange={e => handleInputChange(e)}
-            />
+          <form
+            method="POST"
+            className="form-content"
+            onSubmit={e => handleSubmit(e)}
+          >
+            <IonItem>
+              <IonLabel position="floating">Event name</IonLabel>
+              <IonInput
+                placeholder="eg. Football Event"
+                type="text"
+                name="title"
+                required
+                value={form.title}
+                onChange={e => handleInputChange(e)}
+              />
+            </IonItem>
 
-            <label htmlFor="category">categories</label>
-            <select
-              name="category"
-              id=""
-              value={form.category}
-              onChange={e => handleInputChange(e)}
-              required
-            >
-              {form.categories.map((cat, id) => {
-                return (
-                  <option key={id} value={cat}>
-                    {cat}
-                  </option>
-                )
-              })}
-            </select>
+            <IonItem>
+              <IonLabel position="floating">event host</IonLabel>
+              <IonInput
+                className="input"
+                placeholder="eg. Company"
+                type="text"
+                name="host"
+                required
+                value={form.host}
+                onChange={e => handleInputChange(e)}
+              />
+            </IonItem>
+
+            <IonItem>
+              <IonLabel position="floating">event localization</IonLabel>
+              <IonInput
+                placeholder="eg. Bielsko-Biała, Poland"
+                type="text"
+                name="localization"
+                required
+                value={form.localization}
+                onChange={e => handleInputChange(e)}
+              />
+            </IonItem>
+
+            <IonItem>
+              <IonLabel position="floating">categories</IonLabel>
+              <IonSelect multiple={false} cancelText="Cancel" okText="Select">
+                {form.categories.map((cat, id) => {
+                  return (
+                    <IonSelectOption key={id} value={cat}>
+                      {cat}
+                    </IonSelectOption>
+                  )
+                })}
+              </IonSelect>
+            </IonItem>
+
+            <IonItem>
+              <IonLabel position="floating">Date</IonLabel>
+              <IonDatetime displayFormat="DD MM" placeholder="Select Date"/>
+            </IonItem>
+
+            <IonItem>
+              <IonLabel position="floating">Time</IonLabel>
+              <IonDatetime displayFormat="HH:mm" placeholder="Select Time" />
+            </IonItem>
+
+            <IonItem>
+              <IonLabel position="floating">Event Description</IonLabel>
+              <IonTextarea placeholder="Event description"/>
+            </IonItem>
+
+            <IonButton expand="block" type="submit" color="primary">
+              Submit
+            </IonButton>
           </form>
         </div>
-      </section>
-      <IonContent />
+      </IonContent>
     </IonPage>
   )
 }
 
-export default CreateEvents
+export default withFirebase(CreateEvents)

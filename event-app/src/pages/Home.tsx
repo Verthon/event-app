@@ -1,6 +1,7 @@
 import {
   IonContent,
   IonPage,
+  IonButton
 } from '@ionic/react'
 import React from 'react'
 
@@ -16,12 +17,13 @@ const Home: React.FC = (props: any) => {
           <p>
             Eventoo is a perfect place to build, manage and grow your events
           </p>
-          <button
-            className="hero__button"
+          <IonButton
+            expand="block"
+            color="primary"
             onClick={() => props.history.push('/events')}
           >
             Explore
-          </button>
+          </IonButton>
         </div>
       </IonContent>
     </IonPage>

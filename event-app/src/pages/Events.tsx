@@ -1,20 +1,26 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButtons, IonBackButton } from '@ionic/react';
-import React from 'react';
+import {
+  IonContent,
+  IonHeader,
+  IonPage,
+  IonTitle,
+  IonToolbar,
+  IonSearchbar,
+} from '@ionic/react'
+import React from 'react'
 
 const Events: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
-        <IonToolbar>
-          <IonButtons slot="start">
-            <IonBackButton defaultHref="/home" />
-          </IonButtons>
+        <IonToolbar color="light">
           <IonTitle>Events</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent />
+      <IonContent>
+        <IonSearchbar animated debounce={500}/>
+      </IonContent>
     </IonPage>
-  );
-};
+  )
+}
 
-export default Events;
+export default Events
