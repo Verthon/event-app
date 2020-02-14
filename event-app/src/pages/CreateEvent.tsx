@@ -14,10 +14,10 @@ import {
   IonTextarea,
 } from '@ionic/react'
 import React, { useState, useEffect } from 'react'
-import {withFirebase} from '../firebase';
 import dayjs from 'dayjs'
-
-const CreateEvents: React.FC = (props) => {
+import { withFirebase } from '../firebase'
+import { EventModel } from '../interfaces'
+const CreateEvents: React.FC = props => {
   const [form, setForm] = useState({
     title: '',
     host: '',
@@ -36,6 +36,7 @@ const CreateEvents: React.FC = (props) => {
       ...form,
       [e.target.name]: e.currentTarget,
     })
+    console.log('form var after change', form);
   }
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -65,12 +66,12 @@ const CreateEvents: React.FC = (props) => {
                 name="title"
                 required
                 value={form.title}
-                onChange={e => handleInputChange(e)}
+                onIonChange={e => handleInputChange(e)}
               />
             </IonItem>
 
             <IonItem>
-              <IonLabel position="floating">event host</IonLabel>
+              <IonLabel position="floating">Event host</IonLabel>
               <IonInput
                 className="input"
                 placeholder="eg. Company"
@@ -78,25 +79,29 @@ const CreateEvents: React.FC = (props) => {
                 name="host"
                 required
                 value={form.host}
-                onChange={e => handleInputChange(e)}
+                onIonChange={e => handleInputChange(e)}
               />
             </IonItem>
 
             <IonItem>
-              <IonLabel position="floating">event localization</IonLabel>
+              <IonLabel position="floating">Event localization</IonLabel>
               <IonInput
                 placeholder="eg. Bielsko-Biała, Poland"
                 type="text"
                 name="localization"
                 required
                 value={form.localization}
-                onChange={e => handleInputChange(e)}
+                onIonChange={e => handleInputChange(e)}
               />
             </IonItem>
 
             <IonItem>
-              <IonLabel position="floating">categories</IonLabel>
-              <IonSelect multiple={false} cancelText="Cancel" okText="Select">
+              <IonLabel position="floating">Categories</IonLabel>
+              <IonSelect
+                value={form.category}
+                cancelText="Cancel"
+                okText="Select"
+              >
                 {form.categories.map((cat, id) => {
                   return (
                     <IonSelectOption key={id} value={cat}>
@@ -108,8 +113,19 @@ const CreateEvents: React.FC = (props) => {
             </IonItem>
 
             <IonItem>
+              <IonLabel position="floating">Image URL</IonLabel>
+              <IonInput
+                type="text"
+                name="imageUrl"
+                placeholder="eg. https://source.unsplash.com/weekly?water"
+                value={form.imageUrl}
+                onIonChange={e => handleInputChange(e)}
+              />
+            </IonItem>
+
+            <IonItem>
               <IonLabel position="floating">Date</IonLabel>
-              <IonDatetime displayFormat="DD MM" placeholder="Select Date"/>
+              <IonDatetime displayFormat="DD.MM" placeholder="Select Date" />
             </IonItem>
 
             <IonItem>
@@ -119,7 +135,7 @@ const CreateEvents: React.FC = (props) => {
 
             <IonItem>
               <IonLabel position="floating">Event Description</IonLabel>
-              <IonTextarea placeholder="Event description"/>
+              <IonTextarea placeholder="Event description" />
             </IonItem>
 
             <IonButton expand="block" type="submit" color="primary">
