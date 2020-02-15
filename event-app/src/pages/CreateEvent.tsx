@@ -26,7 +26,7 @@ const CreateEvents: React.FC = props => {
     categories: ['Sport', 'Music', 'Education', 'Business', 'Food&Drink'],
     category: 'Sport',
     imageUrl: '',
-    day: dayjs(),
+    day: dayjs().add(1, 'day').format('YYYY-MM-DD'),
     hour: '13:00',
     id: 0,
   })
@@ -34,13 +34,13 @@ const CreateEvents: React.FC = props => {
   const handleInputChange = (e: any) => {
     setForm({
       ...form,
-      [e.target.name]: e.currentTarget,
+      [e.target.name]: e.target.value,
     })
-    console.log('form var after change', form);
   }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+    console.log('data to be submitted', form);
   }
 
   return (
@@ -101,6 +101,7 @@ const CreateEvents: React.FC = props => {
                 value={form.category}
                 cancelText="Cancel"
                 okText="Select"
+                onIonChange={e => handleInputChange(e)}
               >
                 {form.categories.map((cat, id) => {
                   return (
@@ -125,17 +126,18 @@ const CreateEvents: React.FC = props => {
 
             <IonItem>
               <IonLabel position="floating">Date</IonLabel>
-              <IonDatetime displayFormat="DD.MM" placeholder="Select Date" />
+              <IonDatetime max="2020" min={form.day} value={form.day} displayFormat="DD.MM.YYYY" placeholder="Select Date" />
             </IonItem>
 
             <IonItem>
               <IonLabel position="floating">Time</IonLabel>
-              <IonDatetime displayFormat="HH:mm" placeholder="Select Time" />
+              <IonDatetime value={form.hour} displayFormat="HH:mm" placeholder="Select Time" />
             </IonItem>
 
             <IonItem>
               <IonLabel position="floating">Event Description</IonLabel>
-              <IonTextarea placeholder="Event description" />
+              <IonTextarea cols={20}
+                    rows={10} placeholder="Event description" />
             </IonItem>
 
             <IonButton expand="block" type="submit" color="primary">
