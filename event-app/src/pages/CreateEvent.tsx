@@ -12,12 +12,13 @@ import {
   IonSelectOption,
   IonDatetime,
   IonTextarea,
+  IonToast,
 } from '@ionic/react'
 import React, { useState, useEffect } from 'react'
 import dayjs from 'dayjs'
 import { withFirebase } from '../firebase'
 import { EventModel } from '../interfaces'
-const CreateEvents: React.FC = props => {
+const CreateEvents: React.FC = (props: any) => {
   const [form, setForm] = useState({
     title: '',
     host: '',
@@ -26,10 +27,14 @@ const CreateEvents: React.FC = props => {
     categories: ['Sport', 'Music', 'Education', 'Business', 'Food&Drink'],
     category: 'Sport',
     imageUrl: '',
-    day: dayjs().add(1, 'day').format('YYYY-MM-DD'),
+    day: dayjs()
+      .add(1, 'day')
+      .format('YYYY-MM-DD'),
     hour: '13:00',
     id: 0,
   })
+
+  let [showToast, setToast] = useState<boolean>(false)
 
   const handleInputChange = (e: any) => {
     setForm({
@@ -40,7 +45,22 @@ const CreateEvents: React.FC = props => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    console.log('data to be submitted', form);
+    const eventRef = props.firebase.db.collection('events').doc()
+    eventRef.set({
+      title: form.title,
+      host: form.host,
+      localization: form.localization,
+      description: form.description,
+      category: form.category,
+      day: form.day,
+      hour: form.hour,
+      featuredImage: form.imageUrl,
+      uid: props.firebase.auth.currentUser.uid,
+      date: form.day,
+    })
+    return setToast(true)
+
+    //implement next step here, whether show summary or navigate to account?
   }
 
   return (
@@ -50,7 +70,14 @@ const CreateEvents: React.FC = props => {
           <IonTitle>Eventoo</IonTitle>
         </IonToolbar>
       </IonHeader>
+
       <IonContent>
+        <IonToast
+          isOpen={showToast}
+          onDidDismiss={() => setToast(false)}
+          message="Event Added succesfully"
+          duration={1500}
+        />
         <h1>Create your event</h1>
         <div className="form-container">
           <form
@@ -126,18 +153,31 @@ const CreateEvents: React.FC = props => {
 
             <IonItem>
               <IonLabel position="floating">Date</IonLabel>
-              <IonDatetime max="2020" min={form.day} value={form.day} displayFormat="DD.MM.YYYY" placeholder="Select Date" />
+              <IonDatetime
+                max="2020"
+                min={form.day}
+                value={form.day}
+                displayFormat="DD.MM.YYYY"
+                placeholder="Select Date"
+              />
             </IonItem>
 
             <IonItem>
               <IonLabel position="floating">Time</IonLabel>
-              <IonDatetime value={form.hour} displayFormat="HH:mm" placeholder="Select Time" />
+              <IonDatetime
+                value={form.hour}
+                displayFormat="HH:mm"
+                placeholder="Select Time"
+              />
             </IonItem>
 
             <IonItem>
               <IonLabel position="floating">Event Description</IonLabel>
-              <IonTextarea cols={20}
-                    rows={10} placeholder="Event description" />
+              <IonTextarea
+                cols={20}
+                rows={10}
+                placeholder="Event description"
+              />
             </IonItem>
 
             <IonButton expand="block" type="submit" color="primary">

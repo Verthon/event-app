@@ -15,7 +15,7 @@ import React, { MouseEvent, useState, useEffect } from 'react'
 import { withFirebase } from '../firebase'
 
 const Events: React.FC = (props: any) => {
-  let [searchVisibility, toggleSearchBar] = useState<boolean>(false)
+  let [searchVisibility, toggleSearchBar] = useState<boolean>(true)
   let [events, setEvents] = useState([])
   let [showToast, setToast] = useState<boolean>(false)
   let [showSpinner, setSpinner] = useState<boolean>(true);
@@ -23,7 +23,7 @@ const Events: React.FC = (props: any) => {
 
   useEffect(() => {
     const { db } = props.firebase
-    db.collection('eventso')
+    db.collection('events')
       .get()
       .then((querySnapshot: any) => {
         const events: any = []
