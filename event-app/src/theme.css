@@ -102,12 +102,12 @@
 */
 
 .ion-color-favorite {
-  --ion-color-base: #69bb7b;
-  --ion-color-base-rgb: 105, 187, 123;
+  --ion-color-base: #2D3652;
+  --ion-color-base-rgb: 45,54,82;
   --ion-color-contrast: #ffffff;
   --ion-color-contrast-rgb: 255, 255, 255;
-  --ion-color-shade: #5ca56c;
-  --ion-color-tint: #78c288;
+  --ion-color-shade: #283048;
+  --ion-color-tint: #424a63;
 }
 
 .ion-color-twitter {
@@ -149,7 +149,6 @@
 ion-button {
   --border-radius: 2px;
   --box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
-  font-weight: bold;
 }
 
 /* Shared Variables
@@ -180,41 +179,4 @@ ion-button {
   --ion-toolbar-background: var(--ion-color-primary);
   --ion-toolbar-color: #fff;
   --ion-toolbar-color-activated: #fff;
-}
-
-.hero {
-  display: flex;
-  background-image: url('./assets/backgrounds/home-sm.svg');
-  background-repeat: no-repeat;
-  background-size: 100%;
-  justify-content: flex-end;
-  height: 100%;
-}
-
-.hero__content {
-  display: flex;
-  flex-direction: column;
-  color: var(--main-dark);
-  justify-content: flex-end;
-  align-items: center;
-  margin: 0 0 10% 0;
-  text-align: center;
-}
-
-.title {
-  font-family: 'Signika';
-  font-weight: 700;
-  font-size: 2rem;
-}
-
-.hero__button {
-  padding: 0.5rem 4rem;
-  background: var(--ion-color-primary);
-  color: var(--main-dark);
-  margin: 1rem 0 0 0;
-}
-
-.form-content {
-  display: flex;
-  flex-direction: column;
 }

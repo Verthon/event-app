@@ -10,14 +10,14 @@ export const Tabs: React.FC = () => (
   <IonTabs>
     <IonTabBar slot="bottom">
       <IonTabButton>
-        <IonIcon name="calendar" />
+        <IonIcon src="/assets/icons/date_range.svg" />
         <IonLabel>Events</IonLabel>
         <IonBadge>6</IonBadge>
       </IonTabButton>
 
       <IonTabButton tab="create-event">
-        <IonIcon name="add-circle" />
-        <IonLabel>Add event</IonLabel>
+        <IonIcon src="/assets/icons/library_add.svg" />
+        <IonLabel>Add events</IonLabel>
       </IonTabButton>
 
       <IonTabButton tab="account">
