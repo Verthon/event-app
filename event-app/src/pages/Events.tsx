@@ -13,8 +13,10 @@ import {
 } from '@ionic/react'
 import React, { MouseEvent, useState, useEffect } from 'react'
 import { withFirebase } from '../firebase'
+import EventItem from '../components/EventItem'
 
 const Events: React.FC = (props: any) => {
+  let [error, setError] = useState(false);
   let [searchVisibility, toggleSearchBar] = useState<boolean>(true)
   let [events, setEvents] = useState([])
   let [showToast, setToast] = useState<boolean>(false)
@@ -30,9 +32,11 @@ const Events: React.FC = (props: any) => {
         querySnapshot.docs.forEach((doc: any) => {
           events.push(doc.data())
         })
-        setDataFetched(true);
-        setEvents(events)
+        console.log('events after mapping formdb', events)
+        //setDataFetched(true)
+        return events
       })
+      .then((events: any) => setEvents(events))
       .catch(() => {
         return setToast(true)
       })
@@ -70,6 +74,22 @@ const Events: React.FC = (props: any) => {
         />
 
         {searchVisibility ? <IonSearchbar animated debounce={500} /> : null}
+        {/* {events ? events.map((event: any, id: number) => {
+          console.log(events)
+          return (
+            <EventItem
+                key={id}
+                name={event.title}
+                localization={event.localization}
+                host={event.host}
+                date={event.day}
+                time={event.hour}
+                description={event.description}
+                category={event.category}
+                image={event.featuredImage}
+              />
+          )
+        }): null} */}
       </IonContent>
     </IonPage>
   )
