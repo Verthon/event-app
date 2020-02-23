@@ -32,7 +32,6 @@ const Events: React.FC = (props: any) => {
         querySnapshot.docs.forEach((doc: any) => {
           events.push(doc.data())
         })
-        console.log('events after mapping formdb', events)
         //setDataFetched(true)
         return events
       })
@@ -74,8 +73,7 @@ const Events: React.FC = (props: any) => {
         />
 
         {searchVisibility ? <IonSearchbar animated debounce={500} /> : null}
-        {/* {events ? events.map((event: any, id: number) => {
-          console.log(events)
+        {events ? events.map((event: any, id: number) => {
           return (
             <EventItem
                 key={id}
@@ -89,7 +87,7 @@ const Events: React.FC = (props: any) => {
                 image={event.featuredImage}
               />
           )
-        }): null} */}
+        }): null}
       </IonContent>
     </IonPage>
   )

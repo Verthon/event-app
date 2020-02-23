@@ -11,6 +11,7 @@ Previously simple React app... now Ionic app build to create and manage events o
 - Unit tests (Jest)
 - Wonderful illustrations created by [Katerina Limpitsouni](https://twitter.com/ninalimpi) from [undraw.co/](https://undraw.co/) 
 - Trello for basic project managment
+- Styled components
 
 
 ## Functionality
@@ -40,7 +41,6 @@ Previously simple React app... now Ionic app build to create and manage events o
 - [ ] Add basic sorting and filters
 - [ ] Add delete, editing functions for created events
 - [ ] Publish it
-- [ ] Handle better the css(Sass/StyledComponents)
 
 ## Installation
 
