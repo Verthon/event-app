@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
+    "@capacitor/core": "1.5.0",
     "@ionic/react": "^4.11.0",
     "@ionic/react-router": "^4.11.0",
     "@reduxjs/toolkit": "^1.2.3",
@@ -50,6 +51,7 @@
   },
   "description": "An Ionic project",
   "devDependencies": {
+    "@capacitor/cli": "1.5.0",
     "prettier": "^1.19.1",
     "standard": "^14.3.1"
   }

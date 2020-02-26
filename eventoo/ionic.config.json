@@ -1,5 +1,5 @@
 {
-  "name": "event-app",
+  "name": "eventoo",
   "integrations": {
     "capacitor": {}
   },
