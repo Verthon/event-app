@@ -9,7 +9,7 @@ const Home: React.FC = (props: any) => {
       <IonContent>
         <img className="image" src={homeSVG} alt="" />
         <div className="hero__content ion-padding">
-          <h1 className="title">Hello there!</h1>
+          <h1 className="title">Hellos there!</h1>
           <p className="hero__description">
             Eventoo is a perfect place to build, manage and grow your events.
           </p>

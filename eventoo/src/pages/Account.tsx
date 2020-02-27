@@ -1,19 +1,58 @@
-import React from 'react';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import React, {useState, useEffect} from 'react';
+import {withFirebase} from '../firebase';
 
-const Account = () => {
+const Account: React.FC = (props: any) => {
+  const [events, setEvents] = useState([])
+  const [show, setShow] = useState(false)
+  const [authUser, setAuthUser] = useState(null)
+
+  const handleAuth = (authUser: any) => {
+    setAuthUser(authUser);
+  }
+
+  useEffect(() => {
+    const listener = props.firebase.auth.onAuthStateChanged((authUser: any) => {
+      if (authUser) {
+        handleAuth(authUser)
+        if (authUser !== null) {
+          const { db } = props.firebase;
+          db.collection("events")
+            .where("uid", "==", props.firebase.auth.currentUser.uid)
+            .get()
+            .then((querySnapshot: any) => {
+              const events: any = [];
+              querySnapshot.docs.forEach((doc: any) => {
+                events.push(doc.data())
+              });
+              //Check if array is empty
+              if(events.length > 0){
+                return setEvents(events)
+              }
+              return setEvents([])              
+            });
+        }
+      } else {
+        props.history.push('/login');
+      }
+    });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props.firebase.auth.onAuthStateChanged])
+
+  
+  console.log('kek', events);
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar color="light">
-          <IonTitle>Account page</IonTitle>
+          <IonTitle>Account</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent class="ion-padding">
-        <h1>Account</h1>
+      <IonContent>
+
       </IonContent>
     </IonPage>
   );
 };
 
-export default Account
+export default withFirebase(Account);
