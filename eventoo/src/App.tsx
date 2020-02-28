@@ -20,6 +20,7 @@ import Home from './pages/Home'
 import Events from './pages/Events'
 import About from './pages/About'
 import Account from './pages/Account'
+import SignIn from './pages/SignIn'
 import CreateEvent from './pages/CreateEvent'
 
 /* Core CSS required for Ionic components to work properly */
@@ -41,6 +42,9 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 
+/* Custom css */
+import './styles/index.css'
+
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
@@ -51,7 +55,7 @@ const App: React.FC = () => (
           <Route path="/about" component={About} exact={true} />
           <Route path="/create-event" component={CreateEvent} exact={true} />
           <Route path="/account" component={Account} exact={true} />
-          {/* <Route path="/login" component={SignIn} exact={true} /> */}
+          <Route path="/login" component={SignIn} exact={true} />
           <Route exact path="/" render={() => <Redirect to="/home" />} />
         </IonRouterOutlet>
         <IonTabBar slot="bottom">

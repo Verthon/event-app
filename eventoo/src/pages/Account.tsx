@@ -39,8 +39,6 @@ const Account: React.FC = (props: any) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.firebase.auth.onAuthStateChanged])
 
-  
-  console.log('kek', events);
   return (
     <IonPage>
       <IonHeader>
