@@ -1,7 +1,7 @@
 import { IonContent, IonPage, IonButton } from '@ionic/react'
 import React from 'react'
 
-import homeSVG from '../assets/backgrounds/Rhône.svg'
+import homeSVG from '../assets/backgrounds/home-bg.svg'
 
 const Home: React.FC = (props: any) => {
   return (
@@ -9,7 +9,7 @@ const Home: React.FC = (props: any) => {
       <IonContent>
         <img className="image" src={homeSVG} alt="" />
         <div className="hero__content ion-padding">
-          <h1 className="title">Hellos there!</h1>
+          <h1 className="title">Hello there!</h1>
           <p className="hero__description">
             Eventoo is a perfect place to build, manage and grow your events.
           </p>

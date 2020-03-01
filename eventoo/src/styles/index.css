@@ -1,3 +1,13 @@
+ion-content {
+  background-color: var(--ion-color--background);
+}
+
+.btn-icon {
+  font-size: 1.35rem;
+  margin: 0 0.25rem 0 0;
+}
+
+
 .btn {
   font-family: 'Signika';
   font-weight: bold;

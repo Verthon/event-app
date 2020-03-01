@@ -11,6 +11,11 @@ const Account: React.FC = (props: any) => {
     setAuthUser(authUser);
   }
 
+  const signOut = () => {
+    props.firebase.doSignOut();
+    props.history.push('/');
+  }
+
   useEffect(() => {
     const listener = props.firebase.auth.onAuthStateChanged((authUser: any) => {
       if (authUser) {
@@ -36,6 +41,7 @@ const Account: React.FC = (props: any) => {
         props.history.push('/login');
       }
     });
+    return () => listener();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.firebase.auth.onAuthStateChanged])
 
@@ -47,7 +53,7 @@ const Account: React.FC = (props: any) => {
         </IonToolbar>
       </IonHeader>
       <IonContent>
-
+        <button onClick={signOut}>logout</button>
       </IonContent>
     </IonPage>
   );
