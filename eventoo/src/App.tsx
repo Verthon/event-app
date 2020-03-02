@@ -22,6 +22,7 @@ import About from './pages/About'
 import Account from './pages/Account'
 import SignIn from './pages/SignIn'
 import CreateEvent from './pages/CreateEvent'
+import {HOME, EVENTS, ABOUT, CREATE_EVENT, ACCOUNT, SIGN_IN} from './constants/routes'
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -56,26 +57,26 @@ const App: React.FC = () => (
           <Route path="/create-event" component={CreateEvent} exact={true} />
           <Route path="/account" component={Account} exact={true} />
           <Route path="/login" component={SignIn} exact={true} />
-          <Route exact path="/" render={() => <Redirect to="/home" />} />
+          <Route exact path="/" render={() => <Redirect to={HOME} />} />
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
-          <IonTabButton tab="events" href="/events">
+          <IonTabButton tab="events" href={EVENTS}>
             <IonIcon icon={dateRangeIcon} />
             <IonLabel>Events</IonLabel>
             <IonBadge>6</IonBadge>
           </IonTabButton>
 
-          <IonTabButton tab="create-event" href="/create-event">
+          <IonTabButton tab="create-event" href={CREATE_EVENT}>
             <IonIcon icon={libraryAddIcon} />
             <IonLabel>Add event</IonLabel>
           </IonTabButton>
 
-          <IonTabButton tab="account" href="/account">
+          <IonTabButton tab="account" href={ACCOUNT}>
             <IonIcon icon={accountBoxIcon} />
             <IonLabel>My account</IonLabel>
           </IonTabButton>
 
-          <IonTabButton tab="about" href="/about">
+          <IonTabButton tab="about" href={ABOUT}>
             <IonIcon icon={infoIcon} />
             <IonLabel>About</IonLabel>
           </IonTabButton>
