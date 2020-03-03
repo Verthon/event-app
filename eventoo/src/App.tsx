@@ -12,6 +12,7 @@ import {
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { ellipse, square, triangle } from 'ionicons/icons';
+import PrivateRoute from './components/PrivateRoute'
 import dateRangeIcon from './assets/icons/date_range.svg'
 import accountBoxIcon from './assets/icons/account_box.svg'
 import libraryAddIcon from './assets/icons/library_add.svg'
@@ -54,8 +55,8 @@ const App: React.FC = () => (
           <Route path="/home" component={Home} exact={true} />
           <Route path="/events" component={Events} exact={true} />
           <Route path="/about" component={About} exact={true} />
-          <Route path="/create-event" component={CreateEvent} exact={true} />
-          <Route path="/account" component={Account} exact={true} />
+          <PrivateRoute component={CreateEvent} path="/create-event" exact={true} />
+          <PrivateRoute component={Account} path="/account"  exact={true} />
           <Route path="/login" component={SignIn} exact={true} />
           <Route exact path="/" render={() => <Redirect to={HOME} />} />
         </IonRouterOutlet>

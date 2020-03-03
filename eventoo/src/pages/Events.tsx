@@ -32,7 +32,7 @@ const Events: React.FC = (props: any) => {
         querySnapshot.docs.forEach((doc: any) => {
           events.push(doc.data())
         })
-        //setDataFetched(true)
+        setDataFetched(true)
         return events
       })
       .then((events: any) => setEvents(events))

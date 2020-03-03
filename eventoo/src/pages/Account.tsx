@@ -74,7 +74,9 @@ const Account: React.FC = (props: any) => {
           spinner="bubbles"
           duration={500}
         />
-        {/* <Avatar src={ authUser ? authUser.photoURL : null}/> */}
+        <Avatar src={authUser ? authUser.photoURL : null} />
+        <Name>{authUser ? authUser.displayName : null}</Name>
+  
         <Button onClick={signOut}>logout</Button>
       </IonContent>
     </IonPage>
@@ -85,6 +87,16 @@ const Avatar = styled.img`
   border: 1px solid var(--ionic-color-primary);
   border-radius: 50%;
   max-width: 75px;
+`
+
+const Name = styled.p`
+  margin: 1rem;
+  font-size: 2.5rem;
+  font-weight: bold;
+`
+
+const Email = styled.p`
+
 `
 
 const Button = styled.button`

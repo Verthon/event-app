@@ -61,4 +61,6 @@ class Firebase {
 
 }
 
+export const base = app
+
 export default Firebase
