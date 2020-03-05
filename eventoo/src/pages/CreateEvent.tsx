@@ -56,7 +56,7 @@ const CreateEvents: React.FC = (props: any) => {
       hour: form.hour,
       featuredImage: form.imageUrl,
       uid: props.firebase.auth.currentUser.uid,
-      date: form.day,
+      created_at: dayjs().format(),
     })
     return setToast(true)
 
@@ -157,7 +157,7 @@ const CreateEvents: React.FC = (props: any) => {
                 max="2020"
                 min={form.day}
                 value={form.day}
-                displayFormat="DD.MM.YYYY"
+                displayFormat="DD.MMM"
                 placeholder="Select Date"
               />
             </IonItem>

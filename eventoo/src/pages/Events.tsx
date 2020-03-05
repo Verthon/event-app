@@ -33,6 +33,7 @@ const Events: React.FC = (props: any) => {
           events.push(doc.data())
         })
         setDataFetched(true)
+        console.log('events fetched', events)
         return events
       })
       .then((events: any) => setEvents(events))
@@ -57,7 +58,7 @@ const Events: React.FC = (props: any) => {
         </IonToolbar>
       </IonHeader>
 
-      <IonContent>
+      <IonContent class="ion-padding-horizontal">
       <IonLoading
         isOpen={!isDataFetched}
         onDidDismiss={() => setSpinner(false)}
@@ -80,6 +81,7 @@ const Events: React.FC = (props: any) => {
                 name={event.title}
                 localization={event.localization}
                 host={event.host}
+                timestamp={event.date.seconds}
                 date={event.day}
                 time={event.hour}
                 description={event.description}

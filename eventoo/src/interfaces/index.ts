@@ -5,6 +5,7 @@ export interface EventModel {
   category: string,
   date: string,
   time: string,
-  description: string
-  image: string
+  description: string,
+  image: string,
+  timestamp?: string,
 }

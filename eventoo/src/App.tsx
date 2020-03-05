@@ -55,7 +55,7 @@ const App: React.FC = () => (
           <Route path="/home" component={Home} exact={true} />
           <Route path="/events" component={Events} exact={true} />
           <Route path="/about" component={About} exact={true} />
-          <PrivateRoute component={CreateEvent} path="/create-event" exact={true} />
+          <Route component={CreateEvent} path="/create-event" exact={true} />
           <PrivateRoute component={Account} path="/account"  exact={true} />
           <Route path="/login" component={SignIn} exact={true} />
           <Route exact path="/" render={() => <Redirect to={HOME} />} />

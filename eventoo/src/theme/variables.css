@@ -16,8 +16,8 @@ http://ionicframework.com/docs/theming/ */
   --ion-color-primary-tint: #4c8dff;
 
   /** secondary **/
-  --ion-color-secondary: #3dc2ff;
-  --ion-color-secondary-rgb: 61, 194, 255;
+  --ion-color-secondary: #FAFAEF;
+  --ion-color-secondary-rgb: 241, 241, 230;
   --ion-color-secondary-contrast: #ffffff;
   --ion-color-secondary-contrast-rgb: 255, 255, 255;
   --ion-color-secondary-shade: #36abe0;
@@ -80,7 +80,7 @@ http://ionicframework.com/docs/theming/ */
   --ion-color-light-tint: #f5f6f9;
 
   /** ion-content background **/
-  --ion-color--background: #F6F9FF;
+  --ion-color--background: var(--ion-color-secondary);
 
   /** Main color for pargraphs etc **/
   --ion-color--main-text: #424A63;
