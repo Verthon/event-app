@@ -49,7 +49,8 @@ const Event = styled.div`
   flex-direction: column;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.05);
   border-radius: 15px;
-  line-height: 1.7;
+  line-height: 1;
+  background-color: #f6f9f9;
 `
 
 const ImageWrapper = styled.div`
@@ -79,7 +80,8 @@ const Time = styled.div`
 const Day = styled.p`
   margin: 0;
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 1.1rem;
+  color: var(--ion-color-primary);
 `
 
 const Month = styled.p`
@@ -87,19 +89,21 @@ const Month = styled.p`
   font-size: 0.875rem;
 `
 
-const InfoWrapper = styled.div``
+const InfoWrapper = styled.div`
+  margin: 0.5rem 1rem; 
+`
 
 const Title = styled.h2`
   color: var(--ion-color-primary);
   margin: 0;
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   font-family: 'Signika';
   font-weight: 600;
 `
 
 const Paragraph = styled.p`
   margin: 0;
-  color: #4a4a4b;
+  line-height: 1.7;
 `
 
 export default EventItem

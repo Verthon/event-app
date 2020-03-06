@@ -79,8 +79,11 @@ http://ionicframework.com/docs/theming/ */
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
 
+  /** main font color **/
+  --ion-text-color: #424A63; 
+
   /** ion-content background **/
-  --ion-color--background: var(--ion-color-secondary);
+  /*--ion-color--background: var(--ion-color-secondary);*/
 
   /** Main color for pargraphs etc **/
   --ion-color--main-text: #424A63;

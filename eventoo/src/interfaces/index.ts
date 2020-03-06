@@ -9,3 +9,8 @@ export interface EventModel {
   image: string,
   timestamp?: string,
 }
+
+export interface ICategory {
+  category: string,
+  emoji: string
+}

@@ -158,8 +158,7 @@ ion-button {
   --border-radius: 2px;
   --box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
 }
-
-ion-content{
+.ion-content--color {
   background-color: var(--ion-color-secondary);
 }
 
@@ -187,7 +186,7 @@ ion-content{
   --background-lightgray: #f6f9f9;
   --ion-tab-bar-color: #6c7285;
   --ion-tab-bar-background: #ffffff;
-  --ion-background-color: var(--ion-color-secondary);
+  --ion-background-color: #ffffff;
 }
 
 .md {

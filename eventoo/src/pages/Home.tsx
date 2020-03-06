@@ -6,7 +6,7 @@ import homeSVG from '../assets/backgrounds/home-bg.svg'
 const Home: React.FC = (props: any) => {
   return (
     <IonPage>
-      <IonContent>
+      <IonContent className="ion-content--color">
         <img className="image" src={homeSVG} alt="" />
         <div className="hero__content ion-padding">
           <h1 className="title">Hello there!</h1>

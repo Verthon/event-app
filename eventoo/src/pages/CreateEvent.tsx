@@ -24,7 +24,7 @@ const CreateEvents: React.FC = (props: any) => {
     host: '',
     localization: '',
     description: '',
-    categories: ['Sport', 'Music', 'Education', 'Business', 'Food&Drink'],
+    categories: ['Sport', 'Music', 'Education', 'Business', 'Food'],
     category: 'Sport',
     imageUrl: '',
     day: dayjs()
@@ -41,6 +41,7 @@ const CreateEvents: React.FC = (props: any) => {
       ...form,
       [e.target.name]: e.target.value,
     })
+    console.log('form after change with', form);
   }
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -128,6 +129,7 @@ const CreateEvents: React.FC = (props: any) => {
                 value={form.category}
                 cancelText="Cancel"
                 okText="Select"
+                name="category"
                 onIonChange={e => handleInputChange(e)}
               >
                 {form.categories.map((cat, id) => {
@@ -157,8 +159,10 @@ const CreateEvents: React.FC = (props: any) => {
                 max="2020"
                 min={form.day}
                 value={form.day}
+                name="day"
                 displayFormat="DD.MMM"
                 placeholder="Select Date"
+                onIonChange={(e: any) => handleInputChange(e)}
               />
             </IonItem>
 
@@ -166,8 +170,10 @@ const CreateEvents: React.FC = (props: any) => {
               <IonLabel position="floating">Time</IonLabel>
               <IonDatetime
                 value={form.hour}
+                name="hour"
                 displayFormat="HH:mm"
                 placeholder="Select Time"
+                onIonChange={e => handleInputChange(e)}
               />
             </IonItem>
 
@@ -177,6 +183,8 @@ const CreateEvents: React.FC = (props: any) => {
                 cols={20}
                 rows={10}
                 placeholder="Event description"
+                name="description"
+                onIonChange={e => handleInputChange(e)}
               />
             </IonItem>
 

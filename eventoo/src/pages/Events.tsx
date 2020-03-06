@@ -9,19 +9,20 @@ import {
   IonButton,
   IonIcon,
   IonToast,
-  IonLoading
+  IonLoading,
 } from '@ionic/react'
 import React, { MouseEvent, useState, useEffect } from 'react'
 import { withFirebase } from '../firebase'
 import EventItem from '../components/EventItem'
 
 const Events: React.FC = (props: any) => {
-  let [error, setError] = useState(false);
+  let [error, setError] = useState(false)
   let [searchVisibility, toggleSearchBar] = useState<boolean>(true)
   let [events, setEvents] = useState([])
+  let [categories, setCategories] = useState([])
   let [showToast, setToast] = useState<boolean>(false)
-  let [showSpinner, setSpinner] = useState<boolean>(true);
-  let [isDataFetched, setDataFetched] = useState<boolean>(false);
+  let [showSpinner, setSpinner] = useState<boolean>(true)
+  let [isDataFetched, setDataFetched] = useState<boolean>(false)
 
   useEffect(() => {
     const { db } = props.firebase
@@ -41,6 +42,26 @@ const Events: React.FC = (props: any) => {
         return setToast(true)
       })
   }, [])
+
+  useEffect(() => {
+    const { db } = props.firebase
+    db.collection('categories')
+      .get()
+      .then((querySnapshot: any) => {
+        const events: any = []
+        querySnapshot.docs.forEach((doc: any) => {
+          events.push(doc.data())
+        })
+        setDataFetched(true)
+        console.log('events fetched', events)
+        return events
+      })
+      .then((events: any) => setEvents(events))
+      .catch(() => {
+        return setToast(true)
+      })
+  }, [])
+
   return (
     <IonPage>
       <IonHeader>
@@ -59,13 +80,13 @@ const Events: React.FC = (props: any) => {
       </IonHeader>
 
       <IonContent class="ion-padding-horizontal">
-      <IonLoading
-        isOpen={!isDataFetched}
-        onDidDismiss={() => setSpinner(false)}
-        message={'Please wait...'}
-        spinner="bubbles"
-        duration={500}
-      />
+        <IonLoading
+          isOpen={!isDataFetched}
+          onDidDismiss={() => setSpinner(false)}
+          message={'Please wait...'}
+          spinner="bubbles"
+          duration={500}
+        />
         <IonToast
           isOpen={showToast}
           onDidDismiss={() => setToast(false)}
@@ -74,22 +95,24 @@ const Events: React.FC = (props: any) => {
         />
 
         {searchVisibility ? <IonSearchbar animated debounce={500} /> : null}
-        {events ? events.map((event: any, id: number) => {
-          return (
-            <EventItem
-                key={id}
-                name={event.title}
-                localization={event.localization}
-                host={event.host}
-                timestamp={event.date.seconds}
-                date={event.day}
-                time={event.hour}
-                description={event.description}
-                category={event.category}
-                image={event.featuredImage}
-              />
-          )
-        }): null}
+        {events
+          ? events.map((event: any, id: number) => {
+              return (
+                <EventItem
+                  key={id}
+                  name={event.title}
+                  localization={event.localization}
+                  host={event.host}
+                  timestamp={event.date.seconds}
+                  date={event.day}
+                  time={event.hour}
+                  description={event.description}
+                  category={event.category}
+                  image={event.featuredImage}
+                />
+              )
+            })
+          : null}
       </IonContent>
     </IonPage>
   )
