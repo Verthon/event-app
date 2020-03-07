@@ -2,25 +2,26 @@ import app from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 // Required for side-effects
+import { DEV_CONFIG } from './db_config'
 require("firebase/firestore");
 
-const devConfig = {
-  apiKey: process.env.REACT_APP_DEV_API_KEY,
-  authDomain: process.env.REACT_APP_DEV_AUTH_DOMAIN,
-  databaseURL: process.env.REACT_APP_DEV_DATABASE_URL,
-  projectId: "event-app-90ab5",
-  storageBucket: process.env.REACT_APP_DEV_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_DEV_MESSAGING_SENDER_ID,
-};
+// const devConfig = {
+//   apiKey: process.env.REACT_APP_DEV_API_KEY,
+//   authDomain: process.env.REACT_APP_DEV_AUTH_DOMAIN,
+//   databaseURL: process.env.REACT_APP_DEV_DATABASE_URL,
+//   projectId: "event-app-90ab5",
+//   storageBucket: process.env.REACT_APP_DEV_STORAGE_BUCKET,
+//   messagingSenderId: process.env.REACT_APP_DEV_MESSAGING_SENDER_ID,
+// };
 
-const prodConfig = {
-  apiKey: process.env.REACT_APP_PROD_API_KEY,
-  authDomain: process.env.REACT_APP_PROD_AUTH_DOMAIN,
-  databaseURL: process.env.REACT_APP_PROD_DATABASE_URL,
-  projectId: "eventoo-production",
-  storageBucket: process.env.REACT_APP_PROD_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_PROD_MESSAGING_SENDER_ID,
-}
+// const prodConfig = {
+//   apiKey: process.env.REACT_APP_PROD_API_KEY,
+//   authDomain: process.env.REACT_APP_PROD_AUTH_DOMAIN,
+//   databaseURL: process.env.REACT_APP_PROD_DATABASE_URL,
+//   projectId: "eventoo-production",
+//   storageBucket: process.env.REACT_APP_PROD_STORAGE_BUCKET,
+//   messagingSenderId: process.env.REACT_APP_PROD_MESSAGING_SENDER_ID,
+// }
 
 class Firebase {
   fieldValue: any
@@ -31,7 +32,7 @@ class Firebase {
   facebookProvider: any;
   twitterProvider: any;
   constructor() {
-    app.initializeApp(devConfig);
+    app.initializeApp(DEV_CONFIG);
 
     /* Helper */
 

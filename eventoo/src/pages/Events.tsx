@@ -43,24 +43,24 @@ const Events: React.FC = (props: any) => {
       })
   }, [])
 
-  useEffect(() => {
-    const { db } = props.firebase
-    db.collection('categories')
-      .get()
-      .then((querySnapshot: any) => {
-        const events: any = []
-        querySnapshot.docs.forEach((doc: any) => {
-          events.push(doc.data())
-        })
-        setDataFetched(true)
-        console.log('events fetched', events)
-        return events
-      })
-      .then((events: any) => setEvents(events))
-      .catch(() => {
-        return setToast(true)
-      })
-  }, [])
+  // useEffect(() => {
+  //   const { db } = props.firebase
+  //   db.collection('categories')
+  //     .get()
+  //     .then((querySnapshot: any) => {
+  //       const events: any = []
+  //       querySnapshot.docs.forEach((doc: any) => {
+  //         events.push(doc.data())
+  //       })
+  //       setDataFetched(true)
+  //       console.log('events fetched', events)
+  //       return events
+  //     })
+  //     .then((events: any) => setEvents(events))
+  //     .catch(() => {
+  //       return setToast(true)
+  //     })
+  // }, [])
 
   return (
     <IonPage>
