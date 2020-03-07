@@ -1,6 +1,6 @@
 # Eventoo
 [Live version on Netlify](https://eventooo.netlify.com/ "Live version on Netlify")
-Simple React app for creating and managing events. In project I have used:
+Old legacy WEB version
 
 - React.js (create-react-app)
 - JavaScript ES6
