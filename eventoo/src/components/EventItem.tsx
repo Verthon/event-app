@@ -23,7 +23,6 @@ const EventItem = (props: any) => {
     image: props.image,
     timestamp: props.timestamp,
   }
-  console.log('event item props', eventData.timestamp)
   return (
     <Event>
       <ImageWrapper>
@@ -48,7 +47,7 @@ const Event = styled.div`
   display: flex;
   flex-direction: column;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.05);
-  border-radius: 15px;
+  border-radius: 10px;
   line-height: 1;
   background-color: #f6f9f9;
 `
@@ -57,7 +56,7 @@ const ImageWrapper = styled.div`
   position: relative;
 `
 const Image = styled.img`
-  border-radius: 15px 15px 0px 0px;
+  border-radius: 10px 10px 0px 0px;
 `
 
 const Time = styled.div`
@@ -73,7 +72,7 @@ const Time = styled.div`
   width: 51px;
   height: 42px;
   background: #f6f9f9;
-  border-radius: 0px 15px;
+  border-radius: 0px 10px;
   line-height: 1;
 `
 

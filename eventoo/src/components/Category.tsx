@@ -16,10 +16,22 @@ const Category = (props: ICategory) => {
 const CategoryWrapper = styled.div`
   background-color: #f6f9f9;
   min-width: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem 1rem 2rem 0;
+  border-radius: 10px;
 `
 
 const IconWrapper = styled.div`
   background-color: #dde0e0;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: center;
+  width: 45px;
+  margin: 0.5rem 0 0 0;
+  border-radius: 5px;
 `
 
 const Icon = styled.span`
@@ -28,6 +40,8 @@ const Icon = styled.span`
 
 const Name = styled.p`
   color: var(--ion-color-primary);
+  font-size: 0.875rem;
+  margin: 1rem 0 0.5rem 0;
 `
 
 export default Category

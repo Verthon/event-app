@@ -4,6 +4,21 @@ import { base } from '../firebase/firebase'
 
 export const AuthContext = React.createContext(null)
 
+export const useAuth = (auth: any) => {
+  const [authState, setState] = useState({
+    isLoading: true,
+    user: null
+  });
+  
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((authState: any) =>
+      setState({ isLoading: false, user: authState })
+    );
+    return unsubscribe;
+  }, [auth]);
+  return authState;
+}
+
 export const AuthProvider = (props: any) => {
   const [currentUser, setCurrentUser] = useState(null)
 
