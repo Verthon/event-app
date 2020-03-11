@@ -14,6 +14,7 @@ import {
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector, connect } from 'react-redux'
 import styled from 'styled-components'
+import {search} from 'ionicons/icons'
 
 import { withFirebase } from '../firebase'
 import EventItem from '../components/EventItem'
@@ -22,7 +23,7 @@ import { eventsSlice } from '../reducers/events'
 
 const Events: React.FC = (props: any) => {
   let [error, setError] = useState(false)
-  let [searchVisibility, toggleSearchBar] = useState<boolean>(true)
+  let [searchVisibility, toggleSearchBar] = useState<boolean>(false)
   let [events, setEvents] = useState([])
   const dispatch = useDispatch()
   let [categories, setCategories] = useState([])
@@ -60,7 +61,6 @@ const Events: React.FC = (props: any) => {
           categories.push(doc.data())
         })
         setDataFetched(true)
-        console.log('categories fetched', categories)
         return categories
       })
       .then((categories: any) => setCategories(categories))
@@ -78,8 +78,8 @@ const Events: React.FC = (props: any) => {
             <IonButton>
               <IonIcon
                 slot="icon-only"
-                name="search"
-                onClick={() => toggleSearchBar(searchVisibility)}
+                icon={search}
+                onClick={() => toggleSearchBar(!searchVisibility)}
               />
             </IonButton>
           </IonButtons>

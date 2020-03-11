@@ -87,6 +87,8 @@ http://ionicframework.com/docs/theming/ */
 
   /** Main color for pargraphs etc **/
   --ion-color--main-text: #424A63;
+
+  --ion-input-border: #cccccc;
 }
 
 @media (prefers-color-scheme: dark) {

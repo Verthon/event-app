@@ -26,13 +26,13 @@ const SignIn: React.FC = (props: any) => {
   console.log("firebase auth", props);
 
   return (
-    <IonPage>
+    <IonPage className="ion-content--color">
       <IonHeader>
         <IonToolbar color="light">
           <IonTitle>Eventoo</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent>
+      <IonContent className="ion-content--color">
         <img className="image" src={background} alt="" />
         <ContentWrapper>
           <Title>Welcome back!</Title>
@@ -52,6 +52,10 @@ const SignIn: React.FC = (props: any) => {
     </IonPage>
   );
 };
+
+const Wrapper = styled.div`
+  background-color: var(--ion-color-secondary);
+`
 
 const ContentWrapper = styled.div`
   padding: 0 2rem;

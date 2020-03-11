@@ -16,6 +16,8 @@ import {
 } from '@ionic/react'
 import React, { useState, useEffect } from 'react'
 import dayjs from 'dayjs'
+import styled from 'styled-components'
+
 import { withFirebase } from '../firebase'
 import { EventModel } from '../interfaces'
 const CreateEvents: React.FC = (props: any) => {
@@ -41,7 +43,7 @@ const CreateEvents: React.FC = (props: any) => {
       ...form,
       [e.target.name]: e.target.value,
     })
-    console.log('form after change with', form);
+    console.log('form after change with', form)
   }
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -79,16 +81,17 @@ const CreateEvents: React.FC = (props: any) => {
           message="Event Added succesfully"
           duration={1500}
         />
-        <h1>Create your event</h1>
+        <Title>Create event</Title>
         <div className="form-container">
           <form
             method="POST"
             className="form-content"
             onSubmit={e => handleSubmit(e)}
           >
-            <IonItem>
+            <IonItem lines="none">
               <IonLabel position="floating">Event name</IonLabel>
               <IonInput
+                className="event-input"
                 placeholder="eg. Football Event"
                 type="text"
                 name="title"
@@ -98,10 +101,10 @@ const CreateEvents: React.FC = (props: any) => {
               />
             </IonItem>
 
-            <IonItem>
+            <IonItem lines="none">
               <IonLabel position="floating">Event host</IonLabel>
               <IonInput
-                className="input"
+                className="event-input"
                 placeholder="eg. Company"
                 type="text"
                 name="host"
@@ -111,9 +114,10 @@ const CreateEvents: React.FC = (props: any) => {
               />
             </IonItem>
 
-            <IonItem>
+            <IonItem lines="none">
               <IonLabel position="floating">Event localization</IonLabel>
               <IonInput
+                className="event-input"
                 placeholder="eg. Bielsko-Biała, Poland"
                 type="text"
                 name="localization"
@@ -123,9 +127,10 @@ const CreateEvents: React.FC = (props: any) => {
               />
             </IonItem>
 
-            <IonItem>
+            <IonItem lines="none">
               <IonLabel position="floating">Categories</IonLabel>
               <IonSelect
+                className="event-input"
                 value={form.category}
                 cancelText="Cancel"
                 okText="Select"
@@ -142,9 +147,10 @@ const CreateEvents: React.FC = (props: any) => {
               </IonSelect>
             </IonItem>
 
-            <IonItem>
+            <IonItem lines="none">
               <IonLabel position="floating">Image URL</IonLabel>
               <IonInput
+                className="event-input"
                 type="text"
                 name="imageUrl"
                 placeholder="eg. https://source.unsplash.com/weekly?water"
@@ -153,9 +159,10 @@ const CreateEvents: React.FC = (props: any) => {
               />
             </IonItem>
 
-            <IonItem>
+            <IonItem lines="none">
               <IonLabel position="floating">Date</IonLabel>
               <IonDatetime
+                className="event-input"
                 max="2020"
                 min={form.day}
                 value={form.day}
@@ -166,7 +173,7 @@ const CreateEvents: React.FC = (props: any) => {
               />
             </IonItem>
 
-            <IonItem>
+            <IonItem lines="none">
               <IonLabel position="floating">Time</IonLabel>
               <IonDatetime
                 value={form.hour}
@@ -177,10 +184,11 @@ const CreateEvents: React.FC = (props: any) => {
               />
             </IonItem>
 
-            <IonItem>
+            <IonItem lines="none">
               <IonLabel position="floating">Event Description</IonLabel>
               <IonTextarea
-                cols={20}
+                className="event-input"
+                cols={10}
                 rows={10}
                 placeholder="Event description"
                 name="description"
@@ -188,14 +196,28 @@ const CreateEvents: React.FC = (props: any) => {
               />
             </IonItem>
 
-            <IonButton expand="block" type="submit" color="primary">
+            <Button type="submit" color="primary">
               Submit
-            </IonButton>
+            </Button>
           </form>
         </div>
       </IonContent>
     </IonPage>
   )
 }
+
+const Title = styled.h1`
+  margin: 1rem 1rem;
+`
+const Button = styled.button`
+  font-weight: bold;
+  font-size: 1rem;
+  border-radius: 2px;
+  width: 75%;
+  background-color: var(--ion-color-primary);
+  color: #ffffff;
+  padding: 0.75rem;
+  margin: 1rem auto;
+`;
 
 export default withFirebase(CreateEvents)

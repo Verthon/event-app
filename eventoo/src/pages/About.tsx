@@ -10,7 +10,7 @@ const About: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent class="ion-padding">
-        <h1>About Eventoo</h1>
+        <h1>About</h1>
         <p>Eventoo is a platform, that allows anyone to create, share, find and attend events. From music festivals, conferences and community meetups, to sport events. Our mission is to connect people with passion.</p>
       </IonContent>
     </IonPage>
