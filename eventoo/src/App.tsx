@@ -56,7 +56,7 @@ const App: React.FC = () => (
           <Route path="/events" component={Events} exact={true} />
           <Route path="/about" component={About} exact={true} />
           <Route component={CreateEvent} path="/create-event" exact={true} />
-          <PrivateRoute component={Account} path="/account"  exact={true} />
+          <Route component={Account} path="/account"  exact={true} />
           <Route path="/login" component={SignIn} exact={true} />
           <Route exact path="/" render={() => <Redirect to={HOME} />} />
         </IonRouterOutlet>

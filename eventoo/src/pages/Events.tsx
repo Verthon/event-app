@@ -14,12 +14,13 @@ import {
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector, connect } from 'react-redux'
 import styled from 'styled-components'
-import {search} from 'ionicons/icons'
+import { search } from 'ionicons/icons'
 
 import { withFirebase } from '../firebase'
 import EventItem from '../components/EventItem'
 import Category from '../components/Category'
 import { eventsSlice } from '../reducers/events'
+import useCategories from '../hooks/useCategories'
 
 const Events: React.FC = (props: any) => {
   let [error, setError] = useState(false)
@@ -33,7 +34,8 @@ const Events: React.FC = (props: any) => {
 
   useEffect(() => {
     const { db } = props.firebase
-    db.collection('events')
+    const unsubscribe = db
+      .collection('events')
       .get()
       .then((querySnapshot: any) => {
         const events: any = []
@@ -41,19 +43,19 @@ const Events: React.FC = (props: any) => {
           events.push(doc.data())
         })
         setDataFetched(true)
+        setEvents(events)
         //dispatch(eventsSlice.actions.fetchAllEvents(events))
-        console.log('events fetched', events)
-        return events
       })
-      .then((events: any) => setEvents(events))
       .catch(() => {
-        return setToast(true)
+        setToast(true)
       })
+    return () => unsubscribe()
   }, [])
 
   useEffect(() => {
     const { db } = props.firebase
-    db.collection('categories')
+    const unsubscribe = db
+      .collection('categories')
       .get()
       .then((querySnapshot: any) => {
         const categories: any = []
@@ -61,12 +63,13 @@ const Events: React.FC = (props: any) => {
           categories.push(doc.data())
         })
         setDataFetched(true)
-        return categories
+        setCategories(categories)
       })
-      .then((categories: any) => setCategories(categories))
       .catch(() => {
         return setToast(true)
       })
+    console.log('categories fetched')
+    return () => unsubscribe()
   }, [])
 
   return (
