@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import { ICategory } from '../interfaces'
+//import { ICategory } from '../interfaces'
 
-const Category = (props: ICategory) => {
+const Category = (props: any) => {
   return (
     <CategoryWrapper>
       <IconWrapper>
@@ -20,7 +20,7 @@ const CategoryWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 1rem 1rem 2rem 0;
+  margin: 0 1rem 1.5rem 0;
   border-radius: 10px;
 `
 
@@ -41,7 +41,7 @@ const Icon = styled.span`
 const Name = styled.p`
   color: var(--ion-color-primary);
   font-size: 0.875rem;
-  margin: 1rem 0 0.5rem 0;
+  margin: 0.75rem 0 0.5rem 0;
 `
 
 export default Category

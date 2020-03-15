@@ -1,4 +1,5 @@
 export interface EventModel {
+  eventId: number,
   name: string,
   host: string,
   localization: string,
@@ -10,7 +11,7 @@ export interface EventModel {
   timestamp?: string,
 }
 
-export interface ICategory {
+export type ICategory = {
   category: string,
-  emoji: string
+  emoji: string,
 }

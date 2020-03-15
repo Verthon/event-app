@@ -7,23 +7,21 @@ import {
   IonRouterOutlet,
   IonTabBar,
   IonTabButton,
-  IonTabs,
-  IonBadge
+  IonTabs
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { ellipse, square, triangle } from 'ionicons/icons';
-import PrivateRoute from './components/PrivateRoute'
 import dateRangeIcon from './assets/icons/date_range.svg'
 import accountBoxIcon from './assets/icons/account_box.svg'
 import libraryAddIcon from './assets/icons/library_add.svg'
 import infoIcon from './assets/icons/perm_device_information.svg'
 import Home from './pages/Home'
 import Events from './pages/Events'
-import About from './pages/About'
+import Contact from './pages/Contact'
 import Account from './pages/Account'
 import SignIn from './pages/SignIn'
 import CreateEvent from './pages/CreateEvent'
-import {HOME, EVENTS, ABOUT, CREATE_EVENT, ACCOUNT, SIGN_IN} from './constants/routes'
+import EventDetail from './pages/EventDetail'
+import {HOME, EVENTS, CONTACT, CREATE_EVENT, ACCOUNT, SIGN_IN, EVENT_DETAIL} from './constants/routes'
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -52,19 +50,19 @@ const App: React.FC = () => (
     <IonReactRouter>
     <IonTabs>
         <IonRouterOutlet>
-          <Route path="/home" component={Home} exact={true} />
-          <Route path="/events" component={Events} exact={true} />
-          <Route path="/about" component={About} exact={true} />
-          <Route component={CreateEvent} path="/create-event" exact={true} />
-          <Route component={Account} path="/account"  exact={true} />
-          <Route path="/login" component={SignIn} exact={true} />
+          <Route path={HOME} component={Home} exact={true} />
+          <Route path={EVENTS} component={Events} exact={true} />
+          <Route path={CONTACT} component={Contact} exact={true} />
+          <Route path={CREATE_EVENT} component={CreateEvent} exact={true} />
+          <Route path={ACCOUNT} component={Account} exact={true} />
+          <Route path={SIGN_IN} component={SignIn} exact={true} />
+          <Route path={EVENT_DETAIL} component={EventDetail} exact={true}/>
           <Route exact path="/" render={() => <Redirect to={HOME} />} />
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
           <IonTabButton tab="events" href={EVENTS}>
             <IonIcon icon={dateRangeIcon} />
             <IonLabel>Events</IonLabel>
-            <IonBadge>6</IonBadge>
           </IonTabButton>
 
           <IonTabButton tab="create-event" href={CREATE_EVENT}>
@@ -77,9 +75,9 @@ const App: React.FC = () => (
             <IonLabel>My account</IonLabel>
           </IonTabButton>
 
-          <IonTabButton tab="about" href={ABOUT}>
+          <IonTabButton tab="contact" href={CONTACT}>
             <IonIcon icon={infoIcon} />
-            <IonLabel>About</IonLabel>
+            <IonLabel>Contact</IonLabel>
           </IonTabButton>
         </IonTabBar>
       </IonTabs>

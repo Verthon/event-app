@@ -12,7 +12,7 @@ import {
   IonLoading,
 } from '@ionic/react'
 import React, { useState, useEffect } from 'react'
-import { useDispatch, useSelector, connect } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { search } from 'ionicons/icons'
 
@@ -21,6 +21,7 @@ import EventItem from '../components/EventItem'
 import Category from '../components/Category'
 import { eventsSlice } from '../reducers/events'
 import useCategories from '../hooks/useCategories'
+import { EVENT_DETAIL } from '../constants/routes'
 
 const Events: React.FC = (props: any) => {
   let [error, setError] = useState(false)
@@ -31,6 +32,14 @@ const Events: React.FC = (props: any) => {
   let [showToast, setToast] = useState<boolean>(false)
   let [showSpinner, setSpinner] = useState<boolean>(true)
   let [isDataFetched, setDataFetched] = useState<boolean>(false)
+
+  const displayEventDetail = (e: any, event: any) => {
+    e.preventDefault()
+    console.log('Event data', event)
+    props.history.push(EVENT_DETAIL)
+  }
+
+  const handleCategoryChange = () => {}
 
   useEffect(() => {
     const { db } = props.firebase
@@ -112,6 +121,7 @@ const Events: React.FC = (props: any) => {
                     key={id}
                     category={category.category}
                     emoji={category.emoji}
+                    onClick={handleCategoryChange}
                   />
                 )
               })
@@ -122,6 +132,7 @@ const Events: React.FC = (props: any) => {
               return (
                 <EventItem
                   key={id}
+                  eventId={event.eventId}
                   name={event.title}
                   localization={event.localization}
                   host={event.host}
@@ -131,6 +142,7 @@ const Events: React.FC = (props: any) => {
                   description={event.description}
                   category={event.category}
                   image={event.featuredImage}
+                  onClick={(e: HTMLElement) => displayEventDetail(e, event)}
                 />
               )
             })
@@ -143,6 +155,7 @@ const Events: React.FC = (props: any) => {
 const CategoriesWrapper = styled.div`
   display: flex;
   overflow-x: auto;
+  margin: 1.5rem 0;
 `
 
 export default withFirebase(Events)

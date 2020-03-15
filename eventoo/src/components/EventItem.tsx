@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import dayjs from 'dayjs'
+import { Link } from 'react-router-dom'
+
 import { EventModel } from '../interfaces'
 
 const EventItem = (props: any) => {
@@ -13,6 +15,7 @@ const EventItem = (props: any) => {
     return dayjs.unix(timestamp).format('MMM')
   }
   const eventData: EventModel = {
+    eventId: props.eventId,
     name: props.name,
     host: props.host,
     localization: props.localization,
@@ -25,15 +28,19 @@ const EventItem = (props: any) => {
   }
   return (
     <Event>
-      <ImageWrapper>
-        <Time>
-          <Day>{formatDay(eventData.timestamp)}</Day>
-          <Month>{formatMonth(eventData.timestamp)}</Month>
-        </Time>
-        <Image src={eventData.image + '/500x200'} alt="" />
-      </ImageWrapper>
+      <Link to={`/event-detail/:${eventData.eventId}`}>
+        <ImageWrapper>
+          <Time>
+            <Day>{formatDay(eventData.timestamp)}</Day>
+            <Month>{formatMonth(eventData.timestamp)}</Month>
+          </Time>
+          <Image src={eventData.image + '/500x200'} alt="" />
+        </ImageWrapper>
+      </Link>
       <InfoWrapper>
-        <Title>{eventData.name}</Title>
+        <Link to={`/event-detail/:${eventData.eventId}`}>
+          <Title>{eventData.name}</Title>
+        </Link>
         <Paragraph>{eventData.localization}</Paragraph>
       </InfoWrapper>
     </Event>
@@ -89,7 +96,7 @@ const Month = styled.p`
 `
 
 const InfoWrapper = styled.div`
-  margin: 0.5rem 1rem; 
+  margin: 0.5rem 1rem;
 `
 
 const Title = styled.h2`

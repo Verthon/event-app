@@ -4,13 +4,12 @@ import {
   IonPage,
   IonTitle,
   IonToolbar,
-  IonAlert,
   IonLoading,
 } from '@ionic/react'
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { withFirebase } from '../firebase'
-import EventItem from '../components/EventItem'
+//import EventItem from '../components/EventItem'
 
 const Account: React.FC = (props: any) => {
   const [events, setEvents] = useState([])

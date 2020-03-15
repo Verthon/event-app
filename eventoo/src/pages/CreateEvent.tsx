@@ -4,7 +4,6 @@ import {
   IonPage,
   IonTitle,
   IonToolbar,
-  IonButton,
   IonInput,
   IonItem,
   IonLabel,
@@ -14,12 +13,12 @@ import {
   IonTextarea,
   IonToast,
 } from '@ionic/react'
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import dayjs from 'dayjs'
 import styled from 'styled-components'
 
 import { withFirebase } from '../firebase'
-import { EventModel } from '../interfaces'
+//import { EventModel } from '../interfaces'
 const CreateEvents: React.FC = (props: any) => {
   const [form, setForm] = useState({
     title: '',
