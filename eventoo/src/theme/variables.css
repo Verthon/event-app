@@ -85,6 +85,11 @@ http://ionicframework.com/docs/theming/ */
   /** ion-content background **/
   /*--ion-color--background: var(--ion-color-secondary);*/
 
+  /** Greys variables **/
+  --ion-color-gray-1: #f9f9f9;
+  --ion-color-gray-4: #d5d5d9;
+  --ion-color-gray-6: #a19d9b;
+
   /** Main color for pargraphs etc **/
   --ion-color--main-text: #424A63;
 

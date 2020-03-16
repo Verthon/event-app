@@ -1,17 +1,16 @@
-import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
+import { configureStore } from '@reduxjs/toolkit'
 
 import { combineReducers } from '@reduxjs/toolkit'
 import eventsSlice from '../reducers/events'
+import eventSlice from '../reducers/event'
 
 const reducer = combineReducers({
-  events: eventsSlice.reducer
+  events: eventsSlice.reducer,
+  event: eventSlice.reducer
 })
-
-const middleware = [...getDefaultMiddleware()]
 
 const store = configureStore({
   reducer,
-  middleware
 })
 
 if (process.env.NODE_ENV !== 'production' && module.hot) {

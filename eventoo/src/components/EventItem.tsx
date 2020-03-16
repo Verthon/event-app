@@ -2,10 +2,20 @@ import React from 'react'
 import styled from 'styled-components'
 import dayjs from 'dayjs'
 import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 
 import { EventModel } from '../interfaces'
+import { showEventDetails } from '../reducers/event'
 
 const EventItem = (props: any) => {
+
+  const dispatch = useDispatch()
+
+  const displayEventDetail = (e: any) => {
+    //e.preventDefault()
+    dispatch(showEventDetails(eventData))
+  }
+
   const formatDay = (timestamp: any) => {
     timestamp = parseInt(timestamp)
     return dayjs.unix(timestamp).format('DD')
@@ -27,14 +37,14 @@ const EventItem = (props: any) => {
     timestamp: props.timestamp,
   }
   return (
-    <Event>
+    <Event onClick={(e) => displayEventDetail(e)}>
       <Link to={`/event-detail/:${eventData.eventId}`}>
         <ImageWrapper>
           <Time>
             <Day>{formatDay(eventData.timestamp)}</Day>
             <Month>{formatMonth(eventData.timestamp)}</Month>
           </Time>
-          <Image src={eventData.image + '/500x200'} alt="" />
+          { eventData.image ? <Image src={eventData.image + '/500x200'} alt="" /> : <ImagePlaceholder/> }
         </ImageWrapper>
       </Link>
       <InfoWrapper>
@@ -61,6 +71,12 @@ const Event = styled.div`
 
 const ImageWrapper = styled.div`
   position: relative;
+`
+
+const ImagePlaceholder = styled.div`
+  width: 100%;
+  height: 200px;
+  background: #f6f9f9;
 `
 const Image = styled.img`
   border-radius: 10px 10px 0px 0px;

@@ -2,13 +2,14 @@ import { createSlice } from '@reduxjs/toolkit'
 
 export const eventsSlice = createSlice({
   name: 'events',
+  initialState: [],
   reducers: {
     fetchAllEvents: (action: any, state: any) => {
       state.events.push(action.payload)
     },
-    showEventDetails: (action: any, state: any) => {
-
-    },
+    // showEventDetails: (action: any, state: any) => {
+    //   state.events = action.payload;
+    // },
     filterEventsByCategory: (action: any, state: any) => {
       state.events.filter((event: any) => event.category === action.payload)
     },
@@ -16,9 +17,8 @@ export const eventsSlice = createSlice({
       state.events.filter((event: any) => event.includes(action.payload))
     }
   },
-  initialState: { events: [] },
 }) 
 
-export const { fetchAllEvents, showEventDetails } = eventsSlice.actions
+export const { fetchAllEvents } = eventsSlice.actions
 
 export default eventsSlice

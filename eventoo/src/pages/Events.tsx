@@ -12,16 +12,14 @@ import {
   IonLoading,
 } from '@ionic/react'
 import React, { useState, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 import { search } from 'ionicons/icons'
 
 import { withFirebase } from '../firebase'
 import EventItem from '../components/EventItem'
 import Category from '../components/Category'
-import { eventsSlice } from '../reducers/events'
 import useCategories from '../hooks/useCategories'
-import { EVENT_DETAIL } from '../constants/routes'
 
 const Events: React.FC = (props: any) => {
   let [error, setError] = useState(false)
@@ -32,12 +30,6 @@ const Events: React.FC = (props: any) => {
   let [showToast, setToast] = useState<boolean>(false)
   let [showSpinner, setSpinner] = useState<boolean>(true)
   let [isDataFetched, setDataFetched] = useState<boolean>(false)
-
-  const displayEventDetail = (e: any, event: any) => {
-    e.preventDefault()
-    console.log('Event data', event)
-    props.history.push(EVENT_DETAIL)
-  }
 
   const handleCategoryChange = () => {}
 
@@ -142,7 +134,6 @@ const Events: React.FC = (props: any) => {
                   description={event.description}
                   category={event.category}
                   image={event.featuredImage}
-                  onClick={(e: HTMLElement) => displayEventDetail(e, event)}
                 />
               )
             })
