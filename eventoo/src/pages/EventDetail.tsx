@@ -10,6 +10,9 @@ import {
 import React from 'react'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components'
+
+import dateIcon from '../assets/icons/date_range.svg'
+import locationIcon from '../assets/icons/location_on.svg'
 import { showEventDetails } from '../reducers/event'
 
 const EventDetail = () => {
@@ -26,7 +29,6 @@ const EventDetail = () => {
     timestamp: 1558130400,
   }
   const eventData = useSelector((state: any) => state.event.event)
-  console.log(eventData)
   return (
     <IonPage>
       <IonHeader>
@@ -40,14 +42,25 @@ const EventDetail = () => {
       <IonContent>
         <Wrapper>
           {eventData ? <Image src={eventData.image} /> : <ImagePlaceholder />}
-          <Header>
-            <Title>{eventData ? eventData.name : 'Kek'}</Title>
-            <Category>{eventData.category}</Category>
-          </Header>
-          <Date>{eventData.date}</Date>
-          <Date>{eventData.time}</Date>
-          <Localization>{eventData.localization}</Localization>
-          <Description>{eventData.description}</Description>
+          <Title>{eventData ? eventData.name : ''}</Title>
+          <InfoWrapper>
+            <Icon src={locationIcon} />
+            <EntryWrapper>
+              <Localization>
+                {eventData.localization ? eventData.localization : ''}
+              </Localization>
+            </EntryWrapper>
+          </InfoWrapper>
+          <InfoWrapper>
+            <Icon src={dateIcon} />
+            <EntryWrapper>
+              <Date>{eventData.date ? eventData.date : ''}</Date>
+              <Time>{eventData.time ? eventData.time : ''}</Time>
+            </EntryWrapper>
+          </InfoWrapper>
+          <Description>
+            {eventData.description ? eventData.description : ''}
+          </Description>
         </Wrapper>
       </IonContent>
     </IonPage>
@@ -62,27 +75,44 @@ const ImagePlaceholder = styled.div`
   background: var(--ion-color-gray-4);
   min-height: 300px;
 `
-
 const Image = styled.img`
   max-width: 100%;
   height: auto;
+  border-radius: 5px;
 `
-const Header = styled.header`
+const InfoWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  margin: 1rem 0;
+`
+const EntryWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
 `
 const Title = styled.h1`
   font-size: 1.1rem;
   margin: 0.5rem 0;
   color: var(--ion-color-primary);
 `
+const Icon = styled.img`
+  width: 1rem;
+  align-self: flex-start;
+  margin: 0 1rem 0 0;
+`
 const Localization = styled.p`
-  margin: 0.5rem 0;
+  margin: 0 0 0.5rem 0;
+  display: flex;
+  flex-direction: column;
+  color: var(--ion-color-primary);
+`
+const Street = styled.p`
   color: var(--ion-text-color);
 `
-const Date = styled.p`
-  margin: 0.5rem 0;
+const Date = styled.time`
+  color: var(--ion-color-primary);
+  margin: 0 0 0.5rem 0;
+`
+const Time = styled.time`
+  display: block;
   color: var(--ion-text-color);
 `
 const Description = styled.p`

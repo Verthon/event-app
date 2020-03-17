@@ -1,5 +1,6 @@
-export interface EventModel {
+export type EventType = {
   eventId: number,
+  docId: string,
   name: string,
   host: string,
   localization: string,
@@ -11,7 +12,7 @@ export interface EventModel {
   timestamp?: string,
 }
 
-export type ICategory = {
+export type CategoryType = {
   category: string,
   emoji: string,
 }

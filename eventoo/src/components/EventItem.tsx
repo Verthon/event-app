@@ -4,7 +4,7 @@ import dayjs from 'dayjs'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
-import { EventModel } from '../interfaces'
+import { EventType } from '../types/events'
 import { showEventDetails } from '../reducers/event'
 
 const EventItem = (props: any) => {
@@ -24,8 +24,9 @@ const EventItem = (props: any) => {
     timestamp = parseInt(timestamp)
     return dayjs.unix(timestamp).format('MMM')
   }
-  const eventData: EventModel = {
+  const eventData: EventType = {
     eventId: props.eventId,
+    docId: props.docId,
     name: props.name,
     host: props.host,
     localization: props.localization,
@@ -38,7 +39,7 @@ const EventItem = (props: any) => {
   }
   return (
     <Event onClick={(e) => displayEventDetail(e)}>
-      <Link to={`/event-detail/:${eventData.eventId}`}>
+      <Link to={`/event-detail/:${eventData.docId}`}>
         <ImageWrapper>
           <Time>
             <Day>{formatDay(eventData.timestamp)}</Day>

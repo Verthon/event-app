@@ -17,6 +17,7 @@ import styled from 'styled-components'
 import { search } from 'ionicons/icons'
 
 import { withFirebase } from '../firebase'
+import { fetchAllEvents } from '../reducers/events'
 import EventItem from '../components/EventItem'
 import Category from '../components/Category'
 import useCategories from '../hooks/useCategories'
@@ -31,6 +32,8 @@ const Events: React.FC = (props: any) => {
   let [showSpinner, setSpinner] = useState<boolean>(true)
   let [isDataFetched, setDataFetched] = useState<boolean>(false)
 
+  const addDocumentIdToEvent = (id: string, event: any) => ({})
+
   const handleCategoryChange = () => {}
 
   useEffect(() => {
@@ -41,11 +44,14 @@ const Events: React.FC = (props: any) => {
       .then((querySnapshot: any) => {
         const events: any = []
         querySnapshot.docs.forEach((doc: any) => {
-          events.push(doc.data())
+          const data = doc.data()
+          data.docId = doc.id
+          console.log('firebase data', data)
+          events.push(data)
         })
         setDataFetched(true)
         setEvents(events)
-        //dispatch(eventsSlice.actions.fetchAllEvents(events))
+        return events
       })
       .catch(() => {
         setToast(true)
@@ -124,6 +130,7 @@ const Events: React.FC = (props: any) => {
               return (
                 <EventItem
                   key={id}
+                  docId={event.docId}
                   eventId={event.eventId}
                   name={event.title}
                   localization={event.localization}
