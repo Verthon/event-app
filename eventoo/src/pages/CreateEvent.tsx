@@ -18,12 +18,12 @@ import dayjs from 'dayjs'
 import styled from 'styled-components'
 
 import { withFirebase } from '../firebase'
-//import { EventModel } from '../interfaces'
 const CreateEvents: React.FC = (props: any) => {
   const [form, setForm] = useState({
     title: '',
     host: '',
     localization: '',
+    address: '',
     description: '',
     categories: ['Sport', 'Music', 'Education', 'Business', 'Food'],
     category: 'Sport',
@@ -52,6 +52,7 @@ const CreateEvents: React.FC = (props: any) => {
       title: form.title,
       host: form.host,
       localization: form.localization,
+      address: form.address,
       description: form.description,
       category: form.category,
       day: form.day,
@@ -114,12 +115,25 @@ const CreateEvents: React.FC = (props: any) => {
             </IonItem>
 
             <IonItem lines="none">
-              <IonLabel position="floating">Event localization</IonLabel>
+              <IonLabel position="floating">City</IonLabel>
               <IonInput
                 className="event-input"
                 placeholder="eg. Bielsko-Biała, Poland"
                 type="text"
                 name="localization"
+                required
+                value={form.localization}
+                onIonChange={e => handleInputChange(e)}
+              />
+            </IonItem>
+
+            <IonItem lines="none">
+              <IonLabel position="floating">Address</IonLabel>
+              <IonInput
+                className="event-input"
+                placeholder="eg. Main Street SE 125"
+                type="text"
+                name="address"
                 required
                 value={form.localization}
                 onIonChange={e => handleInputChange(e)}

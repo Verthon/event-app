@@ -30,6 +30,7 @@ const EventItem = (props: any) => {
     name: props.name,
     host: props.host,
     localization: props.localization,
+    address: props.address,
     category: props.category,
     date: props.date,
     time: props.time,
@@ -37,6 +38,7 @@ const EventItem = (props: any) => {
     image: props.image,
     timestamp: props.timestamp,
   }
+  //console.log('eventData', eventData)
   return (
     <Event onClick={(e) => displayEventDetail(e)}>
       <Link to={`/event-detail/:${eventData.docId}`}>

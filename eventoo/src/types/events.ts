@@ -4,6 +4,7 @@ export type EventType = {
   name: string,
   host: string,
   localization: string,
+  address: string,
   category: string,
   date: string,
   time: string,

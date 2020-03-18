@@ -134,6 +134,7 @@ const Events: React.FC = (props: any) => {
                   eventId={event.eventId}
                   name={event.title}
                   localization={event.localization}
+                  address={event.address}
                   host={event.host}
                   timestamp={event.date.seconds}
                   date={event.day}

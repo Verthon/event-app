@@ -47,20 +47,21 @@ const EventDetail = () => {
             <Icon src={locationIcon} />
             <EntryWrapper>
               <Localization>
-                {eventData.localization ? eventData.localization : ''}
+                {eventData ? eventData.localization : ''}
               </Localization>
+              <Street>{eventData ? eventData.address : ''}</Street>
             </EntryWrapper>
           </InfoWrapper>
           <InfoWrapper>
             <Icon src={dateIcon} />
             <EntryWrapper>
-              <Date>{eventData.date ? eventData.date : ''}</Date>
-              <Time>{eventData.time ? eventData.time : ''}</Time>
+              <Date>{eventData ? eventData.date : ''}</Date>
+              <Time>{eventData ? eventData.time : ''}</Time>
             </EntryWrapper>
           </InfoWrapper>
-          <Description>
-            {eventData.description ? eventData.description : ''}
-          </Description>
+          <Separator />
+          <Label>Description</Label>
+          <Description>{eventData ? eventData.description : ''}</Description>
         </Wrapper>
       </IonContent>
     </IonPage>
@@ -105,6 +106,7 @@ const Localization = styled.p`
   color: var(--ion-color-primary);
 `
 const Street = styled.p`
+  margin: 0;
   color: var(--ion-text-color);
 `
 const Date = styled.time`
@@ -115,9 +117,16 @@ const Time = styled.time`
   display: block;
   color: var(--ion-text-color);
 `
+
+const Label = styled.h2`
+  margin: 1rem 0 0.5rem 0;
+  color: var(--ion-color-primary);
+  font-weight: 500;
+  font-size: 1rem;
+`
 const Description = styled.p`
   line-height: 1.5;
-  margin: 0.5rem 0;
+  margin: 0.25rem 0;
   color: var(--ion-text-color);
 `
 const Category = styled.span`
@@ -126,6 +135,11 @@ const Category = styled.span`
   background-color: hsl(225, 80%, 95%);
   border-radius: 5px;
   padding: 0.15rem 0.5rem;
+`
+
+const Separator = styled.hr`
+  margin: 2rem 0;
+  background-color: var(--ion-color-gray-4);
 `
 
 export default EventDetail

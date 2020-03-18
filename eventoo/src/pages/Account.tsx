@@ -56,8 +56,6 @@ const Account: React.FC = (props: any) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  console.log('authUser var', authUser)
-
   return (
     <IonPage>
       <IonHeader>
