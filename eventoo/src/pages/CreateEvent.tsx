@@ -18,6 +18,7 @@ import dayjs from 'dayjs'
 import styled from 'styled-components'
 
 import { withFirebase } from '../firebase'
+import { storage } from '../firebase/firebase'
 const CreateEvents: React.FC = (props: any) => {
   const [form, setForm] = useState({
     title: '',
@@ -28,6 +29,7 @@ const CreateEvents: React.FC = (props: any) => {
     categories: ['Sport', 'Music', 'Education', 'Business', 'Food'],
     category: 'Sport',
     imageUrl: '',
+    imageFile: '',
     day: dayjs()
       .add(1, 'day')
       .format('YYYY-MM-DD'),
@@ -64,6 +66,10 @@ const CreateEvents: React.FC = (props: any) => {
     return setToast(true)
 
     //implement next step here, whether show summary or navigate to account?
+  }
+
+  const handleFileUpload = (e: any) => {
+    console.log('event', e.target.files[0])
   }
 
   return (
@@ -172,6 +178,17 @@ const CreateEvents: React.FC = (props: any) => {
               />
             </IonItem>
 
+            <FileUpload>
+              <FileUploadLabel>Image upload</FileUploadLabel>
+              <input
+                type="file"
+                name="imageUpload"
+                accept="image/jpeg image/jpg" 
+                value={form.imageFile}
+                onChange={e => handleFileUpload(e)}
+              />
+            </FileUpload>
+
             <IonItem lines="none">
               <IonLabel position="floating">Date</IonLabel>
               <IonDatetime
@@ -233,4 +250,15 @@ const Button = styled.button`
   margin: 1rem auto;
 `;
 
+const FileUpload = styled.div`
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+`
+
+const FileUploadLabel = styled.div`
+  font-size: 0.875rem;
+  margin: 0 0 1rem 0;
+`
+ 
 export default withFirebase(CreateEvents)

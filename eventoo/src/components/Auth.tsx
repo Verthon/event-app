@@ -1,42 +1,86 @@
-import React, { useEffect, useState } from 'react';
-import { withFirebase } from '../firebase'
-import { base } from '../firebase/firebase'
+import React, { useState, useEffect, useContext, createContext } from 'react'
+import * as firebase from 'firebase/app'
+import 'firebase/auth'
 
-export const AuthContext = React.createContext(null)
+const AuthContext = React.createContext(null)
 
-export const useAuth = (auth: any) => {
-  const [authState, setState] = useState({
-    isLoading: true,
-    user: null
-  });
-  
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((authState: any) =>
-      setState({ isLoading: false, user: authState })
-    );
-    return unsubscribe;
-  }, [auth]);
-  return authState;
+// Provider component that wraps your app and makes auth object ...
+
+// ... available to any child component that calls useAuth().
+
+export function AuthProvider({ children }: any) {
+  const auth = useProvideAuth()
+
+  return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>
 }
 
-export const AuthProvider = (props: any) => {
-  const [currentUser, setCurrentUser] = useState(null)
+// Hook for child components to get the auth object ...
+// ... and re-render when it changes.
+const useAuth = () => useContext(AuthContext)
+
+function useProvideAuth() {
+  const [user, setUser] = useState(null)
+
+  // Wrap any Firebase methods we want to use making sure ...
+
+  // ... to save the user to state.
+
+  const googleProvider = new firebase.auth.GoogleAuthProvider();
+  const facebookProvider = new firebase.auth.FacebookAuthProvider();
+
+  const loginWithGoogle = () => {
+    return firebase
+      .auth()
+      .signInWithPopup(googleProvider)
+  }
+
+  const loginWithFacebook = () => {
+    return firebase
+      .auth()
+      .signInWithPopup(facebookProvider)
+  }
+
+  const signout = () => {
+    return firebase
+
+      .auth()
+
+      .signOut()
+
+      .then(() => {
+        setUser(false)
+      })
+  }
+
+  // Subscribe to user on mount
+
+  // Because this sets state in the callback it will cause any ...
+
+  // ... component that utilizes this hook to re-render with the ...
+
+  // ... latest auth object.
 
   useEffect(() => {
-    base.auth().onAuthStateChanged(setCurrentUser)
+    const unsubscribe = firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        setUser(user)
+      } else {
+        setUser(false)
+      }
+    })
+
+    // Cleanup subscription on unmount
+
+    return () => unsubscribe()
   }, [])
 
-  return (
-  <AuthContext.Provider value={currentUser}>{props.children}</AuthContext.Provider>
-  )
+  // Return the user object and auth methods
+
+  return {
+    user,
+    loginWithFacebook,
+    loginWithGoogle,
+    signout,
+  }
 }
-
-const Auth = () => {
-  return (
-    <div>
-
-    </div>
-  );
-};
-
-export default withFirebase(Auth);
+export default useAuth

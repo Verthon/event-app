@@ -11,16 +11,20 @@ import styled from 'styled-components'
 import background from '../assets/backgrounds/login-bg.svg'
 import { logoGoogle, logoFacebook } from 'ionicons/icons'
 import { withFirebase } from '../firebase'
+import useAuth from '../components/Auth'
 
 const SignIn: React.FC = (props: any) => {
+  const auth = useAuth()
   const loginWithSocial = (provider: string) => {
-    props.firebase[`doSignInWith${provider}`]()
-    props.firebase.auth.onAuthStateChanged((authUser: any) => {
-      return authUser ? props.history.push('/account') : null
-    })
+    auth[`loginWith${provider}`]()
+    .then((result: any) => props.history.push('/account'))
+    .catch((error: any) => console.log(`Error occurred while signing in using ${provider} provider.`, error))
+    // props.firebase.auth.onAuthStateChanged((authUser: any) => {
+    //   return authUser ? props.history.push('/account') : null
+    // })
   }
 
-  console.log('firebase auth', props)
+  console.log('firebase auth', auth.user)
 
   return (
     <IonPage>

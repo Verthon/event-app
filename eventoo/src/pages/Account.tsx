@@ -9,52 +9,75 @@ import {
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { withFirebase } from '../firebase'
+import useAuth from '../components/Auth'
 //import EventItem from '../components/EventItem'
 
 const Account: React.FC = (props: any) => {
+  const auth = useAuth()
   const [events, setEvents] = useState([])
   const [show, setShow] = useState(false)
-  const [authUser, setAuthUser] = useState(null)
   let [showSpinner, setSpinner] = useState<boolean>(true)
   let [isDataFetched, setDataFetched] = useState<boolean>(false)
 
-  const handleAuth = (authUser: any) => {
-    setAuthUser(authUser)
-  }
-
   const signOut = () => {
-    props.firebase.doSignOut()
-    props.history.push('/')
+    return auth.signout()
+      .then(() => props.history.push('/'))
+      .catch((error: any) => console.log('Error', error))
   }
 
   useEffect(() => {
-    const listener = props.firebase.auth.onAuthStateChanged((authUser: any) => {
-      if (authUser) {
-        handleAuth(authUser)
-        if (authUser !== null) {
-          const { db } = props.firebase
-          db.collection('events')
-            .where('uid', '==', props.firebase.auth.currentUser.uid)
-            .get()
-            .then((querySnapshot: any) => {
-              const events: any = []
-              querySnapshot.docs.forEach((doc: any) => {
-                events.push(doc.data())
-              })
-              //Check if array is empty
-              if (events.length > 0) {
-                return setEvents(events)
-              }
-              return setEvents([])
-            })
-        }
-      } else {
-        props.history.push('/login')
-      }
-    })
-    return () => listener()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    console.log('Auth user object in Account useEffect', auth.user)
+    const { db } = props.firebase
+    if (auth.user) {
+      const unsubscribe = db
+        .collection('events')
+        .get()
+        .then((querySnapshot: any) => {
+          const events: any = []
+          querySnapshot.docs.forEach((doc: any) => {
+            const data = doc.data()
+            data.docId = doc.id
+            console.log('firebase data', data)
+            events.push(data)
+          })
+          setDataFetched(true)
+        })
+        .catch((error: any) => {
+          return console.log('Error with fetching events', error)
+        })
+      return () => unsubscribe()
+    } else {
+      return props.history.push('/login')
+    }
   }, [])
+
+  // useEffect(() => {
+  //   const listener = props.firebase.auth.onAuthStateChanged((authUser: any) => {
+  //     if (authUser) {
+  //       if (authUser !== null) {
+  //         const { db } = props.firebase
+  //         db.collection('events')
+  //           .where('uid', '==', props.firebase.auth.currentUser.uid)
+  //           .get()
+  //           .then((querySnapshot: any) => {
+  //             const events: any = []
+  //             querySnapshot.docs.forEach((doc: any) => {
+  //               events.push(doc.data())
+  //             })
+  //             //Check if array is empty
+  //             if (events.length > 0) {
+  //               return setEvents(events)
+  //             }
+  //             return setEvents([])
+  //           })
+  //       }
+  //     } else {
+  //       props.history.push('/login')
+  //     }
+  //   })
+  //   return () => listener()
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [])
 
   return (
     <IonPage>
@@ -71,10 +94,11 @@ const Account: React.FC = (props: any) => {
           spinner="bubbles"
           duration={500}
         />
-        <Avatar src={authUser ? authUser.photoURL : null} />
-        <Name>{authUser ? authUser.displayName : null}</Name>
-  
-        <Button onClick={signOut}>logout</Button>
+        <p>KEK</p>
+        {/* <Avatar src={authUser ? authUser.photoURL : null} />
+        <Name>{authUser ? authUser.displayName : null}</Name> */}
+
+        <Button onClick={() => signOut()}>logout</Button>
       </IonContent>
     </IonPage>
   )
@@ -92,9 +116,7 @@ const Name = styled.p`
   font-weight: bold;
 `
 
-const Email = styled.p`
-
-`
+const Email = styled.p``
 
 const Button = styled.button`
   display: flex;

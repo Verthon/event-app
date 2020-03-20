@@ -64,6 +64,6 @@ class Firebase {
 
 export const base = app
 
-export const storage = app.storage
+export const storage = app.storage;
 
 export default Firebase
