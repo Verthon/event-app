@@ -9,7 +9,7 @@ import {
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { withFirebase } from '../firebase'
-import useAuth from '../components/Auth'
+import useAuth from '../hooks/Auth'
 //import EventItem from '../components/EventItem'
 
 const Account: React.FC = (props: any) => {
@@ -21,7 +21,7 @@ const Account: React.FC = (props: any) => {
 
   const signOut = () => {
     return auth.signout()
-      .then(() => props.history.push('/'))
+      .then(() => props.history.push('/events'))
       .catch((error: any) => console.log('Error', error))
   }
 

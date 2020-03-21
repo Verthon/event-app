@@ -11,7 +11,7 @@ import styled from 'styled-components'
 import background from '../assets/backgrounds/login-bg.svg'
 import { logoGoogle, logoFacebook } from 'ionicons/icons'
 import { withFirebase } from '../firebase'
-import useAuth from '../components/Auth'
+import useAuth from '../hooks/Auth'
 
 const SignIn: React.FC = (props: any) => {
   const auth = useAuth()

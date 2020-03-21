@@ -6,7 +6,7 @@ import { defineCustomElements } from '@ionic/pwa-elements/loader';
 import App from './App'
 import store from './store'
 import Firebase, { FirebaseContext } from './firebase'
-import { AuthProvider } from './components/Auth'
+import { AuthProvider } from './hooks/Auth'
 import * as serviceWorker from './serviceWorker'
 import './theme.css'
 defineCustomElements(window);

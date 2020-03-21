@@ -21,6 +21,7 @@ import Account from './pages/Account'
 import SignIn from './pages/SignIn'
 import CreateEvent from './pages/CreateEvent'
 import EventDetail from './pages/EventDetail'
+import PrivateRoute from './components/PrivateRoute'
 import {HOME, EVENTS, CONTACT, CREATE_EVENT, ACCOUNT, SIGN_IN, EVENT_DETAIL} from './constants/routes'
 
 /* Core CSS required for Ionic components to work properly */
@@ -54,7 +55,7 @@ const App: React.FC = () => (
           <Route path={EVENTS} component={Events} exact={true} />
           <Route path={CONTACT} component={Contact} exact={true} />
           <Route path={CREATE_EVENT} component={CreateEvent} exact={true} />
-          <Route path={ACCOUNT} component={Account} exact={true} />
+          <PrivateRoute component={Account} path={ACCOUNT} exact={true} />
           <Route path={SIGN_IN} component={SignIn} exact={true} />
           <Route path={EVENT_DETAIL} component={EventDetail} exact={true}/>
           <Route exact path="/" render={() => <Redirect to={HOME} />} />
