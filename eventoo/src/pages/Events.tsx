@@ -46,7 +46,6 @@ const Events: React.FC = (props: any) => {
         querySnapshot.docs.forEach((doc: any) => {
           const data = doc.data()
           data.docId = doc.id
-          console.log('firebase data', data)
           events.push(data)
         })
         setDataFetched(true)

@@ -9,7 +9,7 @@ import {
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { withFirebase } from '../firebase'
-import useAuth from '../hooks/Auth'
+import useAuth from '../hooks/useAuth'
 //import EventItem from '../components/EventItem'
 
 const Account: React.FC = (props: any) => {

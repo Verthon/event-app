@@ -1,25 +1,58 @@
-import React, {useState} from 'react'
-import {base} from '../firebase/firebase'
+import React, { useState, useEffect, useContext, createContext } from 'react'
+import * as firebase from 'firebase/app'
+import 'firebase/auth'
 
-const useAuth = () => {
+const AuthContext = React.createContext(null)
 
-  const checkIfAuth = () => {
-    const user = base.auth().currentUser 
-    return { initializing: !user, user, } 
+// Provider component that wraps your app and makes auth object ...
+
+// ... available to any child component that calls useAuth().
+
+export function AuthProvider({ children }: any) {
+  const auth = useProvideAuth()
+
+  return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>
+}
+
+// Hook for child components to get the auth object ...
+// ... and re-render when it changes.
+const useAuth = () => useContext(AuthContext)
+
+function useProvideAuth() {
+  const [user, setUser] = useState(null)
+
+  const googleProvider = new firebase.auth.GoogleAuthProvider()
+  const facebookProvider = new firebase.auth.FacebookAuthProvider()
+
+  const loginWithGoogle = () => {
+    return firebase.auth().signInWithPopup(googleProvider)
   }
-  const [state, setAuthUser] = React.useState(checkIfAuth())
-  const onChange = (user: any) => {
-    setAuthUser({ initializing: false, user })
+
+  const loginWithFacebook = () => {
+    return firebase.auth().signInWithPopup(facebookProvider)
   }
 
-  React.useEffect(() => {
-    // listen for auth state changes
-    const unsubscribe = base.auth().onAuthStateChanged(onChange)
-    // unsubscribe to the listener when unmounting
+  const signout = async () => {
+    await firebase.auth().signOut()
+    setUser(false)
+  }
+
+  useEffect(() => {
+    const unsubscribe = firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        setUser(user)
+      } else {
+        setUser(false)
+      }
+    })
     return () => unsubscribe()
   }, [])
 
-  return state
+  return {
+    user,
+    loginWithFacebook,
+    loginWithGoogle,
+    signout,
+  }
 }
-
-export default useAuth;
+export default useAuth
