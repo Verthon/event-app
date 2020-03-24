@@ -3,8 +3,11 @@ import styled from 'styled-components'
 //import { ICategory } from '../interfaces'
 
 const Category = (props: any) => {
+  const filterCategories = (category: string) => {
+    console.log(category)
+  }
   return (
-    <CategoryWrapper>
+    <CategoryWrapper type="button" onClick={() => filterCategories(props.category)}>
       <IconWrapper>
         <Icon>{props.emoji}</Icon>
       </IconWrapper>
@@ -13,7 +16,7 @@ const Category = (props: any) => {
   )
 }
 
-const CategoryWrapper = styled.div`
+const CategoryWrapper = styled.button`
   background-color: #f6f9f9;
   min-width: 70px;
   display: flex;

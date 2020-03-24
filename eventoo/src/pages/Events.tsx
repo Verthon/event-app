@@ -17,7 +17,7 @@ import styled from 'styled-components'
 import { search } from 'ionicons/icons'
 
 import { withFirebase } from '../firebase'
-import { fetchAllEvents } from '../reducers/events'
+import { fetchAllEventsSuccess, fetchAllEventsFailure } from '../reducers/events'
 import EventItem from '../components/EventItem'
 import Category from '../components/Category'
 import useCategories from '../hooks/useCategories'
@@ -33,8 +33,6 @@ const Events: React.FC = (props: any) => {
   let [isDataFetched, setDataFetched] = useState<boolean>(false)
 
   const addDocumentIdToEvent = (id: string, event: any) => ({})
-
-  const handleCategoryChange = () => {}
 
   useEffect(() => {
     const { db } = props.firebase
@@ -118,7 +116,6 @@ const Events: React.FC = (props: any) => {
                     key={id}
                     category={category.category}
                     emoji={category.emoji}
-                    onClick={handleCategoryChange}
                   />
                 )
               })

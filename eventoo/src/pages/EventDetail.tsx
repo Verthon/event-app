@@ -13,21 +13,8 @@ import styled from 'styled-components'
 
 import dateIcon from '../assets/icons/date_range.svg'
 import locationIcon from '../assets/icons/location_on.svg'
-import { showEventDetails } from '../reducers/event'
 
 const EventDetail = () => {
-  const k = {
-    eventId: 6,
-    name: 'Football Mates',
-    host: 'Cocola FC',
-    localization: 'Bielsko - Biala',
-    category: 'Sport',
-    date: 'May 14',
-    time: '21:00',
-    description: "Let's play 😍",
-    image: 'https://source.unsplash.com/Yta-zdP9PVM',
-    timestamp: 1558130400,
-  }
   const eventData = useSelector((state: any) => state.event.event)
   return (
     <IonPage>

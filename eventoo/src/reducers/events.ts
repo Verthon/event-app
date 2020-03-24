@@ -1,15 +1,29 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { ThunkAction } from 'redux-thunk'
+
+interface EventsState {
+  loading: string,
+  error: string | null,
+  events: Array<any>
+}
+
+const initialState: EventsState = {
+  loading: 'idle',
+  error: null,
+  events: []
+}
 
 export const eventsSlice = createSlice({
   name: 'events',
-  initialState: [],
+  initialState,
   reducers: {
-    fetchAllEvents: (action: any, state: any) => {
+    fetchAllEventsSuccess: (action: any, state: any) => {
       state.events.push(action.payload)
+      state.error = null
     },
-    // showEventDetails: (action: any, state: any) => {
-    //   state.events = action.payload;
-    // },
+    fetchAllEventsFailure: (action: any, state: any) => {
+      state.error = action.payload
+    },
     filterEventsByCategory: (action: any, state: any) => {
       state.events.filter((event: any) => event.category === action.payload)
     },
@@ -19,6 +33,6 @@ export const eventsSlice = createSlice({
   },
 }) 
 
-export const { fetchAllEvents } = eventsSlice.actions
+export const { fetchAllEventsSuccess, fetchAllEventsFailure, filterEventsByCategory, filterEventsBySearch} = eventsSlice.actions
 
 export default eventsSlice
