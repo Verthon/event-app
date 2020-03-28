@@ -2,6 +2,10 @@
   background: var(--ion-color-secondary);
 }
 
+.toolbar-content {
+  background: #FDEDDB !important;
+}
+
 a {
   text-decoration: none;
 }

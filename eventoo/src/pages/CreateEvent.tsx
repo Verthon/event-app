@@ -13,6 +13,7 @@ import {
   IonTextarea,
   IonToast,
 } from '@ionic/react'
+import logo from '../assets/logo/logo-color.svg'
 import React, { useState } from 'react'
 import dayjs from 'dayjs'
 import styled from 'styled-components'
@@ -74,9 +75,9 @@ const CreateEvents: React.FC = (props: any) => {
 
   return (
     <IonPage>
-      <IonHeader>
+      <IonHeader color="primary">
         <IonToolbar color="light">
-          <IonTitle>Eventoo</IonTitle>
+          <Logo src={logo} alt="Eventoo"/>
         </IonToolbar>
       </IonHeader>
 
@@ -235,6 +236,11 @@ const CreateEvents: React.FC = (props: any) => {
     </IonPage>
   )
 }
+
+const Logo = styled.img`
+  width: 120px;
+  margin: 1.2rem 1rem 1rem 1rem;
+`
 
 const Title = styled.h1`
   margin: 1rem 1rem;

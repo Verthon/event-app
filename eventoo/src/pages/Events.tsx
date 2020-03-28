@@ -16,8 +16,8 @@ import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 import { search } from 'ionicons/icons'
 
-import { withFirebase } from '../firebase'
-import { fetchAllEventsSuccess, fetchAllEventsFailure } from '../reducers/events'
+import { db } from '../firebase/firebase'
+import { fetchAllEvents, fetchAllEventsSuccess, fetchAllEventsFailure } from '../reducers/events'
 import EventItem from '../components/EventItem'
 import Category from '../components/Category'
 import useCategories from '../hooks/useCategories'
@@ -35,30 +35,28 @@ const Events: React.FC = (props: any) => {
   const addDocumentIdToEvent = (id: string, event: any) => ({})
 
   useEffect(() => {
-    const { db } = props.firebase
-    const unsubscribe = db
-      .collection('events')
-      .get()
-      .then((querySnapshot: any) => {
-        const events: any = []
-        querySnapshot.docs.forEach((doc: any) => {
-          const data = doc.data()
-          data.docId = doc.id
-          events.push(data)
-        })
-        setDataFetched(true)
-        setEvents(events)
-        return events
-      })
-      .catch(() => {
-        setToast(true)
-      })
-    return () => unsubscribe()
+    dispatch(fetchAllEvents())
+    // const unsubscribe: any = db
+    //   .collection('events')
+    //   .get()
+    //   .then((querySnapshot: any) => {
+    //     const events: any = []
+    //     querySnapshot.docs.forEach((doc: any) => {
+    //       const data = doc.data()
+    //       data.docId = doc.id
+    //       events.push(data)
+    //     })
+    //     setDataFetched(true)
+    //     setEvents(events)
+    //     return events
+    //   })
+    //   .catch(() => {
+    //     setToast(true)
+    //   })
   }, [])
 
   useEffect(() => {
-    const { db } = props.firebase
-    const unsubscribe = db
+    const unsubscribe: any = db
       .collection('categories')
       .get()
       .then((querySnapshot: any) => {
@@ -153,4 +151,4 @@ const CategoriesWrapper = styled.div`
   margin: 1.5rem 0;
 `
 
-export default withFirebase(Events)
+export default Events

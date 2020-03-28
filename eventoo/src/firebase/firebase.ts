@@ -23,6 +23,17 @@ require("firebase/firestore");
 //   messagingSenderId: process.env.REACT_APP_PROD_MESSAGING_SENDER_ID,
 // }
 
+app.initializeApp(DEV_CONFIG)
+export const db = app.firestore()
+export const auth = app.auth()
+//export const firebaseStorage = app.storage()
+export const googleProvider = new app.auth.GoogleAuthProvider()
+export const facebookProvider = new app.auth.FacebookAuthProvider()
+export const twitterProvider = new app.auth.TwitterAuthProvider()
+export const doSignInWithGoogle = () => auth.signInWithPopup(googleProvider);
+export const doSignInWithFacebook = () => auth.signInWithPopup(facebookProvider)
+export const doSignOut = () => auth.signOut()
+
 class Firebase {
   fieldValue: any
   emailAuthProvider: any
@@ -61,8 +72,6 @@ class Firebase {
   doSignOut = () => this.auth.signOut();
 
 }
-
-export const base = app
 
 export const storage = app.storage;
 
