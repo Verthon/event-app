@@ -17,16 +17,15 @@ import styled from 'styled-components'
 import { search } from 'ionicons/icons'
 
 import { db } from '../firebase/firebase'
-import { fetchAllEvents, fetchAllEventsSuccess, fetchAllEventsFailure } from '../reducers/events'
+import { fetchAllEvents } from '../reducers/events'
+import { fetchAllCategories } from '../reducers/categories'
 import EventItem from '../components/EventItem'
 import Category from '../components/Category'
-import useCategories from '../hooks/useCategories'
 
 const Events: React.FC = (props: any) => {
-  let [error, setError] = useState(false)
   let [searchVisibility, toggleSearchBar] = useState<boolean>(false)
   let [events, setEvents] = useState([])
-  const dispatch = useDispatch()
+  const dispatch: any = useDispatch()
   let [categories, setCategories] = useState([])
   let [showToast, setToast] = useState<boolean>(false)
   let [showSpinner, setSpinner] = useState<boolean>(true)
@@ -36,42 +35,40 @@ const Events: React.FC = (props: any) => {
 
   useEffect(() => {
     dispatch(fetchAllEvents())
-    // const unsubscribe: any = db
-    //   .collection('events')
-    //   .get()
-    //   .then((querySnapshot: any) => {
-    //     const events: any = []
-    //     querySnapshot.docs.forEach((doc: any) => {
-    //       const data = doc.data()
-    //       data.docId = doc.id
-    //       events.push(data)
-    //     })
-    //     setDataFetched(true)
-    //     setEvents(events)
-    //     return events
-    //   })
-    //   .catch(() => {
-    //     setToast(true)
-    //   })
+      .then((result: any) => {
+        setDataFetched(true)
+        setEvents(result.payload)
+      })
+      .catch(() => {
+        setToast(true)
+      })
   }, [])
 
   useEffect(() => {
-    const unsubscribe: any = db
-      .collection('categories')
-      .get()
-      .then((querySnapshot: any) => {
-        const categories: any = []
-        querySnapshot.docs.forEach((doc: any) => {
-          categories.push(doc.data())
-        })
+    dispatch(fetchAllCategories())
+      .then((result: any) => {
         setDataFetched(true)
-        setCategories(categories)
+        setCategories(result.payload)
       })
       .catch(() => {
-        return setToast(true)
+        setToast(true)
       })
-    console.log('categories fetched')
-    return () => unsubscribe()
+    // const unsubscribe: any = db
+    //   .collection('categories')
+    //   .get()
+    //   .then((querySnapshot: any) => {
+    //     const categories: any = []
+    //     querySnapshot.docs.forEach((doc: any) => {
+    //       categories.push(doc.data())
+    //     })
+    //     setDataFetched(true)
+    //     setCategories(categories)
+    //   })
+    //   .catch(() => {
+    //     return setToast(true)
+    //   })
+    // console.log('categories fetched')
+    // return () => unsubscribe()
   }, [])
 
   return (

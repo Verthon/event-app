@@ -28,7 +28,7 @@ const CategoryWrapper = styled.button`
 `
 
 const IconWrapper = styled.div`
-  background-color: #dde0e0;
+  background-color: #c2e2e3;
   padding: 0.5rem;
   display: flex;
   justify-content: center;

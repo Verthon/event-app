@@ -8,7 +8,6 @@ import { EventType } from '../types/events'
 import { showEventDetails } from '../reducers/event'
 
 const EventItem = (props: any) => {
-
   const dispatch = useDispatch()
 
   const displayEventDetail = (e: any) => {
@@ -38,20 +37,19 @@ const EventItem = (props: any) => {
     image: props.image,
     timestamp: props.timestamp,
   }
-  //console.log('eventData', eventData)
   return (
-    <Event onClick={(e) => displayEventDetail(e)}>
+    <Event onClick={e => displayEventDetail(e)}>
       <Link to={`/event-detail/:${eventData.docId}`}>
         <ImageWrapper>
           <Time>
             <Day>{formatDay(eventData.timestamp)}</Day>
             <Month>{formatMonth(eventData.timestamp)}</Month>
           </Time>
-          { eventData.image ? <Image src={eventData.image + '/500x200'} alt="" /> : <ImagePlaceholder/> }
+          <Image src={eventData.image + '/500x200'} alt="" />
         </ImageWrapper>
       </Link>
       <InfoWrapper>
-        <Link to={`/event-detail/:${eventData.eventId}`}>
+        <Link to={`/event-detail/:${eventData.docId}`}>
           <Title>{eventData.name}</Title>
         </Link>
         <Paragraph>{eventData.localization}</Paragraph>
@@ -74,14 +72,14 @@ const Event = styled.div`
 
 const ImageWrapper = styled.div`
   position: relative;
+  width: 100%;
+  padding-bottom: 39.99%;
 `
 
-const ImagePlaceholder = styled.div`
-  width: 100%;
-  height: 200px;
-  background: #f6f9f9;
-`
 const Image = styled.img`
+  position: absolute;
+  top: 0;
+  left: 0;
   border-radius: 10px 10px 0px 0px;
 `
 

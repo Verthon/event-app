@@ -1,31 +1,31 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { db } from '../firebase/firebase'
 
-interface EventsState {
+interface IEventsState {
   loading: string,
   error: string | null,
   events: Array<any>
 }
 
-export const fetchAllEvents = createAsyncThunk('events/fetchAllEvents', () => {
-  db.collection('events')
-    .get()
-    .then((querySnapshot: any) => {
-      const events: any = []
-      querySnapshot.docs.forEach((doc: any) => {
-        const data = doc.data()
-        data.docId = doc.id
-        events.push(data)
-      })
-      console.log('fetchAllEvents() in events reducer', events);
-      return events
+export const fetchAllEvents = createAsyncThunk('events/fetchAllEvents', async () => {
+  try {
+    const querySnapshot = await db.collection('events')
+      .get()
+    const events: any = []
+    querySnapshot.docs.forEach((doc: any) => {
+      const data = doc.data()
+      data.docId = doc.id
+      events.push(data)
     })
-    .catch((err) => {
-      console.log('error occurred while fetching events inside of eventsSlice', err)
-    })
+    console.log('fetchAllEvents() in events reducer', events)
+    return events
+  }
+  catch (err) {
+    console.log('error occurred while fetching events inside of eventsSlice', err)
+  }
 })
 
-const initialState: EventsState = {
+const initialState: IEventsState = {
   loading: 'idle',
   error: null,
   events: []
@@ -35,14 +35,14 @@ export const eventsSlice = createSlice({
   name: 'events',
   initialState,
   reducers: {
-    fetchAllEventsSuccess: (action: any, state: any) => {
+    fetchAllEventsSuccess: (state: IEventsState, action: any) => {
       //state.events.push(action.payload)
       state.error = null
     },
-    fetchAllEventsFailure: (action: any, state: any) => {
+    fetchAllEventsFailure: (state: IEventsState, action: any) => {
       state.error = action.payload
     },
-    filterEventsByCategory: (action: any, state: any) => {
+    filterEventsByCategory: (state: IEventsState, action: any) => {
       state.events.filter((event: any) => event.category === action.payload)
     },
     filterEventsBySearch: (action: any, state: any) => {
@@ -50,8 +50,8 @@ export const eventsSlice = createSlice({
     }
   },
   extraReducers: builder => {
-    builder.addCase(fetchAllEvents.fulfilled, (state, action) => {
-      console.log('what is action in extraReducers?', action)
+    builder.addCase(fetchAllEvents.fulfilled, (state: IEventsState, action) => {
+      console.log('what is action in extraReducers?',state,  action)
       state.events.push(action.payload)
     })
   }
