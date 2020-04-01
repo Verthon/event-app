@@ -17,8 +17,6 @@ import logo from '../assets/logo/logo-color.svg'
 import React, { useState } from 'react'
 import dayjs from 'dayjs'
 import styled from 'styled-components'
-
-import { withFirebase } from '../firebase'
 import { storage } from '../firebase/firebase'
 const CreateEvents: React.FC = (props: any) => {
   const [form, setForm] = useState({
@@ -267,4 +265,4 @@ const FileUploadLabel = styled.div`
   margin: 0 0 1rem 0;
 `
  
-export default withFirebase(CreateEvents)
+export default CreateEvents

@@ -1,6 +1,7 @@
-import React, { useContext } from 'react'
-import { Redirect, Route, RouteProps, useLocation } from 'react-router'
+import React from 'react'
+import { Redirect, Route, RouteProps } from 'react-router'
 import { SIGN_IN } from '../constants/routes'
+import useAuth from '../hooks/useAuth'
 
 export interface ProtectedRouteProps extends RouteProps {
   isAuthenticated: boolean;
@@ -8,21 +9,26 @@ export interface ProtectedRouteProps extends RouteProps {
   authenticationPath: string;
 }
 
-export const ProtectedRoute: React.FC<ProtectedRouteProps> = props => {
-  let redirectPath = '';
-  if (!props.isAuthenticated) {
-    redirectPath = props.authenticationPath;
-  }
-  if (props.isAuthenticated) {
-    redirectPath = props.restrictedPath;
-  }
-
-  if (redirectPath) {
-    const renderComponent = () => <Redirect to={{ pathname: redirectPath }} />;
-    return <Route {...props} component={renderComponent} render={undefined} />;
-  } else {
-    return <Route {...props} />;
-  }
-};
+export const ProtectedRoute = ({ children, ...rest }: any) => {
+  const auth = useAuth()
+  console.log('auth in ProtectedRoute', auth)
+  return (
+    <Route
+      {...rest}
+      render={({ location }) =>
+        auth.user ? (
+          children
+        ) : (
+          <Redirect
+            to={{
+              pathname: SIGN_IN,
+              state: { from: location }
+            }}
+          />
+        )
+      }
+    />
+  );
+}
 
 export default ProtectedRoute

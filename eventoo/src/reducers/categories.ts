@@ -7,20 +7,20 @@ interface ICategoriesState {
   categories: Array<any>
 }
 
-export const fetchAllCategories = createAsyncThunk('events/fetchAllEvents', async () => {
+export const fetchAllCategories = createAsyncThunk('categories/fetchAllCategories', async () => {
   try {
     const querySnapshot = await db.collection('categories')
       .get()
-    const events: any = []
+    const categories: any = []
     querySnapshot.docs.forEach((doc: any) => {
       const data = doc.data()
       data.docId = doc.id
-      events.push(data)
+      categories.push(data)
     })
-    return events
+    return categories
   }
   catch (err) {
-    console.log('error occurred while fetching events inside of eventsSlice', err)
+    console.log('error occurred while fetching categories inside of eventsSlice', err)
   }
 })
 
@@ -37,9 +37,9 @@ export const categoriesSlice = createSlice({
   },
   extraReducers: builder => {
     builder.addCase(fetchAllCategories.fulfilled, (state: ICategoriesState, action) => {
-      state.categories.push(action.payload)
+      state.categories = [...action.payload]
     })
   }
-}) 
+})
 
 export default categoriesSlice

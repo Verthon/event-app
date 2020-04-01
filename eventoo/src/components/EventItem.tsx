@@ -98,6 +98,7 @@ const Time = styled.div`
   background: #f6f9f9;
   border-radius: 0px 10px;
   line-height: 1;
+  z-index: 1;
 `
 
 const Day = styled.p`

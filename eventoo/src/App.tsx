@@ -55,15 +55,9 @@ import './theme/variables.css'
 /* Custom css */
 import './styles/index.css'
 
-const App: React.FC = () => {
+const App: React.FC<any> = (props) => {
   const auth = useAuth()
-  console.log(auth)
-  // const defaultProtectedRouteProps: ProtectedRouteProps = {
-  //   isAuthenticated: !!sessionContext.isAuthenticated,
-  //   authenticationPath: SIGN_IN,
-  //   redirectPathOnAuthentication: sessionContext.redirectPathOnAuthentication || '',
-  //   setRedirectPathOnAuthentication
-  // };
+  console.log('App auth.user', auth.user)
   return (
     <IonApp>
       <IonReactRouter>
@@ -73,7 +67,13 @@ const App: React.FC = () => {
             <Route path={EVENTS} component={Events} exact={true} />
             <Route path={CONTACT} component={Contact} exact={true} />
             <Route path={CREATE_EVENT} component={CreateEvent} exact={true} />
-            <ProtectedRoute isAuthenticated={auth.user} authenticationPath={SIGN_IN} restrictedPath={ACCOUNT} component={Account} path={ACCOUNT} exact={true} />
+            <Route
+              path={ACCOUNT}
+              exact={true}
+              render={(props: any) => 
+                auth.user !== null || auth.user ? <Account {...props}/> : <SignIn />
+              }
+            />
             <Route path={SIGN_IN} component={SignIn} exact={true} />
             <Route path={EVENT_DETAIL} component={EventDetail} exact={true} />
             <Route exact path="/" render={() => <Redirect to={HOME} />} />

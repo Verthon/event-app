@@ -8,27 +8,26 @@ import {
 } from '@ionic/react'
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { withFirebase } from '../firebase'
+import {db} from '../firebase/firebase'
 import useAuth from '../hooks/useAuth'
 //import EventItem from '../components/EventItem'
 
 const Account: React.FC = (props: any) => {
-  const auth = useAuth()
   const [events, setEvents] = useState([])
   const [show, setShow] = useState(false)
   let [showSpinner, setSpinner] = useState<boolean>(true)
   let [isDataFetched, setDataFetched] = useState<boolean>(false)
-
   const signOut = () => {
     return auth.signout()
       .then(() => props.history.push('/events'))
       .catch((error: any) => console.log('Error', error))
   }
 
+
+  const auth = useAuth()
   useEffect(() => {
     console.log('Auth user object in Account useEffect', auth.user)
-    const { db } = props.firebase
-    if (auth.user) {
+    if (auth.user !== null || auth.user) {
       const unsubscribe = db
         .collection('events')
         .get()
@@ -37,17 +36,17 @@ const Account: React.FC = (props: any) => {
           querySnapshot.docs.forEach((doc: any) => {
             const data = doc.data()
             data.docId = doc.id
-            console.log('firebase data', data)
             events.push(data)
           })
+          setEvents(events)
           setDataFetched(true)
         })
         .catch((error: any) => {
           return console.log('Error with fetching events', error)
         })
-      return () => unsubscribe()
+      return () => unsubscribe
     } else {
-      return props.history.push('/login')
+      props.history.push('/login')
     }
   }, [])
 
@@ -131,4 +130,4 @@ const Button = styled.button`
   color: #ffffff;
 `
 
-export default withFirebase(Account)
+export default Account

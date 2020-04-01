@@ -10,7 +10,6 @@ import React from 'react'
 import styled from 'styled-components'
 import background from '../assets/backgrounds/login-bg.svg'
 import { logoGoogle, logoFacebook } from 'ionicons/icons'
-import { withFirebase } from '../firebase'
 import useAuth from '../hooks/useAuth'
 
 const SignIn: React.FC = (props: any) => {
@@ -24,7 +23,7 @@ const SignIn: React.FC = (props: any) => {
     // })
   }
 
-  console.log('firebase auth', auth.user)
+  console.log('firebase auth', auth)
 
   return (
     <IonPage>
@@ -101,4 +100,4 @@ const WhiteButton = styled.button`
   color: var(--ion-color-primary);
 `
 
-export default withFirebase(SignIn)
+export default SignIn

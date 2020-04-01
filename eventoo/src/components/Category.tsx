@@ -3,11 +3,14 @@ import styled from 'styled-components'
 //import { ICategory } from '../interfaces'
 
 const Category = (props: any) => {
-  const filterCategories = (category: string) => {
-    console.log(category)
+  const test = (category: string) => {
+    console.log('Handle click inside of component', category)
   }
   return (
-    <CategoryWrapper type="button" onClick={() => filterCategories(props.category)}>
+    <CategoryWrapper
+      type="button"
+      onClick={props.filterFunction}
+    >
       <IconWrapper>
         <Icon>{props.emoji}</Icon>
       </IconWrapper>

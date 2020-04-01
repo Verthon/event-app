@@ -17,7 +17,6 @@ export const fetchAllEvents = createAsyncThunk('events/fetchAllEvents', async ()
       data.docId = doc.id
       events.push(data)
     })
-    console.log('fetchAllEvents() in events reducer', events)
     return events
   }
   catch (err) {
@@ -36,7 +35,6 @@ export const eventsSlice = createSlice({
   initialState,
   reducers: {
     fetchAllEventsSuccess: (state: IEventsState, action: any) => {
-      //state.events.push(action.payload)
       state.error = null
     },
     fetchAllEventsFailure: (state: IEventsState, action: any) => {
@@ -51,8 +49,7 @@ export const eventsSlice = createSlice({
   },
   extraReducers: builder => {
     builder.addCase(fetchAllEvents.fulfilled, (state: IEventsState, action) => {
-      console.log('what is action in extraReducers?',state,  action)
-      state.events.push(action.payload)
+      state.events = [...action.payload]
     })
   }
 })

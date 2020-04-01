@@ -16,13 +16,12 @@ import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 import { search } from 'ionicons/icons'
 
-import { db } from '../firebase/firebase'
-import { fetchAllEvents } from '../reducers/events'
+import { fetchAllEvents, filterEventsByCategory } from '../reducers/events'
 import { fetchAllCategories } from '../reducers/categories'
 import EventItem from '../components/EventItem'
 import Category from '../components/Category'
 
-const Events: React.FC = (props: any) => {
+const Events: React.FC = () => {
   let [searchVisibility, toggleSearchBar] = useState<boolean>(false)
   let [events, setEvents] = useState([])
   const dispatch: any = useDispatch()
@@ -31,7 +30,10 @@ const Events: React.FC = (props: any) => {
   let [showSpinner, setSpinner] = useState<boolean>(true)
   let [isDataFetched, setDataFetched] = useState<boolean>(false)
 
-  const addDocumentIdToEvent = (id: string, event: any) => ({})
+
+  const filterEvents = (category: string) => {
+    dispatch(filterEventsByCategory(category))
+  }
 
   useEffect(() => {
     dispatch(fetchAllEvents())
@@ -42,7 +44,7 @@ const Events: React.FC = (props: any) => {
       .catch(() => {
         setToast(true)
       })
-  }, [])
+  }, [dispatch])
 
   useEffect(() => {
     dispatch(fetchAllCategories())
@@ -53,23 +55,7 @@ const Events: React.FC = (props: any) => {
       .catch(() => {
         setToast(true)
       })
-    // const unsubscribe: any = db
-    //   .collection('categories')
-    //   .get()
-    //   .then((querySnapshot: any) => {
-    //     const categories: any = []
-    //     querySnapshot.docs.forEach((doc: any) => {
-    //       categories.push(doc.data())
-    //     })
-    //     setDataFetched(true)
-    //     setCategories(categories)
-    //   })
-    //   .catch(() => {
-    //     return setToast(true)
-    //   })
-    // console.log('categories fetched')
-    // return () => unsubscribe()
-  }, [])
+  }, [dispatch])
 
   return (
     <IonPage>
@@ -90,7 +76,7 @@ const Events: React.FC = (props: any) => {
 
       <IonContent class="ion-padding-horizontal">
         <IonLoading
-          isOpen={!isDataFetched}
+          isOpen={!isDataFetched && showSpinner}
           onDidDismiss={() => setSpinner(false)}
           message={'Please wait...'}
           spinner="bubbles"
@@ -111,6 +97,7 @@ const Events: React.FC = (props: any) => {
                     key={id}
                     category={category.category}
                     emoji={category.emoji}
+                    filterFunction={() => filterEvents(category.category)}
                   />
                 )
               })
