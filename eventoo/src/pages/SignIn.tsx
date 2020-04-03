@@ -6,24 +6,46 @@ import {
   IonToolbar,
   IonIcon,
 } from '@ionic/react'
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import background from '../assets/backgrounds/login-bg.svg'
 import { logoGoogle, logoFacebook } from 'ionicons/icons'
-import useAuth from '../hooks/useAuth'
+import useAuthUser from '../hooks/useAuthUser'
+import {
+  auth,
+  doSignInWithGoogle,
+  doSignInWithFacebook,
+} from '../firebase/firebase'
 
 const SignIn: React.FC = (props: any) => {
-  const auth = useAuth()
+  const currentUser = useAuthUser()
+  const localAuth: any = auth
+  console.log('SignIn user from hook', currentUser)
   const loginWithSocial = (provider: string) => {
-    auth[`loginWith${provider}`]()
-    .then((result: any) => props.history.push('/account'))
-    .catch((error: any) => console.log(`Error occurred while signing in using ${provider} provider.`, error))
+    if (provider === 'Google') {
+      doSignInWithGoogle()
+        .then((result: any) => props.history.push('/account'))
+        .catch((error: any) =>
+          console.log(
+            `Error occurred while signing in using ${provider} provider.`,
+            error
+          )
+        )
+    }
+    if (provider === 'Facebook') {
+      doSignInWithFacebook()
+        .then((result: any) => props.history.push('/account'))
+        .catch((error: any) =>
+          console.log(
+            `Error occurred while signing in using ${provider} provider.`,
+            error
+          )
+        )
+    }
     // props.firebase.auth.onAuthStateChanged((authUser: any) => {
     //   return authUser ? props.history.push('/account') : null
     // })
   }
-
-  console.log('firebase auth', auth)
 
   return (
     <IonPage>

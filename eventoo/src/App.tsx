@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Redirect, Route, RouteComponentProps } from 'react-router-dom'
 import {
   IonApp,
@@ -9,12 +9,15 @@ import {
   IonTabButton,
   IonTabs,
 } from '@ionic/react'
+import { useDispatch } from 'react-redux'
+import { login, logout, selectCurrentUser } from './reducers/auth'
 import { IonReactRouter } from '@ionic/react-router'
 import dateRangeIcon from './assets/icons/date_range.svg'
 import accountBoxIcon from './assets/icons/account_box.svg'
 import libraryAddIcon from './assets/icons/library_add.svg'
 import infoIcon from './assets/icons/perm_device_information.svg'
 import useAuth from './hooks/useAuth'
+import useAuthUser from './hooks/useAuthUser'
 import Home from './pages/Home'
 import Events from './pages/Events'
 import Contact from './pages/Contact'
@@ -22,7 +25,6 @@ import Account from './pages/Account'
 import SignIn from './pages/SignIn'
 import CreateEvent from './pages/CreateEvent'
 import EventDetail from './pages/EventDetail'
-import ProtectedRoute, { ProtectedRouteProps } from './components/PrivateRoute'
 import {
   HOME,
   EVENTS,
@@ -55,9 +57,9 @@ import './theme/variables.css'
 /* Custom css */
 import './styles/index.css'
 
-const App: React.FC<any> = (props) => {
-  const auth = useAuth()
-  console.log('App auth.user', auth.user)
+const App: React.FC<any> = props => {
+  const currentUser = useAuthUser()
+  console.log('current User in App', currentUser)
   return (
     <IonApp>
       <IonReactRouter>
@@ -70,8 +72,12 @@ const App: React.FC<any> = (props) => {
             <Route
               path={ACCOUNT}
               exact={true}
-              render={(props: any) => 
-                auth.user !== null || auth.user ? <Account {...props}/> : <SignIn />
+              render={(props: any) =>
+                currentUser !== null || currentUser !== undefined ? (
+                  <Account {...props} />
+                ) : (
+                  <SignIn />
+                )
               }
             />
             <Route path={SIGN_IN} component={SignIn} exact={true} />

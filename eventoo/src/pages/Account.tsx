@@ -6,49 +6,58 @@ import {
   IonToolbar,
   IonLoading,
 } from '@ionic/react'
+import { useDispatch } from 'react-redux'
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import {db} from '../firebase/firebase'
+import { db, auth, doSignOut } from '../firebase/firebase'
+import { logout } from '../reducers/auth'
 import useAuth from '../hooks/useAuth'
+import useAuthUser from '../hooks/useAuthUser'
 //import EventItem from '../components/EventItem'
 
 const Account: React.FC = (props: any) => {
+  const dispatch = useDispatch()
+  const currentUser = useAuthUser()
+  console.log('Auth user object in Account useEffect', currentUser)
   const [events, setEvents] = useState([])
   const [show, setShow] = useState(false)
   let [showSpinner, setSpinner] = useState<boolean>(true)
   let [isDataFetched, setDataFetched] = useState<boolean>(false)
-  const signOut = () => {
-    return auth.signout()
-      .then(() => props.history.push('/events'))
-      .catch((error: any) => console.log('Error', error))
+  const signOut = async () => {
+    try {
+      await doSignOut()
+      console.log(currentUser)
+      dispatch(logout())
+      return props.history.push('/events')
+    } catch (error) {
+      return console.log('Error', error)
+    }
   }
 
-
-  const auth = useAuth()
-  useEffect(() => {
-    console.log('Auth user object in Account useEffect', auth.user)
-    if (auth.user !== null || auth.user) {
-      const unsubscribe = db
-        .collection('events')
-        .get()
-        .then((querySnapshot: any) => {
-          const events: any = []
-          querySnapshot.docs.forEach((doc: any) => {
-            const data = doc.data()
-            data.docId = doc.id
-            events.push(data)
-          })
-          setEvents(events)
-          setDataFetched(true)
-        })
-        .catch((error: any) => {
-          return console.log('Error with fetching events', error)
-        })
-      return () => unsubscribe
-    } else {
-      props.history.push('/login')
-    }
-  }, [])
+  // useEffect(() => {
+  //   console.log('Auth user object in Account useEffect', currentUser)
+  //   if (currentUser !== undefined && currentUser !== null && currentUser) {
+  //     const unsubscribe = db
+  //       .collection('events')
+  //       .get()
+  //       .then((querySnapshot: any) => {
+  //         const events: any = []
+  //         querySnapshot.docs.forEach((doc: any) => {
+  //           const data = doc.data()
+  //           data.docId = doc.id
+  //           events.push(data)
+  //         })
+  //         setEvents(events)
+  //         setDataFetched(true)
+  //       })
+  //       .catch((error: any) => {
+  //         return console.log('Error with fetching events', error)
+  //       })
+  //     return () => unsubscribe
+  //   } else {
+  //     props.history.push('/login')
+  //   }
+  // }, [currentUser])
 
   // useEffect(() => {
   //   const listener = props.firebase.auth.onAuthStateChanged((authUser: any) => {
@@ -86,13 +95,13 @@ const Account: React.FC = (props: any) => {
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        <IonLoading
+        {/* <IonLoading
           isOpen={!isDataFetched}
           onDidDismiss={() => setSpinner(false)}
           message={'Please wait...'}
           spinner="bubbles"
           duration={500}
-        />
+        /> */}
         <p>KEK</p>
         {/* <Avatar src={authUser ? authUser.photoURL : null} />
         <Name>{authUser ? authUser.displayName : null}</Name> */}

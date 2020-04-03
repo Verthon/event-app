@@ -1,6 +1,4 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { db } from '../firebase/firebase'
-import { auth } from '../firebase/firebase'
+import { createSlice } from '@reduxjs/toolkit'
 
 interface IAuthState {
   error: string | null,
@@ -19,6 +17,7 @@ export const authSlice = createSlice({
   initialState: initialState,
   reducers: {
     login: (state: IAuthState, action: any) => {
+      state.synced = true
       state.user = action.payload
     },
     logout: (state: IAuthState) => {
@@ -26,6 +25,8 @@ export const authSlice = createSlice({
     }
   }
 })
+
+export const selectCurrentUser = (state: any) => state.auth.user
 
 export const {login, logout} = authSlice.actions
 
