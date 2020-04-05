@@ -33,46 +33,4 @@ export const twitterProvider = new app.auth.TwitterAuthProvider()
 export const doSignInWithGoogle = () => auth.signInWithPopup(googleProvider);
 export const doSignInWithFacebook = () => auth.signInWithPopup(facebookProvider)
 export const doSignOut = () => auth.signOut()
-
-class Firebase {
-  fieldValue: any
-  emailAuthProvider: any
-  auth: any;
-  db: any;
-  googleProvider: any;
-  facebookProvider: any;
-  twitterProvider: any;
-  constructor() {
-    app.initializeApp(DEV_CONFIG);
-
-    /* Helper */
-
-    this.fieldValue = app.firestore.FieldValue;
-    this.emailAuthProvider = app.auth.EmailAuthProvider;
-
-    /* Firebase APIs */
-
-    this.auth = app.auth();
-    this.db = app.firestore();
-
-    /* Social Sign In Method Provider */
-
-    this.googleProvider = new app.auth.GoogleAuthProvider();
-    this.facebookProvider = new app.auth.FacebookAuthProvider();
-    this.twitterProvider = new app.auth.TwitterAuthProvider();
-  }
-
-
-  doSignInWithGoogle = () =>
-    this.auth.signInWithPopup(this.googleProvider);
-
-  doSignInWithFacebook = () =>
-    this.auth.signInWithPopup(this.facebookProvider);
-
-  doSignOut = () => this.auth.signOut();
-
-}
-
 export const storage = app.storage;
-
-export default Firebase

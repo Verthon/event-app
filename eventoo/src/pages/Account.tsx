@@ -11,7 +11,6 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { db, auth, doSignOut } from '../firebase/firebase'
 import { logout } from '../reducers/auth'
-import useAuth from '../hooks/useAuth'
 import useAuthUser from '../hooks/useAuthUser'
 //import EventItem from '../components/EventItem'
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Redirect, Route, RouteProps } from 'react-router'
 import { SIGN_IN } from '../constants/routes'
-import useAuth from '../hooks/useAuth'
+import useAuthUser from '../hooks/useAuthUser'
 
 export interface ProtectedRouteProps extends RouteProps {
   isAuthenticated: boolean;
@@ -10,7 +10,7 @@ export interface ProtectedRouteProps extends RouteProps {
 }
 
 export const ProtectedRoute = ({ children, ...rest }: any) => {
-  const auth = useAuth()
+  const auth = useAuthUser()
   console.log('auth in ProtectedRoute', auth)
   return (
     <Route
