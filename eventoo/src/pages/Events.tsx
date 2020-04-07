@@ -12,7 +12,7 @@ import {
   IonLoading,
 } from '@ionic/react'
 import React, { useState, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { search } from 'ionicons/icons'
 
@@ -29,10 +29,15 @@ const Events: React.FC = () => {
   let [showToast, setToast] = useState<boolean>(false)
   let [showSpinner, setSpinner] = useState<boolean>(true)
   let [isDataFetched, setDataFetched] = useState<boolean>(false)
+  const currentEvents = useSelector((state: any) => state.events.events)
 
 
   const filterEvents = (category: string) => {
     dispatch(filterEventsByCategory(category))
+    console.log(currentEvents)
+    setDataFetched(false)
+    setSpinner(true)
+    setEvents(currentEvents)
   }
 
   useEffect(() => {

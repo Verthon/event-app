@@ -4,7 +4,8 @@ import { db } from '../firebase/firebase'
 interface IEventsState {
   loading: string,
   error: string | null,
-  events: Array<any>
+  events: Array<any>,
+  allEvents: Array<any>
 }
 
 export const fetchAllEvents = createAsyncThunk('events/fetchAllEvents', async () => {
@@ -27,7 +28,8 @@ export const fetchAllEvents = createAsyncThunk('events/fetchAllEvents', async ()
 const initialState: IEventsState = {
   loading: 'idle',
   error: null,
-  events: []
+  events: [],
+  allEvents: []
 }
 
 export const eventsSlice = createSlice({
@@ -40,16 +42,18 @@ export const eventsSlice = createSlice({
     fetchAllEventsFailure: (state: IEventsState, action: any) => {
       state.error = action.payload
     },
-    filterEventsByCategory: (state: IEventsState, action: any) => {
-      state.events.filter((event: any) => event.category === action.payload)
+    filterEventsByCategory: (state: IEventsState, action: any): any => {
+      console.log(action.payload);
+      state.events = state.allEvents.filter((event: any) => event.category === action.payload)
     },
     filterEventsBySearch: (action: any, state: any) => {
-      state.events.filter((event: any) => event.includes(action.payload))
+      state.events = state.allEvents.filter((event: any) => event.includes(action.payload))
     }
   },
   extraReducers: builder => {
     builder.addCase(fetchAllEvents.fulfilled, (state: IEventsState, action) => {
       state.events = [...action.payload]
+      state.allEvents = [...action.payload]
     })
   }
 })

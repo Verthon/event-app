@@ -42,7 +42,6 @@ const Content = styled.article`
   align-items: center;
   margin: auto auto 0 auto;
   padding: 0 0 2.75rem 0;
-  height: 40%;
   background: #ffffff;
   max-width: 80%;
 `

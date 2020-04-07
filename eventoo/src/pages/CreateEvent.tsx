@@ -244,6 +244,7 @@ const Title = styled.h1`
   margin: 1rem 1rem;
 `
 const Button = styled.button`
+  display: block;
   font-weight: bold;
   font-size: 1rem;
   border-radius: 2px;
