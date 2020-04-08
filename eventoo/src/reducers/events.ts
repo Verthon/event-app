@@ -1,18 +1,19 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
 import { db } from '../firebase/firebase'
+import { EventType } from '../types/events'
 
-interface IEventsState {
+export interface IEventsState {
   loading: string,
   error: string | null,
-  events: Array<any>,
-  allEvents: Array<any>
+  events: Array<EventType>,
+  allEvents: Array<EventType>
 }
 
 export const fetchAllEvents = createAsyncThunk('events/fetchAllEvents', async () => {
   try {
     const querySnapshot = await db.collection('events')
       .get()
-    const events: any = []
+    const events: Array<EventType> = []
     querySnapshot.docs.forEach((doc: any) => {
       const data = doc.data()
       data.docId = doc.id
@@ -36,17 +37,22 @@ export const eventsSlice = createSlice({
   name: 'events',
   initialState,
   reducers: {
-    fetchAllEventsSuccess: (state: IEventsState, action: any) => {
+    fetchAllEventsSuccess: (state: IEventsState) => {
       state.error = null
     },
-    fetchAllEventsFailure: (state: IEventsState, action: any) => {
+    fetchAllEventsFailure: (state: IEventsState, action: PayloadAction<string>) => {
       state.error = action.payload
     },
     filterEventsByCategory: (state: IEventsState, action: any): any => {
-      console.log(action.payload);
-      state.events = state.allEvents.filter((event: any) => event.category === action.payload)
+      console.log(action.payload)
+      if (action.payload === "All") {
+        state.events = state.allEvents.map((event: EventType) => event);
+        console.log('state.events after filter', state.events)
+      }
+      state.events = state.allEvents.filter((event: EventType) => event.category === action.payload)
+      console.log('state.events after filter', state.events)
     },
-    filterEventsBySearch: (action: any, state: any) => {
+    filterEventsBySearch: (state: IEventsState, action: any) => {
       state.events = state.allEvents.filter((event: any) => event.includes(action.payload))
     }
   },

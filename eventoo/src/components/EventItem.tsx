@@ -26,31 +26,31 @@ const EventItem = (props: any) => {
   const eventData: EventType = {
     eventId: props.eventId,
     docId: props.docId,
-    name: props.name,
+    title: props.title,
     host: props.host,
     localization: props.localization,
     address: props.address,
     category: props.category,
-    date: props.date,
-    time: props.time,
+    day: props.day,
+    hour: props.hour,
     description: props.description,
-    image: props.image,
-    timestamp: props.timestamp,
+    featuredImage: props.featuredImage,
+    date: props.date,
   }
   return (
     <Event onClick={e => displayEventDetail(e)}>
       <Link to={`/event-detail/:${eventData.docId}`}>
         <ImageWrapper>
           <Time>
-            <Day>{formatDay(eventData.timestamp)}</Day>
-            <Month>{formatMonth(eventData.timestamp)}</Month>
+            <Day>{formatDay(eventData.date)}</Day>
+            <Month>{formatMonth(eventData.date)}</Month>
           </Time>
-          <Image src={eventData.image + '/500x200'} alt="" />
+          <Image src={eventData.featuredImage + '/500x200'} alt="" />
         </ImageWrapper>
       </Link>
       <InfoWrapper>
         <Link to={`/event-detail/:${eventData.docId}`}>
-          <Title>{eventData.name}</Title>
+          <Title>{eventData.title}</Title>
         </Link>
         <Paragraph>{eventData.localization}</Paragraph>
       </InfoWrapper>

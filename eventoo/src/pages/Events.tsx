@@ -20,6 +20,8 @@ import { fetchAllEvents, filterEventsByCategory } from '../reducers/events'
 import { fetchAllCategories } from '../reducers/categories'
 import EventItem from '../components/EventItem'
 import Category from '../components/Category'
+import { IEventsState } from '../reducers/events'
+import { EventType } from '../types/events'
 
 const Events: React.FC = () => {
   let [searchVisibility, toggleSearchBar] = useState<boolean>(false)
@@ -29,16 +31,17 @@ const Events: React.FC = () => {
   let [showToast, setToast] = useState<boolean>(false)
   let [showSpinner, setSpinner] = useState<boolean>(true)
   let [isDataFetched, setDataFetched] = useState<boolean>(false)
-  const currentEvents = useSelector((state: any) => state.events.events)
-
+  let currentEvents = useSelector((state: any) => state.events.events)
 
   const filterEvents = (category: string) => {
     dispatch(filterEventsByCategory(category))
-    console.log(currentEvents)
     setDataFetched(false)
     setSpinner(true)
     setEvents(currentEvents)
+    console.log('events state', events)
   }
+
+  useEffect(() => {}, [events])
 
   useEffect(() => {
     dispatch(fetchAllEvents())
@@ -110,21 +113,22 @@ const Events: React.FC = () => {
         </CategoriesWrapper>
         {events
           ? events.map((event: any, id: number) => {
+              console.log('events on render', events)
               return (
                 <EventItem
                   key={id}
                   docId={event.docId}
                   eventId={event.eventId}
-                  name={event.title}
+                  title={event.title}
                   localization={event.localization}
                   address={event.address}
                   host={event.host}
-                  timestamp={event.date.seconds}
-                  date={event.day}
-                  time={event.hour}
+                  date={event.date.seconds}
+                  day={event.day}
+                  hour={event.hour}
                   description={event.description}
                   category={event.category}
-                  image={event.featuredImage}
+                  featuredImage={event.featuredImage}
                 />
               )
             })

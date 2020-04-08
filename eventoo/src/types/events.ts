@@ -1,16 +1,16 @@
 export type EventType = {
   eventId: number,
   docId: string,
-  name: string,
+  title: string,
   host: string,
   localization: string,
   address: string,
   category: string,
-  date: string,
-  time: string,
+  day: string,
+  hour: string,
   description: string,
-  image: string,
-  timestamp?: string,
+  featuredImage: string,
+  date?: string,
 }
 
 export type CategoryType = {
