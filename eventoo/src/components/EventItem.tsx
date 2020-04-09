@@ -4,41 +4,51 @@ import dayjs from 'dayjs'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
-import { EventType } from '../types/events'
+import { EventType, EventItemType } from '../types/events'
 import { showEventDetails } from '../reducers/event'
 
-const EventItem = (props: any) => {
+const EventItem = ({
+  eventId,
+  docId,
+  title,
+  host,
+  localization,
+  address,
+  category,
+  day,
+  hour,
+  description,
+  featuredImage,
+  date,
+}: EventType) => {
   const dispatch = useDispatch()
 
-  const displayEventDetail = (e: any) => {
-    //e.preventDefault()
+  const displayEventDetail = () => {
     dispatch(showEventDetails(eventData))
   }
 
-  const formatDay = (timestamp: any) => {
-    timestamp = parseInt(timestamp)
+  const formatDay = (timestamp: number) => {
     return dayjs.unix(timestamp).format('DD')
   }
-  const formatMonth = (timestamp: any) => {
-    timestamp = parseInt(timestamp)
+  const formatMonth = (timestamp: number) => {
     return dayjs.unix(timestamp).format('MMM')
   }
-  const eventData: EventType = {
-    eventId: props.eventId,
-    docId: props.docId,
-    title: props.title,
-    host: props.host,
-    localization: props.localization,
-    address: props.address,
-    category: props.category,
-    day: props.day,
-    hour: props.hour,
-    description: props.description,
-    featuredImage: props.featuredImage,
-    date: props.date,
+  const eventData: EventItemType = {
+    eventId: eventId,
+    docId: docId,
+    title: title,
+    host: host,
+    localization: localization,
+    address: address,
+    category: category,
+    day: day,
+    hour: hour,
+    description: description,
+    featuredImage: featuredImage,
+    date: date.seconds,
   }
   return (
-    <Event onClick={e => displayEventDetail(e)}>
+    <Event onClick={() => displayEventDetail()}>
       <Link to={`/event-detail/:${eventData.docId}`}>
         <ImageWrapper>
           <Time>

@@ -21,7 +21,7 @@ import { fetchAllCategories } from '../reducers/categories'
 import EventItem from '../components/EventItem'
 import Category from '../components/Category'
 import { IEventsState } from '../reducers/events'
-import { EventType } from '../types/events'
+import { EventType, EventItemType } from '../types/events'
 
 const Events: React.FC = () => {
   let [searchVisibility, toggleSearchBar] = useState<boolean>(false)
@@ -112,8 +112,7 @@ const Events: React.FC = () => {
             : null}
         </CategoriesWrapper>
         {events
-          ? events.map((event: any, id: number) => {
-              console.log('events on render', events)
+          ? events.map((event: EventType, id: number) => {
               return (
                 <EventItem
                   key={id}
@@ -123,7 +122,7 @@ const Events: React.FC = () => {
                   localization={event.localization}
                   address={event.address}
                   host={event.host}
-                  date={event.date.seconds}
+                  date={event.date}
                   day={event.day}
                   hour={event.hour}
                   description={event.description}

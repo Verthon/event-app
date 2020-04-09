@@ -61,7 +61,7 @@ const Button = styled.button`
   background-color: var(--ion-color-primary);
   color: #ffffff;
   margin: 1.5rem 0 0 0;
-  padding: 0.5rem 4rem;
+  padding: 0.75rem 6rem;
 `
 
 export default Home

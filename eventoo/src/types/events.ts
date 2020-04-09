@@ -10,7 +10,25 @@ export type EventType = {
   hour: string,
   description: string,
   featuredImage: string,
-  date?: string,
+  date?: {
+    seconds: number,
+    nanoseconds: number
+  },
+}
+
+export type EventItemType = {
+  eventId: number,
+  docId: string,
+  title: string,
+  host: string,
+  localization: string,
+  address: string,
+  category: string,
+  day: string,
+  hour: string,
+  description: string,
+  featuredImage: string,
+  date?: number
 }
 
 export type CategoryType = {

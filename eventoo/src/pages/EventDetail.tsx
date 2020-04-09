@@ -13,9 +13,10 @@ import styled from 'styled-components'
 
 import dateIcon from '../assets/icons/date_range.svg'
 import locationIcon from '../assets/icons/location_on.svg'
+import {EventType} from '../types/events'
 
 const EventDetail = () => {
-  const eventData = useSelector((state: any) => state.event.event)
+  const eventData: EventType = useSelector((state: any) => state.event.event)
   return (
     <IonPage>
       <IonHeader>
@@ -28,8 +29,8 @@ const EventDetail = () => {
       </IonHeader>
       <IonContent>
         <Wrapper>
-          {eventData ? <Image src={eventData.image} /> : <ImagePlaceholder />}
-          <Title>{eventData ? eventData.name : ''}</Title>
+          {eventData ? <Image src={eventData.featuredImage} /> : <ImagePlaceholder />}
+          <Title>{eventData ? eventData.title : ''}</Title>
           <InfoWrapper>
             <Icon src={locationIcon} />
             <EntryWrapper>
@@ -42,8 +43,8 @@ const EventDetail = () => {
           <InfoWrapper>
             <Icon src={dateIcon} />
             <EntryWrapper>
-              <Date>{eventData ? eventData.date : ''}</Date>
-              <Time>{eventData ? eventData.time : ''}</Time>
+              <Date>{eventData ? eventData.day : ''}</Date>
+              <Time>{eventData ? eventData.hour : ''}</Time>
             </EntryWrapper>
           </InfoWrapper>
           <Separator />
