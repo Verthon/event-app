@@ -6,11 +6,10 @@ import { auth } from '../firebase/firebase'
 export default () => {
   const dispatch = useDispatch()
   const currentUser = useSelector(selectCurrentUser)
-  console.log('current User in useAuth hook', currentUser)
   useEffect(() => {
     const setUser = (user: any) => {
       if(user) {
-        dispatch(login({ uid: user.uid, email: user.email }))
+        dispatch(login({ uid: user.uid, email: user.email, name: user.displayName, avatar: user.photoURL}))
       } else {
         dispatch(logout())
       }

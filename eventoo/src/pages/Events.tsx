@@ -46,6 +46,7 @@ const Events: React.FC = () => {
   useEffect(() => {
     dispatch(fetchAllEvents())
       .then((result: any) => {
+        console.log('fetchAllEvents result', result)
         setDataFetched(true)
         setEvents(result.payload)
       })
@@ -57,6 +58,7 @@ const Events: React.FC = () => {
   useEffect(() => {
     dispatch(fetchAllCategories())
       .then((result: any) => {
+        console.log('fetchAllCategories result', result)
         setDataFetched(true)
         setCategories(result.payload)
       })

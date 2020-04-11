@@ -33,59 +33,6 @@ const Account: React.FC = (props: any) => {
     }
   }
 
-  // useEffect(() => {
-  //   console.log('Auth user object in Account useEffect', currentUser)
-  //   if (currentUser !== undefined && currentUser !== null && currentUser) {
-  //     const unsubscribe = db
-  //       .collection('events')
-  //       .get()
-  //       .then((querySnapshot: any) => {
-  //         const events: any = []
-  //         querySnapshot.docs.forEach((doc: any) => {
-  //           const data = doc.data()
-  //           data.docId = doc.id
-  //           events.push(data)
-  //         })
-  //         setEvents(events)
-  //         setDataFetched(true)
-  //       })
-  //       .catch((error: any) => {
-  //         return console.log('Error with fetching events', error)
-  //       })
-  //     return () => unsubscribe
-  //   } else {
-  //     props.history.push('/login')
-  //   }
-  // }, [currentUser])
-
-  // useEffect(() => {
-  //   const listener = props.firebase.auth.onAuthStateChanged((authUser: any) => {
-  //     if (authUser) {
-  //       if (authUser !== null) {
-  //         const { db } = props.firebase
-  //         db.collection('events')
-  //           .where('uid', '==', props.firebase.auth.currentUser.uid)
-  //           .get()
-  //           .then((querySnapshot: any) => {
-  //             const events: any = []
-  //             querySnapshot.docs.forEach((doc: any) => {
-  //               events.push(doc.data())
-  //             })
-  //             //Check if array is empty
-  //             if (events.length > 0) {
-  //               return setEvents(events)
-  //             }
-  //             return setEvents([])
-  //           })
-  //       }
-  //     } else {
-  //       props.history.push('/login')
-  //     }
-  //   })
-  //   return () => listener()
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [])
-
   return (
     <IonPage>
       <IonHeader>
@@ -94,13 +41,13 @@ const Account: React.FC = (props: any) => {
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        {/* <IonLoading
+        <IonLoading
           isOpen={!isDataFetched}
           onDidDismiss={() => setSpinner(false)}
           message={'Please wait...'}
           spinner="bubbles"
           duration={500}
-        /> */}
+        />
         <p>KEK</p>
         {/* <Avatar src={authUser ? authUser.photoURL : null} />
         <Name>{authUser ? authUser.displayName : null}</Name> */}

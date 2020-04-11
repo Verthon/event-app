@@ -12,15 +12,13 @@ import background from '../assets/backgrounds/login-bg.svg'
 import { logoGoogle, logoFacebook } from 'ionicons/icons'
 import useAuthUser from '../hooks/useAuthUser'
 import {
-  auth,
   doSignInWithGoogle,
   doSignInWithFacebook,
 } from '../firebase/firebase'
 
 const SignIn: React.FC = (props: any) => {
+  console.log('SignIn props', props)
   const currentUser = useAuthUser()
-  const localAuth: any = auth
-  console.log('SignIn user from hook', currentUser)
   const loginWithSocial = (provider: string) => {
     if (provider === 'Google') {
       doSignInWithGoogle()
@@ -42,9 +40,6 @@ const SignIn: React.FC = (props: any) => {
           )
         )
     }
-    // props.firebase.auth.onAuthStateChanged((authUser: any) => {
-    //   return authUser ? props.history.push('/account') : null
-    // })
   }
 
   return (
@@ -60,14 +55,14 @@ const SignIn: React.FC = (props: any) => {
           <Title>Welcome back!</Title>
           <Paragraph>Sign in using your Facebook or Google account.</Paragraph>
           <ButtonWrapper>
-            <Button onClick={() => loginWithSocial('Facebook')}>
+            <FacebookSignButton onClick={() => loginWithSocial('Facebook')}>
               <IonIcon class="btn-icon" icon={logoFacebook} />
               login
-            </Button>
-            <WhiteButton onClick={() => loginWithSocial('Google')}>
+            </FacebookSignButton>
+            <GoogleSignButton onClick={() => loginWithSocial('Google')}>
               <IonIcon class="btn-icon" icon={logoGoogle} />
               login
-            </WhiteButton>
+            </GoogleSignButton>
           </ButtonWrapper>
         </ContentWrapper>
       </IonContent>
@@ -96,7 +91,7 @@ const ButtonWrapper = styled.div`
   justify-content: space-around;
 `
 
-const Button = styled.button`
+const FacebookSignButton = styled.button`
   display: flex;
   align-items: center;
   font-family: 'Signika';
@@ -109,7 +104,7 @@ const Button = styled.button`
   color: #ffffff;
 `
 
-const WhiteButton = styled.button`
+const GoogleSignButton = styled.button`
   display: flex;
   align-items: center;
   font-family: 'Signika';

@@ -58,7 +58,7 @@ import './styles/index.css'
 
 const App: React.FC<any> = props => {
   const currentUser = useAuthUser()
-  console.log('current User in App', currentUser)
+  console.log('props in App.tsx', props)
   return (
     <IonApp>
       <IonReactRouter>
@@ -72,10 +72,10 @@ const App: React.FC<any> = props => {
               path={ACCOUNT}
               exact={true}
               render={(props: any) =>
-                currentUser !== null || currentUser !== undefined ? (
+                currentUser !== null && currentUser !== undefined ? (
                   <Account {...props} />
                 ) : (
-                  <SignIn />
+                  <SignIn {...props}/>
                 )
               }
             />
