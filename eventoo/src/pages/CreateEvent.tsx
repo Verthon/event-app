@@ -17,7 +17,7 @@ import logo from '../assets/logo/logo-color.svg'
 import React, { useState } from 'react'
 import dayjs from 'dayjs'
 import styled from 'styled-components'
-import { storage } from '../firebase/firebase'
+import { db, storage } from '../firebase/firebase'
 const CreateEvents: React.FC = (props: any) => {
   const [form, setForm] = useState({
     title: '',
@@ -48,7 +48,7 @@ const CreateEvents: React.FC = (props: any) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    const eventRef = props.firebase.db.collection('events').doc()
+    const eventRef = db.collection('events').doc()
     eventRef.set({
       title: form.title,
       host: form.host,
@@ -140,7 +140,7 @@ const CreateEvents: React.FC = (props: any) => {
                 type="text"
                 name="address"
                 required
-                value={form.localization}
+                value={form.address}
                 onIonChange={e => handleInputChange(e)}
               />
             </IonItem>

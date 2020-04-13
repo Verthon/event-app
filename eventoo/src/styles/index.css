@@ -25,8 +25,21 @@ a {
   margin: 0 0 0.5rem 0;
 }
 
-ion-tab-button ion-icon{
-  font-size: 1.45rem;
+ion-tab-button svg g{
+  width:22px;
+  height: 22px;
+}
+
+ion-tab-button #Primary-Color {
+  fill: hsl(203,13%,44%);
+}
+
+ion-tab-button .active-tab #Primary-Color {
+  fill: #2d3652;
+} 
+
+ion-tab-button #Secondary-Color {
+  fill: transparent;
 }
 
 ion-tab-button ion-label {
