@@ -7,6 +7,7 @@ export interface IEventsState {
   error: string | null,
   events: Array<EventType>,
   allEvents: Array<EventType>
+  userEvents: Array<EventType>
 }
 
 export const fetchAllEvents = createAsyncThunk('events/fetchAllEvents', async () => {
@@ -26,11 +27,30 @@ export const fetchAllEvents = createAsyncThunk('events/fetchAllEvents', async ()
   }
 })
 
+export const fetchUserEvents = createAsyncThunk('events/fetchUserEvents', async(uid) => {
+  try {
+    const querySnapshot = await db.collection('events')
+      .where("uid", "==", uid)
+      .get()
+    const events: Array<EventType> = []
+    querySnapshot.docs.forEach((doc: any) => {
+      const data = doc.data()
+      data.docId = doc.id
+      events.push(data)
+    })
+    return events
+  }
+  catch (err) {
+    console.log('error occurred while fetching events inside of eventsSlice', err)
+  }
+})
+
 const initialState: IEventsState = {
   loading: 'idle',
   error: null,
   events: [],
-  allEvents: []
+  allEvents: [],
+  userEvents: []
 }
 
 export const eventsSlice = createSlice({
@@ -46,7 +66,7 @@ export const eventsSlice = createSlice({
     filterEventsByCategory: (state: IEventsState, action: any): any => {
       console.log(action.payload)
       if (action.payload === "All") {
-        state.events = state.allEvents.map((event: EventType) => event);
+        state.events = [...state.allEvents]
         console.log('state.events after filter', state.events)
       }
       state.events = state.allEvents.filter((event: EventType) => event.category === action.payload)
@@ -60,6 +80,9 @@ export const eventsSlice = createSlice({
     builder.addCase(fetchAllEvents.fulfilled, (state: IEventsState, action) => {
       state.events = [...action.payload]
       state.allEvents = [...action.payload]
+    })
+    builder.addCase(fetchUserEvents.fulfilled, (state: IEventsState, action) => {
+      state.userEvents = [...action.payload]
     })
   }
 })
