@@ -27,11 +27,11 @@ const EventItem = ({
     dispatch(showEventDetails(eventData))
   }
 
-  const formatDay = (timestamp: number) => {
-    return dayjs.unix(timestamp).format('DD')
+  const formatMonth = (date: string) => {
+    return dayjs(date).format('MMM')
   }
-  const formatMonth = (timestamp: number) => {
-    return dayjs.unix(timestamp).format('MMM')
+  const formatDay = (date: string) => {
+    return dayjs(date).format('DD')
   }
   const eventData: EventItemType = {
     eventId: eventId,
@@ -52,8 +52,8 @@ const EventItem = ({
       <Link to={`/event-detail/:${eventData.docId}`}>
         <ImageWrapper>
           <Time>
-            <Day>{formatDay(eventData.date)}</Day>
-            <Month>{formatMonth(eventData.date)}</Month>
+            <Day>{formatDay(eventData.day)}</Day>
+            <Month>{formatMonth(eventData.day)}</Month>
           </Time>
           <Image src={eventData.featuredImage + '/500x200'} alt="" />
         </ImageWrapper>
