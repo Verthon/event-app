@@ -67,7 +67,13 @@ const App: React.FC<any> = props => {
             <Route path={HOME} component={Home} />
             <Route path={EVENTS} component={Events} exact={true} />
             <Route path={CONTACT} component={Contact} exact={true} />
-            <Route path={CREATE_EVENT} component={CreateEvent} exact={true} />
+            <Route path={CREATE_EVENT} render={(props: any) =>
+                currentUser !== null && currentUser !== undefined ? (
+                  <CreateEvent {...props} />
+                ) : (
+                  <SignIn {...props} />
+                )
+              } exact={true} />
             <Route
               path={ACCOUNT}
               exact={true}

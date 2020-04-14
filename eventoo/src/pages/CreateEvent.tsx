@@ -13,12 +13,16 @@ import {
   IonTextarea,
   IonToast,
 } from '@ionic/react'
-import logo from '../assets/logo/logo-color.svg'
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 import dayjs from 'dayjs'
 import styled from 'styled-components'
 import { db, storage } from '../firebase/firebase'
+import logo from '../assets/logo/logo-color.svg'
+
 const CreateEvents: React.FC = (props: any) => {
+  const uid = useSelector((state: any) => state.auth.user.uid)
+  console.log('CreateEvent uid', uid)
   const [form, setForm] = useState({
     title: '',
     host: '',
@@ -43,7 +47,6 @@ const CreateEvents: React.FC = (props: any) => {
       ...form,
       [e.target.name]: e.target.value,
     })
-    console.log('form after change with', form)
   }
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -59,7 +62,7 @@ const CreateEvents: React.FC = (props: any) => {
       day: form.day,
       hour: form.hour,
       featuredImage: form.imageUrl,
-      uid: props.firebase.auth.currentUser.uid,
+      uid: uid,
       created_at: dayjs().format(),
     })
     return setToast(true)
@@ -247,8 +250,9 @@ const Button = styled.button`
   display: block;
   font-weight: bold;
   font-size: 1rem;
+  font-family: var(--ion-decorative-font);
   border-radius: 2px;
-  width: 75%;
+  width: 90%;
   background-color: var(--ion-color-primary);
   color: #ffffff;
   padding: 0.75rem;

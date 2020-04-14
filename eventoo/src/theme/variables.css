@@ -79,6 +79,9 @@ http://ionicframework.com/docs/theming/ */
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
 
+  /** Decorative font style **/
+  --ion-decorative-font: 'Signika';
+
   /** main font color **/
   --ion-text-color: #424A63; 
 
@@ -92,7 +95,6 @@ http://ionicframework.com/docs/theming/ */
 
   /** Main color for pargraphs etc **/
   --ion-color--main-text: #424A63;
-
   --ion-input-border: #cccccc;
 }
 

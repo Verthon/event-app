@@ -55,13 +55,16 @@ const Description = styled.p`
   margin: 0.25rem 0;
 `
 const Button = styled.button`
+  font-size: 1rem;
   font-family: 'Signika';
   font-weight: bold;
   border-radius: 2px;
   background-color: var(--ion-color-primary);
   color: #ffffff;
   margin: 1.5rem 0 0 0;
-  padding: 0.75rem 6rem;
+  padding: 0.75rem 0;
+  width: 100%;
+
 `
 
 export default Home
