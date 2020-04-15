@@ -2,7 +2,6 @@ import {
   IonContent,
   IonHeader,
   IonPage,
-  IonTitle,
   IonToolbar,
   IonInput,
   IonItem,
@@ -22,7 +21,10 @@ import logo from '../assets/logo/logo-color.svg'
 
 const CreateEvents: React.FC = (props: any) => {
   const uid = useSelector((state: any) => state.auth.user.uid)
-  console.log('CreateEvent uid', uid)
+  const [error, setError] = React.useState({
+    inputName: '',
+    error: '',
+  })
   const [form, setForm] = useState({
     title: '',
     host: '',
@@ -49,8 +51,44 @@ const CreateEvents: React.FC = (props: any) => {
     })
   }
 
+  const validate = (form: any) => {
+    if (form.title.length < 5) {
+      return {
+        inputName: 'title',
+        error: 'Event title should have at least 6 characters',
+      }
+    } else if (form.host < 5) {
+      return {
+        inputName: 'host',
+        error: 'Event host should have at least 6 characters',
+      }
+    } else if (form.localization < 3) {
+      return {
+        inputName: 'localization',
+        error: 'Event localization should have at least 4 characters',
+      }
+    } else if (form.address < 5) {
+      return {
+        inputName: 'address',
+        error: 'Event address should have at least 6 characters',
+      }
+    } else if (form.description < 10) {
+      return {
+        inputName: 'description',
+        error: 'Event description should have at least 10 characters',
+      }
+    }
+    return null
+  }
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+    const formError = validate(form)
+    console.log('formError', formError)
+    if (formError) {
+      setError(formError)
+      return
+    }
     const eventRef = db.collection('events').doc()
     eventRef.set({
       title: form.title,
@@ -78,7 +116,7 @@ const CreateEvents: React.FC = (props: any) => {
     <IonPage>
       <IonHeader color="primary">
         <IonToolbar color="light">
-          <Logo src={logo} alt="Eventoo"/>
+          <Logo src={logo} alt="Eventoo" />
         </IonToolbar>
       </IonHeader>
 
@@ -103,10 +141,12 @@ const CreateEvents: React.FC = (props: any) => {
                 placeholder="eg. Football Event"
                 type="text"
                 name="title"
-                required
                 value={form.title}
                 onIonChange={e => handleInputChange(e)}
               />
+              {error.inputName === 'title' ? (
+                <ErrorMessage>{error.error}</ErrorMessage>
+              ) : null}
             </IonItem>
 
             <IonItem lines="none">
@@ -116,10 +156,12 @@ const CreateEvents: React.FC = (props: any) => {
                 placeholder="eg. Company"
                 type="text"
                 name="host"
-                required
                 value={form.host}
                 onIonChange={e => handleInputChange(e)}
               />
+              {error.inputName === 'host' ? (
+                <ErrorMessage>{error.error}</ErrorMessage>
+              ) : null}
             </IonItem>
 
             <IonItem lines="none">
@@ -129,10 +171,12 @@ const CreateEvents: React.FC = (props: any) => {
                 placeholder="eg. Bielsko-Biała, Poland"
                 type="text"
                 name="localization"
-                required
                 value={form.localization}
                 onIonChange={e => handleInputChange(e)}
               />
+              {error.inputName === 'localization' ? (
+                <ErrorMessage>{error.error}</ErrorMessage>
+              ) : null}
             </IonItem>
 
             <IonItem lines="none">
@@ -142,10 +186,12 @@ const CreateEvents: React.FC = (props: any) => {
                 placeholder="eg. Main Street SE 125"
                 type="text"
                 name="address"
-                required
                 value={form.address}
                 onIonChange={e => handleInputChange(e)}
               />
+              {error.inputName === 'address' ? (
+                <ErrorMessage>{error.error}</ErrorMessage>
+              ) : null}
             </IonItem>
 
             <IonItem lines="none">
@@ -185,7 +231,7 @@ const CreateEvents: React.FC = (props: any) => {
               <input
                 type="file"
                 name="imageUpload"
-                accept="image/jpeg image/jpg" 
+                accept="image/jpeg image/jpg"
                 value={form.imageFile}
                 onChange={e => handleFileUpload(e)}
               />
@@ -226,6 +272,9 @@ const CreateEvents: React.FC = (props: any) => {
                 name="description"
                 onIonChange={e => handleInputChange(e)}
               />
+              {error.inputName === 'description' ? (
+                <ErrorMessage>{error.error}</ErrorMessage>
+              ) : null}
             </IonItem>
 
             <Button type="submit" color="primary">
@@ -257,7 +306,7 @@ const Button = styled.button`
   color: #ffffff;
   padding: 0.75rem;
   margin: 1rem auto;
-`;
+`
 
 const FileUpload = styled.div`
   padding: 1rem;
@@ -269,5 +318,37 @@ const FileUploadLabel = styled.div`
   font-size: 0.875rem;
   margin: 0 0 1rem 0;
 `
- 
+
+const ErrorMessage = styled.span`
+  @keyframes pulse {
+    0% {
+      -webkit-transform: scale(1);
+      -ms-transform: scale(1);
+      transform: scale(1);
+    }
+
+    50% {
+      -webkit-transform: scale(1.1);
+      -ms-transform: scale(1.1);
+      transform: scale(1.1);
+    }
+
+    100% {
+      -webkit-transform: scale(1);
+      -ms-transform: scale(1);
+      transform: scale(1);
+    }
+  }
+  animation-name: pulse;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-out;
+  background: hsl(0, 91%, 95%);
+  color: hsl(0, 41%, 40%);
+  font-style: italic;
+  padding: 0.5rem 0.75rem;
+  width: 100%;
+  border-left: 4px solid hsl(0, 41%, 40%);
+  font-size: 0.875rem;
+`
+
 export default CreateEvents

@@ -1,16 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Redirect, Route, RouteComponentProps } from 'react-router-dom'
 import {
   IonApp,
-  IonIcon,
   IonLabel,
   IonRouterOutlet,
   IonTabBar,
   IonTabButton,
   IonTabs,
 } from '@ionic/react'
-import { useDispatch } from 'react-redux'
-import { login, logout, selectCurrentUser } from './reducers/auth'
 import { IonReactRouter } from '@ionic/react-router'
 import { ReactComponent as DateRangeIcon } from './assets/icons/date_range.svg'
 import { ReactComponent as AccountBoxIcon } from './assets/icons/account_box.svg'
