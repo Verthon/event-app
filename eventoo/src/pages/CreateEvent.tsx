@@ -104,8 +104,6 @@ const CreateEvents: React.FC = (props: any) => {
       created_at: dayjs().format(),
     })
     return setToast(true)
-
-    //implement next step here, whether show summary or navigate to account?
   }
 
   const handleFileUpload = (e: any) => {

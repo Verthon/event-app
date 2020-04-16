@@ -21,6 +21,7 @@ import Account from './pages/Account'
 import SignIn from './pages/SignIn'
 import CreateEvent from './pages/CreateEvent'
 import EventDetail from './pages/EventDetail'
+import EventCreated from './pages/EventCreated'
 import {
   HOME,
   EVENTS,
@@ -29,6 +30,7 @@ import {
   ACCOUNT,
   SIGN_IN,
   EVENT_DETAIL,
+  EVENT_CREATED
 } from './constants/routes'
 
 /* Core CSS required for Ionic components to work properly */
@@ -84,6 +86,7 @@ const App: React.FC<any> = props => {
             />
             <Route path={SIGN_IN} component={SignIn} exact={true} />
             <Route path={EVENT_DETAIL} component={EventDetail} exact={true} />
+            <Route path={EVENT_CREATED} component={EventCreated} exact={true} />
             <Route exact path="/" render={() => <Redirect to={HOME} />} />
           </IonRouterOutlet>
           <IonTabBar slot="bottom">
