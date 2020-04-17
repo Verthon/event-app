@@ -33,6 +33,7 @@ const Events: React.FC = () => {
   let [isDataFetched, setDataFetched] = useState<boolean>(false)
   let currentEvents = useSelector((state: any) => state.events.events)
   let activeCategory = useSelector((state: any) => state.categories.currentCategory)
+  console.log('active Category', activeCategory)
 
   const filterEvents = (category: string) => {
     if(category === 'All') {
@@ -123,6 +124,7 @@ const Events: React.FC = () => {
                     category={category.category}
                     emoji={category.emoji}
                     filterFunction={() => filterEvents(category.category)}
+                    active={activeCategory === category.category ? true : false}
                   />
                 )
               })
