@@ -41,9 +41,9 @@ const Content = styled.article`
   justify-content: flex-end;
   align-items: center;
   margin: auto auto 0 auto;
-  padding: 0 0 2.75rem 0;
+  padding: 0 2rem 2.75rem 2rem;
   background: #ffffff;
-  max-width: 80%;
+  max-width: 100%;
 `
 const Title = styled.h1`
   font-family: 'Signika';

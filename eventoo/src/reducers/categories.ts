@@ -4,7 +4,8 @@ import { db } from '../firebase/firebase'
 interface ICategoriesState {
   loading: string,
   error: string | null,
-  categories: Array<any>
+  categories: Array<any>,
+  currentCategory: string
 }
 
 export const fetchAllCategories = createAsyncThunk('categories/fetchAllCategories', async () => {
@@ -27,13 +28,17 @@ export const fetchAllCategories = createAsyncThunk('categories/fetchAllCategorie
 const initialState: ICategoriesState = {
   loading: 'idle',
   error: null,
-  categories: []
+  categories: [],
+  currentCategory: 'All'
 }
 
 export const categoriesSlice = createSlice({
   name: 'categories',
   initialState: initialState,
   reducers: {
+    setActiveCategory: (state: any, action: any) => {
+      state.currentCategory = action.payload;
+    }
   },
   extraReducers: builder => {
     builder.addCase(fetchAllCategories.fulfilled, (state: ICategoriesState, action) => {
@@ -41,5 +46,7 @@ export const categoriesSlice = createSlice({
     })
   }
 })
+
+export const {setActiveCategory} = categoriesSlice.actions
 
 export default categoriesSlice

@@ -114,7 +114,7 @@ const App: React.FC<any> = props => {
               onClick={() => toggleActiveTabIcon('Account')}
             >
               <AccountBoxIcon className={currentTab === 'Account' ? 'active-tab' : null} />
-              <IonLabel>My account</IonLabel>
+              <IonLabel>Account</IonLabel>
             </IonTabButton>
 
             <IonTabButton

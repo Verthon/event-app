@@ -17,7 +17,7 @@ import styled from 'styled-components'
 import { search } from 'ionicons/icons'
 
 import { fetchAllEvents, filterEventsByCategory } from '../reducers/events'
-import { fetchAllCategories } from '../reducers/categories'
+import { fetchAllCategories, setActiveCategory } from '../reducers/categories'
 import EventItem from '../components/EventItem'
 import Category from '../components/Category'
 import { IEventsState } from '../reducers/events'
@@ -32,21 +32,37 @@ const Events: React.FC = () => {
   let [showSpinner, setSpinner] = useState<boolean>(true)
   let [isDataFetched, setDataFetched] = useState<boolean>(false)
   let currentEvents = useSelector((state: any) => state.events.events)
+  let activeCategory = useSelector((state: any) => state.categories.currentCategory)
 
   const filterEvents = (category: string) => {
+    if(category === 'All') {
+      setDataFetched(false)
+      setSpinner(true)
+      dispatch(setActiveCategory(category))
+      dispatch(fetchAllEvents())
+      .then((result: any) => {
+        setDataFetched(true)
+        setEvents(result.payload)
+      })
+      .catch(() => {
+        setToast(true)
+      })
+      return events
+    }
     dispatch(filterEventsByCategory(category))
+    dispatch(setActiveCategory(category))
     setDataFetched(false)
     setSpinner(true)
     setEvents(currentEvents)
-    console.log('events state', events)
   }
 
-  useEffect(() => {}, [events])
+  useEffect(() => {
+    setEvents(currentEvents)
+  }, [currentEvents])
 
   useEffect(() => {
     dispatch(fetchAllEvents())
       .then((result: any) => {
-        console.log('fetchAllEvents result', result)
         setDataFetched(true)
         setEvents(result.payload)
       })
@@ -58,7 +74,6 @@ const Events: React.FC = () => {
   useEffect(() => {
     dispatch(fetchAllCategories())
       .then((result: any) => {
-        console.log('fetchAllCategories result', result)
         setDataFetched(true)
         setCategories(result.payload)
       })
