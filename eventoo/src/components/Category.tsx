@@ -1,8 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import {CategoryType, CategoryStyledProps} from '../types/categories'
-
-
+import { CategoryType, CategoryStyledProps } from '../types/categories'
 
 const Category = ({
   filterFunction,
@@ -28,13 +26,11 @@ const CategoryWrapper = styled.button<CategoryStyledProps>`
   justify-content: center;
   margin: 0 1rem 1.5rem 0;
   border-radius: 10px;
-  background-color: ${props =>
-    props.active ? '#c2e2e3' : '#f6f9f9'};
+  background-color: ${props => (props.active ? '#00c6bf' : '#f6f9f9')};
 `
 
 const IconWrapper = styled.div<CategoryStyledProps>`
-  background-color: ${props =>
-    props.active ? '#f6f9f9' : '#c2e2e3'};
+  background-color: ${props => (props.active ? '#f6f9f9' : '#c2e2e3')};
   padding: 0.5rem;
   display: flex;
   justify-content: center;
@@ -48,7 +44,8 @@ const Icon = styled.span`
 `
 
 const Name = styled.p<CategoryStyledProps>`
-  color: ${props => (props.active ? 'var(--ion-color-primary)' : 'var(--ion-color-primary)')};
+  color: ${props =>
+    props.active ? 'var(--ion-color-primary)' : 'var(--ion-color-primary)'};
   font-size: 0.875rem;
   margin: 0.75rem 0 0.5rem 0;
 `

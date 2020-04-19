@@ -16,7 +16,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { search } from 'ionicons/icons'
 
-import { fetchAllEvents, filterEventsByCategory } from '../reducers/events'
+import { fetchAllEvents, filterEventsByCategory, filterEventsBySearch } from '../reducers/events'
 import { fetchAllCategories, setActiveCategory } from '../reducers/categories'
 import EventItem from '../components/EventItem'
 import Category from '../components/Category'
@@ -25,6 +25,7 @@ import { EventType, EventItemType } from '../types/events'
 
 const Events: React.FC = () => {
   let [searchVisibility, toggleSearchBar] = useState<boolean>(false)
+  const [searchText, setSearchText] = useState('');
   let [events, setEvents] = useState([])
   const dispatch: any = useDispatch()
   let [categories, setCategories] = useState([])
@@ -33,7 +34,6 @@ const Events: React.FC = () => {
   let [isDataFetched, setDataFetched] = useState<boolean>(false)
   let currentEvents = useSelector((state: any) => state.events.events)
   let activeCategory = useSelector((state: any) => state.categories.currentCategory)
-  console.log('active Category', activeCategory)
 
   const filterEvents = (category: string) => {
     if(category === 'All') {
@@ -62,6 +62,10 @@ const Events: React.FC = () => {
   }, [currentEvents])
 
   useEffect(() => {
+    dispatch(filterEventsBySearch(searchText))
+  }, [searchText, dispatch])
+
+  useEffect(() => {
     dispatch(fetchAllEvents())
       .then((result: any) => {
         setDataFetched(true)
@@ -88,7 +92,7 @@ const Events: React.FC = () => {
       <IonHeader>
         <IonToolbar color="light">
           <IonTitle>Events</IonTitle>
-          <IonButtons slot="end">
+          {/* <IonButtons slot="end">
             <IonButton>
               <IonIcon
                 slot="icon-only"
@@ -96,7 +100,7 @@ const Events: React.FC = () => {
                 onClick={() => toggleSearchBar(!searchVisibility)}
               />
             </IonButton>
-          </IonButtons>
+          </IonButtons> */}
         </IonToolbar>
       </IonHeader>
 
@@ -114,7 +118,7 @@ const Events: React.FC = () => {
           message="Error occured while fetching data from our database. Please try again later."
           duration={2000}
         />
-        {searchVisibility ? <IonSearchbar animated debounce={500} /> : null}
+        {searchVisibility ? <IonSearchbar debounce={500} onIonChange={e => setSearchText(e.detail.value!)} /> : null}
         <CategoriesWrapper>
           {categories
             ? categories.map((category, id) => {

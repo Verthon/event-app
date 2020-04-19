@@ -73,7 +73,10 @@ export const eventsSlice = createSlice({
       console.log('state.events after filter', state.events)
     },
     filterEventsBySearch: (state: IEventsState, action: any) => {
-      state.events = state.allEvents.filter((event: any) => event.includes(action.payload))
+      if(state.events.length === 0) {
+        state.events = state.allEvents.filter((event: any) => event.title.includes(action.payload))
+      }
+      state.events = state.events.filter((event: any) => event.title.includes(action.payload))
     }
   },
   extraReducers: builder => {

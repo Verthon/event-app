@@ -29,7 +29,7 @@ const Account: React.FC = (props: any) => {
       await doSignOut()
       console.log(currentUser)
       dispatch(logout())
-      return props.history.push('/events')
+      props.history.push('/events')
     } catch (error) {
       return console.log('Error', error)
     }

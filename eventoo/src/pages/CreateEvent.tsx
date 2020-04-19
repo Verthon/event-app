@@ -16,6 +16,7 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import dayjs from 'dayjs'
 import styled from 'styled-components'
+import Unsplash from 'unsplash-js'
 import { db, storage } from '../firebase/firebase'
 import logo from '../assets/logo/logo-color.svg'
 
@@ -84,7 +85,6 @@ const CreateEvents: React.FC = (props: any) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     const formError = validate(form)
-    console.log('formError', formError)
     if (formError) {
       setError(formError)
       return

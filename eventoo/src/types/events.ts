@@ -35,3 +35,7 @@ export type CategoryType = {
   category: string,
   emoji: string,
 }
+
+export type EventItemEditMode = {
+  readonly editMode: boolean
+}

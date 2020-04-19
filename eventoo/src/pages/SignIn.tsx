@@ -14,25 +14,40 @@ import useAuthUser from '../hooks/useAuthUser'
 import {
   doSignInWithGoogle,
   doSignInWithFacebook,
+  redirectResultGoogle,
+  doSignWithGoogleCredentials,
+  redirectResultFacebook,
+  doSignWithFacebookCredentials
 } from '../firebase/firebase'
 
 const SignIn: React.FC = (props: any) => {
-  console.log('SignIn props', props)
   const currentUser = useAuthUser()
   const loginWithSocial = (provider: string) => {
     if (provider === 'Google') {
       doSignInWithGoogle()
-        .then((result: any) => props.history.push('/account'))
-        .catch((error: any) =>
+        .then(() => redirectResultGoogle())
+        .then((result: any) => {
+          const token = result.credential.accessToken
+          doSignWithGoogleCredentials(token)
+          props.history.push('/account')
+        })
+        .catch((error: any) => {
           console.log(
             `Error occurred while signing in using ${provider} provider.`,
             error
           )
-        )
+          alert(`Error while trying to login with Google ==> ${error.message}`)
+        })
     }
     if (provider === 'Facebook') {
       doSignInWithFacebook()
-        .then((result: any) => props.history.push('/account'))
+        .then(() => {
+          redirectResultGoogle().then((result: any) => {
+            const token = result.credential.accessToken
+            doSignWithGoogleCredentials(token)
+            props.history.push('/account')
+          })
+        })
         .catch((error: any) =>
           console.log(
             `Error occurred while signing in using ${provider} provider.`,
@@ -115,6 +130,7 @@ const GoogleSignButton = styled.button`
   border-radius: 2px;
   background-color: #ffffff;
   color: var(--ion-color-primary);
+  box-shadow: 0 1px 3px hsla(0, 0%, 0%, 0.2);
 `
 
 export default SignIn

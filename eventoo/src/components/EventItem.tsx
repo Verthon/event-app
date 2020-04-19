@@ -4,8 +4,10 @@ import dayjs from 'dayjs'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
-import { EventType, EventItemType } from '../types/events'
+import { EventType, EventItemType, EventItemEditMode } from '../types/events'
 import { showEventDetails } from '../reducers/event'
+import { ReactComponent as DeleteIcon } from '../assets/icons/delete_forever.svg'
+import { ReactComponent as EditIcon } from '../assets/icons/edit.svg'
 
 const EventItem = ({
   eventId,
@@ -63,6 +65,10 @@ const EventItem = ({
           <Title>{eventData.title}</Title>
         </Link>
         <Paragraph>{eventData.localization}</Paragraph>
+        <EventOptions editMode={true}>
+          <EventOptionsAction><EventsOptionsDelete/></EventOptionsAction>
+          <EventOptionsAction><EventsOptionsEdit/></EventOptionsAction>
+        </EventOptions>
       </InfoWrapper>
     </Event>
   )
@@ -84,6 +90,37 @@ const ImageWrapper = styled.div`
   position: relative;
   width: 100%;
   padding-bottom: 39.99%;
+`
+
+const EventOptions = styled.div<EventItemEditMode>`
+  margin: .5rem 0;
+  display: ${props => (props.editMode ? 'flex' : 'none')};
+`
+
+const EventOptionsAction = styled.button`
+  background: #fff;
+  margin: 0 0.5rem 0 0;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 1px 3px hsla(0, 0%, 0%, 0.1);
+  border-radius: 5px;
+`
+
+const EventsOptionsEdit = styled(EditIcon)`
+  #Primary-Color {
+    fill: var(--ion-color-primary);
+  }
+  #Secondary-Color {
+    fill: #fff;
+  }
+`
+
+const EventsOptionsDelete = styled(DeleteIcon)`
+  #Primary-Color {
+    fill: var(--ion-color-primary);
+  }
+  #Secondary-Color {
+    fill: #fff;
+  }
 `
 
 const Image = styled.img`

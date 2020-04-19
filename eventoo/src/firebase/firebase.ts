@@ -30,7 +30,11 @@ export const auth = app.auth()
 export const googleProvider = new app.auth.GoogleAuthProvider()
 export const facebookProvider = new app.auth.FacebookAuthProvider()
 export const twitterProvider = new app.auth.TwitterAuthProvider()
-export const doSignInWithGoogle = () => auth.signInWithPopup(googleProvider);
+export const doSignInWithGoogle = () => auth.signInWithRedirect(googleProvider)
+export const redirectResultGoogle = () => auth.getRedirectResult()
+export const doSignWithGoogleCredentials = (credential: any) => auth.signInWithCredential(credential)
 export const doSignInWithFacebook = () => auth.signInWithPopup(facebookProvider)
+export const redirectResultFacebook = () => auth.getRedirectResult()
+export const doSignWithFacebookCredentials = (credential: any) => auth.signInWithCredential(credential)
 export const doSignOut = () => auth.signOut()
 export const storage = app.storage;
