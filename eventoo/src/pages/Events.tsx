@@ -151,6 +151,7 @@ const Events: React.FC = () => {
                   description={event.description}
                   category={event.category}
                   featuredImage={event.featuredImage}
+                  editMode={false}
                 />
               )
             })

@@ -7,6 +7,7 @@ export interface IEventsState {
   error: string | null,
   events: Array<EventType>,
   allEvents: Array<EventType>
+  allUserEvents: Array<EventType>
   userEvents: Array<EventType>
 }
 
@@ -50,6 +51,7 @@ const initialState: IEventsState = {
   error: null,
   events: [],
   allEvents: [],
+  allUserEvents: [],
   userEvents: []
 }
 
@@ -67,16 +69,18 @@ export const eventsSlice = createSlice({
       console.log(action.payload)
       if (action.payload === "All") {
         state.events = [...state.allEvents]
-        console.log('state.events after filter', state.events)
       }
       state.events = state.allEvents.filter((event: EventType) => event.category === action.payload)
-      console.log('state.events after filter', state.events)
     },
     filterEventsBySearch: (state: IEventsState, action: any) => {
       if(state.events.length === 0) {
         state.events = state.allEvents.filter((event: any) => event.title.includes(action.payload))
       }
       state.events = state.events.filter((event: any) => event.title.includes(action.payload))
+    },
+    deleteEvent: (state: IEventsState, action: any) => {
+      state.events = state.allEvents.filter((event: any) => event.docId !== action.payload)
+      state.userEvents = state.allUserEvents.filter((event: any) => event.docId !== action.payload)
     }
   },
   extraReducers: builder => {
@@ -85,11 +89,12 @@ export const eventsSlice = createSlice({
       state.allEvents = [...action.payload]
     })
     builder.addCase(fetchUserEvents.fulfilled, (state: IEventsState, action) => {
-      state.userEvents = [...action.payload]
+      state.allUserEvents = [...action.payload]
+      state.userEvents = state.allUserEvents
     })
   }
 })
 
-export const { fetchAllEventsSuccess, fetchAllEventsFailure, filterEventsByCategory, filterEventsBySearch } = eventsSlice.actions
+export const { fetchAllEventsSuccess, fetchAllEventsFailure, filterEventsByCategory, filterEventsBySearch, deleteEvent } = eventsSlice.actions
 
 export default eventsSlice

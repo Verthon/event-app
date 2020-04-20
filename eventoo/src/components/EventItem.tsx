@@ -21,7 +21,9 @@ const EventItem = ({
   hour,
   description,
   featuredImage,
-  date,
+  editMode,
+  deleteHandler,
+  editHandler
 }: EventType) => {
   const dispatch = useDispatch()
 
@@ -47,7 +49,7 @@ const EventItem = ({
     hour: hour,
     description: description,
     featuredImage: featuredImage,
-    date: date.seconds,
+    editMode: editMode
   }
   return (
     <Event onClick={() => displayEventDetail()}>
@@ -65,9 +67,9 @@ const EventItem = ({
           <Title>{eventData.title}</Title>
         </Link>
         <Paragraph>{eventData.localization}</Paragraph>
-        <EventOptions editMode={true}>
-          <EventOptionsAction><EventsOptionsDelete/></EventOptionsAction>
-          <EventOptionsAction><EventsOptionsEdit/></EventOptionsAction>
+        <EventOptions editMode={editMode}>
+          <EventOptionsAction onClick={() => deleteHandler(eventData)}><EventsOptionsDelete/></EventOptionsAction>
+          <EventOptionsAction onClick={editHandler}><EventsOptionsEdit/></EventOptionsAction>
         </EventOptions>
       </InfoWrapper>
     </Event>
@@ -116,7 +118,7 @@ const EventsOptionsEdit = styled(EditIcon)`
 
 const EventsOptionsDelete = styled(DeleteIcon)`
   #Primary-Color {
-    fill: var(--ion-color-primary);
+    fill: hsl(350, 69%, 36%);
   }
   #Secondary-Color {
     fill: #fff;

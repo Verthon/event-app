@@ -5,25 +5,60 @@ import {
   IonTitle,
   IonToolbar,
   IonLoading,
+  IonAlert,
 } from '@ionic/react'
 import { useDispatch, useSelector } from 'react-redux'
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { doSignOut } from '../firebase/firebase'
+import { doSignOut, db } from '../firebase/firebase'
 import { logout } from '../reducers/auth'
 import useAuthUser from '../hooks/useAuthUser'
 import EventItem from '../components/EventItem'
 import { EventType } from '../types/events'
-import {fetchUserEvents} from '../reducers/events'
+import { fetchUserEvents, deleteEvent } from '../reducers/events'
 
 const Account: React.FC = (props: any) => {
   const dispatch: any = useDispatch()
   const currentUser = useAuthUser()
-  console.log('Auth user object in Account useEffect', currentUser)
+  const [currentEventDocId, setEventDocId] = useState<string>('')
   const [events, setEvents] = useState([])
-  const [show, setShow] = useState(false)
+  const [showDeleteAlert, setDeleteAlert] = useState(false)
   let [showSpinner, setSpinner] = useState<boolean>(true)
   let [isDataFetched, setDataFetched] = useState<boolean>(false)
+
+  const deleteEventPermanently = () => {
+    db.collection('events')
+      .doc(currentEventDocId)
+      .delete()
+      .then(function() {
+        console.log('Document successfully deleted!')
+      })
+      .catch(function(error) {
+        console.error('Error removing document: ', error)
+      })
+    dispatch(deleteEvent(currentEventDocId))
+    //console.log('Event id to be deleted', currentEventDocId)
+  }
+
+  const alertCancelBtn = {
+    text: 'Cancel',
+    role: 'cancel',
+    cssClass: 'alert-cancel-btn',
+  }
+
+  const alertDeleteBtn = {
+    text: 'Delete',
+    cssClass: 'alert-action-btn',
+    handler: deleteEventPermanently,
+  }
+
+  const handleDeleteEvent = (eventData: any) => {
+    setEventDocId(eventData.docId)
+    setDeleteAlert(true)
+  }
+
+  const handleEditEvent = () => {}
+
   const signOut = async () => {
     try {
       await doSignOut()
@@ -48,7 +83,6 @@ const Account: React.FC = (props: any) => {
   }, [currentUser.uid, dispatch])
 
   let currentEvents = useSelector((state: any) => state.events.userEvents)
-  console.log('current Events in Account', currentEvents)
   return (
     <IonPage>
       <IonHeader>
@@ -57,6 +91,15 @@ const Account: React.FC = (props: any) => {
         </IonToolbar>
       </IonHeader>
       <IonContent>
+        <IonAlert
+          isOpen={showDeleteAlert}
+          onDidDismiss={() => setDeleteAlert(false)}
+          header={'Delete event'}
+          message={
+            'Are you sure you want to delete this event ? This operation cannot be undone.'
+          }
+          buttons={[alertCancelBtn, alertDeleteBtn]}
+        />
         <Container>
           <IonLoading
             isOpen={!isDataFetched}
@@ -91,6 +134,9 @@ const Account: React.FC = (props: any) => {
                       description={event.description}
                       category={event.category}
                       featuredImage={event.featuredImage}
+                      editMode={true}
+                      deleteHandler={handleDeleteEvent}
+                      editHandler={handleEditEvent}
                     />
                   )
                 })

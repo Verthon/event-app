@@ -14,6 +14,9 @@ export type EventType = {
     seconds: number,
     nanoseconds: number
   },
+  editMode?: boolean,
+  deleteHandler?: any,
+  editHandler?: any,
 }
 
 export type EventItemType = {
@@ -28,7 +31,10 @@ export type EventItemType = {
   hour: string,
   description: string,
   featuredImage: string,
-  date?: number
+  editMode: boolean,
+  date?: number,
+  deleteHandler?: any,
+  editHandler?: any,
 }
 
 export type CategoryType = {
