@@ -78,7 +78,7 @@ const EventItem = ({
 
 const Event = styled.div`
   position: relative;
-  margin: 1rem auto;
+  margin: 0 auto 3rem auto;
   width: auto;
   display: flex;
   flex-direction: column;

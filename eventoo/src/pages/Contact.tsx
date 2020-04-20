@@ -13,7 +13,7 @@ const Contact: React.FC = () => {
       </IonHeader>
       <IonContent class="ion-padding">
         <Title>Contact</Title>
-        <p>Eventoo is a platform, that allows anyone to create, share, find and attend events. From music festivals, conferences and community meetups, to sport events. Our mission is to connect people with passion.</p>
+        <Description>Eventoo is a platform, that allows anyone to create, share, find and attend events. From music festivals, conferences and community meetups, to sport events. Our mission is to connect people with passion.</Description>
       </IonContent>
     </IonPage>
   );
@@ -26,6 +26,11 @@ const Logo = styled.img`
 
 const Title = styled.h1`
   margin-top: 0;
+  font-weight: 600;
+`
+
+const Description = styled.p`
+  color: hsl(203,13%,44%);
 `
 
 export default Contact;

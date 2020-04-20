@@ -17,7 +17,7 @@ import {
   redirectResultGoogle,
   doSignWithGoogleCredentials,
   redirectResultFacebook,
-  doSignWithFacebookCredentials
+  doSignWithFacebookCredentials,
 } from '../firebase/firebase'
 
 const SignIn: React.FC = (props: any) => {
@@ -86,11 +86,11 @@ const SignIn: React.FC = (props: any) => {
 }
 
 const ContentWrapper = styled.div`
+  font-family: var(--ion-decorative-font);
   padding: 0 2rem;
 `
 
 const Title = styled.h1`
-  font-family: 'Signika';
   font-weight: 600;
   color: var(--ion-color-primary);
 `

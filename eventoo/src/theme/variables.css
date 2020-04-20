@@ -4,7 +4,7 @@ http://ionicframework.com/docs/theming/ */
 /** Ionic CSS Variables **/
 :root {
   /* global font in app  */
-  --ion-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+  --ion-font-family: -apple-system, BlinkMacSystemFont, 'Signika', 'Segoe UI', 'Roboto',
     'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   /** primary **/

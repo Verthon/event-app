@@ -14,7 +14,6 @@ import {
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
-import { search } from 'ionicons/icons'
 
 import { fetchAllEvents, filterEventsByCategory, filterEventsBySearch } from '../reducers/events'
 import { fetchAllCategories, setActiveCategory } from '../reducers/categories'
@@ -22,6 +21,7 @@ import EventItem from '../components/EventItem'
 import Category from '../components/Category'
 import { IEventsState } from '../reducers/events'
 import { EventType, EventItemType } from '../types/events'
+import logo from '../assets/logo/logo-color.svg'
 
 const Events: React.FC = () => {
   let [searchVisibility, toggleSearchBar] = useState<boolean>(false)
@@ -91,16 +91,7 @@ const Events: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar color="light">
-          <IonTitle>Events</IonTitle>
-          {/* <IonButtons slot="end">
-            <IonButton>
-              <IonIcon
-                slot="icon-only"
-                icon={search}
-                onClick={() => toggleSearchBar(!searchVisibility)}
-              />
-            </IonButton>
-          </IonButtons> */}
+          <Logo src={logo} alt="Eventoo" />
         </IonToolbar>
       </IonHeader>
 
@@ -134,6 +125,7 @@ const Events: React.FC = () => {
               })
             : null}
         </CategoriesWrapper>
+        <Title>Upcoming Events</Title>
         {events
           ? events.map((event: EventType, id: number) => {
               return (
@@ -161,10 +153,24 @@ const Events: React.FC = () => {
   )
 }
 
+const Logo = styled.img`
+  width: 120px;
+  margin: 1.2rem 1rem 1rem 1rem;
+`
+
+const Title = styled.h1`
+font-family: var(--ion-decorative-font);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--ion-color-primary);
+  margin: 2rem 0 1rem 0;
+`
+
 const CategoriesWrapper = styled.div`
   display: flex;
   overflow-x: auto;
   margin: 1.5rem 0;
+  font-family: var(--ion-decorative-font);
 `
 
 export default Events

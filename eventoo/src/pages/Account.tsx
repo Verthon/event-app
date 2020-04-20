@@ -16,6 +16,7 @@ import useAuthUser from '../hooks/useAuthUser'
 import EventItem from '../components/EventItem'
 import { EventType } from '../types/events'
 import { fetchUserEvents, deleteEvent } from '../reducers/events'
+import logo from '../assets/logo/logo-color.svg'
 
 const Account: React.FC = (props: any) => {
   const dispatch: any = useDispatch()
@@ -87,7 +88,7 @@ const Account: React.FC = (props: any) => {
     <IonPage>
       <IonHeader>
         <IonToolbar color="light">
-          <IonTitle>Account</IonTitle>
+          <Logo src={logo} alt="Eventoo" />
         </IonToolbar>
       </IonHeader>
       <IonContent>
@@ -150,13 +151,20 @@ const Account: React.FC = (props: any) => {
   )
 }
 
+const Logo = styled.img`
+  width: 120px;
+  margin: 1.2rem 1rem 1rem 1rem;
+`
+
 const Title = styled.h2`
   font-size: 1.25rem;
   font-weight: 600;
+  color: var(--ion-color-primary);
 `
 
 const Container = styled.div`
   padding: 1rem;
+  font-family: var(--ion-decorative-font);
 `
 
 const Header = styled.header`

@@ -11,9 +11,10 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 
-import dateIcon from '../assets/icons/date_range.svg'
-import locationIcon from '../assets/icons/location_on.svg'
-import {EventType} from '../types/events'
+import { ReactComponent as DateRangeIcon } from '../assets/icons/date_range.svg'
+import { ReactComponent as LocationOnIcon } from '../assets/icons/location_on.svg'
+import logo from '../assets/logo/logo-color.svg'
+import { EventType } from '../types/events'
 
 const EventDetail = () => {
   const eventData: EventType = useSelector((state: any) => state.event.event)
@@ -24,15 +25,19 @@ const EventDetail = () => {
           <IonButtons slot="start">
             <IonBackButton />
           </IonButtons>
-          <IonTitle>Event Detail</IonTitle>
+          <Logo src={logo} alt="Eventoo" />
         </IonToolbar>
       </IonHeader>
       <IonContent>
         <Wrapper>
-          {eventData ? <Image src={eventData.featuredImage} /> : <ImagePlaceholder />}
+          {eventData ? (
+            <Image src={eventData.featuredImage} />
+          ) : (
+            <ImagePlaceholder />
+          )}
           <Title>{eventData ? eventData.title : ''}</Title>
           <InfoWrapper>
-            <Icon src={locationIcon} />
+            <LocationIcon />
             <EntryWrapper>
               <Localization>
                 {eventData ? eventData.localization : ''}
@@ -41,7 +46,7 @@ const EventDetail = () => {
             </EntryWrapper>
           </InfoWrapper>
           <InfoWrapper>
-            <Icon src={dateIcon} />
+            <DateIcon />
             <EntryWrapper>
               <Date>{eventData ? eventData.day : ''}</Date>
               <Time>{eventData ? eventData.hour : ''}</Time>
@@ -55,6 +60,11 @@ const EventDetail = () => {
     </IonPage>
   )
 }
+
+const Logo = styled.img`
+  width: 120px;
+  margin: 1.2rem 1rem 1rem 1rem;
+`
 
 const Wrapper = styled.div`
   padding: 1rem;
@@ -78,14 +88,37 @@ const EntryWrapper = styled.div`
   flex-direction: column;
 `
 const Title = styled.h1`
-  font-size: 1.1rem;
-  margin: 0.5rem 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 1rem 0 2rem 0;
   color: var(--ion-color-primary);
 `
-const Icon = styled.img`
+const LocationIcon = styled(LocationOnIcon)`
   width: 1rem;
   align-self: flex-start;
   margin: 0 1rem 0 0;
+
+  #Primary-Color {
+    fill: var(--ion-color-primary)
+  }
+
+  #Secondary-Color {
+    fill: #fff;
+  }
+`
+
+const DateIcon = styled(DateRangeIcon)`
+  width: 1rem;
+  align-self: flex-start;
+  margin: 0 1rem 0 0;
+
+  #Primary-Color {
+    fill: var(--ion-color-primary)
+  }
+
+  #Secondary-Color {
+    fill: #fff;
+  }
 `
 const Localization = styled.p`
   margin: 0 0 0.5rem 0;
@@ -95,7 +128,7 @@ const Localization = styled.p`
 `
 const Street = styled.p`
   margin: 0;
-  color: var(--ion-text-color);
+  color: hsl(203,13%,44%);
 `
 const Date = styled.time`
   color: var(--ion-color-primary);
@@ -103,7 +136,7 @@ const Date = styled.time`
 `
 const Time = styled.time`
   display: block;
-  color: var(--ion-text-color);
+  color: hsl(203,13%,44%);
 `
 
 const Label = styled.h2`
@@ -115,7 +148,7 @@ const Label = styled.h2`
 const Description = styled.p`
   line-height: 1.5;
   margin: 0.25rem 0;
-  color: var(--ion-text-color);
+  color: hsl(203, 13%, 44%);
 `
 const Category = styled.span`
   font-size: 0.875rem;

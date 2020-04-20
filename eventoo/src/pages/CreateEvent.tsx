@@ -291,7 +291,9 @@ const Logo = styled.img`
 `
 
 const Title = styled.h1`
-  margin: 1rem 1rem;
+  margin: 1rem 1rem 2rem 1rem;
+  font-weight: 600;
+  font-size: 1.5rem;
 `
 const Button = styled.button`
   display: block;
