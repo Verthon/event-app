@@ -14,6 +14,7 @@ export interface IEventsState {
 export const fetchAllEvents = createAsyncThunk('events/fetchAllEvents', async () => {
   try {
     const querySnapshot = await db.collection('events')
+      .orderBy('day', 'asc')
       .get()
     const events: Array<EventType> = []
     querySnapshot.docs.forEach((doc: any) => {

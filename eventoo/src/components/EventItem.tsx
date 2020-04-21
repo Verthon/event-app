@@ -69,7 +69,7 @@ const EventItem = ({
         <Paragraph>{eventData.localization}</Paragraph>
         <EventOptions editMode={editMode}>
           <EventOptionsAction onClick={() => deleteHandler(eventData)}><EventsOptionsDelete/></EventOptionsAction>
-          <EventOptionsAction onClick={editHandler}><EventsOptionsEdit/></EventOptionsAction>
+          <EventOptionsAction onClick={() => editHandler(eventData)}><EventsOptionsEdit/></EventOptionsAction>
         </EventOptions>
       </InfoWrapper>
     </Event>

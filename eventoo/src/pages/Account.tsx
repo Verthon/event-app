@@ -16,7 +16,9 @@ import useAuthUser from '../hooks/useAuthUser'
 import EventItem from '../components/EventItem'
 import { EventType } from '../types/events'
 import { fetchUserEvents, deleteEvent } from '../reducers/events'
+import { showEventDetails } from '../reducers/event'
 import logo from '../assets/logo/logo-color.svg'
+import { EDIT_EVENT } from '../constants/routes'
 
 const Account: React.FC = (props: any) => {
   const dispatch: any = useDispatch()
@@ -58,7 +60,10 @@ const Account: React.FC = (props: any) => {
     setDeleteAlert(true)
   }
 
-  const handleEditEvent = () => {}
+  const handleEditEvent = (eventData: any) => {
+    dispatch(showEventDetails(eventData))
+    props.history.push(EDIT_EVENT)
+  }
 
   const signOut = async () => {
     try {
@@ -88,7 +93,10 @@ const Account: React.FC = (props: any) => {
     <IonPage>
       <IonHeader>
         <IonToolbar color="light">
-          <Logo src={logo} alt="Eventoo" />
+          <HeaderWrapper>
+            <Logo src={logo} alt="Eventoo" />
+            <Button onClick={() => signOut()}>logout</Button>
+          </HeaderWrapper>
         </IonToolbar>
       </IonHeader>
       <IonContent>
@@ -143,8 +151,6 @@ const Account: React.FC = (props: any) => {
                 })
               : null}
           </EventsContainer>
-
-          <Button onClick={() => signOut()}>logout</Button>
         </Container>
       </IonContent>
     </IonPage>
@@ -154,6 +160,12 @@ const Account: React.FC = (props: any) => {
 const Logo = styled.img`
   width: 120px;
   margin: 1.2rem 1rem 1rem 1rem;
+`
+
+const HeaderWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `
 
 const Title = styled.h2`
@@ -206,10 +218,11 @@ const Button = styled.button`
   display: flex;
   align-items: center;
   font-family: 'Signika';
-  font-size: 1.125rem;
+  font-size: 1rem;
   text-transform: capitalize;
   font-weight: 600;
-  padding: 0.5rem 2.5rem;
+  padding: 0.35rem 1.25rem;
+  margin: 0 1rem 0 0;
   border-radius: 2px;
   background-color: var(--ion-color-primary);
   color: #ffffff;
