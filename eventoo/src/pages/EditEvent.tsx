@@ -17,6 +17,8 @@ import {
 import styled from 'styled-components'
 import { useSelector } from 'react-redux'
 import dayjs from 'dayjs'
+
+import { ActionButtonProps } from '../types/general'
 import logo from '../assets/logo/logo-color.svg'
 import { db } from '../firebase/firebase'
 import { validate } from '../helpers/validate'
@@ -174,6 +176,7 @@ const EditEvent: React.FC = ({ history }: any) => {
             </IonItem>
 
             <IonItem lines="none">
+              <ImageButton onClick={() => console.log('t')}>Choose image</ImageButton>
               <IonLabel position="floating">Image URL</IonLabel>
               <IonInput
                 className="event-input"
@@ -184,6 +187,7 @@ const EditEvent: React.FC = ({ history }: any) => {
                 onIonChange={e => handleInputChange(e)}
               />
             </IonItem>
+
             <IonItem lines="none">
               <IonLabel position="floating">Date</IonLabel>
               <IonDatetime
@@ -257,6 +261,16 @@ const Button = styled.button`
   color: #ffffff;
   padding: 0.75rem;
   margin: 1rem auto;
+`
+
+const ImageButton = styled.button<ActionButtonProps>`
+  margin: 0.75rem 0 0 0;
+  font-family: var(--ion-decorative-font);
+  padding: 0.45rem 1rem;
+  border-radius: 2px;
+  color: #ffffff;
+  background-color: var(--ion-color-primary);
+  font-size: 1rem;
 `
 
 const ErrorMessage = styled.span`

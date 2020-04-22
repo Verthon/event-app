@@ -91,7 +91,8 @@ const Event = styled.div`
 const ImageWrapper = styled.div`
   position: relative;
   width: 100%;
-  padding-bottom: 39.99%;
+  display: flex;
+  max-height: 150px;
 `
 
 const EventOptions = styled.div<EventItemEditMode>`
@@ -126,10 +127,9 @@ const EventsOptionsDelete = styled(DeleteIcon)`
 `
 
 const Image = styled.img`
-  position: absolute;
-  top: 0;
-  left: 0;
   border-radius: 10px 10px 0px 0px;
+  object-fit: cover;
+
 `
 
 const Time = styled.div`

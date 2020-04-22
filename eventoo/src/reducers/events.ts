@@ -9,6 +9,7 @@ export interface IEventsState {
   allEvents: Array<EventType>
   allUserEvents: Array<EventType>
   userEvents: Array<EventType>
+  userEventImage: string
 }
 
 export const fetchAllEvents = createAsyncThunk('events/fetchAllEvents', async () => {
@@ -53,7 +54,8 @@ const initialState: IEventsState = {
   events: [],
   allEvents: [],
   allUserEvents: [],
-  userEvents: []
+  userEvents: [],
+  userEventImage: ''
 }
 
 export const eventsSlice = createSlice({
@@ -82,6 +84,9 @@ export const eventsSlice = createSlice({
     deleteEvent: (state: IEventsState, action: any) => {
       state.events = state.allEvents.filter((event: any) => event.docId !== action.payload)
       state.userEvents = state.allUserEvents.filter((event: any) => event.docId !== action.payload)
+    },
+    setUserEventImage: (state: IEventsState, action: any) => {
+      state.userEventImage = action.payload
     }
   },
   extraReducers: builder => {
@@ -96,6 +101,6 @@ export const eventsSlice = createSlice({
   }
 })
 
-export const { fetchAllEventsSuccess, fetchAllEventsFailure, filterEventsByCategory, filterEventsBySearch, deleteEvent } = eventsSlice.actions
+export const { fetchAllEventsSuccess, fetchAllEventsFailure, filterEventsByCategory, filterEventsBySearch, deleteEvent, setUserEventImage } = eventsSlice.actions
 
 export default eventsSlice

@@ -16,14 +16,20 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import dayjs from 'dayjs'
 import styled from 'styled-components'
-import Unsplash from 'unsplash-js'
-import { db, storage } from '../firebase/firebase'
+
+import UnsplashModal from '../components/UnsplashModal'
+import { ActionButtonProps } from '../types/general'
+import { db } from '../firebase/firebase'
 import logo from '../assets/logo/logo-color.svg'
 import { validate } from '../helpers/validate'
 import { EVENT_CREATED } from '../constants/routes'
 
 const CreateEvents: React.FC = (props: any) => {
   const uid = useSelector((state: any) => state.auth.user.uid)
+  const userEventImage = useSelector(
+    (state: any) => state.events.userEventImage
+  )
+  const [showImageModal, setImageModal] = useState<boolean>(false)
   const [error, setError] = React.useState({
     inputName: '',
     error: '',
@@ -37,7 +43,6 @@ const CreateEvents: React.FC = (props: any) => {
     categories: ['Sport', 'Music', 'Education', 'Business', 'Food'],
     category: 'Sport',
     imageUrl: '',
-    imageFile: '',
     day: dayjs().format('YYYY-MM-DD'),
     hour: '13:00',
   })
@@ -68,15 +73,11 @@ const CreateEvents: React.FC = (props: any) => {
       category: form.category,
       day: form.day,
       hour: form.hour,
-      featuredImage: form.imageUrl,
+      featuredImage: userEventImage,
       uid: uid,
       created_at: dayjs().format(),
     })
     return props.history.push(EVENT_CREATED)
-  }
-
-  const handleFileUpload = (e: any) => {
-    console.log('event', e.target.files[0])
   }
 
   return (
@@ -94,6 +95,12 @@ const CreateEvents: React.FC = (props: any) => {
           message="Event Added succesfully"
           duration={1500}
         />
+        {showImageModal ? (
+          <UnsplashModal
+            showModal={showImageModal}
+            cancelHandler={setImageModal}
+          />
+        ) : null}
         <Title>Create event</Title>
         <div className="form-container">
           <form
@@ -183,26 +190,20 @@ const CreateEvents: React.FC = (props: any) => {
 
             <IonItem lines="none">
               <IonLabel position="floating">Image URL</IonLabel>
+              <ImageButton
+                type="button"
+                onClick={() => console.log('t')}
+              >
+                Choose image
+              </ImageButton>
               <IonInput
                 className="event-input"
                 type="text"
                 name="imageUrl"
                 placeholder="eg. https://source.unsplash.com/weekly?water"
-                value={form.imageUrl}
-                onIonChange={e => handleInputChange(e)}
+                value={userEventImage}
               />
             </IonItem>
-
-            <FileUpload>
-              <FileUploadLabel>Image upload</FileUploadLabel>
-              <input
-                type="file"
-                name="imageUpload"
-                accept="image/jpeg image/jpg"
-                value={form.imageFile}
-                onChange={e => handleFileUpload(e)}
-              />
-            </FileUpload>
 
             <IonItem lines="none">
               <IonLabel position="floating">Date</IonLabel>
@@ -277,15 +278,14 @@ const Button = styled.button`
   margin: 1rem auto;
 `
 
-const FileUpload = styled.div`
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-`
-
-const FileUploadLabel = styled.div`
-  font-size: 0.875rem;
-  margin: 0 0 1rem 0;
+const ImageButton = styled.button<ActionButtonProps>`
+  margin: 0.75rem 0 0 0;
+  font-family: var(--ion-decorative-font);
+  padding: 0.45rem 1rem;
+  border-radius: 2px;
+  color: #ffffff;
+  background-color: var(--ion-color-primary);
+  font-size: 1rem;
 `
 
 const ErrorMessage = styled.span`
