@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   IonContent,
   IonHeader,
@@ -6,28 +6,24 @@ import {
   IonToolbar,
   IonButtons,
   IonBackButton,
-  IonInput,
-  IonItem,
-  IonLabel,
-  IonSelect,
-  IonSelectOption,
-  IonDatetime,
-  IonTextarea,
 } from '@ionic/react'
 import styled from 'styled-components'
-import { useSelector } from 'react-redux'
-import dayjs from 'dayjs'
+import { useDispatch, useSelector } from 'react-redux'
 
-import { ActionButtonProps } from '../types/general'
+import EventForm from '../components/EventForm'
 import logo from '../assets/logo/logo-color.svg'
 import { db } from '../firebase/firebase'
 import { validate } from '../helpers/validate'
-import {EVENT_CHANGED} from '../constants/routes'
+import { EVENT_CHANGED } from '../constants/routes'
+import { setDefaultEventImage } from '../reducers/events'
 
 const EditEvent: React.FC = ({ history }: any) => {
+  const dispatch: any = useDispatch()
   const currentEvent = useSelector((state: any) => state.event.event)
-  console.log('current Event in editEvent', currentEvent)
   const uid = useSelector((state: any) => state.auth.user.uid)
+  const userEventImage = useSelector(
+    (state: any) => state.events.userEventImage
+  )
   const [error, setError] = React.useState({
     inputName: '',
     error: '',
@@ -41,10 +37,13 @@ const EditEvent: React.FC = ({ history }: any) => {
     categories: ['Sport', 'Music', 'Education', 'Business', 'Food'],
     category: currentEvent.category,
     imageUrl: currentEvent.featuredImage,
-    imageFile: '',
     day: currentEvent.day,
     hour: currentEvent.hour,
   })
+
+  useEffect(() => {
+    setForm({ ...form, [form.imageUrl]: currentEvent })
+  }, [currentEvent])
 
   const handleInputChange = (e: any) => {
     setForm({
@@ -70,10 +69,10 @@ const EditEvent: React.FC = ({ history }: any) => {
       category: form.category,
       day: form.day,
       hour: form.hour,
-      featuredImage: form.imageUrl,
+      featuredImage: userEventImage === '' ? form.imageUrl : userEventImage,
       uid: uid,
-      created_at: dayjs().format(),
     })
+    dispatch(setDefaultEventImage())
     return history.push(EVENT_CHANGED)
   }
 
@@ -89,151 +88,15 @@ const EditEvent: React.FC = ({ history }: any) => {
       </IonHeader>
       <IonContent>
         <Title>Edit event</Title>
-        <div className="form-container">
-          <form
-            method="POST"
-            className="form-content"
-            onSubmit={e => handleSubmit(e)}
-          >
-            <IonItem lines="none">
-              <IonLabel position="floating">Event name</IonLabel>
-              <IonInput
-                className="event-input"
-                placeholder="eg. Football Event"
-                type="text"
-                name="title"
-                value={form.title}
-                onIonChange={e => handleInputChange(e)}
-              />
-              {error.inputName === 'title' ? (
-                <ErrorMessage>{error.error}</ErrorMessage>
-              ) : null}
-            </IonItem>
-
-            <IonItem lines="none">
-              <IonLabel position="floating">Event host</IonLabel>
-              <IonInput
-                className="event-input"
-                placeholder="eg. Company"
-                type="text"
-                name="host"
-                value={form.host}
-                onIonChange={e => handleInputChange(e)}
-              />
-              {error.inputName === 'host' ? (
-                <ErrorMessage>{error.error}</ErrorMessage>
-              ) : null}
-            </IonItem>
-
-            <IonItem lines="none">
-              <IonLabel position="floating">City</IonLabel>
-              <IonInput
-                className="event-input"
-                placeholder="eg. Bielsko-Biała, Poland"
-                type="text"
-                name="localization"
-                value={form.localization}
-                onIonChange={e => handleInputChange(e)}
-              />
-              {error.inputName === 'localization' ? (
-                <ErrorMessage>{error.error}</ErrorMessage>
-              ) : null}
-            </IonItem>
-
-            <IonItem lines="none">
-              <IonLabel position="floating">Address</IonLabel>
-              <IonInput
-                className="event-input"
-                placeholder="eg. Main Street SE 125"
-                type="text"
-                name="address"
-                value={form.address}
-                onIonChange={e => handleInputChange(e)}
-              />
-              {error.inputName === 'address' ? (
-                <ErrorMessage>{error.error}</ErrorMessage>
-              ) : null}
-            </IonItem>
-
-            <IonItem lines="none">
-              <IonLabel position="floating">Categories</IonLabel>
-              <IonSelect
-                className="event-input"
-                value={form.category}
-                cancelText="Cancel"
-                okText="Select"
-                name="category"
-                onIonChange={e => handleInputChange(e)}
-              >
-                {form.categories.map((cat, id) => {
-                  return (
-                    <IonSelectOption key={id} value={cat}>
-                      {cat}
-                    </IonSelectOption>
-                  )
-                })}
-              </IonSelect>
-            </IonItem>
-
-            <IonItem lines="none">
-              <ImageButton onClick={() => console.log('t')}>Choose image</ImageButton>
-              <IonLabel position="floating">Image URL</IonLabel>
-              <IonInput
-                className="event-input"
-                type="text"
-                name="imageUrl"
-                placeholder="eg. https://source.unsplash.com/weekly?water"
-                value={form.imageUrl}
-                onIonChange={e => handleInputChange(e)}
-              />
-            </IonItem>
-
-            <IonItem lines="none">
-              <IonLabel position="floating">Date</IonLabel>
-              <IonDatetime
-                className="event-input"
-                max="2020"
-                min={form.day}
-                value={form.day}
-                name="day"
-                displayFormat="DD.MMM"
-                placeholder="Select Date"
-                onIonChange={(e: any) => handleInputChange(e)}
-              />
-            </IonItem>
-
-            <IonItem lines="none">
-              <IonLabel position="floating">Time</IonLabel>
-              <IonDatetime
-                value={form.hour}
-                name="hour"
-                displayFormat="HH:mm"
-                placeholder="Select Time"
-                onIonChange={e => handleInputChange(e)}
-              />
-            </IonItem>
-
-            <IonItem lines="none">
-              <IonLabel position="floating">Event Description</IonLabel>
-              <IonTextarea
-                className="event-input"
-                cols={10}
-                rows={10}
-                placeholder="Event description"
-                name="description"
-                value={form.description}
-                onIonChange={e => handleInputChange(e)}
-              />
-              {error.inputName === 'description' ? (
-                <ErrorMessage>{error.error}</ErrorMessage>
-              ) : null}
-            </IonItem>
-
-            <Button type="submit" color="primary">
-              Save changes
-            </Button>
-          </form>
-        </div>
+        <EventForm
+          handleSubmit={handleSubmit}
+          handleInputChange={handleInputChange}
+          form={form}
+          error={error}
+          userEventImage={
+            userEventImage === '' ? form.imageUrl : userEventImage
+          }
+        />
       </IonContent>
     </IonPage>
   )
@@ -248,61 +111,6 @@ const Title = styled.h1`
   margin: 1rem;
   font-weight: 600;
   font-size: 1.4rem;
-`
-
-const Button = styled.button`
-  display: block;
-  font-weight: bold;
-  font-size: 1rem;
-  font-family: var(--ion-decorative-font);
-  border-radius: 2px;
-  width: 90%;
-  background-color: var(--ion-color-primary);
-  color: #ffffff;
-  padding: 0.75rem;
-  margin: 1rem auto;
-`
-
-const ImageButton = styled.button<ActionButtonProps>`
-  margin: 0.75rem 0 0 0;
-  font-family: var(--ion-decorative-font);
-  padding: 0.45rem 1rem;
-  border-radius: 2px;
-  color: #ffffff;
-  background-color: var(--ion-color-primary);
-  font-size: 1rem;
-`
-
-const ErrorMessage = styled.span`
-  @keyframes pulse {
-    0% {
-      -webkit-transform: scale(1);
-      -ms-transform: scale(1);
-      transform: scale(1);
-    }
-
-    50% {
-      -webkit-transform: scale(1.1);
-      -ms-transform: scale(1.1);
-      transform: scale(1.1);
-    }
-
-    100% {
-      -webkit-transform: scale(1);
-      -ms-transform: scale(1);
-      transform: scale(1);
-    }
-  }
-  animation-name: pulse;
-  animation-duration: 0.5s;
-  animation-timing-function: ease-out;
-  background: hsl(0, 91%, 95%);
-  color: hsl(0, 41%, 40%);
-  font-style: italic;
-  padding: 0.5rem 0.75rem;
-  width: 100%;
-  border-left: 4px solid hsl(0, 41%, 40%);
-  font-size: 0.875rem;
 `
 
 export default EditEvent

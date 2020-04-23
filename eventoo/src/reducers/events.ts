@@ -30,7 +30,7 @@ export const fetchAllEvents = createAsyncThunk('events/fetchAllEvents', async ()
   }
 })
 
-export const fetchUserEvents = createAsyncThunk('events/fetchUserEvents', async(uid) => {
+export const fetchUserEvents = createAsyncThunk('events/fetchUserEvents', async (uid) => {
   try {
     const querySnapshot = await db.collection('events')
       .where("uid", "==", uid)
@@ -69,14 +69,13 @@ export const eventsSlice = createSlice({
       state.error = action.payload
     },
     filterEventsByCategory: (state: IEventsState, action: any): any => {
-      console.log(action.payload)
       if (action.payload === "All") {
         state.events = [...state.allEvents]
       }
       state.events = state.allEvents.filter((event: EventType) => event.category === action.payload)
     },
     filterEventsBySearch: (state: IEventsState, action: any) => {
-      if(state.events.length === 0) {
+      if (state.events.length === 0) {
         state.events = state.allEvents.filter((event: any) => event.title.includes(action.payload))
       }
       state.events = state.events.filter((event: any) => event.title.includes(action.payload))
@@ -87,6 +86,9 @@ export const eventsSlice = createSlice({
     },
     setUserEventImage: (state: IEventsState, action: any) => {
       state.userEventImage = action.payload
+    },
+    setDefaultEventImage: (state: IEventsState) => {
+      state.userEventImage = ""
     }
   },
   extraReducers: builder => {
@@ -101,6 +103,6 @@ export const eventsSlice = createSlice({
   }
 })
 
-export const { fetchAllEventsSuccess, fetchAllEventsFailure, filterEventsByCategory, filterEventsBySearch, deleteEvent, setUserEventImage } = eventsSlice.actions
+export const { fetchAllEventsSuccess, fetchAllEventsFailure, filterEventsByCategory, filterEventsBySearch, deleteEvent, setUserEventImage, setDefaultEventImage } = eventsSlice.actions
 
 export default eventsSlice

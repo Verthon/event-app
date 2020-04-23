@@ -29,6 +29,7 @@ const UnsplashModal = ({ showModal, cancelHandler }: any) => {
   }
   const submitEventImage = (url: string) => {
     dispatch(setUserEventImage(url))
+    cancelHandler(false)
   }
   const handleInputChange = (e: any) => {
     setQuery(e.target.value)
@@ -140,11 +141,12 @@ const Button = styled.button<ActionButtonProps>`
 `
 
 const CancelButton = styled.button<ActionButtonProps>`
+  background: transparent;
   color: var(--ion-color-primary);
-  background: hsl(225.4,29.1%,90.9%);
-  padding: 0.75rem;
+  padding: 0.75rem 1.5rem;
   border-radius: 2px;
   font-size: 1rem;
+  margin: 0 1.75rem 0 0;
 ` 
 
 const Description = styled.p`
@@ -162,12 +164,10 @@ const ImagesWrapper = styled.div`
 const ImagesSection = styled.section``
 
 const Footer = styled.footer`
-  background: hsl(0,0%,97.6%);
-  .modal-cancel {
-    background-color: var(--ion-color-primary);
-    color: #ffffff;
-    padding: 0.5rem 1rem;
-  }
+  display: flex;
+  justify-content: center;
+  padding: 1.5rem 0;
+  background: hsl(225.4,29.1%,95.9%);
 `
 
 export default UnsplashModal
