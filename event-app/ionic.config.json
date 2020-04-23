@@ -1,7 +1,0 @@
-{
-  "name": "event-app",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "react"
-}

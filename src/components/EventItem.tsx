@@ -4,7 +4,7 @@ import dayjs from 'dayjs'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
-import { EventType, EventItemType, EventItemEditMode } from '../types/events'
+import { EventItemType, EventItemEditMode } from '../types/events'
 import { showEventDetails } from '../reducers/event'
 import { ReactComponent as DeleteIcon } from '../assets/icons/delete_forever.svg'
 import { ReactComponent as EditIcon } from '../assets/icons/edit.svg'
@@ -24,7 +24,7 @@ const EventItem = ({
   editMode,
   deleteHandler,
   editHandler
-}: EventType) => {
+}: EventItemType) => {
   const dispatch = useDispatch()
 
   const displayEventDetail = () => {

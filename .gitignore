@@ -10,7 +10,9 @@
 
 # production
 /build
-.env
+src/firebase/db_config.ts
+src/constants/unsplashConfig.ts
+
 
 # misc
 .DS_Store

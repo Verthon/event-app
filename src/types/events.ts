@@ -1,22 +1,17 @@
 export type EventType = {
-  eventId: number,
-  docId: string,
-  title: string,
-  host: string,
-  localization: string,
-  address: string,
-  category: string,
-  day: string,
-  hour: string,
-  description: string,
-  featuredImage: string,
-  date?: {
-    seconds: number,
-    nanoseconds: number
-  },
-  editMode?: boolean,
-  deleteHandler?: any,
-  editHandler?: any,
+  eventId?: number
+  docId: string
+  title: string
+  host: string
+  localization: string
+  address: string
+  category: string
+  day: string
+  hour: string
+  description: string
+  featuredImage: string
+  editMode: boolean
+
 }
 
 export type EventItemType = {
@@ -32,7 +27,6 @@ export type EventItemType = {
   description: string,
   featuredImage: string,
   editMode: boolean,
-  date?: number,
   deleteHandler?: any,
   editHandler?: any,
 }

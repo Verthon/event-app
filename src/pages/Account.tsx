@@ -14,7 +14,7 @@ import { doSignOut, db } from '../firebase/firebase'
 import { logout } from '../reducers/auth'
 import useAuthUser from '../hooks/useAuthUser'
 import EventItem from '../components/EventItem'
-import { EventType } from '../types/events'
+import { EventItemType } from '../types/events'
 import { fetchUserEvents, deleteEvent } from '../reducers/events'
 import { showEventDetails } from '../reducers/event'
 import logo from '../assets/logo/logo-color.svg'
@@ -127,7 +127,7 @@ const Account: React.FC = (props: any) => {
           <Title>Your events</Title>
           <EventsContainer>
             {currentEvents
-              ? currentEvents.map((event: EventType, id: number) => {
+              ? currentEvents.map((event: EventItemType, id: number) => {
                   return (
                     <EventItem
                       key={id}
@@ -137,7 +137,6 @@ const Account: React.FC = (props: any) => {
                       localization={event.localization}
                       address={event.address}
                       host={event.host}
-                      date={event.date}
                       day={event.day}
                       hour={event.hour}
                       description={event.description}

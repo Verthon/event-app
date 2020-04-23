@@ -2,12 +2,7 @@ import {
   IonContent,
   IonHeader,
   IonPage,
-  IonTitle,
   IonToolbar,
-  IonSearchbar,
-  IonButtons,
-  IonButton,
-  IonIcon,
   IonToast,
   IonLoading,
 } from '@ionic/react'
@@ -15,17 +10,15 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 
-import { fetchAllEvents, filterEventsByCategory, filterEventsBySearch } from '../reducers/events'
+import { fetchAllEvents, filterEventsByCategory } from '../reducers/events'
 import { fetchAllCategories, setActiveCategory } from '../reducers/categories'
 import EventItem from '../components/EventItem'
 import Category from '../components/Category'
 import { IEventsState } from '../reducers/events'
-import { EventType, EventItemType } from '../types/events'
+import { EventItemType } from '../types/events'
 import logo from '../assets/logo/logo-color.svg'
 
 const Events: React.FC = () => {
-  let [searchVisibility, toggleSearchBar] = useState<boolean>(false)
-  const [searchText, setSearchText] = useState('');
   let [events, setEvents] = useState([])
   const dispatch: any = useDispatch()
   let [categories, setCategories] = useState([])
@@ -60,10 +53,6 @@ const Events: React.FC = () => {
   useEffect(() => {
     setEvents(currentEvents)
   }, [currentEvents])
-
-  useEffect(() => {
-    dispatch(filterEventsBySearch(searchText))
-  }, [searchText, dispatch])
 
   useEffect(() => {
     dispatch(fetchAllEvents())
@@ -109,7 +98,6 @@ const Events: React.FC = () => {
           message="Error occured while fetching data from our database. Please try again later."
           duration={2000}
         />
-        {searchVisibility ? <IonSearchbar debounce={500} onIonChange={e => setSearchText(e.detail.value!)} /> : null}
         <CategoriesWrapper>
           {categories
             ? categories.map((category, id) => {
@@ -127,7 +115,7 @@ const Events: React.FC = () => {
         </CategoriesWrapper>
         <Title>Upcoming Events</Title>
         {events
-          ? events.map((event: EventType, id: number) => {
+          ? events.map((event: EventItemType, id: number) => {
               return (
                 <EventItem
                   key={id}
@@ -137,7 +125,6 @@ const Events: React.FC = () => {
                   localization={event.localization}
                   address={event.address}
                   host={event.host}
-                  date={event.date}
                   day={event.day}
                   hour={event.hour}
                   description={event.description}
