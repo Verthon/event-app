@@ -17,6 +17,7 @@ import Category from '../components/Category'
 import { IEventsState } from '../reducers/events'
 import { EventItemType } from '../types/events'
 import logo from '../assets/logo/logo-color.svg'
+import { db } from '../firebase/firebase'
 
 const Events: React.FC = () => {
   let [events, setEvents] = useState([])
@@ -51,19 +52,22 @@ const Events: React.FC = () => {
   }
 
   useEffect(() => {
-    setEvents(currentEvents)
-  }, [currentEvents])
-
-  useEffect(() => {
-    dispatch(fetchAllEvents())
+    db.collection("events")
+    .onSnapshot(function(doc) {
+      dispatch(fetchAllEvents())
       .then((result: any) => {
         setDataFetched(true)
         setEvents(result.payload)
       })
       .catch(() => {
         setToast(true)
-      })
-  }, [dispatch])
+      })    
+    });
+  }, [])
+
+  useEffect(() => {
+    setEvents(currentEvents)
+  }, [currentEvents])
 
   useEffect(() => {
     dispatch(fetchAllCategories())

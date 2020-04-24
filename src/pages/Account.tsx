@@ -77,7 +77,9 @@ const Account: React.FC = (props: any) => {
   }
 
   useEffect(() => {
-    dispatch(fetchUserEvents(currentUser.uid))
+    db.collection("events")
+    .onSnapshot(function(doc) {
+      dispatch(fetchUserEvents(currentUser.uid))
       .then((result: any) => {
         console.log('fetchAllEvents result', result)
         setDataFetched(true)
@@ -85,8 +87,9 @@ const Account: React.FC = (props: any) => {
       })
       .catch(() => {
         console.log('Error while fetching the events')
-      })
-  }, [currentUser.uid, dispatch])
+      })   
+    });
+  }, [])
 
   let currentEvents = useSelector((state: any) => state.events.userEvents)
   return (

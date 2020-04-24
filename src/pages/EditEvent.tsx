@@ -14,13 +14,13 @@ import EventForm from '../components/EventForm'
 import logo from '../assets/logo/logo-color.svg'
 import { db } from '../firebase/firebase'
 import { validate } from '../helpers/validate'
-import { EVENT_CHANGED } from '../constants/routes'
+import { EVENT_CHANGED, ACCOUNT } from '../constants/routes'
 import { setDefaultEventImage } from '../reducers/events'
 
 const EditEvent: React.FC = ({ history }: any) => {
   const dispatch: any = useDispatch()
   const currentEvent = useSelector((state: any) => state.event.event)
-  const uid = useSelector((state: any) => state.auth.user.uid)
+  const uid = useSelector((state: any) => state.auth.user !== null ? state.auth.user.uid : null)
   const userEventImage = useSelector(
     (state: any) => state.events.userEventImage
   )
@@ -44,6 +44,12 @@ const EditEvent: React.FC = ({ history }: any) => {
   useEffect(() => {
     setForm({ ...form, [form.imageUrl]: currentEvent })
   }, [currentEvent])
+
+  useEffect(() => {
+    if(uid === null) {
+      history.push(ACCOUNT)
+    }
+  }, [uid, history])
 
   const handleInputChange = (e: any) => {
     setForm({

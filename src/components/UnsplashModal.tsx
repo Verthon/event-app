@@ -1,18 +1,37 @@
 import React, { useState } from 'react'
-import {useDispatch} from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { IonModal, IonContent, IonLoading } from '@ionic/react'
 import styled from 'styled-components'
 
-import {setUserEventImage} from '../reducers/events'
+import { setUserEventImage } from '../reducers/events'
 import { unsplash } from '../constants/api'
-import {ActionButtonProps} from '../types/general'
+import { ActionButtonProps } from '../types/general'
 
+type Url = {
+  thumb: string
+  small: string
+  regular: string
+  full: string
+  raw: string
+}
+
+interface Image {
+  id: string
+  alt_description: string
+  urls: Url
+  active: boolean
+}
+
+interface ImageWrapperProps {
+  active: any
+  key: string
+  onClick: any
+}
 
 interface ImageProps {
-  key: string,
-  src: string,
-  alt: string,
-  onClick: any
+  key: string
+  src: string
+  alt: string
 }
 
 const UnsplashModal = ({ showModal, cancelHandler }: any) => {
@@ -23,15 +42,22 @@ const UnsplashModal = ({ showModal, cancelHandler }: any) => {
   let [isDataFetched, setDataFetching] = useState<boolean>(true)
   let [eventImage, setEventImage] = useState<string>('')
 
-  const setActiveEventImage = (url: string) => {
-    //set css class
+  const setActiveEventImage = (url: string, index: number) => {
+    let updatedImages: Array<Image> = images.map(image => ({
+      ...image,
+      [image.active]: false,
+    }))
+    //setImages(updatedImages)
+    updatedImages[index].active = !updatedImages[index].active
+    setImages(updatedImages)
+    console.log('updatedImages', images)
     setEventImage(url)
   }
   const submitEventImage = (url: string) => {
     dispatch(setUserEventImage(url))
     cancelHandler(false)
   }
-  const handleInputChange = (e: any) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value)
   }
   const handleImageSearch = () => {
@@ -41,10 +67,11 @@ const UnsplashModal = ({ showModal, cancelHandler }: any) => {
       .photos(query, 1, 10, { orientation: 'landscape' })
       .then(response => response.json())
       .then(data => {
-        const formattedData = data.results.map((entry: any) => ({
+        const formattedData = data.results.map((entry: Image) => ({
+          id: entry.id,
           alt_description: entry.alt_description,
           urls: entry.urls,
-          id: entry.id
+          active: false,
         }))
         setDataFetching(true)
         setSpinner(false)
@@ -87,13 +114,20 @@ const UnsplashModal = ({ showModal, cancelHandler }: any) => {
               </Description>
               <ImagesWrapper>
                 {images
-                  ? images.map((image: any) => (
-                      <Image
+                  ? images.map((image: Image, index: number) => (
+                      <ImageWrapper
                         key={image.id}
-                        src={image.urls.small}
-                        alt={image.alt_description}
-                        onClick={() => setActiveEventImage(image.urls.small)}
-                      />
+                        active={image.active}
+                        onClick={() =>
+                          setActiveEventImage(image.urls.small, index)
+                        }
+                      >
+                        <Image
+                          key={image.id}
+                          src={image.urls.small}
+                          alt={image.alt_description}
+                        />
+                      </ImageWrapper>
                     ))
                   : null}
               </ImagesWrapper>
@@ -101,8 +135,12 @@ const UnsplashModal = ({ showModal, cancelHandler }: any) => {
           ) : null}
         </Wrapper>
         <Footer>
-          <CancelButton onClick={() => cancelHandler(false)}>Cancel</CancelButton>
-          <Button onClick={() => submitEventImage(eventImage)}>Set photo</Button>            
+          <CancelButton onClick={() => cancelHandler(false)}>
+            Cancel
+          </CancelButton>
+          <Button onClick={() => submitEventImage(eventImage)}>
+            Set photo
+          </Button>
         </Footer>
       </IonModal>
     </IonContent>
@@ -147,10 +185,28 @@ const CancelButton = styled.button<ActionButtonProps>`
   border-radius: 2px;
   font-size: 1rem;
   margin: 0 1.75rem 0 0;
-` 
+`
 
 const Description = styled.p`
   color: hsl(203, 13%, 44%);
+`
+
+const ImageWrapper = styled.div<ImageWrapperProps>`
+  display: inline-flex;
+  position: relative;
+  height: 100%;
+  &::after {
+    content: "";
+    position:absolute;
+    left:0; top:0;
+    width:100%; height:100%;
+    display:inline-block;
+    background: ${props =>
+      props.active
+        ? 'linear-gradient(to bottom, rgba(255,255,255,0.75) 0%,rgba(45,	54,	82, 0.75) 70%)'
+        : 'none'};
+  }
+  } 
 `
 
 const Image = styled.img<ImageProps>`
@@ -167,7 +223,7 @@ const Footer = styled.footer`
   display: flex;
   justify-content: center;
   padding: 1.5rem 0;
-  background: hsl(225.4,29.1%,95.9%);
+  background: hsl(225.4, 29.1%, 95.9%);
 `
 
 export default UnsplashModal

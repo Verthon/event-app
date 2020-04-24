@@ -76,13 +76,13 @@ export const eventsSlice = createSlice({
     },
     filterEventsBySearch: (state: IEventsState, action: any) => {
       if (state.events.length === 0) {
-        state.events = state.allEvents.filter((event: any) => event.title.includes(action.payload))
+        state.events = state.allEvents.filter((event: EventType) => event.title.includes(action.payload))
       }
-      state.events = state.events.filter((event: any) => event.title.includes(action.payload))
+      state.events = state.events.filter((event: EventType) => event.title.includes(action.payload))
     },
     deleteEvent: (state: IEventsState, action: any) => {
-      state.events = state.allEvents.filter((event: any) => event.docId !== action.payload)
-      state.userEvents = state.allUserEvents.filter((event: any) => event.docId !== action.payload)
+      state.events = state.allEvents.filter((event: EventType) => event.docId !== action.payload)
+      state.userEvents = state.allUserEvents.filter((event: EventType) => event.docId !== action.payload)
     },
     setUserEventImage: (state: IEventsState, action: any) => {
       state.userEventImage = action.payload
