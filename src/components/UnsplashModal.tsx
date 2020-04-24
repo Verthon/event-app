@@ -8,11 +8,7 @@ import { unsplash } from '../constants/api'
 import { ActionButtonProps } from '../types/general'
 
 type Url = {
-  thumb: string
-  small: string
-  regular: string
-  full: string
-  raw: string
+    thumb: string, small: string, regular: string, full: string, raw: string
 }
 
 interface Image {
@@ -43,11 +39,8 @@ const UnsplashModal = ({ showModal, cancelHandler }: any) => {
   let [eventImage, setEventImage] = useState<string>('')
 
   const setActiveEventImage = (url: string, index: number) => {
-    let updatedImages: Array<Image> = images.map(image => ({
-      ...image,
-      [image.active]: false,
-    }))
-    //setImages(updatedImages)
+    let updatedImages: Array<Image> = images.map(image => ({...image, [image.active]: false}))
+    setImages(updatedImages)
     updatedImages[index].active = !updatedImages[index].active
     setImages(updatedImages)
     console.log('updatedImages', images)
@@ -206,7 +199,6 @@ const ImageWrapper = styled.div<ImageWrapperProps>`
         ? 'linear-gradient(to bottom, rgba(255,255,255,0.75) 0%,rgba(45,	54,	82, 0.75) 70%)'
         : 'none'};
   }
-  } 
 `
 
 const Image = styled.img<ImageProps>`
