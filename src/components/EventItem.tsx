@@ -86,6 +86,7 @@ const Event = styled.div`
   border-radius: 10px;
   line-height: 1;
   background-color: #f6f9f9;
+  max-width: 400px;
 `
 
 const ImageWrapper = styled.div`
