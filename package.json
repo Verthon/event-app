@@ -40,10 +40,11 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && echo '/*    /index.html   200' > build/_redirects",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "android": "ionic cap run android --external"
+    "android": "ionic cap run android --external",
+    "deploy-web": "npm run build && netlify deploy"
   },
   "eslintConfig": {
     "extends": "react-app"
