@@ -10,7 +10,10 @@ credentials.js
 /coverage
 
 # production
+/android
 /build
+src/firebase/db_config.ts
+src/constants/unsplashConfig.ts
 
 # misc
 .DS_Store
