@@ -9,8 +9,13 @@
 /coverage
 
 # production
+/android
 /build
 src/firebase/db_config.ts
+<<<<<<< HEAD
+=======
+src/constants/unsplashConfig.ts
+>>>>>>> fix: Outdated gitignore
 
 # misc
 .DS_Store
