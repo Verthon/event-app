@@ -1,8 +1,7 @@
 import { IonContent, IonPage } from '@ionic/react'
 import React from 'react'
 import styled from 'styled-components'
-//import bg from '../assets/backgrounds/home-bg-sm.svg'
-import bg from '../assets/backgrounds/home-sm.svg'
+import bg from '../assets/backgrounds/main-bg-sm.svg'
 
 const Home: React.FC = (props: any) => {
   return (
@@ -10,7 +9,7 @@ const Home: React.FC = (props: any) => {
       <IonContent>
         <Hero>
           <Content>
-            <Title>The journey begins here!</Title>
+            <Title>Explore events</Title>
             <Description>
               Eventoo is a perfect place to build, manage and grow your events.
             </Description>
@@ -39,7 +38,7 @@ const Content = styled.article`
   flex-direction: column;
   color: var(--main-dark);
   justify-content: flex-end;
-  align-items: center;
+  align-items: flex-start;
   margin: auto auto 0 auto;
   padding: 0 2rem 2.75rem 2rem;
   background: #ffffff;

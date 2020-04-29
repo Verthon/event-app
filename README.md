@@ -24,7 +24,7 @@ Mobile application to build, manage and grow your events in a easy way.
 
 1. clone repository `git clone https://github.com/Verthon/event-app.git`
 2. install dependencies `npm install`
-3. run react dev server `npm start`
+3. run react dev server `ionic serve`
 
 
 ## Work in progress

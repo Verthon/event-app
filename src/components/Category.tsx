@@ -27,6 +27,7 @@ const CategoryWrapper = styled.button<CategoryStyledProps>`
   margin: 0 1rem 1.5rem 0;
   border-radius: 10px;
   background-color: ${props => (props.active ? '#7fd1ae' : '#f6f9f9')};
+  box-shadow: 0 1px 3px hsla(0, 50%, 20%, 0.2);
 `
 
 const IconWrapper = styled.div<CategoryStyledProps>`

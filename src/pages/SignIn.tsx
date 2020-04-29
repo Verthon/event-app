@@ -8,55 +8,11 @@ import {
 } from '@ionic/react'
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
-import background from '../assets/backgrounds/login-bg.svg'
+import bg from '../assets/backgrounds/main-bg-sm.svg'
 import { logoGoogle, logoFacebook } from 'ionicons/icons'
-import useAuthUser from '../hooks/useAuthUser'
-import {
-  doSignInWithGoogle,
-  doSignInWithFacebook,
-  redirectResultGoogle,
-  doSignWithGoogleCredentials,
-  redirectResultFacebook,
-  doSignWithFacebookCredentials,
-} from '../firebase/firebase'
+import { loginWithSocial } from '../helpers/login'
 
 const SignIn: React.FC = (props: any) => {
-  const currentUser = useAuthUser()
-  const loginWithSocial = (provider: string) => {
-    if (provider === 'Google') {
-      doSignInWithGoogle()
-        .then(() => redirectResultGoogle())
-        .then((result: any) => {
-          const token = result.credential.accessToken
-          doSignWithGoogleCredentials(token)
-          props.history.push('/account')
-        })
-        .catch((error: any) => {
-          console.log(
-            `Error occurred while signing in using ${provider} provider.`,
-            error
-          )
-          alert(`Error while trying to login with Google ==> ${error.message}`)
-        })
-    }
-    if (provider === 'Facebook') {
-      doSignInWithFacebook()
-        .then(() => {
-          redirectResultGoogle().then((result: any) => {
-            const token = result.credential.accessToken
-            doSignWithGoogleCredentials(token)
-            props.history.push('/account')
-          })
-        })
-        .catch((error: any) =>
-          console.log(
-            `Error occurred while signing in using ${provider} provider.`,
-            error
-          )
-        )
-    }
-  }
-
   return (
     <IonPage>
       <IonHeader>
@@ -65,16 +21,16 @@ const SignIn: React.FC = (props: any) => {
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-content--color">
-        <img className="image" src={background} alt="" />
+        <img className="image" src={bg} alt="" />
         <ContentWrapper>
           <Title>Welcome back!</Title>
           <Paragraph>Sign in using your Facebook or Google account.</Paragraph>
           <ButtonWrapper>
-            <FacebookSignButton onClick={() => loginWithSocial('Facebook')}>
+            <FacebookSignButton onClick={() => loginWithSocial('Facebook', props.history)}>
               <IonIcon class="btn-icon" icon={logoFacebook} />
               login
             </FacebookSignButton>
-            <GoogleSignButton onClick={() => loginWithSocial('Google')}>
+            <GoogleSignButton onClick={() => loginWithSocial('Google', props.history)}>
               <IonIcon class="btn-icon" icon={logoGoogle} />
               login
             </GoogleSignButton>
@@ -103,7 +59,7 @@ const Paragraph = styled.p`
 const ButtonWrapper = styled.div`
   margin: 2rem 0;
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
 `
 
 const FacebookSignButton = styled.button`
@@ -117,6 +73,7 @@ const FacebookSignButton = styled.button`
   border-radius: 2px;
   background-color: var(--ion-color-primary);
   color: #ffffff;
+  margin: 0 1rem 0 0;
 `
 
 const GoogleSignButton = styled.button`
