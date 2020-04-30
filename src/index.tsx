@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { defineCustomElements } from '@ionic/pwa-elements/loader'
 import { createMemoryHistory } from 'history'
+import { ThemeProvider } from 'styled-components'
+import { theme } from './theme/Theme'
 
 import App from './App'
 import store from './store'
@@ -13,7 +15,9 @@ const history = createMemoryHistory()
 
 ReactDOM.render(
   <Provider store={store}>
-    <App history={history} />
+    <ThemeProvider theme={theme}>
+      <App history={history} />
+    </ThemeProvider>
   </Provider>,
 
   document.getElementById('root')

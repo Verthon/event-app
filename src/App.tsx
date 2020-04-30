@@ -15,7 +15,7 @@ import { ReactComponent as LibraryAddIcon } from './assets/icons/library_add.svg
 import { ReactComponent as InfoIcon } from './assets/icons/perm_device_information.svg'
 import useAuthUser from './hooks/useAuthUser'
 import Home from './pages/Home'
-import Events from './pages/Events'
+import Events from './pages/Events/Events'
 import Contact from './pages/Contact'
 import Account from './pages/Account'
 import SignIn from './pages/SignIn'

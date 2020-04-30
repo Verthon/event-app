@@ -8,6 +8,7 @@ import {
 } from '@ionic/react'
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
+import logo from '../assets/logo/logo-color.svg'
 import bg from '../assets/backgrounds/main-bg-sm.svg'
 import { logoGoogle, logoFacebook } from 'ionicons/icons'
 import { loginWithSocial } from '../helpers/login'
@@ -17,7 +18,7 @@ const SignIn: React.FC = (props: any) => {
     <IonPage>
       <IonHeader>
         <IonToolbar color="light">
-          <IonTitle>Eventoo</IonTitle>
+          <Logo src={logo} alt="Eventoo" />
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-content--color">
@@ -40,6 +41,11 @@ const SignIn: React.FC = (props: any) => {
     </IonPage>
   )
 }
+
+const Logo = styled.img`
+  width: 120px;
+  margin: 1.2rem 1rem 1rem 1rem;
+`
 
 const ContentWrapper = styled.div`
   font-family: var(--ion-decorative-font);
