@@ -15,7 +15,7 @@ import { ReactComponent as LibraryAddIcon } from './assets/icons/library_add.svg
 import { ReactComponent as InfoIcon } from './assets/icons/perm_device_information.svg'
 import useAuthUser from './hooks/useAuthUser'
 import Home from './pages/Home'
-import Events from './pages/Events/Events'
+import Events from './pages/Events'
 import Contact from './pages/Contact'
 import Account from './pages/Account'
 import SignIn from './pages/SignIn'
@@ -24,18 +24,7 @@ import EventDetail from './pages/EventDetail'
 import EventCreated from './pages/EventCreated'
 import EditEvent from './pages/EditEvent'
 import EventChanged from './pages/EventChanged'
-import {
-  HOME,
-  EVENTS,
-  CONTACT,
-  CREATE_EVENT,
-  ACCOUNT,
-  SIGN_IN,
-  EVENT_DETAIL,
-  EVENT_CREATED,
-  EDIT_EVENT,
-  EVENT_CHANGED
-} from './constants/routes'
+import * as ROUTES from './constants/routes'
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css'
@@ -67,10 +56,10 @@ const App: React.FC<any> = props => {
       <IonReactRouter>
         <IonTabs>
           <IonRouterOutlet>
-            <Route path={HOME} component={Home} />
-            <Route path={EVENTS} component={Events} exact={true} />
-            <Route path={CONTACT} component={Contact} exact={true} />
-            <Route path={CREATE_EVENT} render={(props: any) =>
+            <Route path={ROUTES.HOME} component={Home} />
+            <Route path={ROUTES.EVENTS} component={Events} exact={true} />
+            <Route path={ROUTES.CONTACT} component={Contact} exact={true} />
+            <Route path={ROUTES.CREATE_EVENT} render={(props: any) =>
                 currentUser !== null && currentUser !== undefined ? (
                   <CreateEvent {...props} />
                 ) : (
@@ -78,7 +67,7 @@ const App: React.FC<any> = props => {
                 )
               } exact={true} />
             <Route
-              path={ACCOUNT}
+              path={ROUTES.ACCOUNT}
               exact={true}
               render={(props: any) =>
                 currentUser !== null && currentUser !== undefined ? (
@@ -88,17 +77,17 @@ const App: React.FC<any> = props => {
                 )
               }
             />
-            <Route path={SIGN_IN} component={SignIn} exact={true} />
-            <Route path={EVENT_DETAIL} component={EventDetail} exact={true} />
-            <Route path={EVENT_CREATED} component={EventCreated} exact={true} />
-            <Route path={EDIT_EVENT} component={EditEvent} exact={true} />
-            <Route path={EVENT_CHANGED} component={EventChanged} exact={true} />
-            <Route exact path="/" render={() => <Redirect to={HOME} />} />
+            <Route path={ROUTES.SIGN_IN} component={SignIn} exact={true} />
+            <Route path={ROUTES.EVENT_DETAIL} component={EventDetail} exact={true} />
+            <Route path={ROUTES.EVENT_CREATED} component={EventCreated} exact={true} />
+            <Route path={ROUTES.EDIT_EVENT} component={EditEvent} exact={true} />
+            <Route path={ROUTES.EVENT_CHANGED} component={EventChanged} exact={true} />
+            <Route exact path="/" render={() => <Redirect to={ROUTES.HOME} />} />
           </IonRouterOutlet>
           <IonTabBar slot="bottom">
             <IonTabButton
               tab="events"
-              href={EVENTS}
+              href={ROUTES.EVENTS}
               onClick={() => toggleActiveTabIcon('Events')}
             >
               <DateRangeIcon className={currentTab === 'Events' ? 'active-tab' : null} />
@@ -107,7 +96,7 @@ const App: React.FC<any> = props => {
 
             <IonTabButton
               tab="create-event"
-              href={CREATE_EVENT}
+              href={ROUTES.CREATE_EVENT}
               onClick={() => toggleActiveTabIcon('CreateEvents')}
             >
               <LibraryAddIcon className={currentTab === 'CreateEvents' ? 'active-tab' : null} />
@@ -116,7 +105,7 @@ const App: React.FC<any> = props => {
 
             <IonTabButton
               tab="account"
-              href={ACCOUNT}
+              href={ROUTES.ACCOUNT}
               onClick={() => toggleActiveTabIcon('Account')}
             >
               <AccountBoxIcon className={currentTab === 'Account' ? 'active-tab' : null} />
@@ -125,7 +114,7 @@ const App: React.FC<any> = props => {
 
             <IonTabButton
               tab="contact"
-              href={CONTACT}
+              href={ROUTES.CONTACT}
               onClick={() => toggleActiveTabIcon('Contact')}
             >
               <InfoIcon className={currentTab === 'Contact' ? 'active-tab' : null} />

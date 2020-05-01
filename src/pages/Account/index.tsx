@@ -2,23 +2,22 @@ import {
   IonContent,
   IonHeader,
   IonPage,
-  IonTitle,
   IonToolbar,
   IonLoading,
   IonAlert,
 } from '@ionic/react'
 import { useDispatch, useSelector } from 'react-redux'
 import React, { useState, useEffect } from 'react'
-import styled from 'styled-components'
-import { doSignOut, db } from '../firebase/firebase'
-import { logout } from '../reducers/auth'
-import useAuthUser from '../hooks/useAuthUser'
-import EventItem from '../components/EventItem'
-import { EventItemType } from '../types/events'
-import { fetchUserEvents, deleteEvent } from '../reducers/events'
-import { showEventDetails } from '../reducers/event'
-import logo from '../assets/logo/logo-color.svg'
-import { EDIT_EVENT } from '../constants/routes'
+import { doSignOut, db } from '../../firebase/firebase'
+import { logout } from '../../reducers/auth'
+import useAuthUser from '../../hooks/useAuthUser'
+import EventItem from '../../components/EventItem'
+import { EventItemType } from '../../types/events'
+import { fetchUserEvents, deleteEvent } from '../../reducers/events'
+import { showEventDetails } from '../../reducers/event'
+import logo from '../../assets/logo/logo-color.svg'
+import { EDIT_EVENT } from '../../constants/routes'
+import {Styled} from './Account.styles'
 
 const Account: React.FC = (props: any) => {
   const dispatch: any = useDispatch()
@@ -96,10 +95,10 @@ const Account: React.FC = (props: any) => {
     <IonPage>
       <IonHeader>
         <IonToolbar color="light">
-          <HeaderWrapper>
-            <Logo src={logo} alt="Eventoo" />
-            <Button onClick={() => signOut()}>logout</Button>
-          </HeaderWrapper>
+          <Styled.HeaderWrapper>
+            <Styled.Logo src={logo} alt="Eventoo" />
+            <Styled.Button onClick={() => signOut()}>logout</Styled.Button>
+          </Styled.HeaderWrapper>
         </IonToolbar>
       </IonHeader>
       <IonContent>
@@ -112,7 +111,7 @@ const Account: React.FC = (props: any) => {
           }
           buttons={[alertCancelBtn, alertDeleteBtn]}
         />
-        <Container>
+        <Styled.Container>
           <IonLoading
             isOpen={!isDataFetched}
             onDidDismiss={() => setSpinner(false)}
@@ -120,15 +119,15 @@ const Account: React.FC = (props: any) => {
             spinner="bubbles"
             duration={500}
           />
-          <Header>
-            <Avatar src={currentUser ? currentUser.avatar : null} />
-            <MetaContainer>
-              <Name>{currentUser ? currentUser.name : null}</Name>
-              <Email>{currentUser ? currentUser.email : null}</Email>
-            </MetaContainer>
-          </Header>
-          <Title>Your events</Title>
-          <EventsContainer>
+          <Styled.Header>
+            <Styled.Avatar src={currentUser ? currentUser.avatar : null} />
+            <Styled.MetaContainer>
+              <Styled.Name>{currentUser ? currentUser.name : null}</Styled.Name>
+              <Styled.Email>{currentUser ? currentUser.email : null}</Styled.Email>
+            </Styled.MetaContainer>
+          </Styled.Header>
+          <Styled.Title>Your events</Styled.Title>
+          <Styled.EventsContainer>
             {currentEvents
               ? currentEvents.map((event: EventItemType, id: number) => {
                   return (
@@ -152,82 +151,11 @@ const Account: React.FC = (props: any) => {
                   )
                 })
               : null}
-          </EventsContainer>
-        </Container>
+          </Styled.EventsContainer>
+        </Styled.Container>
       </IonContent>
     </IonPage>
   )
 }
-
-const Logo = styled.img`
-  width: 120px;
-  margin: 1.2rem 1rem 1rem 1rem;
-`
-
-const HeaderWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`
-
-const Title = styled.h2`
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: var(--ion-color-primary);
-`
-
-const Container = styled.div`
-  padding: 1rem;
-  font-family: var(--ion-decorative-font);
-`
-
-const Header = styled.header`
-  margin: 1rem 0 3rem 0;
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-`
-
-const Avatar = styled.img`
-  display: block;
-  border-radius: 50%;
-  width: 70px;
-  height: 70px;
-`
-
-const MetaContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin: 0 0 0 1.25rem;
-`
-
-const Name = styled.h2`
-  margin: 0;
-  font-size: 1.5rem;
-  font-weight: bold;
-`
-
-const Email = styled.p`
-  color: hsl(203, 13%, 44%);
-  margin: 0;
-`
-
-const EventsContainer = styled.div`
-  margin: 1rem 0;
-`
-
-const Button = styled.button`
-  display: flex;
-  align-items: center;
-  font-family: 'Signika';
-  font-size: 1rem;
-  text-transform: capitalize;
-  font-weight: 600;
-  padding: 0.35rem 1.25rem;
-  margin: 0 1rem 0 0;
-  border-radius: 2px;
-  background-color: var(--ion-color-primary);
-  color: #ffffff;
-`
 
 export default Account

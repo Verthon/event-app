@@ -1,21 +1,16 @@
-import {
-  IonContent,
-  IonHeader,
-  IonPage,
-  IonToolbar
-} from '@ionic/react'
+import { IonContent, IonHeader, IonPage, IonToolbar } from '@ionic/react'
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import dayjs from 'dayjs'
-import styled from 'styled-components'
 
-import EventForm from '../components/EventForm'
-import { db } from '../firebase/firebase'
-import logo from '../assets/logo/logo-color.svg'
-import { validate } from '../helpers/validate'
-import { EVENT_CREATED } from '../constants/routes'
-import {setDefaultEventImage} from '../reducers/events'
- 
+import EventForm from '../../components/EventForm'
+import { db } from '../../firebase/firebase'
+import logo from '../../assets/logo/logo-color.svg'
+import { validate } from '../../helpers/validate'
+import { EVENT_CREATED } from '../../constants/routes'
+import { setDefaultEventImage } from '../../reducers/events'
+import { Styled } from './CreateEvent.styles'
+
 const CreateEvents: React.FC = (props: any) => {
   const dispatch: any = useDispatch()
   const uid = useSelector((state: any) => state.auth.user.uid)
@@ -75,26 +70,21 @@ const CreateEvents: React.FC = (props: any) => {
     <IonPage>
       <IonHeader color="primary">
         <IonToolbar color="light">
-          <Logo src={logo} alt="Eventoo" />
+          <Styled.Logo src={logo} alt="Eventoo" />
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        <Title>Create event</Title>
-        <EventForm handleSubmit={handleSubmit} handleInputChange={handleInputChange} form={form} error={error} userEventImage={userEventImage} />
+        <Styled.Title>Create event</Styled.Title>
+        <EventForm
+          handleSubmit={handleSubmit}
+          handleInputChange={handleInputChange}
+          form={form}
+          error={error}
+          userEventImage={userEventImage}
+        />
       </IonContent>
     </IonPage>
   )
 }
-
-const Logo = styled.img`
-  width: 120px;
-  margin: 1.2rem 1rem 1rem 1rem;
-`
-
-const Title = styled.h1`
-  margin: 1rem 1rem 2rem 1rem;
-  font-weight: 600;
-  font-size: 1.5rem;
-`
 
 export default CreateEvents

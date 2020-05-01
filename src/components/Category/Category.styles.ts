@@ -4,11 +4,10 @@ import { Theme } from '../../theme/Theme'
 
 const CategoryWrapper = styled.button<CategoryStyledProps>`
   min-width: 70px;
-  display: flex;
-  flex-direction: column;
+  ${({theme}: Theme) => theme.flexColumnMixin};
   align-items: center;
   justify-content: center;
-  margin: ${({ theme }: Theme) => `${theme.spacing.md} ${theme.spacing.md}`};
+  margin: ${({ theme }: Theme) => `${theme.spacing.md} ${theme.spacing.sm}`};
   border-radius: ${({theme}: Theme ) => theme.border.defaultRadius};
   background-color: ${({active, theme} ) => (active ? theme.colors.active : theme.colors.secondary)};
   box-shadow: ${({theme}: Theme ) => theme.shadow.category}

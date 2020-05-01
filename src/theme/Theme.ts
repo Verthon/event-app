@@ -5,6 +5,9 @@ export interface ITheme {
     secondary: string,
     active: string,
     text: string,
+    white: string,
+    warning: string,
+    gray2: string
   },
   fontSizes: {
     title: string,
@@ -44,12 +47,15 @@ export interface ITheme {
   },
   border: {
     defaultRadius: string
-  }
+  },
+  flexColumnMixin: string
 }
 
 export type Theme = {
   theme: ITheme
 }
+
+const flexColumnMixin = 'display: flex; flex-direction: column'
 
 const border = {
   defaultRadius: '10px'
@@ -67,6 +73,9 @@ const colors = {
   secondary: 'hsl(180,20%,97.1%)',
   active: 'hsl(154.4,47.1%,65.9%)',
   text: 'hsl(203,13%,44%)',
+  white: 'hsl(0,0%,100%)',
+  warning: 'hsl(350, 69%, 36%)',
+  gray2: 'hsl(240,5%,84.3%)'
 }
 
 const fontSizes = {
@@ -116,5 +125,6 @@ export const theme: ITheme = {
   breakpoints: breakpoints,
   spacing: spacing,
   logo: logo,
-  border: border
+  border: border,
+  flexColumnMixin: flexColumnMixin,
 }

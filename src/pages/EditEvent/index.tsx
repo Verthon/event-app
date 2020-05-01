@@ -7,15 +7,15 @@ import {
   IonButtons,
   IonBackButton,
 } from '@ionic/react'
-import styled from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
 
-import EventForm from '../components/EventForm'
-import logo from '../assets/logo/logo-color.svg'
-import { db } from '../firebase/firebase'
-import { validate } from '../helpers/validate'
-import { EVENT_CHANGED, ACCOUNT } from '../constants/routes'
-import { setDefaultEventImage } from '../reducers/events'
+import EventForm from '../../components/EventForm'
+import logo from '../../assets/logo/logo-color.svg'
+import { db } from '../../firebase/firebase'
+import { validate } from '../../helpers/validate'
+import { EVENT_CHANGED, ACCOUNT } from '../../constants/routes'
+import { setDefaultEventImage } from '../../reducers/events'
+import { Styled } from './EditEvent.styles'
 
 const EditEvent: React.FC = ({ history }: any) => {
   const dispatch: any = useDispatch()
@@ -89,11 +89,11 @@ const EditEvent: React.FC = ({ history }: any) => {
           <IonButtons slot="start">
             <IonBackButton />
           </IonButtons>
-          <Logo src={logo} alt="Eventoo" />
+          <Styled.Logo src={logo} alt="Eventoo" />
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        <Title>Edit event</Title>
+        <Styled.Title>Edit event</Styled.Title>
         <EventForm
           handleSubmit={handleSubmit}
           handleInputChange={handleInputChange}
@@ -107,16 +107,5 @@ const EditEvent: React.FC = ({ history }: any) => {
     </IonPage>
   )
 }
-
-const Logo = styled.img`
-  width: 120px;
-  margin: 1.2rem 1rem 1rem 1rem;
-`
-
-const Title = styled.h1`
-  margin: 1rem;
-  font-weight: 600;
-  font-size: 1.4rem;
-`
 
 export default EditEvent
