@@ -7,17 +7,16 @@ import {
   IonDatetime,
   IonTextarea,
 } from '@ionic/react'
-import React, {useState} from 'react'
-import styled from 'styled-components'
+import React, { useState } from 'react'
 
-import UnsplashModal from './UnsplashModal'
-import { ActionButtonProps } from '../types/general'
+import UnsplashModal from '../UnsplashModal'
+import { Styled } from './EventForm.styles'
 
-interface IEventForm{
-  handleSubmit: any,
-  handleInputChange: any,
-  form: any,
-  error: any,
+interface IEventForm {
+  handleSubmit: any
+  handleInputChange: any
+  form: any
+  error: any
   userEventImage: string
 }
 
@@ -26,18 +25,21 @@ const EventForm = ({
   handleInputChange,
   form,
   error,
-  userEventImage
+  userEventImage,
 }: IEventForm) => {
   const [showImageModal, setImageModal] = useState<boolean>(false)
   return (
-    <Container>
+    <>
       {showImageModal ? (
-      <UnsplashModal
-        showModal={showImageModal}
-        cancelHandler={setImageModal}
-      />
-    ) : null}
-      <form method="POST" onSubmit={e => handleSubmit(e)}>
+        <UnsplashModal
+          showModal={showImageModal}
+          cancelHandler={setImageModal}
+        />
+      ) : null}
+      <form
+        method="POST"
+        onSubmit={(e) => handleSubmit(e)}
+      >
         <IonItem lines="none">
           <IonLabel position="floating">Event name</IonLabel>
           <IonInput
@@ -49,7 +51,7 @@ const EventForm = ({
             onIonChange={e => handleInputChange(e)}
           />
           {error.inputName === 'title' ? (
-            <ErrorMessage>{error.error}</ErrorMessage>
+            <Styled.ErrorMessage>{error.error}</Styled.ErrorMessage>
           ) : null}
         </IonItem>
 
@@ -64,7 +66,7 @@ const EventForm = ({
             onIonChange={e => handleInputChange(e)}
           />
           {error.inputName === 'host' ? (
-            <ErrorMessage>{error.error}</ErrorMessage>
+            <Styled.ErrorMessage>{error.error}</Styled.ErrorMessage>
           ) : null}
         </IonItem>
 
@@ -79,7 +81,7 @@ const EventForm = ({
             onIonChange={e => handleInputChange(e)}
           />
           {error.inputName === 'localization' ? (
-            <ErrorMessage>{error.error}</ErrorMessage>
+            <Styled.ErrorMessage>{error.error}</Styled.ErrorMessage>
           ) : null}
         </IonItem>
 
@@ -94,7 +96,7 @@ const EventForm = ({
             onIonChange={e => handleInputChange(e)}
           />
           {error.inputName === 'address' ? (
-            <ErrorMessage>{error.error}</ErrorMessage>
+            <Styled.ErrorMessage>{error.error}</Styled.ErrorMessage>
           ) : null}
         </IonItem>
 
@@ -108,7 +110,7 @@ const EventForm = ({
             name="category"
             onIonChange={e => handleInputChange(e)}
           >
-            {form.categories.map((cat, id) => {
+            {form.categories.map((cat, id: number) => {
               return (
                 <IonSelectOption key={id} value={cat}>
                   {cat}
@@ -120,9 +122,12 @@ const EventForm = ({
 
         <IonItem lines="none">
           <IonLabel position="floating">Image URL</IonLabel>
-          <ImageButton type="button" onClick={() => setImageModal(!showImageModal)}>
+          <Styled.ImageButton
+            type="button"
+            onClick={() => setImageModal(!showImageModal)}
+          >
             Choose image
-          </ImageButton>
+          </Styled.ImageButton>
           <IonInput
             className="event-input"
             type="text"
@@ -142,7 +147,7 @@ const EventForm = ({
             name="day"
             displayFormat="DD.MMM"
             placeholder="Select Date"
-            onIonChange={(e: any) => handleInputChange(e)}
+            onIonChange={(e: CustomEvent<any>) => handleInputChange(e)}
           />
         </IonItem>
 
@@ -169,73 +174,16 @@ const EventForm = ({
             onIonChange={e => handleInputChange(e)}
           />
           {error.inputName === 'description' ? (
-            <ErrorMessage>{error.error}</ErrorMessage>
+            <Styled.ErrorMessage>{error.error}</Styled.ErrorMessage>
           ) : null}
         </IonItem>
 
-        <Button type="submit" color="primary">
+        <Styled.Button type="submit" color="primary">
           Submit
-        </Button>
+        </Styled.Button>
       </form>
-    </Container>
+    </>
   )
 }
-
-const Container = styled.div``
-
-const Button = styled.button`
-  display: block;
-  font-weight: bold;
-  font-size: 1rem;
-  font-family: var(--ion-decorative-font);
-  border-radius: 2px;
-  width: 90%;
-  background-color: var(--ion-color-primary);
-  color: #ffffff;
-  padding: 0.75rem;
-  margin: 1rem auto;
-`
-
-const ImageButton = styled.button<ActionButtonProps>`
-  margin: 0.75rem 0 0 0;
-  font-family: var(--ion-decorative-font);
-  padding: 0.45rem 1rem;
-  border-radius: 2px;
-  color: #ffffff;
-  background-color: var(--ion-color-primary);
-  font-size: 1rem;
-`
-
-const ErrorMessage = styled.span`
-  @keyframes pulse {
-    0% {
-      -webkit-transform: scale(1);
-      -ms-transform: scale(1);
-      transform: scale(1);
-    }
-
-    50% {
-      -webkit-transform: scale(1.1);
-      -ms-transform: scale(1.1);
-      transform: scale(1.1);
-    }
-
-    100% {
-      -webkit-transform: scale(1);
-      -ms-transform: scale(1);
-      transform: scale(1);
-    }
-  }
-  animation-name: pulse;
-  animation-duration: 0.5s;
-  animation-timing-function: ease-out;
-  background: hsl(0, 91%, 95%);
-  color: hsl(0, 41%, 40%);
-  font-style: italic;
-  padding: 0.5rem 0.75rem;
-  width: 100%;
-  border-left: 4px solid hsl(0, 41%, 40%);
-  font-size: 0.875rem;
-`
 
 export default EventForm

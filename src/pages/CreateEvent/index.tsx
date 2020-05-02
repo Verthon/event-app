@@ -1,8 +1,11 @@
 import { IonContent, IonHeader, IonPage, IonToolbar } from '@ionic/react'
 import React, { useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
+import { RouteComponentProps } from 'react-router-dom'
 import dayjs from 'dayjs'
 
+import { useTypedSelector } from '../../hooks/useTypedSelector'
+import { AppDispatch } from '../../store'
 import EventForm from '../../components/EventForm'
 import { db } from '../../firebase/firebase'
 import logo from '../../assets/logo/logo-color.svg'
@@ -11,12 +14,17 @@ import { EVENT_CREATED } from '../../constants/routes'
 import { setDefaultEventImage } from '../../reducers/events'
 import { Styled } from './CreateEvent.styles'
 
-const CreateEvents: React.FC = (props: any) => {
-  const dispatch: any = useDispatch()
-  const uid = useSelector((state: any) => state.auth.user.uid)
-  const userEventImage = useSelector(
-    (state: any) => state.events.userEventImage
-  )
+const CreateEvents: React.FC<RouteComponentProps> = ({ history }) => {
+  enum Categories {
+    sport = 'Sport',
+    music = 'Music',
+    education = 'Education',
+    business = 'Business',
+    food = 'Food',
+  }
+  const dispatch: AppDispatch = useDispatch()
+  const uid = useTypedSelector(({ auth }) => auth.user.uid)
+  const userEventImage = useTypedSelector(({ events }) => events.userEventImage)
   const [error, setError] = React.useState({
     inputName: '',
     error: '',
@@ -27,14 +35,20 @@ const CreateEvents: React.FC = (props: any) => {
     localization: '',
     address: '',
     description: '',
-    categories: ['Sport', 'Music', 'Education', 'Business', 'Food'],
-    category: 'Sport',
+    categories: [
+      Categories.sport,
+      Categories.music,
+      Categories.education,
+      Categories.business,
+      Categories.food,
+    ],
+    category: Categories.sport,
     imageUrl: '',
     day: dayjs().format('YYYY-MM-DD'),
     hour: '13:00',
   })
 
-  const handleInputChange = (e: any) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({
       ...form,
       [e.target.name]: e.target.value,
@@ -63,7 +77,7 @@ const CreateEvents: React.FC = (props: any) => {
       created_at: dayjs().format(),
     })
     dispatch(setDefaultEventImage())
-    return props.history.push(EVENT_CREATED)
+    return history.push(EVENT_CREATED)
   }
 
   return (

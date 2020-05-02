@@ -6,6 +6,12 @@ export type CategoryType = {
   active: boolean
 }
 
+export type CategoryData = {
+  docId: string,
+  category: string,
+  emoji: string
+}
+
 export type CategoryStyledProps = {
   readonly active: boolean
 }

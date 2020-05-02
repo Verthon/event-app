@@ -7,8 +7,9 @@ import {
   IonButtons,
   IonBackButton,
 } from '@ionic/react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
+import { useTypedSelector } from '../../hooks/useTypedSelector'
 import EventForm from '../../components/EventForm'
 import logo from '../../assets/logo/logo-color.svg'
 import { db } from '../../firebase/firebase'
@@ -19,11 +20,11 @@ import { Styled } from './EditEvent.styles'
 
 const EditEvent: React.FC = ({ history }: any) => {
   const dispatch: any = useDispatch()
-  const currentEvent = useSelector((state: any) => state.event.event)
-  const uid = useSelector((state: any) => state.auth.user !== null ? state.auth.user.uid : null)
-  const userEventImage = useSelector(
-    (state: any) => state.events.userEventImage
+  const currentEvent = useTypedSelector(({ event }) => event.event)
+  const uid = useTypedSelector(({ auth }) =>
+    auth.user !== null ? auth.user.uid : null
   )
+  const userEventImage = useTypedSelector(({ events }) => events.userEventImage)
   const [error, setError] = React.useState({
     inputName: '',
     error: '',
@@ -46,7 +47,7 @@ const EditEvent: React.FC = ({ history }: any) => {
   }, [currentEvent])
 
   useEffect(() => {
-    if(uid === null) {
+    if (uid === null) {
       history.push(ACCOUNT)
     }
   }, [uid, history])

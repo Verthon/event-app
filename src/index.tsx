@@ -13,10 +13,11 @@ import './theme.css'
 defineCustomElements(window)
 const history = createMemoryHistory()
 
+
 ReactDOM.render(
   <Provider store={store}>
     <ThemeProvider theme={theme}>
-      <App history={history} />
+      <App history={history} location={null} match={null} />
     </ThemeProvider>
   </Provider>,
 

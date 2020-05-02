@@ -1,11 +1,13 @@
 import React from 'react'
 import { IonContent, IonHeader, IonPage, IonToolbar } from '@ionic/react'
+import { RouteComponentProps } from 'react-router-dom'
 import logo from '../../assets/logo/logo-color.svg'
+import {EVENTS} from '../../constants/routes'
 import { Styled } from './EventCreated.styles'
 
-const Contact: React.FC = ({ history }: any) => {
+const Contact: React.FC<RouteComponentProps> = ({ history }) => {
   const navigateToHome = () => {
-    history.push('/events')
+    history.push(EVENTS)
   }
   return (
     <IonPage>

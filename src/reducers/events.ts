@@ -5,7 +5,7 @@ import { EventType } from '../types/events'
 export interface IEventsState {
   loading: string,
   error: string | null,
-  events: Array<EventType>,
+  currentEvents: Array<EventType>,
   allEvents: Array<EventType>
   allUserEvents: Array<EventType>
   userEvents: Array<EventType>
@@ -51,7 +51,7 @@ export const fetchUserEvents = createAsyncThunk('events/fetchUserEvents', async 
 const initialState: IEventsState = {
   loading: 'idle',
   error: null,
-  events: [],
+  currentEvents: [],
   allEvents: [],
   allUserEvents: [],
   userEvents: [],
@@ -70,18 +70,18 @@ export const eventsSlice = createSlice({
     },
     filterEventsByCategory: (state: IEventsState, action: any): any => {
       if (action.payload === "All") {
-        state.events = [...state.allEvents]
+        state.currentEvents = [...state.allEvents]
       }
-      state.events = state.allEvents.filter((event: EventType) => event.category === action.payload)
+      state.currentEvents = state.allEvents.filter((event: EventType) => event.category === action.payload)
     },
     filterEventsBySearch: (state: IEventsState, action: any) => {
-      if (state.events.length === 0) {
-        state.events = state.allEvents.filter((event: EventType) => event.title.includes(action.payload))
+      if (state.currentEvents.length === 0) {
+        state.currentEvents = state.allEvents.filter((event: EventType) => event.title.includes(action.payload))
       }
-      state.events = state.events.filter((event: EventType) => event.title.includes(action.payload))
+      state.currentEvents = state.currentEvents.filter((event: EventType) => event.title.includes(action.payload))
     },
     deleteEvent: (state: IEventsState, action: any) => {
-      state.events = state.allEvents.filter((event: EventType) => event.docId !== action.payload)
+      state.currentEvents = state.allEvents.filter((event: EventType) => event.docId !== action.payload)
       state.userEvents = state.allUserEvents.filter((event: EventType) => event.docId !== action.payload)
     },
     setUserEventImage: (state: IEventsState, action: any) => {
@@ -93,7 +93,7 @@ export const eventsSlice = createSlice({
   },
   extraReducers: builder => {
     builder.addCase(fetchAllEvents.fulfilled, (state: IEventsState, action) => {
-      state.events = [...action.payload]
+      state.currentEvents = [...action.payload]
       state.allEvents = [...action.payload]
     })
     builder.addCase(fetchUserEvents.fulfilled, (state: IEventsState, action) => {

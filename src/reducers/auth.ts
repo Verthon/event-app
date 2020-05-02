@@ -1,9 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+type User = {
+  uid: string,
+}
+
 interface IAuthState {
   error: string | null,
   synced: boolean,
-  user: null,
+  user: null | User,
 }
 
 const initialState: IAuthState = {

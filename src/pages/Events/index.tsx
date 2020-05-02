@@ -7,28 +7,33 @@ import {
   IonLoading,
 } from '@ionic/react'
 import React, { useState, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
 import { fetchAllEvents, filterEventsByCategory } from '../../reducers/events'
-import { fetchAllCategories, setActiveCategory } from '../../reducers/categories'
+import {
+  fetchAllCategories,
+  setActiveCategory,
+} from '../../reducers/categories'
+import { useTypedSelector } from '../../hooks/useTypedSelector'
+import { AppDispatch} from '../../store'
 import EventItem from '../../components/EventItem'
 import Category from '../../components/Category'
-import { IEventsState } from '../../reducers/events'
 import { EventItemType } from '../../types/events'
+import { CategoryData } from '../../types/categories'
 import logo from '../../assets/logo/logo-color.svg'
-import { db } from '../../firebase/firebase' 
+import { db } from '../../firebase/firebase'
 import { Styled } from './Events.styles'
 
-const Events: React.FC = props => {
+const Events: React.FC = () => {
   let [events, setEvents] = useState([])
-  const dispatch: any = useDispatch()
+  const dispatch: AppDispatch = useDispatch()
   let [categories, setCategories] = useState([])
   let [showToast, setToast] = useState<boolean>(false)
   let [showSpinner, setSpinner] = useState<boolean>(true)
   let [isDataFetched, setDataFetched] = useState<boolean>(false)
-  let currentEvents = useSelector((state: any) => state.events.events)
-  let activeCategory = useSelector(
-    (state: any) => state.categories.currentCategory
+  let currentEvents = useTypedSelector(({ events }) => events.currentEvents)
+  let activeCategory = useTypedSelector(
+    ({ categories }) => categories.currentCategory
   )
 
   const filterEvents = (category: string) => {
@@ -38,6 +43,7 @@ const Events: React.FC = props => {
       dispatch(setActiveCategory(category))
       dispatch(fetchAllEvents())
         .then((result: any) => {
+          console.log('fetchAllEvents() on all category result', result)
           setDataFetched(true)
           setEvents(result.payload)
         })
@@ -54,9 +60,10 @@ const Events: React.FC = props => {
   }
 
   useEffect(() => {
-    db.collection('events').onSnapshot(function(doc) {
+    db.collection('events').onSnapshot(() => {
       dispatch(fetchAllEvents())
         .then((result: any) => {
+          console.log('fetchAllEvents() result', result)
           setDataFetched(true)
           setEvents(result.payload)
         })
@@ -73,6 +80,7 @@ const Events: React.FC = props => {
   useEffect(() => {
     dispatch(fetchAllCategories())
       .then((result: any) => {
+        console.log('fetchAllCategories() result', result)
         setDataFetched(true)
         setCategories(result.payload)
       })
@@ -105,7 +113,7 @@ const Events: React.FC = props => {
         />
         <Styled.CategoriesWrapper>
           {categories
-            ? categories.map((category, id) => {
+            ? categories.map((category: CategoryData, id: number) => {
                 return (
                   <Category
                     key={id}

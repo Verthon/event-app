@@ -1,12 +1,12 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { configureStore, combineReducers } from '@reduxjs/toolkit'
+import { useDispatch } from 'react-redux'
 
-import { combineReducers } from '@reduxjs/toolkit'
 import eventsSlice from '../reducers/events'
 import eventSlice from '../reducers/event'
 import categoriesSlice from '../reducers/categories'
 import authSlice from '../reducers/auth'
 
-const reducer = combineReducers({
+const rootReducer = combineReducers({
   events: eventsSlice.reducer,
   event: eventSlice.reducer,
   categories: categoriesSlice.reducer,
@@ -14,11 +14,15 @@ const reducer = combineReducers({
 })
 
 const store = configureStore({
-  reducer,
+  reducer: rootReducer
 })
 
 if (process.env.NODE_ENV !== 'production' && module.hot) {
-  module.hot.accept('../reducers', () => store.replaceReducer(reducer))
+  module.hot.accept('../reducers', () => store.replaceReducer(rootReducer))
 }
+
+export type RootState = ReturnType<typeof rootReducer>
+export type AppDispatch = typeof store.dispatch
+export const useAppDispatch = () => useDispatch<AppDispatch>()
 
 export default store

@@ -48,7 +48,7 @@ import './theme/variables.css'
 /* Custom css */
 import './styles/index.css'
 
-const App: React.FC<any> = props => {
+const App: React.FC<RouteComponentProps> = (props) => {
   const currentUser = useAuthUser()
   const [currentTab, toggleActiveTabIcon] = useState('Events')
   return (

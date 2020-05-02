@@ -1,8 +1,10 @@
 import { IonContent, IonPage } from '@ionic/react'
 import React from 'react'
-import {Styled} from './Home.styles'
+import { RouteComponentProps } from 'react-router-dom'
+import { Styled } from './Home.styles'
+import { EVENTS } from '../../constants/routes'
 
-const Home: React.FC = (props: any) => {
+const Home: React.FC<RouteComponentProps> = ({history}) => {
   return (
     <IonPage>
       <IonContent>
@@ -12,7 +14,7 @@ const Home: React.FC = (props: any) => {
             <Styled.Description>
               Eventoo is a perfect place to build, manage and grow your events.
             </Styled.Description>
-            <Styled.Button onClick={() => props.history.push('/events')}>
+            <Styled.Button onClick={() => history.push(EVENTS)}>
               Explore
             </Styled.Button>
           </Styled.Content>

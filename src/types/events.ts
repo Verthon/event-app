@@ -11,7 +11,6 @@ export type EventType = {
   description: string
   featuredImage: string
   editMode: boolean
-
 }
 
 export type EventItemType = {

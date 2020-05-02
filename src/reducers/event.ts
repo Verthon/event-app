@@ -8,7 +8,19 @@ interface IEventState {
 export const eventSlice = createSlice({
   name: 'events',
   initialState: {
-    event: {}
+    event: {
+      docId: '',
+      title: '',
+      host: '',
+      localization: '',
+      address: '',
+      category: '',
+      day: '',
+      hour: '',
+      description: '',
+      featuredImage: '',
+      editMode: false
+    }
   },
   reducers: {
     showEventDetails: (state: IEventState, action: any) => {

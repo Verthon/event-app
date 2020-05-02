@@ -6,21 +6,25 @@ import {
   IonLoading,
   IonAlert,
 } from '@ionic/react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import React, { useState, useEffect } from 'react'
+import { RouteComponentProps } from 'react-router-dom'
+
+import { useTypedSelector } from '../../hooks/useTypedSelector'
+import { AppDispatch } from '../../store'
 import { doSignOut, db } from '../../firebase/firebase'
 import { logout } from '../../reducers/auth'
 import useAuthUser from '../../hooks/useAuthUser'
 import EventItem from '../../components/EventItem'
-import { EventItemType } from '../../types/events'
+import { EventItemType, EventType } from '../../types/events'
 import { fetchUserEvents, deleteEvent } from '../../reducers/events'
 import { showEventDetails } from '../../reducers/event'
 import logo from '../../assets/logo/logo-color.svg'
-import { EDIT_EVENT } from '../../constants/routes'
-import {Styled} from './Account.styles'
+import { EDIT_EVENT, EVENTS } from '../../constants/routes'
+import { Styled } from './Account.styles'
 
-const Account: React.FC = (props: any) => {
-  const dispatch: any = useDispatch()
+const Account: React.FC<RouteComponentProps> = ({ history }) => {
+  const dispatch: AppDispatch = useDispatch()
   const currentUser = useAuthUser()
   const [currentEventDocId, setEventDocId] = useState<string>('')
   const [events, setEvents] = useState([])
@@ -39,7 +43,6 @@ const Account: React.FC = (props: any) => {
         console.error('Error removing document: ', error)
       })
     dispatch(deleteEvent(currentEventDocId))
-    //console.log('Event id to be deleted', currentEventDocId)
   }
 
   const alertCancelBtn = {
@@ -54,14 +57,14 @@ const Account: React.FC = (props: any) => {
     handler: deleteEventPermanently,
   }
 
-  const handleDeleteEvent = (eventData: any) => {
+  const handleDeleteEvent = (eventData: EventType) => {
     setEventDocId(eventData.docId)
     setDeleteAlert(true)
   }
 
-  const handleEditEvent = (eventData: any) => {
+  const handleEditEvent = (eventData: EventType) => {
     dispatch(showEventDetails(eventData))
-    props.history.push(EDIT_EVENT)
+    history.push(EDIT_EVENT)
   }
 
   const signOut = async () => {
@@ -69,28 +72,27 @@ const Account: React.FC = (props: any) => {
       await doSignOut()
       console.log(currentUser)
       dispatch(logout())
-      props.history.push('/events')
+      history.push(EVENTS)
     } catch (error) {
       return console.log('Error', error)
     }
   }
 
   useEffect(() => {
-    db.collection("events")
-    .onSnapshot(function(doc) {
+    db.collection('events').onSnapshot(function(doc) {
       dispatch(fetchUserEvents(currentUser.uid))
-      .then((result: any) => {
-        console.log('fetchAllEvents result', result)
-        setDataFetched(true)
-        setEvents(result.payload)
-      })
-      .catch(() => {
-        console.log('Error while fetching the events')
-      })   
-    });
+        .then((result: any) => {
+          console.log('fetchAllEvents result', result)
+          setDataFetched(true)
+          setEvents(result.payload)
+        })
+        .catch(error => {
+          console.log('Error while fetching the events', error)
+        })
+    })
   }, [])
 
-  let currentEvents = useSelector((state: any) => state.events.userEvents)
+  let currentEvents = useTypedSelector(({ events }) => events.userEvents)
   return (
     <IonPage>
       <IonHeader>
@@ -123,7 +125,9 @@ const Account: React.FC = (props: any) => {
             <Styled.Avatar src={currentUser ? currentUser.avatar : null} />
             <Styled.MetaContainer>
               <Styled.Name>{currentUser ? currentUser.name : null}</Styled.Name>
-              <Styled.Email>{currentUser ? currentUser.email : null}</Styled.Email>
+              <Styled.Email>
+                {currentUser ? currentUser.email : null}
+              </Styled.Email>
             </Styled.MetaContainer>
           </Styled.Header>
           <Styled.Title>Your events</Styled.Title>
