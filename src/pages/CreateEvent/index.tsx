@@ -6,6 +6,8 @@ import dayjs from 'dayjs'
 
 import { useTypedSelector } from '../../hooks/useTypedSelector'
 import { AppDispatch } from '../../store'
+import { EventFormType } from '../../types/events'
+import { CategoriesList } from '../../types/categories'
 import EventForm from '../../components/EventForm'
 import { db } from '../../firebase/firebase'
 import logo from '../../assets/logo/logo-color.svg'
@@ -15,13 +17,6 @@ import { setDefaultEventImage } from '../../reducers/events'
 import { Styled } from './CreateEvent.styles'
 
 const CreateEvents: React.FC<RouteComponentProps> = ({ history }) => {
-  enum Categories {
-    sport = 'Sport',
-    music = 'Music',
-    education = 'Education',
-    business = 'Business',
-    food = 'Food',
-  }
   const dispatch: AppDispatch = useDispatch()
   const uid = useTypedSelector(({ auth }) => auth.user.uid)
   const userEventImage = useTypedSelector(({ events }) => events.userEventImage)
@@ -29,20 +24,20 @@ const CreateEvents: React.FC<RouteComponentProps> = ({ history }) => {
     inputName: '',
     error: '',
   })
-  const [form, setForm] = useState({
+  const [form, setForm] = useState<EventFormType>({
     title: '',
     host: '',
     localization: '',
     address: '',
     description: '',
     categories: [
-      Categories.sport,
-      Categories.music,
-      Categories.education,
-      Categories.business,
-      Categories.food,
+      CategoriesList.sport,
+      CategoriesList.music,
+      CategoriesList.education,
+      CategoriesList.business,
+      CategoriesList.food,
     ],
-    category: Categories.sport,
+    category: CategoriesList.sport,
     imageUrl: '',
     day: dayjs().format('YYYY-MM-DD'),
     hour: '13:00',

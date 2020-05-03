@@ -1,13 +1,16 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 type User = {
   uid: string,
+  email: string,
+  name: string,
+  avatar: string
 }
 
 interface IAuthState {
   error: string | null,
   synced: boolean,
-  user: null | User,
+  user: null | any,
 }
 
 const initialState: IAuthState = {
@@ -20,7 +23,7 @@ export const authSlice = createSlice({
   name: 'auth',
   initialState: initialState,
   reducers: {
-    login: (state: IAuthState, action: any) => {
+    login: (state: IAuthState, action: PayloadAction<any>) => {
       state.synced = true
       state.user = action.payload
     },
@@ -30,8 +33,8 @@ export const authSlice = createSlice({
   }
 })
 
-export const selectCurrentUser = (state: any) => state.auth.user
+export const selectCurrentUser = (state: { auth: IAuthState }) => state.auth.user
 
-export const {login, logout} = authSlice.actions
+export const { login, logout } = authSlice.actions
 
 export default authSlice

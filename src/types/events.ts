@@ -38,3 +38,16 @@ export type CategoryType = {
 export type EventItemEditMode = {
   readonly editMode: boolean
 }
+
+export type EventFormType = {
+  title: string,
+  host: string,
+  localization: string,
+  address: string,
+  description: string,
+  categories: Array<string>,
+  category: string,
+  imageUrl: string,
+  day: string,
+  hour: string,
+}

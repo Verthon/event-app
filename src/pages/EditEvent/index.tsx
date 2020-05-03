@@ -8,8 +8,12 @@ import {
   IonBackButton,
 } from '@ionic/react'
 import { useDispatch } from 'react-redux'
+import { RouteComponentProps } from 'react-router-dom'
 
 import { useTypedSelector } from '../../hooks/useTypedSelector'
+import { AppDispatch } from '../../store'
+import { CategoriesList } from '../../types/categories'
+import { EventFormType } from '../../types/events'
 import EventForm from '../../components/EventForm'
 import logo from '../../assets/logo/logo-color.svg'
 import { db } from '../../firebase/firebase'
@@ -18,8 +22,8 @@ import { EVENT_CHANGED, ACCOUNT } from '../../constants/routes'
 import { setDefaultEventImage } from '../../reducers/events'
 import { Styled } from './EditEvent.styles'
 
-const EditEvent: React.FC = ({ history }: any) => {
-  const dispatch: any = useDispatch()
+const EditEvent: React.FC<RouteComponentProps> = ({ history }) => {
+  const dispatch: AppDispatch = useDispatch()
   const currentEvent = useTypedSelector(({ event }) => event.event)
   const uid = useTypedSelector(({ auth }) =>
     auth.user !== null ? auth.user.uid : null
@@ -29,13 +33,19 @@ const EditEvent: React.FC = ({ history }: any) => {
     inputName: '',
     error: '',
   })
-  const [form, setForm] = useState({
+  const [form, setForm] = useState<EventFormType>({
     title: currentEvent.title,
     host: currentEvent.host,
     localization: currentEvent.localization,
     address: currentEvent.address,
     description: currentEvent.description,
-    categories: ['Sport', 'Music', 'Education', 'Business', 'Food'],
+    categories: [
+      CategoriesList.sport,
+      CategoriesList.music,
+      CategoriesList.education,
+      CategoriesList.business,
+      CategoriesList.food,
+    ],
     category: currentEvent.category,
     imageUrl: currentEvent.featuredImage,
     day: currentEvent.day,
@@ -52,7 +62,7 @@ const EditEvent: React.FC = ({ history }: any) => {
     }
   }, [uid, history])
 
-  const handleInputChange = (e: any) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({
       ...form,
       [e.target.name]: e.target.value,

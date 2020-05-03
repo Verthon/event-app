@@ -11,7 +11,6 @@ export interface ProtectedRouteProps extends RouteProps {
 
 export const ProtectedRoute = ({ children, ...rest }: any) => {
   const auth = useAuthUser()
-  console.log('auth in ProtectedRoute', auth)
   return (
     <Route
       {...rest}

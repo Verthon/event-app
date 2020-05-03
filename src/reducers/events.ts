@@ -12,7 +12,7 @@ export interface IEventsState {
   userEventImage: string
 }
 
-export const fetchAllEvents = createAsyncThunk('events/fetchAllEvents', async () => {
+export const fetchAllEvents: any = createAsyncThunk('events/fetchAllEvents', async () => {
   try {
     const querySnapshot = await db.collection('events')
       .orderBy('day', 'asc')
@@ -30,7 +30,7 @@ export const fetchAllEvents = createAsyncThunk('events/fetchAllEvents', async ()
   }
 })
 
-export const fetchUserEvents = createAsyncThunk('events/fetchUserEvents', async (uid) => {
+export const fetchUserEvents: any = createAsyncThunk('events/fetchUserEvents', async (uid) => {
   try {
     const querySnapshot = await db.collection('events')
       .where("uid", "==", uid)
@@ -68,23 +68,23 @@ export const eventsSlice = createSlice({
     fetchAllEventsFailure: (state: IEventsState, action: PayloadAction<string>) => {
       state.error = action.payload
     },
-    filterEventsByCategory: (state: IEventsState, action: any): any => {
+    filterEventsByCategory: (state: IEventsState, action: PayloadAction<string>) => {
       if (action.payload === "All") {
         state.currentEvents = [...state.allEvents]
       }
       state.currentEvents = state.allEvents.filter((event: EventType) => event.category === action.payload)
     },
-    filterEventsBySearch: (state: IEventsState, action: any) => {
+    filterEventsBySearch: (state: IEventsState, action: PayloadAction<string>) => {
       if (state.currentEvents.length === 0) {
         state.currentEvents = state.allEvents.filter((event: EventType) => event.title.includes(action.payload))
       }
       state.currentEvents = state.currentEvents.filter((event: EventType) => event.title.includes(action.payload))
     },
-    deleteEvent: (state: IEventsState, action: any) => {
+    deleteEvent: (state: IEventsState, action: PayloadAction<string>) => {
       state.currentEvents = state.allEvents.filter((event: EventType) => event.docId !== action.payload)
       state.userEvents = state.allUserEvents.filter((event: EventType) => event.docId !== action.payload)
     },
-    setUserEventImage: (state: IEventsState, action: any) => {
+    setUserEventImage: (state: IEventsState, action: PayloadAction<string>) => {
       state.userEventImage = action.payload
     },
     setDefaultEventImage: (state: IEventsState) => {
@@ -92,11 +92,11 @@ export const eventsSlice = createSlice({
     }
   },
   extraReducers: builder => {
-    builder.addCase(fetchAllEvents.fulfilled, (state: IEventsState, action) => {
+    builder.addCase(fetchAllEvents.fulfilled, (state: IEventsState, action: PayloadAction<Array<EventType>>) => {
       state.currentEvents = [...action.payload]
       state.allEvents = [...action.payload]
     })
-    builder.addCase(fetchUserEvents.fulfilled, (state: IEventsState, action) => {
+    builder.addCase(fetchUserEvents.fulfilled, (state: IEventsState, action: PayloadAction<Array<EventType>>) => {
       state.allUserEvents = [...action.payload]
       state.userEvents = state.allUserEvents
     })

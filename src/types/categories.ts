@@ -1,3 +1,11 @@
+export enum CategoriesList {
+  sport = 'Sport',
+  music = 'Music',
+  education = 'Education',
+  business = 'Business',
+  food = 'Food',
+}
+
 export type CategoryType = {
   key: number
   filterFunction: any
