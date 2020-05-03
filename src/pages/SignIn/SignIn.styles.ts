@@ -12,11 +12,11 @@ const ContentWrapper = styled.div`
 
 const Title = styled.h1`
   font-weight: ${({ theme }: Theme) => theme.fontWeights.bold};
-  color: ${({ theme }: Theme) => theme.colors.text};;
+  color: ${({ theme }: Theme) => theme.colors.primary};;
 `
 
 const Paragraph = styled.p`
-  color: ${({ theme }: Theme) => theme.colors.text};
+  color: ${({ theme }: Theme) => theme.colors.primary};
   margin: 0.5rem 0;
 `
 
@@ -45,7 +45,7 @@ const FacebookSignButton = styled(Button)`
 const GoogleSignButton = styled(Button)`
   background-color: ${({ theme }: Theme) => theme.colors.white};
   color: ${({ theme }: Theme) => theme.colors.primary};
-  box-shadow: ${({ theme }: Theme) => theme.shadow.default};
+  box-shadow: ${({ theme }: Theme) => theme.shadow.category};
 `
 
 export const Styled = {

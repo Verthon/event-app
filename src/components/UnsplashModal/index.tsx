@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { IonModal, IonContent, IonLoading } from '@ionic/react'
 
@@ -40,6 +40,7 @@ const UnsplashModal = ({ showModal, cancelHandler }: any) => {
   let [showSpinner, setSpinner] = useState<boolean>(true)
   let [isDataFetched, setDataFetching] = useState<boolean>(true)
   let [eventImage, setEventImage] = useState<string>('')
+  let [warning, setWarning] = useState<string>('')
 
   const setActiveEventImage = (url: string, index: number) => {
     let updatedImages: Array<Image> = images.map(image => ({
@@ -52,6 +53,9 @@ const UnsplashModal = ({ showModal, cancelHandler }: any) => {
     console.log('updatedImages', images)
     setEventImage(url)
   }
+
+  useEffect(() => {}, [images])
+
   const submitEventImage = (url: string) => {
     dispatch(setUserEventImage(url))
     cancelHandler(false)
@@ -66,15 +70,21 @@ const UnsplashModal = ({ showModal, cancelHandler }: any) => {
       .photos(query, 1, 10, { orientation: 'landscape' })
       .then(response => response.json())
       .then(data => {
-        const formattedData = data.results.map((entry: Image) => ({
-          id: entry.id,
-          alt_description: entry.alt_description,
-          urls: entry.urls,
-          active: false,
-        }))
+        if (data && data.total > 0) {
+          const formattedData = data.results.map((entry: Image) => ({
+            id: entry.id,
+            alt_description: entry.alt_description,
+            urls: entry.urls,
+            active: false,
+          }))
+          setDataFetching(true)
+          setSpinner(false)
+          setWarning('')
+          return setImages(formattedData)
+        }
         setDataFetching(true)
         setSpinner(false)
-        return setImages(formattedData)
+        setWarning(`Sorry. No result found for: ${query}`)
       })
       .catch(error =>
         console.log('Error occured while fetching the photos', error)
@@ -104,6 +114,7 @@ const UnsplashModal = ({ showModal, cancelHandler }: any) => {
             placeholder="Image category eg. Education"
           />
           <Styled.Button onClick={handleImageSearch}>Get Images</Styled.Button>
+          {warning !== '' ? <Styled.InfoMessage>{warning}</Styled.InfoMessage> : null}
           {images.length > 0 ? (
             <Styled.ImagesSection>
               <Styled.Title>Unsplash images</Styled.Title>
@@ -116,7 +127,7 @@ const UnsplashModal = ({ showModal, cancelHandler }: any) => {
                   ? images.map((image: Image, index: number) => (
                       <Styled.ImageWrapper
                         key={image.id}
-                        active={image.active}
+                        active={image.urls.small === eventImage}
                         onClick={() =>
                           setActiveEventImage(image.urls.small, index)
                         }
@@ -137,9 +148,9 @@ const UnsplashModal = ({ showModal, cancelHandler }: any) => {
           <Styled.CancelButton onClick={() => cancelHandler(false)}>
             Cancel
           </Styled.CancelButton>
-          <Styled.Button onClick={() => submitEventImage(eventImage)}>
+          <Styled.SubmitButton onClick={() => submitEventImage(eventImage)}>
             Set photo
-          </Styled.Button>
+          </Styled.SubmitButton>
         </Styled.Footer>
       </IonModal>
     </IonContent>
