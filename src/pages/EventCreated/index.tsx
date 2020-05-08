@@ -21,7 +21,7 @@ const Contact: React.FC<RouteComponentProps> = ({ history }) => {
           <Styled.CheckIcon />
           <Styled.Title>Event Created</Styled.Title>
           <p>Your event has been added succesfully.</p>
-          <Styled.Button onClick={navigateToHome}>Back To Home</Styled.Button>
+          <Styled.Button type="button" onClick={navigateToHome}>Back To Home</Styled.Button>
         </Styled.Wrapper>
       </IonContent>
     </IonPage>

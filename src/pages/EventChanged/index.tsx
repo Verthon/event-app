@@ -1,10 +1,11 @@
 import React from 'react'
 import { IonContent, IonHeader, IonPage, IonToolbar } from '@ionic/react'
+import { RouteComponentProps } from 'react-router-dom'
 import logo from '../../assets/logo/logo-color.svg'
 import { ACCOUNT } from '../../constants/routes'
-import {Styled} from './EventChanged.styles'
+import { Styled } from './EventChanged.styles'
 
-const EventChanged: React.FC = ({ history }: any) => {
+const EventChanged: React.FC<RouteComponentProps> = ({ history }) => {
   const navigateToHome = () => {
     history.push(ACCOUNT)
   }
@@ -20,7 +21,9 @@ const EventChanged: React.FC = ({ history }: any) => {
           <Styled.CheckIcon />
           <Styled.Title>Event Changed</Styled.Title>
           <p>Your event has been edited succesfully.</p>
-          <Styled.Button onClick={navigateToHome}>Back To Account</Styled.Button>
+          <Styled.Button onClick={navigateToHome}>
+            Back To Account
+          </Styled.Button>
         </Styled.Wrapper>
       </IonContent>
     </IonPage>

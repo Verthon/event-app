@@ -4,19 +4,19 @@ import { render, fireEvent } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 import 'jest-styled-components'
 import { createMemoryHistory } from 'history'
-import Home from './index'
+import EventCreated from './index'
 import { theme } from '../../theme/Theme'
 
 const history: any = createMemoryHistory()
 
-const text = 'Eventoo is a perfect place to build, manage and grow your events.'
-test('It renders Home component', () => {
-  const { getByText } = render(
+const text = 'Your event has been added succesfully.'
+test('It renders EventCreated component', () => {
+  const { container, getByText } = render(
     <ThemeProvider theme={theme}>
-      <Home history={history} location={null} match={null} />
+      <EventCreated history={history} location={null} match={null} />
     </ThemeProvider>
   )
   expect(getByText(text)).toBeInTheDocument()
-  fireEvent.click(getByText('Explore'))
-  expect(history.location.pathname).toBe('/events')
+  fireEvent.click(getByText('Back To Home'))
+  expect(container.innerHTML).toHaveTextContent('Events')
 })
