@@ -2,28 +2,30 @@ import app from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 // Required for side-effects
-import { DEV_CONFIG } from './db_config'
+// import { DEV_CONFIG } from './db_config'
 require("firebase/firestore");
 
-// const devConfig = {
-//   apiKey: process.env.REACT_APP_DEV_API_KEY,
-//   authDomain: process.env.REACT_APP_DEV_AUTH_DOMAIN,
-//   databaseURL: process.env.REACT_APP_DEV_DATABASE_URL,
-//   projectId: "event-app-90ab5",
-//   storageBucket: process.env.REACT_APP_DEV_STORAGE_BUCKET,
-//   messagingSenderId: process.env.REACT_APP_DEV_MESSAGING_SENDER_ID,
-// };
+let config = null
 
-// const prodConfig = {
-//   apiKey: process.env.REACT_APP_PROD_API_KEY,
-//   authDomain: process.env.REACT_APP_PROD_AUTH_DOMAIN,
-//   databaseURL: process.env.REACT_APP_PROD_DATABASE_URL,
-//   projectId: "eventoo-production",
-//   storageBucket: process.env.REACT_APP_PROD_STORAGE_BUCKET,
-//   messagingSenderId: process.env.REACT_APP_PROD_MESSAGING_SENDER_ID,
-// }
+if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+  config = {
+    apiKey: process.env.REACT_APP_DEV_FIRESTORE_API_KEY,
+    authDomain: process.env.REACT_APP_DEV_FIRESTORE_AUTH_DOMAIN,
+    projectId: process.env.REACT_APP_DEV_FIRESTORE_PROJECT_ID,
+    databaseURL: process.env.REACT_APP_DEV_FIRESTORE_DATABASE_URL,
+    appId: process.env.REACT_APP_DEV_FIRESTORE_APP_ID
+  }
+} else {
+  config = {
+    apiKey: process.env.REACT_APP_FIRESTORE_API_KEY,
+    authDomain: process.env.REACT_APP_FIRESTORE_AUTH_DOMAIN,
+    projectId: process.env.REACT_APP_FIRESTORE_PROJECT_ID,
+    databaseURL: process.env.REACT_APP_FIRESTORE_DATABASE_URL,
+    appId: process.env.REACT_APP_FIRESTORE_APP_ID
+  }
+}
 
-app.initializeApp(DEV_CONFIG)
+app.initializeApp(config)
 export const db = app.firestore()
 export const auth = app.auth()
 //export const firebaseStorage = app.storage()
