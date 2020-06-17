@@ -9,7 +9,7 @@ import {
 
 import { ACCOUNT } from '../constants/routes'
 
-export const loginWithSocial = (provider: string, history: any) => {
+export const loginWithSocial = (provider: string, history) => {
   if (provider === 'Google') {
     doSignInWithGoogle()
       .then(() => redirectResultGoogle())
@@ -18,7 +18,7 @@ export const loginWithSocial = (provider: string, history: any) => {
         doSignWithGoogleCredentials(token)
         history.push(ACCOUNT)
       })
-      .catch((error: any) => {
+      .catch((error) => {
         console.log(
           `Error occurred while signing in using ${provider} provider.`,
           error
@@ -34,7 +34,7 @@ export const loginWithSocial = (provider: string, history: any) => {
         doSignWithFacebookCredentials(token)
         history.push(ACCOUNT)
       })
-      .catch((error: any) =>
+      .catch((error) =>
         console.log(
           `Error occurred while signing in using ${provider} provider.`,
           error

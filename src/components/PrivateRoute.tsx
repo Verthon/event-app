@@ -9,7 +9,7 @@ export interface ProtectedRouteProps extends RouteProps {
   authenticationPath: string;
 }
 
-export const ProtectedRoute = ({ children, ...rest }: any) => {
+export const ProtectedRoute = ({ children, ...rest }) => {
   const auth = useAuthUser()
   return (
     <Route

@@ -26,8 +26,8 @@ export type EventItemType = {
   description: string,
   featuredImage: string,
   editMode: boolean,
-  deleteHandler?: any,
-  editHandler?: any,
+  deleteHandler?: Function,
+  editHandler?: Function,
 }
 
 export type CategoryType = {

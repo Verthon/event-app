@@ -1,21 +1,31 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
 import { db } from '../firebase/firebase'
-import { CategoryType } from '../types/categories'
+import { CategoryData } from '../types/categories'
 
 interface ICategoriesState {
   loading: string,
   error: string | null,
-  categories: Array<CategoryType>,
+  categories: Array<CategoryData>,
   currentCategory: string
+}
+
+interface ICategoryData {
+  category: string
+  emoji: string
+  docId: string
 }
 
 export const fetchAllCategories = createAsyncThunk('categories/fetchAllCategories', async () => {
   try {
     const querySnapshot = await db.collection('categories')
       .get()
-    const categories: Array<CategoryType> = []
-    querySnapshot.docs.forEach((doc: any) => {
-      const data = doc.data()
+    const categories: Array<ICategoryData> = []
+    querySnapshot.docs.forEach((doc) => {
+      const data: ICategoryData = {
+        category: doc.data().category,
+        emoji: doc.data().emoji,
+        docId: doc.id
+      }
       data.docId = doc.id
       categories.push(data)
     })
@@ -42,7 +52,7 @@ export const categoriesSlice = createSlice({
     }
   },
   extraReducers: builder => {
-    builder.addCase(fetchAllCategories.fulfilled, (state: ICategoriesState, action: PayloadAction <Array<CategoryType>>) => {
+    builder.addCase(fetchAllCategories.fulfilled, (state: ICategoriesState, action: PayloadAction <Array<CategoryData>>) => {
       state.categories = [...action.payload]
     })
   }

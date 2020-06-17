@@ -12,15 +12,46 @@ export interface IEventsState {
   userEventImage: string
 }
 
-export const fetchAllEvents: any = createAsyncThunk('events/fetchAllEvents', async () => {
+type EventDataType = {
+  address: string;
+  category: string;
+  created_at: string;
+  day: string;
+  description: string;
+  eventId: number;
+  featuredImage: string;
+  host: string;
+  hour: string;
+  localization: string;
+  title: string;
+  uid: string;
+  docId: string;
+  editMode: boolean
+}
+
+export const fetchAllEvents = createAsyncThunk('events/fetchAllEvents', async () => {
   try {
     const querySnapshot = await db.collection('events')
       .orderBy('day', 'asc')
       .get()
-    const events: Array<EventType> = []
-    querySnapshot.docs.forEach((doc: any) => {
-      const data = doc.data()
-      data.docId = doc.id
+    const events: Array<EventDataType> = []
+    querySnapshot.docs.forEach((doc) => {
+      const data: EventDataType = {
+        address: doc.data().address,
+        category: doc.data().category,
+        created_at: doc.data().created_at,
+        day: doc.data().day,
+        description: doc.data().description,
+        eventId: doc.data().eventId,
+        featuredImage: doc.data().featuredImage,
+        host: doc.data().host,
+        hour: doc.data().hour,
+        localization: doc.data().localization,
+        title: doc.data().title,
+        uid: doc.data().uid,
+        docId: doc.id,
+        editMode: false
+      }
       events.push(data)
     })
     return events

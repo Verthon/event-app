@@ -69,7 +69,7 @@ const App: React.FC<RouteComponentProps> = (props) => {
             <Route
               path={ROUTES.ACCOUNT}
               exact={true}
-              render={(props: any) =>
+              render={(props) =>
                 currentUser !== null && currentUser !== undefined ? (
                   <Account {...props} />
                 ) : (

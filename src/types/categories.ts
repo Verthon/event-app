@@ -8,7 +8,7 @@ export enum CategoriesList {
 
 export type CategoryType = {
   key: number
-  filterFunction: any
+  filterFunction: Function
   emoji: string
   category: string
   active: boolean

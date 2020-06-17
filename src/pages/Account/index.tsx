@@ -70,7 +70,6 @@ const Account: React.FC<RouteComponentProps> = ({ history }) => {
   const signOut = async () => {
     try {
       await doSignOut()
-      console.log(currentUser)
       dispatch(logout())
       history.push(EVENTS)
     } catch (error) {
@@ -79,10 +78,9 @@ const Account: React.FC<RouteComponentProps> = ({ history }) => {
   }
 
   useEffect(() => {
-    db.collection('events').onSnapshot(function(doc) {
+    db.collection('events').onSnapshot(function() {
       dispatch(fetchUserEvents(currentUser.uid))
-        .then((result: any) => {
-          console.log('fetchAllEvents result', result)
+        .then((result) => {
           setDataFetched(true)
           setEvents(result.payload)
         })

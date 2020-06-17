@@ -21,10 +21,14 @@ interface Image {
   active: boolean
 }
 
+interface Props {
+  showModal: boolean,
+  cancelHandler: Function
+}
+
 export interface ImageWrapperProps {
   active: boolean
   key: string
-  onClick: any
 }
 
 export interface ImageProps {
@@ -33,7 +37,7 @@ export interface ImageProps {
   alt: string
 }
 
-const UnsplashModal = ({ showModal, cancelHandler }: any) => {
+const UnsplashModal = ({ showModal, cancelHandler }: Props) => {
   const dispatch = useDispatch()
   const [images, setImages] = useState([])
   const [query, setQuery] = useState<string>('')
@@ -50,7 +54,6 @@ const UnsplashModal = ({ showModal, cancelHandler }: any) => {
     setImages(updatedImages)
     updatedImages[index].active = !updatedImages[index].active
     setImages(updatedImages)
-    console.log('updatedImages', images)
     setEventImage(url)
   }
 

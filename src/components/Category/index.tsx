@@ -9,7 +9,7 @@ const Category = ({
   active,
 }: CategoryType) => {
   return (
-    <Styled.CategoryWrapper type="button" onClick={filterFunction} active={active}>
+    <Styled.CategoryWrapper type="button" onClick={() => filterFunction()} active={active}>
       <Styled.IconWrapper active={active}>
         <Styled.Icon>{emoji}</Styled.Icon>
       </Styled.IconWrapper>
