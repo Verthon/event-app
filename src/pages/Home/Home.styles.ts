@@ -8,8 +8,9 @@ const Hero = styled.div`
   display: flex;
   background-image: url(${bg});
   background-repeat: no-repeat;
-  background-size: 100%;
+  background-size: 75%;
   justify-content: flex-end;
+  background-position: center 15%;
 `
 
 const Content = styled.article`

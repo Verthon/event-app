@@ -27,7 +27,7 @@ const SignIn: React.FC<RouteComponentProps> = ({ history }) => {
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-content--color">
-        <img className="image" src={bg} alt="" />
+        <Styled.Image src={bg} alt="" />
         <Styled.ContentWrapper>
           <Styled.Title>Welcome back!</Styled.Title>
           <Styled.Paragraph>Sign in using your Facebook or Google account.</Styled.Paragraph>

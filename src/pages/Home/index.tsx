@@ -7,7 +7,7 @@ import { EVENTS } from '../../constants/routes'
 const Home: React.FC<RouteComponentProps> = ({history}) => {
   return (
     <IonPage>
-      <IonContent>
+      <IonContent className="animated animate__fadeInDown">
         <Styled.Hero>
           <Styled.Content>
             <Styled.Title>Explore events</Styled.Title>

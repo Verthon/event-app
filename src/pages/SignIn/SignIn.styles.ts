@@ -48,6 +48,12 @@ const GoogleSignButton = styled(Button)`
   box-shadow: ${({ theme }: Theme) => theme.shadow.category};
 `
 
+const Image = styled.img`
+  display: block;
+  max-width: 75%;
+  margin: 3rem auto 3rem auto
+`
+
 export const Styled = {
   Logo,
   ContentWrapper,
@@ -55,5 +61,6 @@ export const Styled = {
   Paragraph,
   ButtonWrapper,
   FacebookSignButton,
-  GoogleSignButton
+  GoogleSignButton,
+  Image
 }

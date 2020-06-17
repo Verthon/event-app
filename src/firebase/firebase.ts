@@ -2,7 +2,6 @@ import app from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 // Required for side-effects
-// import { DEV_CONFIG } from './db_config'
 require("firebase/firestore");
 
 let config = null
@@ -28,7 +27,6 @@ if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
 app.initializeApp(config)
 export const db = app.firestore()
 export const auth = app.auth()
-//export const firebaseStorage = app.storage()
 export const googleProvider = new app.auth.GoogleAuthProvider()
 export const facebookProvider = new app.auth.FacebookAuthProvider()
 export const twitterProvider = new app.auth.TwitterAuthProvider()
