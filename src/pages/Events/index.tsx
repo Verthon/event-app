@@ -69,6 +69,7 @@ const Events: React.FC = () => {
           setToast(true)
         })
     })
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {

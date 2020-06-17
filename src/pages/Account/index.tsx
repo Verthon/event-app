@@ -27,7 +27,6 @@ const Account: React.FC<RouteComponentProps> = ({ history }) => {
   const dispatch: AppDispatch = useDispatch()
   const currentUser = useAuthUser()
   const [currentEventDocId, setEventDocId] = useState<string>('')
-  const [events, setEvents] = useState([])
   const [showDeleteAlert, setDeleteAlert] = useState(false)
   let [showSpinner, setSpinner] = useState<boolean>(true)
   let [isDataFetched, setDataFetched] = useState<boolean>(false)
@@ -82,13 +81,12 @@ const Account: React.FC<RouteComponentProps> = ({ history }) => {
       dispatch(fetchUserEvents(currentUser.uid))
         .then((result) => {
           setDataFetched(true)
-          setEvents(result.payload)
         })
         .catch(error => {
           console.log('Error while fetching the events', error)
         })
     })
-  }, [])
+  }, [currentUser.uid, dispatch])
 
   let currentEvents = useTypedSelector(({ events }) => events.userEvents)
   return (
@@ -114,7 +112,7 @@ const Account: React.FC<RouteComponentProps> = ({ history }) => {
         <Styled.Container>
           <IonLoading
             isOpen={!isDataFetched}
-            onDidDismiss={() => setSpinner(false)}
+            onDidDismiss={() => setSpinner(!showSpinner)}
             message={'Please wait...'}
             spinner="bubbles"
             duration={500}

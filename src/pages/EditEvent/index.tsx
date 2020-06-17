@@ -54,7 +54,7 @@ const EditEvent: React.FC<RouteComponentProps> = ({ history }) => {
 
   useEffect(() => {
     setForm({ ...form, [form.imageUrl]: currentEvent })
-  }, [currentEvent])
+  }, [currentEvent, form])
 
   useEffect(() => {
     if (uid === null) {
