@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, createRef } from 'react'
 import {
   IonContent,
   IonHeader,
   IonPage,
   IonToolbar,
   IonButtons,
-  IonBackButton,
+  IonBackButton
 } from '@ionic/react'
 import { useDispatch } from 'react-redux'
 import { RouteComponentProps } from 'react-router-dom'
+import lottie from 'lottie-web'
+import animationData from '../../animations/success-tick-animation.json'
 
 import { useTypedSelector } from '../../hooks/useTypedSelector'
 import { AppDispatch } from '../../store'
@@ -23,6 +25,17 @@ import { setDefaultEventImage } from '../../reducers/events'
 import { Styled } from './EditEvent.styles'
 
 const EditEvent: React.FC<RouteComponentProps> = ({ history }) => {
+  const animationContainer: any = createRef()
+  useEffect(() => {
+    lottie.loadAnimation({
+      container: animationContainer.current,
+      renderer: 'svg',
+      loop: false,
+      autoplay: true,
+      animationData
+    })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
   const dispatch: AppDispatch = useDispatch()
   const currentEvent = useTypedSelector(({ event }) => event.event)
   const uid = useTypedSelector(({ auth }) =>
@@ -31,7 +44,7 @@ const EditEvent: React.FC<RouteComponentProps> = ({ history }) => {
   const userEventImage = useTypedSelector(({ events }) => events.userEventImage)
   const [error, setError] = React.useState({
     inputName: '',
-    error: '',
+    error: ''
   })
   const [form, setForm] = useState<EventFormType>({
     title: currentEvent.title,
@@ -44,17 +57,18 @@ const EditEvent: React.FC<RouteComponentProps> = ({ history }) => {
       CategoriesList.music,
       CategoriesList.education,
       CategoriesList.business,
-      CategoriesList.food,
+      CategoriesList.food
     ],
     category: currentEvent.category,
     imageUrl: currentEvent.featuredImage,
     day: currentEvent.day,
-    hour: currentEvent.hour,
+    hour: currentEvent.hour
   })
 
   useEffect(() => {
     setForm({ ...form, [form.imageUrl]: currentEvent })
-  }, [currentEvent, form])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentEvent])
 
   useEffect(() => {
     if (uid === null) {
@@ -65,7 +79,7 @@ const EditEvent: React.FC<RouteComponentProps> = ({ history }) => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({
       ...form,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     })
   }
 
@@ -87,7 +101,7 @@ const EditEvent: React.FC<RouteComponentProps> = ({ history }) => {
       day: form.day,
       hour: form.hour,
       featuredImage: userEventImage === '' ? form.imageUrl : userEventImage,
-      uid: uid,
+      uid: uid
     })
     dispatch(setDefaultEventImage())
     return history.push(EVENT_CHANGED)
@@ -104,16 +118,18 @@ const EditEvent: React.FC<RouteComponentProps> = ({ history }) => {
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        <Styled.Title>Edit event</Styled.Title>
-        <EventForm
-          handleSubmit={handleSubmit}
-          handleInputChange={handleInputChange}
-          form={form}
-          error={error}
-          userEventImage={
-            userEventImage === '' ? form.imageUrl : userEventImage
-          }
-        />
+        <div ref={animationContainer}>
+          <Styled.Title>Edit event</Styled.Title>
+          <EventForm
+            handleSubmit={handleSubmit}
+            handleInputChange={handleInputChange}
+            form={form}
+            error={error}
+            userEventImage={
+              userEventImage === '' ? form.imageUrl : userEventImage
+            }
+          />
+        </div>
       </IonContent>
     </IonPage>
   )
