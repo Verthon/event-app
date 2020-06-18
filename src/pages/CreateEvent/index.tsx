@@ -20,7 +20,7 @@ const CreateEvents: React.FC<RouteComponentProps> = ({ history }) => {
   const dispatch: AppDispatch = useDispatch()
   const uid = useTypedSelector(({ auth }) => auth.user.uid)
   const userEventImage = useTypedSelector(({ events }) => events.userEventImage)
-  const [error, setError] = React.useState({
+  const [error, setError] = useState({
     inputName: '',
     error: '',
   })

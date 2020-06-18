@@ -1,25 +1,55 @@
 import React, { useState } from 'react'
+import { RouteComponentProps } from 'react-router-dom'
 import { IonContent, IonHeader, IonPage, IonToolbar } from '@ionic/react'
 import dayjs from 'dayjs'
 import { db } from '../../firebase/firebase'
+import { ADDED_SUCCESSFULLY } from '../../constants/routes'
+import { validateMessageForm } from '../../helpers/validate'
 import logo from '../../assets/logo/logo-color.svg'
 import ContactForm from '../../components/ContactForm'
 import { Styled } from './Contact.styles'
 
-const Contact: React.FC = () => {
-  const [form, setForm] = useState({
+const Contact: React.FC<RouteComponentProps> = ({ history }) => {
+  const initialFormState = {
     name: '',
     email: '',
     message: '',
     createdAt: dayjs().format()
-  })
+  }
+  const initialErrorState = {
+    inputName: '',
+    error: ''
+  }
+  const [error, setError] = useState(initialErrorState)
+  const [form, setForm] = useState(initialFormState)
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value })
   }
   const handleSubmit = (e: React.FormEvent) => {
-    const ref = db.collection('messages').doc()
     e.preventDefault()
-    console.log('form to be submitted', form, ref)
+    const formError = validateMessageForm(form)
+    if (formError) {
+      setError(formError)
+      return
+    }
+    setError(initialErrorState)
+    const messagesRef = db.collection('messages').doc()
+    messagesRef
+      .set({
+        ...form
+      })
+      .then(() => {
+        setForm(initialFormState)
+        history.push({
+          pathname: ADDED_SUCCESSFULLY,
+          state: {
+            title: 'Message sent successfully',
+            description:
+              'Thank you for sending message, we will answer as soon as possible.'
+          }
+        })
+      })
+      .catch(error => console.log('error while saving to db', error))
   }
   return (
     <IonPage>
@@ -37,10 +67,16 @@ const Contact: React.FC = () => {
           passion.
         </Styled.Description>
         <Styled.Title>Contact</Styled.Title>
+        <Styled.Description>
+          If you have a question or problem, feel free to contact us using form
+          below, or email directly at{' '}
+          <a href="mailto:eventooinfo@gmail.com">eventooinfo@gmail.com.</a>
+        </Styled.Description>
         <ContactForm
           handleSubmit={handleSubmit}
           handleInputChange={handleInputChange}
           form={form}
+          error={error}
         />
       </IonContent>
     </IonPage>

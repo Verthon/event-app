@@ -37,6 +37,7 @@ const EventDetail = lazy(() => import('./pages/EventDetail'))
 const EventCreated = lazy(() => import('./pages/EventCreated'))
 const EditEvent = lazy(() => import('./pages/EditEvent'))
 const EventChanged = lazy(() => import('./pages/EventChanged'))
+const AddedSuccessfully = lazy(() => import('./pages/AddedSuccessfully'))
 
 const App: React.FC<RouteComponentProps> = props => {
   const currentUser = useAuthUser()
@@ -91,6 +92,11 @@ const App: React.FC<RouteComponentProps> = props => {
               <Route
                 path={ROUTES.EVENT_CHANGED}
                 component={EventChanged}
+                exact={true}
+              />
+              <Route
+                path={ROUTES.ADDED_SUCCESSFULLY}
+                render={(props) => <AddedSuccessfully {...props} />}
                 exact={true}
               />
               <Route

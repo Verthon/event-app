@@ -2,9 +2,9 @@ import { IonInput, IonItem, IonLabel, IonTextarea } from '@ionic/react'
 import React from 'react'
 import { Styled } from './ContactForm.styles'
 
-const ContactForm = ({ handleInputChange, handleSubmit, form }) => {
+const ContactForm = ({ handleInputChange, handleSubmit, form, error }) => {
   return (
-    <form method="POST" onSubmit={(e) => handleSubmit(e)}>
+    <form method="POST" onSubmit={e => handleSubmit(e)}>
       <IonItem lines="none">
         <IonLabel position="floating">Name</IonLabel>
         <IonInput
@@ -15,9 +15,9 @@ const ContactForm = ({ handleInputChange, handleSubmit, form }) => {
           value={form.name}
           onIonChange={e => handleInputChange(e)}
         />
-        {/* {error.inputName === 'title' ? (
-            <Styled.ErrorMessage>{error.error}</Styled.ErrorMessage>
-          ) : null} */}
+        {error.inputName === 'name' ? (
+          <Styled.ErrorMessage>{error.error}</Styled.ErrorMessage>
+        ) : null}
       </IonItem>
       <IonItem lines="none">
         <IonLabel position="floating">Email</IonLabel>
@@ -29,6 +29,9 @@ const ContactForm = ({ handleInputChange, handleSubmit, form }) => {
           value={form.email}
           onIonChange={e => handleInputChange(e)}
         />
+        {error.inputName === 'email' ? (
+          <Styled.ErrorMessage>{error.error}</Styled.ErrorMessage>
+        ) : null}
       </IonItem>
       <IonItem lines="none">
         <IonLabel position="floating">Message</IonLabel>
@@ -39,6 +42,9 @@ const ContactForm = ({ handleInputChange, handleSubmit, form }) => {
           value={form.message}
           onIonChange={e => handleInputChange(e)}
         />
+        {error.inputName === 'message' ? (
+          <Styled.ErrorMessage>{error.error}</Styled.ErrorMessage>
+        ) : null}
       </IonItem>
       <Styled.Button type="submit" color="primary">
         Submit
