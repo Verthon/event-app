@@ -11,7 +11,6 @@ export type EventType = {
   description: string
   featuredImage: string
   editMode: boolean
-
 }
 
 export type EventItemType = {
@@ -27,8 +26,8 @@ export type EventItemType = {
   description: string,
   featuredImage: string,
   editMode: boolean,
-  deleteHandler?: any,
-  editHandler?: any,
+  deleteHandler?: Function,
+  editHandler?: Function,
 }
 
 export type CategoryType = {
@@ -38,4 +37,17 @@ export type CategoryType = {
 
 export type EventItemEditMode = {
   readonly editMode: boolean
+}
+
+export type EventFormType = {
+  title: string,
+  host: string,
+  localization: string,
+  address: string,
+  description: string,
+  categories: Array<string>,
+  category: string,
+  imageUrl: string,
+  day: string,
+  hour: string,
 }

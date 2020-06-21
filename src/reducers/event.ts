@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { EventType } from '../types/events'
 
 interface IEventState {
@@ -8,10 +8,22 @@ interface IEventState {
 export const eventSlice = createSlice({
   name: 'events',
   initialState: {
-    event: {}
+    event: {
+      docId: '',
+      title: '',
+      host: '',
+      localization: '',
+      address: '',
+      category: '',
+      day: '',
+      hour: '',
+      description: '',
+      featuredImage: '',
+      editMode: false
+    }
   },
   reducers: {
-    showEventDetails: (state: IEventState, action: any) => {
+    showEventDetails: (state: IEventState, action: PayloadAction<EventType>) => {
       state.event = { ...action.payload };
     },
   },

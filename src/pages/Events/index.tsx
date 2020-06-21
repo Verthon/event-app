@@ -7,41 +7,48 @@ import {
   IonLoading,
 } from '@ionic/react'
 import React, { useState, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import styled from 'styled-components'
+import { useDispatch } from 'react-redux'
 
-import { fetchAllEvents, filterEventsByCategory } from '../reducers/events'
-import { fetchAllCategories, setActiveCategory } from '../reducers/categories'
-import EventItem from '../components/EventItem'
-import Category from '../components/Category'
-import { IEventsState } from '../reducers/events'
-import { EventItemType } from '../types/events'
-import logo from '../assets/logo/logo-color.svg'
-import { db } from '../firebase/firebase'
+import { fetchAllEvents, filterEventsByCategory } from '../../reducers/events'
+import {
+  fetchAllCategories,
+  setActiveCategory,
+} from '../../reducers/categories'
+import { useTypedSelector } from '../../hooks/useTypedSelector'
+import { AppDispatch} from '../../store'
+import EventItem from '../../components/EventItem'
+import Category from '../../components/Category'
+import { EventItemType } from '../../types/events'
+import { CategoryData } from '../../types/categories'
+import logo from '../../assets/logo/logo-color.svg'
+import { db } from '../../firebase/firebase'
+import { Styled } from './Events.styles'
 
 const Events: React.FC = () => {
   let [events, setEvents] = useState([])
-  const dispatch: any = useDispatch()
+  const dispatch: AppDispatch = useDispatch()
   let [categories, setCategories] = useState([])
   let [showToast, setToast] = useState<boolean>(false)
   let [showSpinner, setSpinner] = useState<boolean>(true)
   let [isDataFetched, setDataFetched] = useState<boolean>(false)
-  let currentEvents = useSelector((state: any) => state.events.events)
-  let activeCategory = useSelector((state: any) => state.categories.currentCategory)
+  let currentEvents = useTypedSelector(({ events }) => events.currentEvents)
+  let activeCategory = useTypedSelector(
+    ({ categories }) => categories.currentCategory
+  )
 
   const filterEvents = (category: string) => {
-    if(category === 'All') {
+    if (category === 'All') {
       setDataFetched(false)
       setSpinner(true)
       dispatch(setActiveCategory(category))
       dispatch(fetchAllEvents())
-      .then((result: any) => {
-        setDataFetched(true)
-        setEvents(result.payload)
-      })
-      .catch(() => {
-        setToast(true)
-      })
+        .then((result: any) => {
+          setDataFetched(true)
+          setEvents(result.payload)
+        })
+        .catch(() => {
+          setToast(true)
+        })
       return events
     }
     dispatch(filterEventsByCategory(category))
@@ -52,17 +59,17 @@ const Events: React.FC = () => {
   }
 
   useEffect(() => {
-    db.collection("events")
-    .onSnapshot(function(doc) {
+    db.collection('events').onSnapshot(() => {
       dispatch(fetchAllEvents())
-      .then((result: any) => {
-        setDataFetched(true)
-        setEvents(result.payload)
-      })
-      .catch(() => {
-        setToast(true)
-      })    
-    });
+        .then((result: any) => {
+          setDataFetched(true)
+          setEvents(result.payload)
+        })
+        .catch(() => {
+          setToast(true)
+        })
+    })
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
@@ -84,7 +91,7 @@ const Events: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar color="light">
-          <Logo src={logo} alt="Eventoo" />
+          <Styled.Logo src={logo} alt="Eventoo" />
         </IonToolbar>
       </IonHeader>
 
@@ -102,9 +109,9 @@ const Events: React.FC = () => {
           message="Error occured while fetching data from our database. Please try again later."
           duration={2000}
         />
-        <CategoriesWrapper>
+        <Styled.CategoriesWrapper>
           {categories
-            ? categories.map((category, id) => {
+            ? categories.map((category: CategoryData, id: number) => {
                 return (
                   <Category
                     key={id}
@@ -116,8 +123,8 @@ const Events: React.FC = () => {
                 )
               })
             : null}
-        </CategoriesWrapper>
-        <Title>Upcoming Events</Title>
+        </Styled.CategoriesWrapper>
+        <Styled.Title>Upcoming Events</Styled.Title>
         {events
           ? events.map((event: EventItemType, id: number) => {
               return (
@@ -143,25 +150,5 @@ const Events: React.FC = () => {
     </IonPage>
   )
 }
-
-const Logo = styled.img`
-  width: 120px;
-  margin: 1.2rem 1rem 1rem 1rem;
-`
-
-const Title = styled.h1`
-font-family: var(--ion-decorative-font);
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: var(--ion-color-primary);
-  margin: 2rem 0 1rem 0;
-`
-
-const CategoriesWrapper = styled.div`
-  display: flex;
-  overflow-x: auto;
-  margin: 1.5rem 0;
-  font-family: var(--ion-decorative-font);
-`
 
 export default Events

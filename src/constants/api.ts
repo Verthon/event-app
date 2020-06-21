@@ -1,7 +1,3 @@
 import Unsplash from 'unsplash-js';
-import {config} from '../constants/unsplashConfig'
 
-export const unsplash = new Unsplash({ accessKey: config.access });
-
-
-
+export const unsplash = new Unsplash({ accessKey: process.env.REACT_APP_UNSPLASH_ACCESS_KEY });

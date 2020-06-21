@@ -5,11 +5,28 @@ import { EventType } from '../types/events'
 export interface IEventsState {
   loading: string,
   error: string | null,
-  events: Array<EventType>,
+  currentEvents: Array<EventType>,
   allEvents: Array<EventType>
   allUserEvents: Array<EventType>
   userEvents: Array<EventType>
   userEventImage: string
+}
+
+type EventDataType = {
+  address: string;
+  category: string;
+  created_at: string;
+  day: string;
+  description: string;
+  eventId: number;
+  featuredImage: string;
+  host: string;
+  hour: string;
+  localization: string;
+  title: string;
+  uid: string;
+  docId: string;
+  editMode: boolean
 }
 
 export const fetchAllEvents = createAsyncThunk('events/fetchAllEvents', async () => {
@@ -17,10 +34,24 @@ export const fetchAllEvents = createAsyncThunk('events/fetchAllEvents', async ()
     const querySnapshot = await db.collection('events')
       .orderBy('day', 'asc')
       .get()
-    const events: Array<EventType> = []
-    querySnapshot.docs.forEach((doc: any) => {
-      const data = doc.data()
-      data.docId = doc.id
+    const events: Array<EventDataType> = []
+    querySnapshot.docs.forEach((doc) => {
+      const data: EventDataType = {
+        address: doc.data().address,
+        category: doc.data().category,
+        created_at: doc.data().created_at,
+        day: doc.data().day,
+        description: doc.data().description,
+        eventId: doc.data().eventId,
+        featuredImage: doc.data().featuredImage,
+        host: doc.data().host,
+        hour: doc.data().hour,
+        localization: doc.data().localization,
+        title: doc.data().title,
+        uid: doc.data().uid,
+        docId: doc.id,
+        editMode: false
+      }
       events.push(data)
     })
     return events
@@ -30,7 +61,7 @@ export const fetchAllEvents = createAsyncThunk('events/fetchAllEvents', async ()
   }
 })
 
-export const fetchUserEvents = createAsyncThunk('events/fetchUserEvents', async (uid) => {
+export const fetchUserEvents: any = createAsyncThunk('events/fetchUserEvents', async (uid) => {
   try {
     const querySnapshot = await db.collection('events')
       .where("uid", "==", uid)
@@ -51,7 +82,7 @@ export const fetchUserEvents = createAsyncThunk('events/fetchUserEvents', async 
 const initialState: IEventsState = {
   loading: 'idle',
   error: null,
-  events: [],
+  currentEvents: [],
   allEvents: [],
   allUserEvents: [],
   userEvents: [],
@@ -68,23 +99,23 @@ export const eventsSlice = createSlice({
     fetchAllEventsFailure: (state: IEventsState, action: PayloadAction<string>) => {
       state.error = action.payload
     },
-    filterEventsByCategory: (state: IEventsState, action: any): any => {
+    filterEventsByCategory: (state: IEventsState, action: PayloadAction<string>) => {
       if (action.payload === "All") {
-        state.events = [...state.allEvents]
+        state.currentEvents = [...state.allEvents]
       }
-      state.events = state.allEvents.filter((event: EventType) => event.category === action.payload)
+      state.currentEvents = state.allEvents.filter((event: EventType) => event.category === action.payload)
     },
-    filterEventsBySearch: (state: IEventsState, action: any) => {
-      if (state.events.length === 0) {
-        state.events = state.allEvents.filter((event: EventType) => event.title.includes(action.payload))
+    filterEventsBySearch: (state: IEventsState, action: PayloadAction<string>) => {
+      if (state.currentEvents.length === 0) {
+        state.currentEvents = state.allEvents.filter((event: EventType) => event.title.includes(action.payload))
       }
-      state.events = state.events.filter((event: EventType) => event.title.includes(action.payload))
+      state.currentEvents = state.currentEvents.filter((event: EventType) => event.title.includes(action.payload))
     },
-    deleteEvent: (state: IEventsState, action: any) => {
-      state.events = state.allEvents.filter((event: EventType) => event.docId !== action.payload)
+    deleteEvent: (state: IEventsState, action: PayloadAction<string>) => {
+      state.currentEvents = state.allEvents.filter((event: EventType) => event.docId !== action.payload)
       state.userEvents = state.allUserEvents.filter((event: EventType) => event.docId !== action.payload)
     },
-    setUserEventImage: (state: IEventsState, action: any) => {
+    setUserEventImage: (state: IEventsState, action: PayloadAction<string>) => {
       state.userEventImage = action.payload
     },
     setDefaultEventImage: (state: IEventsState) => {
@@ -92,11 +123,11 @@ export const eventsSlice = createSlice({
     }
   },
   extraReducers: builder => {
-    builder.addCase(fetchAllEvents.fulfilled, (state: IEventsState, action) => {
-      state.events = [...action.payload]
+    builder.addCase(fetchAllEvents.fulfilled, (state: IEventsState, action: PayloadAction<Array<EventType>>) => {
+      state.currentEvents = [...action.payload]
       state.allEvents = [...action.payload]
     })
-    builder.addCase(fetchUserEvents.fulfilled, (state: IEventsState, action) => {
+    builder.addCase(fetchUserEvents.fulfilled, (state: IEventsState, action: PayloadAction<Array<EventType>>) => {
       state.allUserEvents = [...action.payload]
       state.userEvents = state.allUserEvents
     })

@@ -11,9 +11,6 @@
 # production
 /build
 src/firebase/db_config.ts
-src/constants/unsplashConfig.ts
-.env
-
 
 # misc
 .DS_Store
@@ -28,3 +25,4 @@ yarn-debug.log*
 yarn-error.log*
 # Local Netlify folder
 .netlify
+.env
