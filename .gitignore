@@ -13,9 +13,13 @@
 /build
 src/firebase/db_config.ts
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 src/constants/unsplashConfig.ts
 >>>>>>> fix: Outdated gitignore
+=======
+src/constants/unsplashConfig.ts
+>>>>>>> f62fd07db655cc7cce62a70aa81fb978fe12bae4
 
 # misc
 .DS_Store

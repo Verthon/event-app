@@ -9,6 +9,7 @@ Mobile application to build, manage and grow your events in a easy way.
 Simple React app for creating and managing events. So far user can:
 - login with Google/Facbook
 - add or remove events
+<<<<<<< HEAD
 
 ## Table of contents
 * [Setup](#setup)
@@ -22,6 +23,21 @@ Simple React app for creating and managing events. So far user can:
 2. install dependencies `npm install`
 3. run react dev server `npm start`
 
+=======
+
+## Table of contents
+* [Setup](#setup)
+* [Technologies](#technologies)
+* [Used packages and tools](#used-packages-and-tools)
+* [Work in progress](#work-in-progress)
+
+## Setup
+
+1. clone repository `git clone https://github.com/Verthon/event-app.git`
+2. install dependencies `npm install`
+3. run react dev server `npm start`
+
+>>>>>>> f62fd07db655cc7cce62a70aa81fb978fe12bae4
 ## Technologies
 - React.js (create-react-app)
 - JavaScript ES6
@@ -91,5 +107,9 @@ Simple React app for creating and managing events. So far user can:
 - [x] Upgrade search component
 - [x] Add basic sorting and filters
 - [ ] Add delete, editing functions for created events
+<<<<<<< HEAD
 - [x] Handle better css(Sass/StyledComponents)
 >>>>>>> Started rewriting app to react native one. Added basic react native setup using expo
+=======
+- [x] Handle better css(Sass/StyledComponents)
+>>>>>>> f62fd07db655cc7cce62a70aa81fb978fe12bae4
