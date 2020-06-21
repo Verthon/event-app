@@ -45,7 +45,7 @@ const App: React.FC<RouteComponentProps> = props => {
       <Suspense fallback={<div>Loading...</div>}>
         <IonReactRouter>
           <IonTabs>
-            <IonRouterOutlet>
+            <IonRouterOutlet animated>
               <Route path={ROUTES.HOME} component={Home} />
               <Route path={ROUTES.EVENTS} component={Events} exact={true} />
               <Route path={ROUTES.CONTACT} component={Contact} exact={true} />
@@ -84,7 +84,7 @@ const App: React.FC<RouteComponentProps> = props => {
               />
               <Route
                 path={ROUTES.ADDED_SUCCESSFULLY}
-                render={(props) => <AddedSuccessfully {...props} />}
+                render={props => <AddedSuccessfully {...props} />}
                 exact={true}
               />
               <Route

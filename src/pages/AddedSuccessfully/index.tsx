@@ -1,5 +1,11 @@
-import React from 'react'
-import { IonContent, IonHeader, IonPage, IonToolbar } from '@ionic/react'
+import React, { useState } from 'react'
+import {
+  IonContent,
+  IonHeader,
+  IonPage,
+  IonToolbar,
+  useIonViewWillEnter
+} from '@ionic/react'
 import { RouteComponentProps, useLocation } from 'react-router-dom'
 import lottie from 'lottie-web'
 import logo from '../../assets/logo/logo-color.svg'
@@ -7,10 +13,13 @@ import { EVENTS } from '../../constants/routes'
 import { Styled } from './AddedSuccessfully.styles'
 import animationData from '../../animations/success-tick-animation.json'
 
-const AddedSuccessfully: React.FC<RouteComponentProps> = ({
-  history
-}) => {
-  const location: any = useLocation() 
+const AddedSuccessfully: React.FC<RouteComponentProps> = ({ history }) => {
+  const [animation, setAnimation] = useState(false)
+  useIonViewWillEnter(() => {
+    console.log('useIonViewWillEnter event fired')
+    setAnimation(true)
+  })
+  const location: any = useLocation()
   const animationContainer: any = React.createRef()
   const navigateToHome = () => {
     history.push(EVENTS)
@@ -37,8 +46,15 @@ const AddedSuccessfully: React.FC<RouteComponentProps> = ({
           <div className="animation-container" ref={animationContainer}>
             {' '}
           </div>
-          <Styled.Title>{location.state ? location.state.title : 'Success!'}</Styled.Title>
-          <p>{location.state ? location.state.description : 'Content was added successfully.'}</p>
+
+          <Styled.Title>
+            {location.state ? location.state.title : 'Success!'}
+          </Styled.Title>
+          <p>
+            {location.state
+              ? location.state.description
+              : 'Content was added successfully.'}
+          </p>
           <Styled.Button type="button" onClick={navigateToHome}>
             Back To Home
           </Styled.Button>

@@ -8,6 +8,9 @@ const Logo = styled.img`
 
 const ContentWrapper = styled.div`
   padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `
 
 const Title = styled.h1`
@@ -21,8 +24,9 @@ const Paragraph = styled.p`
 `
 
 const ButtonWrapper = styled.div`
-  margin: 2rem 0;
+  margin: 1rem 0;
   display: flex;
+  flex-direction: column;
   justify-content: flex-start;
 `
 
@@ -32,14 +36,14 @@ const Button = styled.button`
   font-size: 1.125rem;
   text-transform: capitalize;
   font-weight: ${({ theme }: Theme) => theme.fontWeights.bold};
-  padding: 0.5rem 2.5rem;
+  padding: 0.75rem 2.5rem;
   border-radius: 2px;
 `
 
 const FacebookSignButton = styled(Button)`
   background-color: ${({ theme }: Theme) => theme.colors.primary};
   color: ${({ theme }: Theme) => theme.colors.white};
-  margin: 0 1rem 0 0;
+  margin: 0 0 1rem 0;
 `
 
 const GoogleSignButton = styled(Button)`
