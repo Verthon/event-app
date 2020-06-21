@@ -9,8 +9,6 @@ import {
 } from '@ionic/react'
 import { useDispatch } from 'react-redux'
 import { RouteComponentProps } from 'react-router-dom'
-import lottie from 'lottie-web'
-import animationData from '../../animations/success-tick-animation.json'
 
 import { useTypedSelector } from '../../hooks/useTypedSelector'
 import { AppDispatch } from '../../store'

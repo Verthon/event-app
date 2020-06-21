@@ -1,10 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import {
   IonContent,
   IonHeader,
   IonPage,
   IonToolbar,
-  useIonViewWillEnter
 } from '@ionic/react'
 import { RouteComponentProps, useLocation } from 'react-router-dom'
 import lottie from 'lottie-web'
@@ -14,11 +13,6 @@ import { Styled } from './AddedSuccessfully.styles'
 import animationData from '../../animations/success-tick-animation.json'
 
 const AddedSuccessfully: React.FC<RouteComponentProps> = ({ history }) => {
-  const [animation, setAnimation] = useState(false)
-  useIonViewWillEnter(() => {
-    console.log('useIonViewWillEnter event fired')
-    setAnimation(true)
-  })
   const location: any = useLocation()
   const animationContainer: any = React.createRef()
   const navigateToHome = () => {
