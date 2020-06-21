@@ -4,7 +4,7 @@ import {
   IonPage,
   IonToolbar,
   IonLoading,
-  IonAlert,
+  IonAlert
 } from '@ionic/react'
 import { useDispatch } from 'react-redux'
 import React, { useState, useEffect } from 'react'
@@ -24,6 +24,10 @@ import { EDIT_EVENT, EVENTS } from '../../constants/routes'
 import { Styled } from './Account.styles'
 
 const Account: React.FC<RouteComponentProps> = ({ history }) => {
+  enum Message {
+    EventRemoved = '',
+    RemoveConfirm = 'Are you sure you want to delete this event ? This operation cannot be undone.'
+  }
   const dispatch: AppDispatch = useDispatch()
   const currentUser = useAuthUser()
   const [currentEventDocId, setEventDocId] = useState<string>('')
@@ -36,7 +40,7 @@ const Account: React.FC<RouteComponentProps> = ({ history }) => {
       .doc(currentEventDocId)
       .delete()
       .then(function() {
-        console.log('Document successfully deleted!')
+        return
       })
       .catch(function(error) {
         console.error('Error removing document: ', error)
@@ -47,13 +51,13 @@ const Account: React.FC<RouteComponentProps> = ({ history }) => {
   const alertCancelBtn = {
     text: 'Cancel',
     role: 'cancel',
-    cssClass: 'alert-cancel-btn',
+    cssClass: 'alert-cancel-btn'
   }
 
   const alertDeleteBtn = {
     text: 'Delete',
     cssClass: 'alert-action-btn',
-    handler: deleteEventPermanently,
+    handler: deleteEventPermanently
   }
 
   const handleDeleteEvent = (eventData: EventType) => {
@@ -79,7 +83,7 @@ const Account: React.FC<RouteComponentProps> = ({ history }) => {
   useEffect(() => {
     db.collection('events').onSnapshot(function() {
       dispatch(fetchUserEvents(currentUser.uid))
-        .then((result) => {
+        .then(result => {
           setDataFetched(true)
         })
         .catch(error => {
@@ -104,9 +108,7 @@ const Account: React.FC<RouteComponentProps> = ({ history }) => {
           isOpen={showDeleteAlert}
           onDidDismiss={() => setDeleteAlert(false)}
           header={'Delete event'}
-          message={
-            'Are you sure you want to delete this event ? This operation cannot be undone.'
-          }
+          message={Message.RemoveConfirm}
           buttons={[alertCancelBtn, alertDeleteBtn]}
         />
         <Styled.Container>

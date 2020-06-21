@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   IonContent,
   IonHeader,
@@ -20,22 +20,11 @@ import EventForm from '../../components/EventForm'
 import logo from '../../assets/logo/logo-color.svg'
 import { db } from '../../firebase/firebase'
 import { validate } from '../../helpers/validate'
-import { EVENT_CHANGED, ACCOUNT } from '../../constants/routes'
+import { ADDED_SUCCESSFULLY, ACCOUNT } from '../../constants/routes'
 import { setDefaultEventImage } from '../../reducers/events'
 import { Styled } from './EditEvent.styles'
 
 const EditEvent: React.FC<RouteComponentProps> = ({ history }) => {
-  const animationContainer: any = createRef()
-  useEffect(() => {
-    lottie.loadAnimation({
-      container: animationContainer.current,
-      renderer: 'svg',
-      loop: false,
-      autoplay: true,
-      animationData
-    })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
   const dispatch: AppDispatch = useDispatch()
   const currentEvent = useTypedSelector(({ event }) => event.event)
   const uid = useTypedSelector(({ auth }) =>
@@ -104,7 +93,13 @@ const EditEvent: React.FC<RouteComponentProps> = ({ history }) => {
       uid: uid
     })
     dispatch(setDefaultEventImage())
-    return history.push(EVENT_CHANGED)
+    history.push({
+      pathname: ADDED_SUCCESSFULLY,
+      state: {
+        title: 'Event changed.',
+        description: 'Your event has been edited successfully.'
+      }
+    })
   }
 
   return (
@@ -118,18 +113,16 @@ const EditEvent: React.FC<RouteComponentProps> = ({ history }) => {
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        <div ref={animationContainer}>
-          <Styled.Title>Edit event</Styled.Title>
-          <EventForm
-            handleSubmit={handleSubmit}
-            handleInputChange={handleInputChange}
-            form={form}
-            error={error}
-            userEventImage={
-              userEventImage === '' ? form.imageUrl : userEventImage
-            }
-          />
-        </div>
+        <Styled.Title>Edit event</Styled.Title>
+        <EventForm
+          handleSubmit={handleSubmit}
+          handleInputChange={handleInputChange}
+          form={form}
+          error={error}
+          userEventImage={
+            userEventImage === '' ? form.imageUrl : userEventImage
+          }
+        />
       </IonContent>
     </IonPage>
   )

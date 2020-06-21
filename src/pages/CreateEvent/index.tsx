@@ -12,7 +12,7 @@ import EventForm from '../../components/EventForm'
 import { db } from '../../firebase/firebase'
 import logo from '../../assets/logo/logo-color.svg'
 import { validate } from '../../helpers/validate'
-import { EVENT_CREATED } from '../../constants/routes'
+import { ADDED_SUCCESSFULLY } from '../../constants/routes'
 import { setDefaultEventImage } from '../../reducers/events'
 import { Styled } from './CreateEvent.styles'
 
@@ -72,7 +72,14 @@ const CreateEvents: React.FC<RouteComponentProps> = ({ history }) => {
       created_at: dayjs().format(),
     })
     dispatch(setDefaultEventImage())
-    return history.push(EVENT_CREATED)
+    history.push({
+      pathname: ADDED_SUCCESSFULLY,
+      state: {
+        title: 'Message sent successfully',
+        description:
+          'Thank you for sending message, we will answer as soon as possible.'
+      }
+    })
   }
 
   return (

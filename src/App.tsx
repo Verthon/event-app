@@ -34,9 +34,7 @@ const Account = lazy(() => import('./pages/Account'))
 const SignIn = lazy(() => import('./pages/SignIn'))
 const CreateEvent = lazy(() => import('./pages/CreateEvent'))
 const EventDetail = lazy(() => import('./pages/EventDetail'))
-const EventCreated = lazy(() => import('./pages/EventCreated'))
 const EditEvent = lazy(() => import('./pages/EditEvent'))
-const EventChanged = lazy(() => import('./pages/EventChanged'))
 const AddedSuccessfully = lazy(() => import('./pages/AddedSuccessfully'))
 
 const App: React.FC<RouteComponentProps> = props => {
@@ -80,18 +78,8 @@ const App: React.FC<RouteComponentProps> = props => {
                 exact={true}
               />
               <Route
-                path={ROUTES.EVENT_CREATED}
-                component={EventCreated}
-                exact={true}
-              />
-              <Route
                 path={ROUTES.EDIT_EVENT}
                 component={EditEvent}
-                exact={true}
-              />
-              <Route
-                path={ROUTES.EVENT_CHANGED}
-                component={EventChanged}
                 exact={true}
               />
               <Route
