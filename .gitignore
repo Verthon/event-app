@@ -12,6 +12,7 @@
 /build
 src/firebase/db_config.ts
 src/constants/unsplashConfig.ts
+.env
 
 
 # misc
