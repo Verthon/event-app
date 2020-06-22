@@ -14,7 +14,6 @@ export const loginWithSocial = (provider: string, history) => {
     doSignInWithGoogle()
       .then(() => redirectResultGoogle())
       .then((result: any) => {
-        console.log('google login after redirect', result)
         const token = result.credential.accessToken
         doSignWithGoogleCredentials(token)
         history.push(ACCOUNT)
@@ -31,7 +30,6 @@ export const loginWithSocial = (provider: string, history) => {
     doSignInWithFacebook()
       .then(() => redirectResultFacebook())
       .then((result: any) => {
-        console.log('facebook login after redirect', result)
         const token = result.credential.accessToken
         doSignWithFacebookCredentials(token)
         history.push(ACCOUNT)
