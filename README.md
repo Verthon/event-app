@@ -1,9 +1,9 @@
 # Eventoo
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
-[Live version on Netlify](https://eventooo.netlify.app "Live version on Netlify") 
 Mobile application to build, manage and grow your events in a easy way. 
 
-
+## Live
+[Live version on Netlify](https://eventooo.netlify.app "Live version on Netlify") 
 
 ## Table of contents
 * [Technologies](#technologies)
@@ -25,10 +25,3 @@ Mobile application to build, manage and grow your events in a easy way.
 1. clone repository `git clone https://github.com/Verthon/event-app.git`
 2. install dependencies `npm install`
 3. run react dev server `ionic serve`
-
-
-## Work in progress
-- [ ] Refactor styled components
-- [ ] Get rid of the dreadful any - type
-- [ ] Add Unit tests
-- [ ] Consider deploy on the Android
