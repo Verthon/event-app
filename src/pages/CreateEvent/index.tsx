@@ -7,13 +7,14 @@ import dayjs from 'dayjs'
 import { useTypedSelector } from '../../hooks/useTypedSelector'
 import { AppDispatch } from '../../store'
 import { EventFormType } from '../../types/events'
-import { CategoriesList } from '../../types/categories'
 import EventForm from '../../components/EventForm'
+import AnimatePresence from '../../components/AnimatePresence'
 import { db } from '../../firebase/firebase'
 import logo from '../../assets/logo/logo-color.svg'
 import { validate } from '../../helpers/validate'
 import { ADDED_SUCCESSFULLY } from '../../constants/routes'
 import { setDefaultEventImage } from '../../reducers/events'
+import { createEventInitialState } from '../../constants/events'
 import { Styled } from './CreateEvent.styles'
 
 const CreateEvents: React.FC<RouteComponentProps> = ({ history }) => {
@@ -22,31 +23,14 @@ const CreateEvents: React.FC<RouteComponentProps> = ({ history }) => {
   const userEventImage = useTypedSelector(({ events }) => events.userEventImage)
   const [error, setError] = useState({
     inputName: '',
-    error: '',
+    error: ''
   })
-  const [form, setForm] = useState<EventFormType>({
-    title: '',
-    host: '',
-    localization: '',
-    address: '',
-    description: '',
-    categories: [
-      CategoriesList.sport,
-      CategoriesList.music,
-      CategoriesList.education,
-      CategoriesList.business,
-      CategoriesList.food,
-    ],
-    category: CategoriesList.sport,
-    imageUrl: '',
-    day: dayjs().format('YYYY-MM-DD'),
-    hour: '13:00',
-  })
+  const [form, setForm] = useState<EventFormType>(createEventInitialState)
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({
       ...form,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     })
   }
 
@@ -69,15 +53,16 @@ const CreateEvents: React.FC<RouteComponentProps> = ({ history }) => {
       hour: form.hour,
       featuredImage: userEventImage,
       uid: uid,
-      created_at: dayjs().format(),
+      created_at: dayjs().format()
     })
     dispatch(setDefaultEventImage())
+    setForm(createEventInitialState)
     history.push({
       pathname: ADDED_SUCCESSFULLY,
       state: {
-        title: 'Message sent successfully',
+        title: 'Event created',
         description:
-          'Thank you for sending message, we will answer as soon as possible.'
+          'Your event has been successfully added and is available on events page.'
       }
     })
   }
@@ -90,14 +75,16 @@ const CreateEvents: React.FC<RouteComponentProps> = ({ history }) => {
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        <Styled.Title>Create event</Styled.Title>
-        <EventForm
-          handleSubmit={handleSubmit}
-          handleInputChange={handleInputChange}
-          form={form}
-          error={error}
-          userEventImage={userEventImage}
-        />
+        <AnimatePresence>
+          <Styled.Title>Create event</Styled.Title>
+          <EventForm
+            handleSubmit={handleSubmit}
+            handleInputChange={handleInputChange}
+            form={form}
+            error={error}
+            userEventImage={userEventImage}
+          />
+        </AnimatePresence>
       </IonContent>
     </IonPage>
   )

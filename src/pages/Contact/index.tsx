@@ -7,6 +7,7 @@ import { ADDED_SUCCESSFULLY } from '../../constants/routes'
 import { validateMessageForm } from '../../helpers/validate'
 import logo from '../../assets/logo/logo-color.svg'
 import ContactForm from '../../components/ContactForm'
+import AnimatePresence from '../../components/AnimatePresence'
 import { Styled } from './Contact.styles'
 
 const Contact: React.FC<RouteComponentProps> = ({ history }) => {
@@ -59,25 +60,27 @@ const Contact: React.FC<RouteComponentProps> = ({ history }) => {
         </IonToolbar>
       </IonHeader>
       <IonContent class="ion-padding">
-        <Styled.Title>About</Styled.Title>
-        <Styled.Description>
-          Eventoo is a platform, that allows anyone to create, share, find and
-          attend events. From music festivals, conferences and community
-          meetups, to sport events. Our mission is to connect people with
-          passion.
-        </Styled.Description>
-        <Styled.Title>Contact</Styled.Title>
-        <Styled.Description>
-          If you have a question or problem, feel free to contact us using form
-          below, or email directly at{' '}
-          <a href="mailto:eventooinfo@gmail.com">eventooinfo@gmail.com.</a>
-        </Styled.Description>
-        <ContactForm
-          handleSubmit={handleSubmit}
-          handleInputChange={handleInputChange}
-          form={form}
-          error={error}
-        />
+        <AnimatePresence>
+          <Styled.Title>About</Styled.Title>
+          <Styled.Description>
+            Eventoo is a platform, that allows anyone to create, share, find and
+            attend events. From music festivals, conferences and community
+            meetups, to sport events. Our mission is to connect people with
+            passion.
+          </Styled.Description>
+          <Styled.Title>Contact</Styled.Title>
+          <Styled.Description>
+            If you have a question or problem, feel free to contact us using
+            form below, or email directly at{' '}
+            <a href="mailto:eventooinfo@gmail.com">eventooinfo@gmail.com.</a>
+          </Styled.Description>
+          <ContactForm
+            handleSubmit={handleSubmit}
+            handleInputChange={handleInputChange}
+            form={form}
+            error={error}
+          />
+        </AnimatePresence>
       </IonContent>
     </IonPage>
   )

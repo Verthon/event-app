@@ -8,7 +8,6 @@ import {
 } from '@ionic/react'
 import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { motion } from 'framer-motion'
 
 import { fetchAllEvents, filterEventsByCategory } from '../../reducers/events'
 import {
@@ -19,12 +18,12 @@ import { useTypedSelector } from '../../hooks/useTypedSelector'
 import { AppDispatch } from '../../store'
 import EventItem from '../../components/EventItem'
 import Category from '../../components/Category'
+import AnimatePresence from '../../components/AnimatePresence'
 import { EventItemType } from '../../types/events'
 import { CategoryData } from '../../types/categories'
 import logo from '../../assets/logo/logo-color.svg'
 import { db } from '../../firebase/firebase'
 import { Styled } from './Events.styles'
-import { pageTransitions } from '../../animations/pageTransitions'
 
 const Events: React.FC = () => {
   let [events, setEvents] = useState([])
@@ -55,8 +54,6 @@ const Events: React.FC = () => {
     }
     dispatch(filterEventsByCategory(category))
     dispatch(setActiveCategory(category))
-    // setDataFetched(false)
-    // setSpinner(true)
     setEvents(currentEvents)
   }
 
@@ -98,7 +95,7 @@ const Events: React.FC = () => {
       </IonHeader>
 
       <IonContent class="ion-padding-horizontal">
-        <motion.div initial="exit" animate="enter" exit="exit">
+        <AnimatePresence>
           <IonLoading
             isOpen={!isDataFetched && showSpinner}
             onDidDismiss={() => setSpinner(false)}
@@ -112,48 +109,46 @@ const Events: React.FC = () => {
             message="Error occurred while fetching data from our database. Please try again later."
             duration={2000}
           />
-          <motion.div variants={pageTransitions}>
-            <Styled.CategoriesWrapper>
-              {categories
-                ? categories.map((category: CategoryData, id: number) => {
-                    return (
-                      <Category
-                        key={id}
-                        category={category.category}
-                        emoji={category.emoji}
-                        filterFunction={() => filterEvents(category.category)}
-                        active={
-                          activeCategory === category.category ? true : false
-                        }
-                      />
-                    )
-                  })
-                : null}
-            </Styled.CategoriesWrapper>
-            <Styled.Title>Upcoming Events</Styled.Title>
-            {events
-              ? events.map((event: EventItemType, id: number) => {
+          <Styled.CategoriesWrapper>
+            {categories
+              ? categories.map((category: CategoryData, id: number) => {
                   return (
-                    <EventItem
+                    <Category
                       key={id}
-                      docId={event.docId}
-                      eventId={event.eventId}
-                      title={event.title}
-                      localization={event.localization}
-                      address={event.address}
-                      host={event.host}
-                      day={event.day}
-                      hour={event.hour}
-                      description={event.description}
-                      category={event.category}
-                      featuredImage={event.featuredImage}
-                      editMode={false}
+                      category={category.category}
+                      emoji={category.emoji}
+                      filterFunction={() => filterEvents(category.category)}
+                      active={
+                        activeCategory === category.category ? true : false
+                      }
                     />
                   )
                 })
               : null}
-          </motion.div>
-        </motion.div>
+          </Styled.CategoriesWrapper>
+          <Styled.Title>Upcoming Events</Styled.Title>
+          {events
+            ? events.map((event: EventItemType, id: number) => {
+                return (
+                  <EventItem
+                    key={id}
+                    docId={event.docId}
+                    eventId={event.eventId}
+                    title={event.title}
+                    localization={event.localization}
+                    address={event.address}
+                    host={event.host}
+                    day={event.day}
+                    hour={event.hour}
+                    description={event.description}
+                    category={event.category}
+                    featuredImage={event.featuredImage}
+                    editMode={false}
+                  />
+                )
+              })
+            : null}
+        </AnimatePresence>
       </IonContent>
     </IonPage>
   )

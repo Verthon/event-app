@@ -45,7 +45,7 @@ const App: React.FC<RouteComponentProps> = props => {
       <Suspense fallback={<div></div>}>
         <IonReactRouter>
           <IonTabs>
-            <IonRouterOutlet animated>
+            <IonRouterOutlet>
               <Route path={ROUTES.HOME} component={Home} />
               <Route path={ROUTES.EVENTS} component={Events} exact={true} />
               <Route path={ROUTES.CONTACT} component={Contact} exact={true} />
