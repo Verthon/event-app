@@ -94,6 +94,18 @@ const Account: React.FC<RouteComponentProps> = ({ history }) => {
   }, [currentUser.uid, dispatch])
 
   let currentEvents = useTypedSelector(({ events }) => events.userEvents)
+
+  if (!isDataFetched) {
+    return (
+      <IonLoading
+        isOpen={!isDataFetched}
+        onDidDismiss={() => setSpinner(!showSpinner)}
+        message={'Please wait...'}
+        spinner="bubbles"
+        duration={500}
+      />
+    )
+  }
   return (
     <IonPage>
       <IonHeader>
@@ -114,13 +126,6 @@ const Account: React.FC<RouteComponentProps> = ({ history }) => {
             buttons={[alertCancelBtn, alertDeleteBtn]}
           />
           <Styled.Container>
-            <IonLoading
-              isOpen={!isDataFetched}
-              onDidDismiss={() => setSpinner(!showSpinner)}
-              message={'Please wait...'}
-              spinner="bubbles"
-              duration={500}
-            />
             <Styled.Header>
               <Styled.Avatar src={currentUser ? currentUser.avatar : null} />
               <Styled.MetaContainer>
