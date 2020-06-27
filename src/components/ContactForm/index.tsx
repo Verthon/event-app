@@ -13,10 +13,11 @@ const ContactForm = ({ handleInputChange, handleSubmit, form, error }) => {
           type="text"
           name="name"
           value={form.name}
+          title="Name"
           onIonChange={e => handleInputChange(e)}
         />
         {error.inputName === 'name' ? (
-          <Styled.ErrorMessage>{error.error}</Styled.ErrorMessage>
+          <Styled.ErrorMessage role="alert">{error.error}</Styled.ErrorMessage>
         ) : null}
       </IonItem>
       <IonItem lines="none">
@@ -26,11 +27,12 @@ const ContactForm = ({ handleInputChange, handleSubmit, form, error }) => {
           placeholder="email"
           type="email"
           name="email"
+          title="Email"
           value={form.email}
           onIonChange={e => handleInputChange(e)}
         />
         {error.inputName === 'email' ? (
-          <Styled.ErrorMessage>{error.error}</Styled.ErrorMessage>
+          <Styled.ErrorMessage role="alert">{error.error}</Styled.ErrorMessage>
         ) : null}
       </IonItem>
       <IonItem lines="none">
@@ -43,7 +45,7 @@ const ContactForm = ({ handleInputChange, handleSubmit, form, error }) => {
           onIonChange={e => handleInputChange(e)}
         />
         {error.inputName === 'message' ? (
-          <Styled.ErrorMessage>{error.error}</Styled.ErrorMessage>
+          <Styled.ErrorMessage role="alert">{error.error}</Styled.ErrorMessage>
         ) : null}
       </IonItem>
       <Styled.Button type="submit" color="primary">
