@@ -51,7 +51,7 @@ const EventForm = ({
             onIonChange={e => handleInputChange(e)}
           />
           {error.inputName === 'title' ? (
-            <Styled.ErrorMessage>{error.error}</Styled.ErrorMessage>
+            <Styled.ErrorMessage role="alert">{error.error}</Styled.ErrorMessage>
           ) : null}
         </IonItem>
 
@@ -66,7 +66,7 @@ const EventForm = ({
             onIonChange={e => handleInputChange(e)}
           />
           {error.inputName === 'host' ? (
-            <Styled.ErrorMessage>{error.error}</Styled.ErrorMessage>
+            <Styled.ErrorMessage role="alert">{error.error}</Styled.ErrorMessage>
           ) : null}
         </IonItem>
 
@@ -81,7 +81,7 @@ const EventForm = ({
             onIonChange={e => handleInputChange(e)}
           />
           {error.inputName === 'localization' ? (
-            <Styled.ErrorMessage>{error.error}</Styled.ErrorMessage>
+            <Styled.ErrorMessage role="alert">{error.error}</Styled.ErrorMessage>
           ) : null}
         </IonItem>
 
