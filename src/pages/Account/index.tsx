@@ -23,6 +23,7 @@ import { showEventDetails } from '../../reducers/event'
 import logo from '../../assets/logo/logo-color.svg'
 import { EDIT_EVENT, EVENTS } from '../../constants/routes'
 import { Styled } from './Account.styles'
+import { useFetchCollection } from '../../hooks/useFetchCollection'
 
 const Account: React.FC<RouteComponentProps> = ({ history }) => {
   enum Message {
@@ -31,6 +32,9 @@ const Account: React.FC<RouteComponentProps> = ({ history }) => {
   }
   const dispatch: AppDispatch = useDispatch()
   const currentUser = useAuthUser()
+  const {
+    isLoading
+  } = useFetchCollection('events', () => fetchUserEvents(currentUser.uid))
   const [currentEventDocId, setEventDocId] = useState<string>('')
   const [showDeleteAlert, setDeleteAlert] = useState(false)
   let [showSpinner, setSpinner] = useState<boolean>(true)
@@ -80,21 +84,21 @@ const Account: React.FC<RouteComponentProps> = ({ history }) => {
     }
   }
 
-  useEffect(() => {
-    db.collection('events').onSnapshot(function() {
-      dispatch(fetchUserEvents(currentUser.uid))
-        .then(result => {
-          setDataFetched(true)
-        })
-        .catch(error => {
-          console.log('Error while fetching the events', error)
-        })
-    })
-  }, [currentUser.uid, dispatch])
+  // useEffect(() => {
+  //   db.collection('events').onSnapshot(function() {
+  //     dispatch(fetchUserEvents(currentUser.uid))
+  //       .then(result => {
+  //         setDataFetched(true)
+  //       })
+  //       .catch(error => {
+  //         console.log('Error while fetching the events', error)
+  //       })
+  //   })
+  // }, [currentUser.uid, dispatch])
 
   let currentEvents = useTypedSelector(({ events }) => events.userEvents)
 
-  if (!isDataFetched) {
+  if (isLoading) {
     return (
       <IonLoading
         isOpen={!isDataFetched}
