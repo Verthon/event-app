@@ -40,13 +40,12 @@ const Account: React.FC<RouteComponentProps> = ({ history }) => {
     db.collection('events')
       .doc(currentEventDocId)
       .delete()
-      .then(function() {
-        return
+      .then(() => {
+        dispatch(deleteEvent(currentEventDocId))
       })
-      .catch(function(error) {
+      .catch(error => {
         console.error('Error removing document: ', error)
       })
-    dispatch(deleteEvent(currentEventDocId))
   }
 
   const alertCancelBtn = {

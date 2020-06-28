@@ -14,28 +14,8 @@ import store from '../../store'
 import { theme } from '../../theme/Theme'
 
 const history: any = createMemoryHistory()
-const docData = { data: 'MOCK_DATA' }
-const docResult = {
-  data: () => docData
-}
-const get = jest.fn(() => Promise.resolve(docResult))
-const set = jest.fn()
-const doc = jest.fn(() => {
-  return {
-    set,
-    get
-  }
-})
-const firestore = () => {
-  return { doc }
-}
-firestore.FieldValue = {
-  serverTimestamp: () => {
-    return 'MOCK_TIME'
-  }
-}
 
-test('Should print error message, when no name is provided', () => {
+test('Should print error message, when no name is provided', async() => {
   const { getByText, getByRole } = render(
     <Provider store={store}>
       <ThemeProvider theme={theme}>
@@ -47,7 +27,7 @@ test('Should print error message, when no name is provided', () => {
   getByRole('alert')
 })
 
-test('Should send message successfully', () => {
+test('Should send message successfully', async() => {
   const { getByText } = render(
     <Provider store={store}>
       <ThemeProvider theme={theme}>
