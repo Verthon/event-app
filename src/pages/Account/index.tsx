@@ -7,7 +7,7 @@ import {
   IonAlert
 } from '@ionic/react'
 import { useDispatch } from 'react-redux'
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { RouteComponentProps } from 'react-router-dom'
 
 import { useTypedSelector } from '../../hooks/useTypedSelector'
@@ -32,13 +32,11 @@ const Account: React.FC<RouteComponentProps> = ({ history }) => {
   }
   const dispatch: AppDispatch = useDispatch()
   const currentUser = useAuthUser()
-  const {
-    isLoading
-  } = useFetchCollection('events', () => fetchUserEvents(currentUser.uid))
+  const { isLoading } = useFetchCollection('events', () =>
+    fetchUserEvents(currentUser.uid)
+  )
   const [currentEventDocId, setEventDocId] = useState<string>('')
   const [showDeleteAlert, setDeleteAlert] = useState(false)
-  let [showSpinner, setSpinner] = useState<boolean>(true)
-  let [isDataFetched, setDataFetched] = useState<boolean>(false)
 
   const deleteEventPermanently = () => {
     db.collection('events')
@@ -84,25 +82,12 @@ const Account: React.FC<RouteComponentProps> = ({ history }) => {
     }
   }
 
-  // useEffect(() => {
-  //   db.collection('events').onSnapshot(function() {
-  //     dispatch(fetchUserEvents(currentUser.uid))
-  //       .then(result => {
-  //         setDataFetched(true)
-  //       })
-  //       .catch(error => {
-  //         console.log('Error while fetching the events', error)
-  //       })
-  //   })
-  // }, [currentUser.uid, dispatch])
-
   let currentEvents = useTypedSelector(({ events }) => events.userEvents)
 
   if (isLoading) {
     return (
       <IonLoading
-        isOpen={!isDataFetched}
-        onDidDismiss={() => setSpinner(!showSpinner)}
+        isOpen={isLoading}
         message={'Please wait...'}
         spinner="bubbles"
         duration={500}
@@ -142,29 +127,28 @@ const Account: React.FC<RouteComponentProps> = ({ history }) => {
             </Styled.Header>
             <Styled.Title>Your events</Styled.Title>
             <Styled.EventsContainer>
-              {currentEvents
-                ? currentEvents.map((event: EventItemType, id: number) => {
-                    return (
-                      <EventItem
-                        key={id}
-                        docId={event.docId}
-                        eventId={event.eventId}
-                        title={event.title}
-                        localization={event.localization}
-                        address={event.address}
-                        host={event.host}
-                        day={event.day}
-                        hour={event.hour}
-                        description={event.description}
-                        category={event.category}
-                        featuredImage={event.featuredImage}
-                        editMode={true}
-                        deleteHandler={handleDeleteEvent}
-                        editHandler={handleEditEvent}
-                      />
-                    )
-                  })
-                : null}
+              {currentEvents &&
+                currentEvents.map((event: EventItemType, id: number) => {
+                  return (
+                    <EventItem
+                      key={id}
+                      docId={event.docId}
+                      eventId={event.eventId}
+                      title={event.title}
+                      localization={event.localization}
+                      address={event.address}
+                      host={event.host}
+                      day={event.day}
+                      hour={event.hour}
+                      description={event.description}
+                      category={event.category}
+                      featuredImage={event.featuredImage}
+                      editMode={true}
+                      deleteHandler={handleDeleteEvent}
+                      editHandler={handleEditEvent}
+                    />
+                  )
+                })}
             </Styled.EventsContainer>
           </Styled.Container>
         </AnimatePresence>
