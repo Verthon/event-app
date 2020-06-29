@@ -21,7 +21,7 @@ const ImageWrapper = styled.div`
   position: relative;
   width: 100%;
   display: flex;
-  max-height: 150px;
+  height: 150px;
 `
 
 const EventOptions = styled.div<EventItemEditMode>`
