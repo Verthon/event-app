@@ -1,5 +1,11 @@
-export const fetchUnsplashImages = (url: string) => {
-  return fetch(url)
-    .then((response) => response.json())
-    .catch((error) => error)
+export const fetchUnsplashImages = async (url: string) => {
+  try {
+    const response = await fetch(url)
+    if (response.ok) {
+      return response.json()
+    }
+  }
+  catch (error) {
+    return error
+  }
 }

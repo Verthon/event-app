@@ -12,7 +12,7 @@ import { theme } from '../../theme/Theme'
 const history: any = createMemoryHistory()
 
 const text = 'Login in using your Facebook or Google account.'
-test('It renders Home component', () => {
+test('It renders Home component', async() => {
   const { getByText } = render(
     <Provider store={store}>
       <ThemeProvider theme={theme}>
