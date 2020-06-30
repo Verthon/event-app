@@ -8,7 +8,7 @@ import { useTypedSelector } from '../../hooks/useTypedSelector'
 import { AppDispatch } from '../../store'
 import { EventFormType } from '../../types/events'
 import EventForm from '../../components/EventForm'
-import AnimatePresence from '../../components/AnimatePresence'
+import { motion, AnimatePresence } from 'framer-motion'
 import { db } from '../../firebase/firebase'
 import logo from '../../assets/logo/logo-color.svg'
 import { validate } from '../../helpers/validate'
@@ -17,7 +17,7 @@ import { setDefaultEventImage } from '../../reducers/events'
 import { createEventInitialState } from '../../constants/events'
 import { Styled } from './CreateEvent.styles'
 
-const CreateEvents: React.FC<RouteComponentProps> = ({ history }) => {
+const CreateEvent: React.FC<RouteComponentProps> = ({ history }) => {
   const dispatch: AppDispatch = useDispatch()
   const uid = useTypedSelector(({ auth }) => auth.user.uid)
   const userEventImage = useTypedSelector(({ events }) => events.userEventImage)
@@ -76,18 +76,23 @@ const CreateEvents: React.FC<RouteComponentProps> = ({ history }) => {
       </IonHeader>
       <IonContent>
         <AnimatePresence>
-          <Styled.Title>Create event</Styled.Title>
-          <EventForm
-            handleSubmit={handleSubmit}
-            handleInputChange={handleInputChange}
-            form={form}
-            error={error}
-            userEventImage={userEventImage}
-          />
+          <motion.div key="createEventPage"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}>
+            <Styled.Title>Create event</Styled.Title>
+            <EventForm
+              handleSubmit={handleSubmit}
+              handleInputChange={handleInputChange}
+              form={form}
+              error={error}
+              userEventImage={userEventImage}
+            />
+          </motion.div>
         </AnimatePresence>
       </IonContent>
     </IonPage>
   )
 }
 
-export default CreateEvents
+export default CreateEvent

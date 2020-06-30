@@ -42,7 +42,7 @@ const App: React.FC<RouteComponentProps> = props => {
   const [currentTab, toggleActiveTabIcon] = useState('Events')
   return (
     <IonApp>
-      <Suspense fallback={<div></div>}>
+      <Suspense fallback={<div>Loading...</div>}>
         <IonReactRouter>
           <IonTabs>
             <IonRouterOutlet>

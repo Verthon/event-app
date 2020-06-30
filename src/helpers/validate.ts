@@ -4,7 +4,7 @@ interface IForm {
   localization: string
   address: string
   description: string
-  categories: Array<string>
+  categories?: Array<string>
   category: string
   imageUrl: string
   day: string
@@ -18,8 +18,8 @@ interface IContactForm {
   createdAt: string
 }
 
-export const validateMessageForm = (form:  IContactForm) => {
-  if(form.name.length < 2) {
+export const validateMessageForm = (form: IContactForm) => {
+  if (form.name.length < 2) {
     return {
       inputName: 'name',
       error: 'Name should have at least 2 characters',
@@ -64,5 +64,6 @@ export const validate = (form: IForm) => {
       error: 'Event description should have at least 10 characters',
     }
   }
+
   return null
 }

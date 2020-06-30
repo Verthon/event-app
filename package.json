@@ -41,12 +41,14 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0",
     "redux": "^4.0.5",
+    "source-map-explorer": "^2.4.2",
     "styled-components": "^5.0.1",
     "typescript": "3.7.4",
     "unsplash-js": "^6.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
+    "analyze": "source-map-explorer 'build/static/js/*.js'",
     "build": "react-scripts build && echo '/*    /index.html   200' > build/_redirects",
     "test": "react-scripts test",
     "eject": "react-scripts eject",

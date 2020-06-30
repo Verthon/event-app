@@ -1,24 +1,19 @@
 import styled from 'styled-components'
-import bg from '../../assets/backgrounds/main-bg-sm.svg'
+
 import {Theme} from '../../theme/Theme'
 
-const Hero = styled.div`
-  height: 100%;
-  width: 100%;
+const Hero = styled.img`
   display: flex;
-  background-image: url(${bg});
-  background-repeat: no-repeat;
-  background-size: 75%;
-  justify-content: flex-end;
-  background-position: center 15%;
+  max-width: 80%;
+  margin: 2rem auto 0 auto;
 `
 
 const Content = styled.article`
   display: flex;
   flex-direction: column;
   color: var(--main-dark);
-  justify-content: flex-end;
-  align-items: flex-start;
+  justify-content: space-around;
+  align-items: center;
   margin: auto auto 0 auto;
   padding: 0 2rem 2.75rem 2rem;
   background: ${({ theme }: Theme) => theme.colors.white};
@@ -31,6 +26,7 @@ const Title = styled.h1`
 `
 const Description = styled.p`
   margin: 0.25rem 0;
+  max-width: 75%;
 `
 const Button = styled.button`
   font-size: 1rem;
@@ -40,7 +36,7 @@ const Button = styled.button`
   color: ${({ theme }: Theme) => theme.colors.white};
   margin: 1.5rem 0 0 0;
   padding: 0.75rem 0;
-  width: 100%;
+  width: 80%;
 `
 
 export const Styled = {
