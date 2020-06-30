@@ -1,8 +1,10 @@
 
 ion-app {
-  max-width: 475px;
+  max-width: 450px;
   max-height: 800px;
   margin: auto;
+  border-left: 2px solid hsl(180,20%,97.1%);
+  border-right: 2px solid hsl(180,20%,97.1%);
 }
 
 .ion-content--color {

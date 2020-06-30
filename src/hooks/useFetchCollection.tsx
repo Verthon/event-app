@@ -16,9 +16,6 @@ export const useFetchCollection = (
   })
   const hasUnmounted = useRef(false)
   useEffect(() => {
-    return () => (hasUnmounted.current = true)
-  }, [])
-  useEffect(() => {
     const unsubscribe = db.collection(collectionName).onSnapshot(() => {
       return dispatch(fetchAll(userId))
         .then(result => {

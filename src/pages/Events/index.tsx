@@ -18,7 +18,7 @@ import { useTypedSelector } from '../../hooks/useTypedSelector'
 import { AppDispatch } from '../../store'
 import EventItem from '../../components/EventItem'
 import Category from '../../components/Category'
-import AnimatePresence from '../../components/AnimatePresence'
+import { motion, AnimatePresence } from 'framer-motion'
 import { EventItemType } from '../../types/events'
 import { CategoryData } from '../../types/categories'
 import logo from '../../assets/logo/logo-color.svg'
@@ -89,46 +89,53 @@ const Events: React.FC = () => {
 
       <IonContent class="ion-padding-horizontal">
         <AnimatePresence>
-          <IonToast
-            isOpen={errorCat || errorEvents}
-            message="Error occurred while fetching data from our database. Please try again later."
-            duration={2000}
-          />
-          <Styled.CategoriesWrapper>
-            {categories &&
-              categories.map((category: CategoryData, id: number) => {
+          <motion.div key="eventsPage"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}>
+            <IonToast
+              isOpen={errorCat || errorEvents}
+              message="Error occurred while fetching data from our database. Please try again later."
+              duration={2000}
+            />
+            <Styled.CategoriesWrapper>
+              {categories &&
+                categories.map((category: CategoryData, id: number) => {
+                  return (
+                    <Category
+                      key={id}
+                      category={category.category}
+                      emoji={category.emoji}
+                      filterFunction={() => filterEvents(category.category)}
+                      active={
+                        activeCategory === category.category ? true : false
+                      }
+                    />
+                  )
+                })}
+            </Styled.CategoriesWrapper>
+            <Styled.Title>Upcoming Events</Styled.Title>
+            {events &&
+              events.map((event: EventItemType, id: number) => {
                 return (
-                  <Category
+                  <EventItem
                     key={id}
-                    category={category.category}
-                    emoji={category.emoji}
-                    filterFunction={() => filterEvents(category.category)}
-                    active={activeCategory === category.category ? true : false}
+                    docId={event.docId}
+                    eventId={event.eventId}
+                    title={event.title}
+                    localization={event.localization}
+                    address={event.address}
+                    host={event.host}
+                    day={event.day}
+                    hour={event.hour}
+                    description={event.description}
+                    category={event.category}
+                    featuredImage={event.featuredImage}
+                    editMode={false}
                   />
                 )
               })}
-          </Styled.CategoriesWrapper>
-          <Styled.Title>Upcoming Events</Styled.Title>
-          {events &&
-            events.map((event: EventItemType, id: number) => {
-              return (
-                <EventItem
-                  key={id}
-                  docId={event.docId}
-                  eventId={event.eventId}
-                  title={event.title}
-                  localization={event.localization}
-                  address={event.address}
-                  host={event.host}
-                  day={event.day}
-                  hour={event.hour}
-                  description={event.description}
-                  category={event.category}
-                  featuredImage={event.featuredImage}
-                  editMode={false}
-                />
-              )
-            })}
+          </motion.div>
         </AnimatePresence>
       </IonContent>
     </IonPage>
