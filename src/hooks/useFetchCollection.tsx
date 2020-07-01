@@ -31,7 +31,7 @@ export const useFetchCollection = (
     })
     return () => unsubscribe()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [collectionName, dispatch, fetchAll, setResponse])
+  }, [collectionName, dispatch, setResponse])
 
   return response
 }
