@@ -16,6 +16,7 @@ import '@ionic/react/css/normalize.css'
 import '@ionic/react/css/structure.css'
 import '@ionic/react/css/typography.css'
 import '@ionic/react/css/padding.css'
+import 'animate.css/animate.min.css';
 
 import { ReactComponent as DateRangeIcon } from './assets/icons/date_range.svg'
 import { ReactComponent as AccountBoxIcon } from './assets/icons/account_box.svg'

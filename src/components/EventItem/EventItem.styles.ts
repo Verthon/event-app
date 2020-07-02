@@ -2,9 +2,11 @@ import styled from 'styled-components'
 import { EventItemEditMode } from '../../types/events'
 import { ReactComponent as DeleteIcon } from '../../assets/icons/delete_forever.svg'
 import { ReactComponent as EditIcon } from '../../assets/icons/edit.svg'
-import {Theme} from '../../theme/Theme'
+import { fadeInDown } from '../../theme/GlobalStyle'
+import { Theme } from '../../theme/Theme'
 
 const Event = styled.div`
+  animation: ${fadeInDown};
   position: relative;
   margin: 0 auto 3rem auto;
   width: auto;
@@ -26,7 +28,7 @@ const ImageWrapper = styled.div`
 
 const EventOptions = styled.div<EventItemEditMode>`
   margin: .5rem 0;
-  display: ${({editMode}) => (editMode ? 'flex' : 'none')};
+  display: ${({ editMode }) => (editMode ? 'flex' : 'none')};
 `
 
 const EventOptionsAction = styled.button`
