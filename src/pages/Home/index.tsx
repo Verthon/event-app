@@ -4,6 +4,7 @@ import { RouteComponentProps } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Styled } from './Home.styles'
 import { EVENTS } from '../../constants/routes'
+import { pageTransitions } from '../../animations/pageTransitions'
 import bg from '../../assets/backgrounds/main-bg-sm.svg'
 
 const Home: React.FC<RouteComponentProps> = ({ history }) => {
@@ -13,9 +14,7 @@ const Home: React.FC<RouteComponentProps> = ({ history }) => {
         <AnimatePresence>
           <motion.div
             key="homePage"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            variants={pageTransitions}
           >
             <Styled.Content>
               <Styled.Hero src={bg} />

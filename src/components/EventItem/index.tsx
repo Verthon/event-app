@@ -1,8 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
+import { motion } from 'framer-motion'
 
-import {formatMonth, formatDay} from '../../helpers/date'
+import { formatMonth, formatDay } from '../../helpers/date'
 import { EventItemType } from '../../types/events'
 import { showEventDetails } from '../../reducers/event'
 import { Styled } from './EventItem.styles'
@@ -58,8 +59,12 @@ const EventItem = ({
         </Link>
         <Styled.Paragraph>{eventData.localization}</Styled.Paragraph>
         <Styled.EventOptions editMode={editMode}>
-          <Styled.EventOptionsAction onClick={() => deleteHandler(eventData)}><Styled.EventsOptionsDelete/></Styled.EventOptionsAction>
-          <Styled.EventOptionsAction onClick={() => editHandler(eventData)}><Styled.EventsOptionsEdit/></Styled.EventOptionsAction>
+          <Styled.EventOptionsAction onClick={() => deleteHandler(eventData)}>
+            <Styled.EventsOptionsDelete />
+          </Styled.EventOptionsAction>
+          <Styled.EventOptionsAction onClick={() => editHandler(eventData)}>
+            <Styled.EventsOptionsEdit />
+          </Styled.EventOptionsAction>
         </Styled.EventOptions>
       </Styled.InfoWrapper>
     </Styled.Event>

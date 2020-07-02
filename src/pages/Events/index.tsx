@@ -24,6 +24,9 @@ import { CategoryData } from '../../types/categories'
 import logo from '../../assets/logo/logo-color.svg'
 import { Styled } from './Events.styles'
 import { useFetchCollection } from '../../hooks/useFetchCollection'
+import {
+  pageTransitions
+} from '../../animations/pageTransitions'
 
 const Events: React.FC = () => {
   let [events, setEvents] = useState([])
@@ -89,10 +92,7 @@ const Events: React.FC = () => {
 
       <IonContent class="ion-padding-horizontal">
         <AnimatePresence>
-          <motion.div key="eventsPage"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}>
+          <motion.div key="eventsPage" variants={pageTransitions}>
             <IonToast
               isOpen={errorCat || errorEvents}
               message="Error occurred while fetching data from our database. Please try again later."

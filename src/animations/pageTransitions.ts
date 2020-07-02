@@ -1,7 +1,7 @@
 const easing = [0.175, 0.85, 0.42, 0.96]
 
 export const pageTransitions = {
-  initial: { opacity: 0, x: 50 },
+  initial: { opacity: 0, x: 0 },
   exit: { opacity: 0, x: 50, transition: { duration: 0.5, ease: easing } },
   enter: {
     x: 0,
@@ -20,6 +20,15 @@ export const pageTransitions = {
       ease: easing,
       delay: 0.5
     }
+  }
+}
+
+export const eventsListTransition = {
+  open: {
+    transition: { staggerChildren: 0.07, delayChildren: 0.2 }
+  },
+  closed: {
+    transition: { staggerChildren: 0.05, staggerDirection: -1 }
   }
 }
 
