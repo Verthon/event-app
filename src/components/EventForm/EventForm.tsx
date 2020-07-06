@@ -9,7 +9,7 @@ import {
 } from '@ionic/react'
 import React, { useState } from 'react'
 
-import UnsplashModal from '../UnsplashModal'
+import UnsplashModal from '../UnsplashModal/UnsplashModal'
 import { Styled } from './EventForm.styles'
 
 interface IEventForm {

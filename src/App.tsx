@@ -28,15 +28,15 @@ import * as ROUTES from './constants/routes'
 import './theme/variables.css'
 /* Custom css */
 import './styles/index.css'
-const Home = lazy(() => import('./pages/Home'))
-const Events = lazy(() => import('./pages/Events'))
-const Contact = lazy(() => import('./pages/Contact'))
-const Account = lazy(() => import('./pages/Account'))
-const SignIn = lazy(() => import('./pages/SignIn'))
-const CreateEvent = lazy(() => import('./pages/CreateEvent'))
-const EventDetail = lazy(() => import('./pages/EventDetail'))
-const EditEvent = lazy(() => import('./pages/EditEvent'))
-const AddedSuccessfully = lazy(() => import('./pages/AddedSuccessfully'))
+const Home = lazy(() => import('./pages/Home/Home'))
+const Events = lazy(() => import('./pages/Events/Events'))
+const Contact = lazy(() => import('./pages/Contact/Contact'))
+const Account = lazy(() => import('./pages/Account/Account'))
+const SignIn = lazy(() => import('./pages/SignIn/SignIn'))
+const CreateEvent = lazy(() => import('./pages/CreateEvent/CreateEvent'))
+const EventDetail = lazy(() => import('./pages/EventDetail/EventDetail'))
+const EditEvent = lazy(() => import('./pages/EditEvent/EditEvent'))
+const AddedSuccessfully = lazy(() => import('./pages/AddedSuccessfully/AddedSuccessfully'))
 
 const App: React.FC<RouteComponentProps> = props => {
   const currentUser = useAuthUser()

@@ -1,7 +1,7 @@
 import styled, { keyframes } from 'styled-components'
 import { ActionButtonProps } from '../../types/general'
 import { Theme } from '../../theme/Theme'
-import { ImageWrapperProps, ImageProps } from '../UnsplashModal'
+import { ImageWrapperProps, ImageProps } from './UnsplashModal'
 
 const FadeInUp = keyframes`
   0% {

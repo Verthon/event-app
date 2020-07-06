@@ -9,7 +9,7 @@ import '@testing-library/jest-dom/extend-expect'
 import 'jest-styled-components'
 import { ionFireEvent as fireEvent } from '@ionic/react-test-utils';
 import { createMemoryHistory } from 'history'
-import Contact from './index'
+import Contact from './Contact'
 import store from '../../store'
 import { theme } from '../../theme/Theme'
 
