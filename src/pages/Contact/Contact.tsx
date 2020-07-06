@@ -7,7 +7,7 @@ import { db } from '../../firebase/firebase'
 import { ADDED_SUCCESSFULLY } from '../../constants/routes'
 import { validateMessageForm } from '../../helpers/validate'
 import logo from '../../assets/logo/logo-color.svg'
-import ContactForm from '../../components/ContactForm'
+import ContactForm from '../../components/ContactForm/ContactForm'
 import { Styled } from './Contact.styles'
 
 const Contact: React.FC<RouteComponentProps> = ({ history }) => {

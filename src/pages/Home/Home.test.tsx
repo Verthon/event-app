@@ -4,7 +4,7 @@ import { render, fireEvent } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 import 'jest-styled-components'
 import { createMemoryHistory } from 'history'
-import Home from './index'
+import Home from './Home'
 import { theme } from '../../theme/Theme'
 
 const history: any = createMemoryHistory()

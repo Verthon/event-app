@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { motion } from 'framer-motion'
 
 import { formatMonth, formatDay } from '../../helpers/date'
 import { EventItemType } from '../../types/events'

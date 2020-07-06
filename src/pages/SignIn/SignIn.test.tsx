@@ -5,7 +5,7 @@ import { render } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 import 'jest-styled-components'
 import { createMemoryHistory } from 'history'
-import SignIn from './index'
+import SignIn from './SignIn'
 import store from '../../store'
 import { theme } from '../../theme/Theme'
 
