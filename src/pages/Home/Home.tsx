@@ -14,7 +14,11 @@ const Home: React.FC<RouteComponentProps> = ({ history }) => {
         <AnimatePresence>
           <motion.div
             key="homePage"
+            initial="initial"
+            animate="animate"
+            exit="exit"
             variants={pageTransitions}
+            className="homepage-container"
           >
             <Styled.Content>
               <Styled.Hero src={bg} />
@@ -23,7 +27,11 @@ const Home: React.FC<RouteComponentProps> = ({ history }) => {
                 Eventoo is a perfect place to build, manage and grow your
                 events.
               </Styled.Description>
-              <Styled.Button onClick={() => history.push(EVENTS)}>
+              <Styled.Button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={() => history.push(EVENTS)}
+              >
                 Explore
               </Styled.Button>
             </Styled.Content>

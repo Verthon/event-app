@@ -2,14 +2,13 @@ const easing = [0.175, 0.85, 0.42, 0.96]
 
 export const pageTransitions = {
   initial: { opacity: 0, x: 0 },
-  exit: { opacity: 0, x: 50, transition: { duration: 0.5, ease: easing } },
+  exit: { opacity: 0, x: 50, transition: { duration: 0.25, ease: easing } },
   enter: {
     x: 0,
     opacity: 1,
     transition: {
       duration: 0.5,
       ease: easing,
-      delay: 0.5
     }
   },
   animate: {
@@ -18,7 +17,6 @@ export const pageTransitions = {
     transition: {
       duration: 0.5,
       ease: easing,
-      delay: 0.5
     }
   }
 }
@@ -33,24 +31,22 @@ export const eventsListTransition = {
 }
 
 export const eventItemTransition = {
-  initial: { opacity: 0, y: 50 },
-  exit: { opacity: 0, y: 50, transition: { duration: 0.5, ease: easing } },
+  initial: { opacity: 0, y: 250 },
+  exit: { opacity: 0, y: 250, transition: { duration: 0.25, ease: easing } },
   enter: {
     y: 0,
     opacity: 1,
     transition: {
-      duration: 0.5,
       ease: easing,
-      delay: 1
+      delay: .25
     }
   },
   animate: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.5,
       ease: easing,
-      delay: 1
+      delay: .25
     }
   }
 }

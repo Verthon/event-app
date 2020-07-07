@@ -24,9 +24,7 @@ import { CategoryData } from '../../types/categories'
 import logo from '../../assets/logo/logo-color.svg'
 import { Styled } from './Events.styles'
 import { useFetchCollection } from '../../hooks/useFetchCollection'
-import {
-  pageTransitions
-} from '../../animations/pageTransitions'
+import { pageTransitions } from '../../animations/pageTransitions'
 
 const Events: React.FC = () => {
   let [events, setEvents] = useState([])
@@ -92,7 +90,13 @@ const Events: React.FC = () => {
 
       <IonContent class="ion-padding-horizontal">
         <AnimatePresence>
-          <motion.div key="eventsPage" variants={pageTransitions}>
+          <motion.div
+            key="eventsPage"
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            variants={pageTransitions}
+          >
             <IonToast
               isOpen={errorCat || errorEvents}
               message="Error occurred while fetching data from our database. Please try again later."
@@ -115,26 +119,28 @@ const Events: React.FC = () => {
                 })}
             </Styled.CategoriesWrapper>
             <Styled.Title>Upcoming Events</Styled.Title>
-            {events &&
-              events.map((event: EventItemType, id: number) => {
-                return (
-                  <EventItem
-                    key={id}
-                    docId={event.docId}
-                    eventId={event.eventId}
-                    title={event.title}
-                    localization={event.localization}
-                    address={event.address}
-                    host={event.host}
-                    day={event.day}
-                    hour={event.hour}
-                    description={event.description}
-                    category={event.category}
-                    featuredImage={event.featuredImage}
-                    editMode={false}
-                  />
-                )
-              })}
+            <AnimatePresence>
+              {events &&
+                events.map((event: EventItemType, id: number) => {
+                  return (
+                    <EventItem
+                      key={id}
+                      docId={event.docId}
+                      eventId={event.eventId}
+                      title={event.title}
+                      localization={event.localization}
+                      address={event.address}
+                      host={event.host}
+                      day={event.day}
+                      hour={event.hour}
+                      description={event.description}
+                      category={event.category}
+                      featuredImage={event.featuredImage}
+                      editMode={false}
+                    />
+                  )
+                })}
+            </AnimatePresence>
           </motion.div>
         </AnimatePresence>
       </IonContent>

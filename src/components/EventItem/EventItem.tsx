@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux'
 import { formatMonth, formatDay } from '../../helpers/date'
 import { EventItemType } from '../../types/events'
 import { showEventDetails } from '../../reducers/event'
+import { eventItemTransition } from '../../animations/pageTransitions'
 import { Styled } from './EventItem.styles'
 
 const EventItem = ({
@@ -42,7 +43,7 @@ const EventItem = ({
     editMode: editMode
   }
   return (
-    <Styled.Event onClick={() => displayEventDetail()}>
+    <Styled.Event initial="initial" exit="exit" animate="animate" variants={eventItemTransition} onClick={() => displayEventDetail()}>
       <Link to={`/event-detail/:${eventData.docId}`}>
         <Styled.ImageWrapper>
           <Styled.Time>

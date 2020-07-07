@@ -10,7 +10,8 @@ const CategoryWrapper = styled.button<CategoryStyledProps>`
   margin: ${({ theme }: Theme) => `${theme.spacing.md} ${theme.spacing.sm}`};
   border-radius: ${({theme}: Theme ) => theme.border.defaultRadius};
   background-color: ${({active, theme} ) => (active ? theme.colors.active : theme.colors.secondary)};
-  box-shadow: ${({theme}: Theme ) => theme.shadow.category}
+  box-shadow: ${({theme}: Theme ) => theme.shadow.category};
+  scale: ${({active, theme} ) => (active ? 1.15 : 1)};
 `
 
 const IconWrapper = styled.div<CategoryStyledProps>`
