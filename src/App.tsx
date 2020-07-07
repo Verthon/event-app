@@ -17,6 +17,7 @@ import '@ionic/react/css/structure.css'
 import '@ionic/react/css/typography.css'
 import '@ionic/react/css/padding.css'
 import 'animate.css/animate.min.css';
+import {motion} from 'framer-motion'
 
 import { ReactComponent as DateRangeIcon } from './assets/icons/date_range.svg'
 import { ReactComponent as AccountBoxIcon } from './assets/icons/account_box.svg'
@@ -24,6 +25,7 @@ import { ReactComponent as LibraryAddIcon } from './assets/icons/library_add.svg
 import { ReactComponent as InfoIcon } from './assets/icons/perm_device_information.svg'
 import useAuthUser from './hooks/useAuthUser'
 import * as ROUTES from './constants/routes'
+import {pageTransitions} from './animations/pageTransitions'
 
 import './theme/variables.css'
 /* Custom css */
@@ -43,7 +45,7 @@ const App: React.FC<RouteComponentProps> = props => {
   const [currentTab, toggleActiveTabIcon] = useState('Events')
   return (
     <IonApp>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<motion.div variants={pageTransitions}>Loading...</motion.div>}>
         <IonReactRouter>
           <IonTabs>
             <IonRouterOutlet>

@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import {motion} from 'framer-motion'
 
 import {Theme} from '../../theme/Theme'
 
@@ -14,7 +15,6 @@ const Content = styled.article`
   color: var(--main-dark);
   justify-content: space-around;
   align-items: center;
-  margin: auto auto 0 auto;
   padding: 0 2rem 2.75rem 2rem;
   background: ${({ theme }: Theme) => theme.colors.white};
   max-width: 100%;
@@ -28,7 +28,7 @@ const Description = styled.p`
   margin: 0.25rem 0;
   max-width: 75%;
 `
-const Button = styled.button`
+const Button = styled(motion.button)`
   font-size: 1rem;
   font-weight: bold;
   border-radius: 2px;

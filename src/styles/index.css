@@ -23,6 +23,12 @@ ion-app {
   border-right: 2px solid hsl(180,20%,97.1%);
 }
 
+.homepage-container {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
 .ion-content--color {
   background: var(--ion-color-secondary);
 }

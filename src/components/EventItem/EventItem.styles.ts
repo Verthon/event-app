@@ -1,11 +1,12 @@
 import styled from 'styled-components'
+import { motion } from 'framer-motion'
 import { EventItemEditMode } from '../../types/events'
 import { ReactComponent as DeleteIcon } from '../../assets/icons/delete_forever.svg'
 import { ReactComponent as EditIcon } from '../../assets/icons/edit.svg'
 import { fadeInDown } from '../../theme/GlobalStyle'
 import { Theme } from '../../theme/Theme'
 
-const Event = styled.div`
+const Event = styled(motion.div)`
   animation: ${fadeInDown};
   position: relative;
   margin: 0 auto 3rem auto;
